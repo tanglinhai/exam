@@ -149,9 +149,10 @@ export default {
 
         },
         participateIn(){
-            this.$router.push({
+            window.location.href = '/operation/zjps/hldj/electTeamLeader';
+            /*this.$router.push({
                 path: '/operation/zjps/hldj/electTeamLeader'
-            })
+            })*/
         }
     }
 }

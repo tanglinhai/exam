@@ -74,7 +74,7 @@
           <li class="marginB10" v-for="(item,index) in operationQuestions" :key="item.id">
             <p class="question-title">
               {{index+1}} 、{{item.name}}
-              <el-button size="mini" round @click="operation_answer(item)">答题</el-button>
+              <el-button size="mini" @click="operation_answer(item)">加载操作程序，并开始操作</el-button>
             </p>
             <div class="question-operation">
               <iframe 
@@ -385,7 +385,9 @@
       padding: 20px 40px;
       .question-title{
         font-size: 16px;
-        margin-bottom: 5px;
+        padding: 20px 20px 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px solid #ebebeb;
       }
       .operation{
         .question-title{
@@ -401,7 +403,12 @@
         margin:5px 0 0 15px;
       }
       .question-item{
-        margin-left: 15px;
+        padding: 20px;
+        margin-top: 20px;
+        border: 1px solid #ebebeb;
+        border-radius: 3px;
+        transition: .2s;
+        background-color: #f3f2f2;
       }
       .textarea{
         width: 500px;
@@ -435,7 +442,7 @@
       text-align: center;
       border: 1px solid #ffffff;
       box-shadow: 1px 1px 1px #c5c5c5;
-      background: rgba(193, 193, 193, 0.1);
+      background: #fff4007d;
       border-radius: 20px;
       .timeout{
         margin-top: 10px;
