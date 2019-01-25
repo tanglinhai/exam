@@ -1,0 +1,273 @@
+<template>
+  <div class="busa">
+    <div class="busa_a">
+      <el-row style="padding:0 15px;">
+        <el-col :span="10">
+          <div class="grid-content bg-purple busa_aleft">
+            <span>标名称：<em>tih招标项目-专家评标2</em></span>
+            <span>标号：<em>0635-1909n987</em></span>
+            <span>包号：<em>0635-1909n987/1</em></span>
+          </div>
+        </el-col>
+        <el-col :span="14">
+          <div class="grid-content bg-purple busa_aright">
+            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+
+    <div class="busa_b">
+      <el-tabs type="border-card" v-model="activeName">
+        <el-tab-pane>
+          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          资格审查项
+        </el-tab-pane>
+        <el-tab-pane>
+          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          资格审查项汇总
+        </el-tab-pane>
+        <el-tab-pane>
+          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
+          符合性审查项
+        </el-tab-pane>
+        <el-tab-pane>
+          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          符合性审查项汇总
+        </el-tab-pane>
+        <el-tab-pane name="sec">
+          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
+          <el-row style="line-height:40px;">
+              <el-col :span="1">
+                  <div class="grid-content bg-purple" style="font-size:14px;">进度：</div>
+              </el-col>
+              <el-col :span="8">
+                  <div class="grid-content bg-purple" style="padding-top:12px;">
+                      <el-progress :percentage="67"></el-progress>
+                  </div>
+              </el-col>
+              <el-col :span="15">
+                  <div class="grid-content bg-purple" style="text-align:right;">
+                      <el-button size="small" type="info">查看未完成项</el-button>
+                      <el-button size="small" type="info">保存</el-button>
+                      <el-button size="small" type="info">提交商务</el-button>
+                  </div>
+              </el-col>
+          </el-row>
+          <el-table
+                :data="tableData"
+                border
+                style="width:100%"
+                :span-method="arraySpanMethod">
+                <el-table-column
+                    prop="num"
+                    label="项目">
+                </el-table-column>               
+                <el-table-column
+                        label="投标人">
+                        <el-table-column
+                            prop="name"
+                            label="阿里巴巴（1）">
+                            <template slot-scope="scope">
+                                <div>   
+                                    <el-input v-if="scope.$index == 0"></el-input>
+                                    <div v-else>{{scope.row.name}}</div>
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                            prop="name1"
+                            label="普瑞太阳能有限公司（测试）（2）">
+                            <template slot-scope="scope">
+                                <div>   
+                                    <el-input v-if="scope.$index == 0"></el-input>
+                                    <div v-else>{{scope.row.name1}}</div>
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                            prop="name2"
+                            label="夏丰热工研究院有限公司（测试）（3）">
+                            <template slot-scope="scope">
+                                <div>   
+                                    <el-input v-if="scope.$index == 0"></el-input>
+                                    <div v-else>{{scope.row.name2}}</div>
+                                </div>
+                            </template>
+                        </el-table-column>
+                    </el-table-column>
+            </el-table>
+            <el-row>
+                <el-col :span="24">
+                    <div class="grid-content bg-purple-dark" style="text-align:right;border:1px solid #ebeef5;border-top:none;padding:7px 0;">
+                        <el-pagination
+                            @size-change="handleSizeChange"
+                            @current-change="handleCurrentChange"
+                            :current-page="currentPage4"
+                            :page-sizes="[10, 20, 50, 100]"
+                            :page-size="10"
+                            layout="total, sizes, prev, pager, next, jumper"
+                            :total="3">
+                        </el-pagination>
+                    </div>
+                </el-col>
+            </el-row>
+        </el-tab-pane>
+        <el-tab-pane>
+          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          评审汇总
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+
+  </div>
+</template>
+<script>
+  export default {
+    name: 'updateBill',
+    data () {
+      return { 
+        activeName:'sec',
+        tableData:[
+          {num:'第一章、2(0.00分-50.00分)',name:'1',name1:'2',name2:'3'},
+          {num:'商务小计(分)',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
+          {num:'总分小计(分)',name:'合格',name1:'合格',name2:'合格'}
+        ],
+        currentPage4: 1
+      }
+      
+    },
+    mounted(){
+    },
+    methods: {     
+    },
+  }
+  
+
+  
+</script>
+
+<style lang="scss">
+  .busa{
+    background:white;
+    border-radius:5px;
+    overflow: hidden;
+    .busa_a{
+      background:#c8d3d8;
+      // height:42px;
+      .el-row{
+        // margin-left:0px!important;
+        // margin-right:0px!important;
+        .busa_aleft{
+          line-height:42px;
+          span{
+            color:#777777;
+            font-size:14px;
+            font-weight: bold;
+            margin-right:8px;
+            em{
+              color:#ff0000;
+              font-weight: bold;
+            }
+          }
+        }
+        .busa_aright{
+          float: right;
+          button{
+            margin-top:5px;
+          }
+        }
+      }
+    }
+    .busa_b{
+      border-bottom:1px solid #d0d0d0;
+      margin-top:10px;
+      .el-tabs__nav{
+        margin-left:30%;
+      }
+      .el-tabs--border-card>.el-tabs__header{
+        background:white;
+      }
+      .el-tabs--border-card>.el-tabs__header .el-tabs__item.is-active{
+        background: #ffefa4;
+        color:#ff0000;
+      }
+      .busa_bleft{ 
+        background:#ebeff3;
+        overflow: hidden;
+        padding-left:20px;
+        min-height:600px;
+        h6{
+          color:#000000;
+          font-size:16px;
+          padding-top:15px;
+          margin-bottom:30px;
+          font-weight:bold;
+        }
+        .a_bleft_btn{
+          margin-top:20px;
+        }
+      }
+      .busa_bright{
+        display:none;
+        .a_bright_title{
+          margin-bottom:10px;
+          span{
+            font-size:14px;
+            margin-right:20px;
+          }
+        }
+      }
+     
+    }
+    .qu{
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #ebeef5;
+        border-bottom: none;
+        font-size: 14px;
+    }
+    .iconfont{
+        font-size: 14px;
+    }
+    .icon-queren{
+        color:#35D437;
+    }
+    .el-progress-bar__inner{
+        background: #35D437;
+    }
+    .el-progress-bar{
+      width:35%;
+    }
+    .btnBox{
+        .el-button{
+            margin-right:5px;
+        }
+    }
+    .with{
+      border: 1px solid #ebeef5;
+      border-top:none;
+      padding: 15px;
+      .letter{
+        padding-bottom: 5px;
+        font-size: 14px;
+      }
+      .pad{
+        padding-left: 28px;
+        font-size: 14px;
+      }
+    }
+    .textSty{
+      line-height: 27px;
+      padding-left: 15px;
+      font-size: 14px;
+    }
+  }
+</style>
+
