@@ -109,6 +109,7 @@
          * @param id
          */
         goToExam(paper){
+          console.log(paper)
           this.judgeTime(paper);
         },
         /**
