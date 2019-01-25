@@ -1,4 +1,4 @@
-<template>
+ <template>
     <div class="mypapers">
       <el-row>
         <el-col>
@@ -7,10 +7,10 @@
               <el-input class=" pull-left input150" v-model="name" @keyup.enter.native="getMypapers"></el-input>
               <el-button class="pull-left marginL10" type="primary" @click="getMypapers"  icon="search">搜索</el-button>
             </div>
-            <div class="pull-right">
+            <!-- <div class="pull-right">
               <router-link :to="{path:'edit',query:{'id':'1'}}"><el-button type="primary">新增试卷</el-button></router-link>
               <el-button type="danger" :disabled="isSelected" @click="deletePaper">批量删除</el-button>
-            </div>
+            </div> -->
         </el-col>
         <el-col>
           <el-table
@@ -20,11 +20,8 @@
             border
             tooltip-effect="dark"
             style="width: 100%"
-            @selection-change="handleSelectionChange">
-            <el-table-column
-              type="selection"
-              width="55">
-            </el-table-column>
+            >
+            
             <el-table-column
               label="试卷名称"
               prop="name"
@@ -48,7 +45,7 @@
             </el-table-column>
             <el-table-column
               width="190"
-              align="center"s
+              align="center"
               label="考试时间"
             >
             <template scope="scope">
@@ -60,12 +57,13 @@
               align="center"
             >
               <template scope="scope">
-                <el-button type="primary" size="mini" v-if="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) > 1" @click="publish(scope.row._id)">再次发布</el-button>
+                <el-button type="primary" size="mini" @click="publish(scope.row._id)">练习</el-button>
+                <!-- <el-button type="primary" size="mini" v-if="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) > 2" @click="publish(scope.row._id)">再次发布</el-button>
                 <el-button type="primary" size="mini" v-else :disabled="scope.row.startTime?true:false" @click="publish(scope.row._id)">{{scope.row.startTime?'已发布':'发布'}}</el-button>
                 <el-button type="danger" size="mini" icon="el-icon-delete" @click="deletePaper(scope.row)">删除</el-button>
                 <router-link :to="{path:'edit',query:{'id':scope.row._id}}">
-                  <el-button type="info" size="mini" icon="el-icon-edit" :disabled="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) < 1">编辑</el-button>
-                </router-link>
+                  <el-button type="info" size="mini" icon="el-icon-edit" :disabled="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) < 60">编辑</el-button>
+                </router-link> -->
               </template>
             </el-table-column>
           </el-table>
@@ -96,6 +94,8 @@ export default {
       pageNumber: 1, // 当前页
       pageSize:10 ,
       pageTotal: 0, // 数据总数
+      examLogs: [],
+      isExam: false,
       mypapers: [] // 试卷数据
     }
   },
@@ -116,7 +116,9 @@ export default {
     }
   },
   mounted(){
-    this.getMypapers()
+    this.getMypapers();
+
+    this.getExamLogs();   //跳转需要的数据
   },
   methods: {
     /**
@@ -145,9 +147,7 @@ export default {
      * @param  {val} 框架自带，选中项
      * @return {[type]}
      */
-    handleSelectionChange (val) {
-      this.selections = val;
-    },
+   
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
@@ -158,62 +158,47 @@ export default {
      * 删除试卷
      * @return {[type]}
      */
-    deletePaper(val) {
-      let arrIds = [];
-      if(this.selections.length>0){
-        this.selections.forEach(item => {
-          arrIds.push(item._id);
-        })
-      } else if(val) {
-        arrIds.push(val._id);
-      }
-      this.$confirm('确定删除选中的试卷吗？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-      }).then(() => {
-        this.$axios.post('/api/deletePaper',{
-          id: arrIds
-        }).then(response => {
-          let res = response.data;
-          if (res.status == '0') {
-            this.$refs.multipleTable.clearSelection();
-            this.$message.success('删除成功！');
-            this.getMypapers();
-          }
-        }).catch(err => {
-          this.$message.error("获取试卷数据失败!")
-        })
-      }).catch(()=>{
-
-      })
-    },
+    
     /**
      * 发布试卷
      * @param id 试卷id
      */
-    publish(id){
-      this.$confirm('确定发布该试卷吗？', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-      }).then(() => {
-        this.$axios.post('/api/publishPaper',{
-          id: id
-        }).then(response => {
-          let res = response.data;
-          if (res.status == '0') {
-            this.$message.success('发布成功！');
-            this.getMypapers();
-          }
-        }).catch(err => {
-          this.$message.error("获取试卷数据失败!")
-        })
-      }).catch(()=>{
-        this.$message({
-          type: 'info',
-          message: '已取消发布!'
-        });
+      
+    publish(paper){
+      console.log(paper)
+      this.judgeTime(paper);
+    },
+    getExamLogs(){
+      this.$axios.get('/api/getexamlogs',{
+        params:{
+          name: '',
+          pageNumber: 1,
+          pageSize: 10000,
+        }
+      }).then(response => {
+        let res = response.data;
+        this.examLogs = res.result.exams || [];
       })
-
+    },
+    judgeTime(paper){
+      // console.log(paper)
+      this.isExam = false;
+      if(this.examLogs.length > 0){
+        this.examLogs.forEach(item => {
+          // console.log(item);
+          if(item._paper&&item._paper._id == paper && item.startTime == paper.startTime){
+            this.isExam = true;
+            this.$message.error('已经参加过本次考试，不能重复参加!');
+            return;
+          }
+        })
+        if(!this.isExam){
+          this.$router.push({name:'ForntExam',params:{id:paper}});
+        }
+      }else {
+        this.$router.push({name:'ForntExam',params:{id:paper}});
+      }
+      
     }
   }
 }
@@ -221,9 +206,10 @@ export default {
 
 <style rel="stylesheet/scss" scoped="scoped" lang="scss">
   .mypapers{
-    width: 100%;
+   // width: 100%;
     height:100%;
     overflow-y: scroll;
+    margin:15px;
   }
   .mypapers::-webkit-scrollbar {
     display:none
