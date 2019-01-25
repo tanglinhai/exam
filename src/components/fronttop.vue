@@ -9,6 +9,7 @@
           <li>专业类别: {{userData.class}} </li>
         </ul>
         <el-button type="danger" size="mini" class="login-out" @click="loginOut">退出</el-button>
+        <router-link class="person" :to="{name:'FrontStudentInfo'}">模拟练习</router-link>
         <router-link class="person" :to="{name:'FrontStudentInfo'}">个人中心</router-link>
         <router-link class="index" :to="{name:'FrontIndex'}">首页</router-link>
       </div>
