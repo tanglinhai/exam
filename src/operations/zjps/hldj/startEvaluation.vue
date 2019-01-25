@@ -63,7 +63,7 @@
                     <el-col :span="2" style="padding:0px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：1</div>
                     </el-col>
-                    
+
                   </el-row>
                   <template>
                       <el-table
@@ -93,7 +93,7 @@
                             <span style="margin-left: 10px">
                               <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
-                                <el-radio :label="scope.row.ra2">不合格</el-radio>
+                                <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
                             </span>
                           </template>
@@ -131,7 +131,7 @@
                         align="center"
                         label="评审因素">
                       </el-table-column>
-                      <el-table-column 
+                      <el-table-column
                       label="投标人"
                       align="center"
                       >
@@ -181,16 +181,27 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      title="不合格录入"
+      :visible.sync="dialogVisible"
+      width="700px"
+    >
+      <FailureEntry></FailureEntry>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import FailureEntry from '../dialog/FailureEntry'
   export default {
     name: 'updateBill',
     props:{
     },
+    components: {
+      FailureEntry
+    },
     data () {
       return {
+        dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
           date: '1',
@@ -253,9 +264,9 @@
           radio:'',
           id:4444
         }],
-        
+
       }
-      
+
     },
     mounted(){
     var setting = {
@@ -281,7 +292,7 @@
 			{ id:122, pId:12, name:"叶子节点 1-2-2"},
 			{ id:123, pId:12, name:"叶子节点 1-2-3"},
 			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-		
+
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -310,7 +321,7 @@
           return [1, 5];
         }
       },
-      
+
       arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
        console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 0) {
@@ -320,10 +331,13 @@
 
       hahaha(radio,id){
         console.log(radio,id)
+        if(radio==2){
+          this.dialogVisible=true
+        }
       },
 
       quanbu(){
-        
+
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio=1;
         }
@@ -331,13 +345,16 @@
         // this.tableData.radio2=1;
         // this.tableData.radio3=1;
         // this.tableData.radio4=1;
+      },
+      failureEntry(){
+
       }
-     
+
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -395,7 +412,7 @@
         margin-left:0px!important;
         margin-right:0px!important;
       }
-      .aaa_bleft{ 
+      .aaa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;

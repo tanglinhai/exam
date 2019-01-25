@@ -41,9 +41,9 @@
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
                     <el-button size="small" type="info">提交</el-button>
-                    <el-button size="small" type="info">查看个人资格审查项表</el-button>
+                    <el-button size="small" type="info" @click="individualTrial">查看个人资格审查项表</el-button>
                     <el-button size="small" type="info">查看资格审查项解锁记录</el-button>
-                    <el-button size="small" type="info">资格审查项解锁</el-button>
+                    <el-button size="small" type="info" @click="qualificationUnlockApplication">资格审查项解锁</el-button>
                 </div>
               </el-col>
             </el-row>
@@ -119,32 +119,60 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      :title="title"
+      :visible.sync="dialogVisible"
+      width="952px"
+    >
+      <IndividualTrial ></IndividualTrial>
+    </el-dialog>
+    <el-dialog
+      :title="dialogVisibleTitle"
+      :visible.sync=" dialogFormVisible"
+      width="700px"
+    >
+      <QualificationUnlock ></QualificationUnlock>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import IndividualTrial from '../dialog/IndividualTrial';
+  import QualificationUnlock from '../dialog/QualificationUnlockApplication'
   export default {
     name: 'updateBill',
+    components: {
+      IndividualTrial,
+      QualificationUnlock
+    },
+
     data () {
-      return { 
+      return {
         activeName:'sec',
         tableData:[
           {num:'1',factor:'1',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
           {num:'2',factor:'11',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
           {num:'结论',factor:'是否通过资格审查项检查',name:'合格',name1:'合格',name2:'合格'}
-        ]
-
+        ],
+        dialogVisible:false,//查看个人资格审查项表弹框
+        title:'个人初审类活动表',
+        dialogFormVisible:false,//资格审查项汇总解锁申请
+        dialogVisibleTitle:'资格审查项汇总解锁申请'
       }
-      
     },
     mounted(){
     },
-    methods: {     
+    methods: {
+      individualTrial(){
+        this.dialogVisible = true;
+      },
+      qualificationUnlockApplication(){
+        this.dialogFormVisible = true;
+      },
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -192,7 +220,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .leader_bleft{ 
+      .leader_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -218,7 +246,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;
