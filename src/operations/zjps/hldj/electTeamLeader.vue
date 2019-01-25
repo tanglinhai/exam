@@ -97,7 +97,7 @@
                         label="操作">
                         <template slot-scope="scope"> 
                             <div>
-                                <el-button size="small">推举组长</el-button>
+                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electAfter')">推举组长</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -147,7 +147,11 @@ export default {
         },
         handleCurrentChange(currPage){
 
-        }
+        },
+        changeView(name){      //路由跳转传参函数
+            // console.log(name)
+            this.$router.push({path:`${name}`});
+        },
     }
 }
 </script>

@@ -15,7 +15,7 @@
             </el-col>
             <el-col :span="2">
                 <div class="grid-content bg-purple-dark" style="text-align:center;">
-                    <el-button type="warning" size="small"><i class="iconfont icon-quxiao"></i>&nbsp;&nbsp;关闭</el-button>
+                    <el-button type="warning" size="small">关闭</el-button>
                 </div>
             </el-col>
         </el-row>
@@ -55,13 +55,14 @@
                 </el-table>    
             </el-aside>
             <el-main>
-                <el-row style="line-height:40px;">
+                <el-row style="line-height:40px;border-bottom:2px solid #ccc;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:right;">
-                            <el-button type="primary" size="small"><i class="iconfont icon-fanhui"></i>&nbsp;&nbsp;返回</el-button>
+                            <el-button type="primary" size="small">返回</el-button>
                         </div>
                     </el-col>
                 </el-row>
+                <h4>推举评委会主人第1轮</h4>
                 <el-table
                     :data="tableData3"
                     border
@@ -72,22 +73,30 @@
                         width="180">
                     </el-table-column>
                     <el-table-column
-                        prop="id"
-                        label="包号">
-                    </el-table-column>
-                    <el-table-column
                         prop="name"
-                        label="包名称">
+                        label="专家姓名">
                     </el-table-column>
                     <el-table-column
-                        prop="status"
-                        label="状态">
+                        prop="endNum"
+                        label="得票数">
+                    </el-table-column>
+                    <el-table-column
+                        prop="phoneNum"
+                        label="手机号">
+                    </el-table-column>
+                    <el-table-column
+                        prop="id"
+                        label="证件号">
+                    </el-table-column>
+                    <el-table-column
+                        prop="min"
+                        label="单位">
                     </el-table-column>
                     <el-table-column
                         label="操作">
                         <template slot-scope="scope"> 
                             <div>
-                                <el-button size="small">推举组长</el-button>
+                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electWait')">推举</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -126,7 +135,9 @@ export default {
                 {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
             ],
             tableData3:[
-                {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
+                {num:'1',name:'1',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
+                {num:'2',name:'2',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
+                {num:'3',name:'3',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
             ],
             currentPage4: 1
         }
@@ -137,7 +148,11 @@ export default {
         },
         handleCurrentChange(currPage){
 
-        }
+        },
+        changeView(name){      //路由跳转传参函数
+            // console.log(name)
+            this.$router.push({path:`${name}`});
+        },
     }
 }
 </script>
@@ -166,7 +181,7 @@ export default {
         }
     }
     h4{
-        width:120px;
+        width:160px;
         background: green;
         text-align: center;
         padding: 5px 0;
