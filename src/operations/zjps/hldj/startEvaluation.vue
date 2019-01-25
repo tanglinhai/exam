@@ -274,7 +274,7 @@
 			{ id:11, pId:1, name:"1", open:false},
 			{ id:111, pId:11, name:"叶子节点 1-1-1"},
 			{ id:112, pId:11, name:"叶子节点 1-1-2"},
-			{ id:113, pId:11, name:"叶子节点 1-1-3"},``
+			{ id:113, pId:11, name:"叶子节点 1-1-3"},
 			{ id:114, pId:11, name:"叶子节点 1-1-4"},
 			{ id:12, pId:1, name:"11", open:false},
 			{ id:121, pId:12, name:"叶子节点 1-2-1"},
