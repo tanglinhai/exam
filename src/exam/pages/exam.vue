@@ -11,72 +11,78 @@
       </div>
     </div>
     <div class="main">
-      <div class="single" v-if="singleQuestions.length>0">
+      <div class="question single" v-if="singleQuestions.length>0">
         <h3>一、单选题（只有一个正确答案）</h3>
         <ul class="question-item">
           <li class="marginB10" v-for="(item,index) in singleQuestions" :key="item.id">
             <p class="question-title">{{index+1}} 、{{item.name}}</p>
-
-            <span class="option"
+            <div class="question-content">
+              <span class="option"
                   v-if="item.type!='judgement'&&item.type!='Q&A'"item
                   v-for="(item1,index1) in item.selection" :key="item1.id">
-              <el-radio v-model="item.sanswer" :label="options[index1]" :key="index1">
-              {{options[index1]}}、{{item1}}
-              </el-radio>
+                <el-radio v-model="item.sanswer" :label="options[index1]" :key="index1">
+                {{options[index1]}}、{{item1}}
+                </el-radio>
               </span>
+            </div>
           </li>
         </ul>
       </div>
-      <div class="multi" v-if="multiQuestions.length>0">
+      <div class="question multi" v-if="multiQuestions.length>0">
         <h3>二、多选题（有多个正确答案）</h3>
         <ul class="question-item">
           <li class="marginB10" v-for="(item,index) in multiQuestions" :key="item.id">
             <p class="question-title">{{index+1}} 、{{item.name}}</p>
-
-            <span class="option"
+            <div class="question-content">
+              <span class="option"
                   v-if="item.type!='judgement'&&item.type!='Q&A'"item
                   v-for="(item1,index1) in item.selection" :key="item1.id">
-              <el-checkbox v-model="item.sanswer" :label="options[index1]" :key="index1">
-              {{options[index1]}}、{{item1}}
-              </el-checkbox>
+                <el-checkbox v-model="item.sanswer" :label="options[index1]" :key="index1">
+                {{options[index1]}}、{{item1}}
+                </el-checkbox>
               </span>
+            </div>
           </li>
         </ul>
       </div>
-      <div class="judge" v-if="judgeQuestions.length>0">
+      <div class="question judge" v-if="judgeQuestions.length>0">
         <h3>三、判断题</h3>
         <ul class="question-item">
           <li class="marginB10" v-for="(item,index) in judgeQuestions" :key="item.id">
             <p class="question-title">{{index+1}} 、{{item.name}}</p>
-            <el-radio v-model="item.sanswer" label="A" :key="index">正确</el-radio>
-            <el-radio v-model="item.sanswer" label="B" :key="index">错误</el-radio>
+            <div class="question-content">
+              <el-radio v-model="item.sanswer" label="A" :key="index">正确</el-radio>
+              <el-radio v-model="item.sanswer" label="B" :key="index">错误</el-radio>
+            </div>
           </li>
         </ul>
       </div>
-      <div class="judge" v-if="QAQuestions.length>0">
+      <div class="question judge" v-if="QAQuestions.length>0">
         <h3>四、简答题</h3>
         <ul class="question-item">
           <li class="marginB10" v-for="(item,index) in QAQuestions" :key="item.id">
             <p class="question-title">{{index+1}} 、{{item.name}}</p>
-            <el-input
-             class="textarea"
-              type="textarea"
-              :rows="3"
-              placeholder="请输入内容"
-              v-model="item.sanswer">
-            </el-input>
+            <div class="question-content">
+              <el-input
+               class="textarea"
+                type="textarea"
+                :rows="3"
+                placeholder="请输入内容"
+                v-model="item.sanswer">
+              </el-input>
+            </div>
           </li>
         </ul>
       </div>
-      <div class="operation" v-if="operationQuestions.length>0">
+      <div class="question operation" v-if="operationQuestions.length>0">
         <h3>五、操作题</h3>
         <ul class="question-item">
           <li class="marginB10" v-for="(item,index) in operationQuestions" :key="item.id">
             <p class="question-title">
               {{index+1}} 、{{item.name}}
-              <el-button size="mini" round @click="operation_answer(item)">答题</el-button>
+              <el-button size="mini" @click="operation_answer(item)">加载操作程序，并开始操作</el-button>
             </p>
-            <div class="question-operation">
+            <div class="question-content">
               <iframe 
                 :ref="'iframe_operation_'+item._operation.name"
                 width="100%"
@@ -382,29 +388,41 @@
   .exam{
     padding: 20px 0;
     .main{
-      padding: 20px 40px;
-      .question-title{
-        font-size: 16px;
-        margin-bottom: 5px;
-      }
-      .operation{
-        .question-title{
-          
+      padding: 20px 20px;
+      .question{
+        margin-bottom: 20px;
+        
+        .operation{
+          .question-title{
+            
+          }
         }
-        .question-operation{
-
+        
+        .option{
+          display: block;
+          margin:5px 0 0 15px;
         }
-      }
-      
-      .option{
-        display: block;
-        margin:5px 0 0 15px;
-      }
-      .question-item{
-        margin-left: 15px;
-      }
-      .textarea{
-        width: 500px;
+        .question-item{
+          margin-top: 20px;
+          >li{
+            border: 1px solid #ebebeb;
+            border-radius: 3px;
+            transition: .2s;
+            background-color: #f3f2f2;
+            .question-title{
+              font-size: 16px;
+              padding: 20px 20px 12px;
+              border-bottom: 1px solid #ebebeb;
+            }
+            .question-content{
+              padding: 20px;
+              padding-top: 0;
+            }
+          }
+        }
+        .textarea{
+          width: 500px;
+        }
       }
     }
     .scroll_top{
@@ -435,7 +453,7 @@
       text-align: center;
       border: 1px solid #ffffff;
       box-shadow: 1px 1px 1px #c5c5c5;
-      background: rgba(193, 193, 193, 0.1);
+      background: #fff4007d;
       border-radius: 20px;
       .timeout{
         margin-top: 10px;

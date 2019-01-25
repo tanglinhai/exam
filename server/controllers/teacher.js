@@ -340,6 +340,10 @@ exports.savePaper = function (req, res) {
                 item._papers = [];
                 item._papers.push(doc1._id);
                 item._teacher = doc._id;
+
+                if(!item._operation){
+                  delete item['_operation'];
+                }
               })
 
               console.log('---000000000---------------:', paperForm._questions);
@@ -589,6 +593,7 @@ exports.updatePaper = function (req,res) {
       addQuestion.push(item);
     }
   })
+  console.log('====================updatePaper====================');
   // console.log(updateQuestion,addQuestion);
   Teacher.findOne({'userName':userName},(err,doc)=>{
     if (err) {
@@ -636,8 +641,13 @@ exports.updatePaper = function (req,res) {
                                 doc3.forEach(item => {
                                   doc1._questions.push(item._id);
                                 })
-
-                                doc1.save(); // 很重要 不save则没有数据
+                                Paper.updateOne({_id: doc1._id}, doc1, function(err){
+                                  if(err){
+                                    console.log(err);
+                                  }else{
+                                    console.log('===============save Paper _questions success================');
+                                  }
+                                });
                                 res.json({
                                   status:'0',
                                   msg: 'success'

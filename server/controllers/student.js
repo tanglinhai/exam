@@ -351,7 +351,6 @@ exports.submitExam = function (req, res) {
             } else{
               if(doc1) {
                 doc1.examnum += 1;
-                doc1.save();
                 Paper.updateOne({_id:doc1._id}, doc1, function(err){
                   if(err){
                     console.log(err);
