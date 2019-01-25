@@ -75,6 +75,7 @@ export default new Router({
         { path: 'zjps/hldj/participateIn', name: 'zjps/hldj/participateIn', component: () => import('../operations/zjps/hldj/participateIn.vue'), meta: {breadName:'参与评审'},}, // 参与评审
         { path: 'zjps/hldj/electTeamLeader', name: 'zjps/hldj/electTeamLeader', component: () => import('../operations/zjps/hldj/electTeamLeader.vue'), meta: {breadName:'推举组长'},}, // 推举组长
         { path: 'zjps/hldj/electAfter', name: 'zjps/hldj/electAfter', component: () => import('../operations/zjps/hldj/electAfter.vue'), meta: {breadName:'推举组长下一步'},}, // 推举组长下一步
+        { path: 'zjps/hldj/electWait', name: 'zjps/hldj/electWait', component: () => import('../operations/zjps/hldj/electWait.vue'), meta: {breadName:'推举组长下一步'},}, // 等待推举
         { path: 'zjps/hldj/bidLink', name: 'zjps/hldj/bidLink.vue', component: () => import('../operations/zjps/hldj/bidLink.vue'), meta: {breadName:'评标环节'},}, // 评标环节
         { path: 'zjps/hldj/startEvaluation', name: 'zjps/hldj/startEvaluation.vue', component: () => import('../operations/zjps/hldj/startEvaluation.vue'), meta: {breadName:'开始评标'},}, // 开始评标
         { path: 'zjps/hldj/myQualificationsResult', name: 'zjps/hldj/myQualificationsResult.vue', component: () => import('../operations/zjps/hldj/myQualificationsResult.vue'), meta: {breadName:'单项评标结果'},}, // 单项评标结果

@@ -10,12 +10,12 @@
             <el-col :span="18">
                 <div class="grid-content bg-purple-dark">
                     <h2>项目名称：tlh招标项目-专家评标2</h2>
-                    <div class="num">项目编号：0635-1909N987</div>
+                    <div class="num">项目编号：0635-1909N987</div>	
                 </div>
             </el-col>
             <el-col :span="2">
                 <div class="grid-content bg-purple-dark" style="text-align:center;">
-                    <el-button type="warning" size="small"><i class="iconfont icon-quxiao"></i>&nbsp;&nbsp;关闭</el-button>
+                    <el-button type="warning" size="small">关闭</el-button>
                 </div>
             </el-col>
         </el-row>
@@ -52,26 +52,24 @@
                         prop="file"
                         label="招标文件">
                     </el-table-column>
-                </el-table>
+                </el-table>    
             </el-aside>
             <el-main>
-                <el-row style="line-height:40px;margin-bottom:15px;">
-                    <el-col :span="2">
-                        <div class="grid-content bg-purple-dark" style="border-bottom:2px solid #409EFF;font-size:16px;font-weight:bold;">
-                            项目分包
-                        </div>
-                    </el-col>
-                    <el-col :span="19">
-                        <div class="grid-content bg-purple-dark" style="text-align:right;border-bottom:2px solid #ccc">
-                            评标专家：<font style="color:red;">3</font>
-                        </div>
-                    </el-col>
-                    <el-col :span="3">
-                        <div class="grid-content bg-purple-dark" style="text-align:center;border-bottom:2px solid #ccc">
-                            <el-button type="primary" size="small" @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
+                <el-row style="line-height:40px;margin-bottom:5px;">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
+                            <h2>请等待其他专家推举......</h2>
                         </div>
                     </el-col>
                 </el-row>
+                <el-row style="line-height:40px;border-bottom:2px solid #ccc;margin-bottom:5px;">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark" style="text-align:right;">
+                            <el-button type="primary" size="small">返回</el-button>
+                        </div>
+                    </el-col>
+                </el-row>
+                <h4>推举评委会主人第1轮</h4>
                 <el-table
                     :data="tableData3"
                     border
@@ -82,22 +80,37 @@
                         width="180">
                     </el-table-column>
                     <el-table-column
-                        prop="id"
-                        label="包号">
-                    </el-table-column>
-                    <el-table-column
                         prop="name"
-                        label="包名称">
+                        label="专家姓名">
                     </el-table-column>
                     <el-table-column
-                        prop="status"
-                        label="状态">
+                        prop="endNum"
+                        label="得票数">
+                    </el-table-column>
+                    <el-table-column
+                        prop="phoneNum"
+                        label="手机号">
+                    </el-table-column>
+                    <el-table-column
+                        prop="id"
+                        label="证件号">
+                    </el-table-column>
+                    <el-table-column
+                        prop="min"
+                        label="单位">
                     </el-table-column>
                     <el-table-column
                         label="操作">
-                        <template slot-scope="scope">
+                        <template slot-scope="scope"> 
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electAfter')">推举组长</el-button>
+                                <el-select v-model="scope.row.value5" multiple placeholder="请选择">
+                                    <el-option
+                                        v-for="item in tableData3"
+                                        :key="item.name"
+                                        :label="item.name"
+                                        :value="item.name">
+                                    </el-option>
+                                </el-select>
                             </div>
                         </template>
                     </el-table-column>
@@ -117,24 +130,20 @@
                         </div>
                     </el-col>
                 </el-row>
+                <el-row style="line-height:40px;margin-bottom:5px;">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
+                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/bidLink')">下一步</el-button>
+                        </div>
+                    </el-col>
+                </el-row>
             </el-main>
         </el-container>
-      <el-dialog
-        :title="showNumApply"
-        :visible.sync="dialogVisible"
-        width="700px"
-        >
-        <SelectionDirector ></SelectionDirector>
-      </el-dialog>
     </div>
 </template>
 
 <script>
-  import SelectionDirector from '../dialog/SelectionDirector'
 export default {
-  components: {
-    SelectionDirector
-  },
     data(){
         return {
             currentPage4:1,
@@ -147,11 +156,12 @@ export default {
                 {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
             ],
             tableData3:[
-                {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
+                {num:'1',name:'1',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
+                {num:'2',name:'2',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
+                {num:'3',name:'3',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
             ],
             currentPage4: 1,
-            dialogVisible:false,//查看推举情况
-            showNumApply:'推举主任情况',
+            value5:[]
         }
     },
     methods:{
@@ -161,16 +171,10 @@ export default {
         handleCurrentChange(currPage){
 
         },
-// <<<<<<< HEAD
-      selectionDirector(){
-        this.dialogVisible =true;
-      },
-// =======
         changeView(name){      //路由跳转传参函数
             // console.log(name)
             this.$router.push({path:`${name}`});
         },
-// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
     }
 }
 </script>
@@ -199,11 +203,11 @@ export default {
         }
     }
     h4{
-        width:120px;
+        width:160px;
         background: green;
         text-align: center;
         padding: 5px 0;
-        margin: 5px 0;
+        margin: 5px 0; 
         color: #fff;
         font-size: 14px;
     }

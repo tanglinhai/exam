@@ -56,7 +56,7 @@
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
                         <el-button @click="quanbu" size="mini" type="info">全部合格</el-button>
-                        <el-button size="mini" type="info">全部提交</el-button>
+                        <el-button size="mini" type="info" @click="allSubmit">全部提交</el-button>
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
@@ -160,8 +160,8 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -172,8 +172,8 @@
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          商务
+          <span slot="label" @click="changeView('/operation/zjps/hldj/businessAffairs')"><i class="el-icon-edit"></i> 商务</span>
+          <!-- 商务 -->
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -232,8 +232,8 @@
           name: '',
           pass: '',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
           id:1111
         },{
@@ -241,8 +241,8 @@
           name: '[1] 阿里巴巴',
           pass: '1',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
           id:2222
         }, {
@@ -250,8 +250,8 @@
           name: '[2] 普瑞太阳能有限公司（测试）',
           pass: '2',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
           id:3333
         }, {
@@ -259,12 +259,16 @@
           name: '[3] 夏丰热工研究院有限公司（测试）',
           pass: '1',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio:'',
           id:4444
         }],
-
+// <<<<<<< HEAD
+//
+// =======
+        allRadio:[],
+// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
       }
 
     },
@@ -330,10 +334,19 @@
       },
 
       hahaha(radio,id){
+// <<<<<<< HEAD
         console.log(radio,id)
         if(radio==2){
           this.dialogVisible=true
         }
+// =======
+        console.log(radio,id);
+        this.allRadio.push({
+          id:id,
+          value:radio,
+          isSubmit:false,
+        });
+// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
       },
 
       quanbu(){
@@ -341,15 +354,34 @@
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio=1;
         }
-        console.log(this.tableData.radio)
+        // console.log(this.tableData.radio)
         // this.tableData.radio2=1;
         // this.tableData.radio3=1;
         // this.tableData.radio4=1;
       },
-      failureEntry(){
+// <<<<<<< HEAD
+//       failureEntry(){
+//
+//       }
 
+// =======
+      changeView(name){      //路由跳转传参函数
+        // console.log(name)
+        this.$router.push({path:`${name}`});
+      },
+      allSubmit(){
+        if(this.allRadio == ''){
+          this.$message({
+            message: '请选选择合格/不合格',
+            center: true
+          });
+        }else{
+          this.$router.push({
+            path: '/operation/zjps/hldj/electTeamLeader'
+          })
+        }
       }
-
+// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
     },
   }
 
