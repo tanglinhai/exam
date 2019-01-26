@@ -28,8 +28,17 @@
         <el-tab-pane>
           <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        </el-tab-pane>
+
         <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <div>
             <el-row style="line-height:40px;">
               <el-col :span="12">
@@ -39,9 +48,9 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/startEvaluation_fhx')">提交</el-button>
+                    <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">提交</el-button>
                     <el-button size="small" type="info" @click="individualTrial">查看个人资格审查项表</el-button>
-                    <el-button size="small" type="info" @click="checkUnlockRecord">查看资格审查项解锁记录</el-button>
+                    <el-button size="small" type="info">查看资格审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">资格审查项解锁</el-button>
                 </div>
               </el-col>
@@ -101,19 +110,10 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -134,25 +134,16 @@
     >
       <QualificationUnlock ></QualificationUnlock>
     </el-dialog>
-    <el-dialog
-      title="解锁申请记录"
-      :visible.sync=" dialogViewUnlockRecord"
-      width="700px"
-    >
-      <ViewUnlockRecord ></ViewUnlockRecord>
-    </el-dialog>
   </div>
 </template>
 <script>
   import IndividualTrial from '../dialog/IndividualTrial';
-  import QualificationUnlock from '../dialog/QualificationUnlockApplication';
-  import ViewUnlockRecord from '../dialog/ViewUnlockRecord';
+  import QualificationUnlock from '../dialog/QualificationUnlockApplication'
   export default {
     name: 'updateBill',
     components: {
       IndividualTrial,
-      QualificationUnlock,
-      ViewUnlockRecord
+      QualificationUnlock
     },
 
     data () {
@@ -166,8 +157,7 @@
         dialogVisible:false,//查看个人资格审查项表弹框
         title:'个人初审类活动表',
         dialogFormVisible:false,//资格审查项汇总解锁申请
-        dialogVisibleTitle:'资格审查项汇总解锁申请',
-        dialogViewUnlockRecord:false
+        dialogVisibleTitle:'资格审查项汇总解锁申请'
       }
     },
     mounted(){
@@ -182,9 +172,6 @@
       qualificationUnlockApplication(){
         this.dialogFormVisible = true;
       },
-      checkUnlockRecord(){
-        this.dialogViewUnlockRecord=true;
-      }
     },
   }
 
