@@ -1,6 +1,5 @@
 <template>
   <div class="aaa">
-
     <div class="aaa_a">
       <el-row :gutter="20">
         <el-col :span="10">
@@ -335,12 +334,15 @@
         // console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
-        };
+
+        }
+
         this.cover(this.allRadio,id,radio,false);
       },
 
       cover(num,id,radio,booler){
         num.push({
+
           id:id,
           value:radio,
           isSubmit:booler,
@@ -394,7 +396,7 @@
         var mssg=this.$loaclStore.get('msg');
         var lengts = mssg.length-1;
         if(this.tableData.length-lengts==0){
-              
+
            console.log("yiquanxuan")
         }else{
               this.$message({
