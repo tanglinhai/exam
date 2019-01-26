@@ -339,18 +339,17 @@
         this.cover(this.allRadio,id,radio,false);
       },
 
-      cover(num,id,radio,booler){
+      // 本地存储local封装
+      cover(num,id,radio){
         num.push({
           id:id,
           value:radio,
-          isSubmit:booler,
         });
         let str={};
         num.forEach(item => {
           str[item.id]=item;
         })
         let ps=Object.values(str);
-        // console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 
@@ -358,49 +357,26 @@
 
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
-          this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio,false);
+          this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
         }
-        // console.log(this.tableData.radio)
-        this.tableData.radio2=1;
-        this.tableData.radio3=1;
-        this.tableData.radio4=1;
       },
-
-
       changeView(name){      //路由跳转传参函数
         // console.log(name)
         //this.$router.push({path:`${name}`});
         window.location.href = name;
       },
       allSubmit(){
-        // this.tableData.forEach(item => {
-        //   // console.log(item)
-        //   if(this.allRadio == ''){
-        //     this.$message({
-        //       message: '请选择合格/不合格',
-        //       center: true
-        //     });
-        //   }else{
-        //     this.cover(this.allRadio,item.id,item.radio,true);
-            // var mssg=this.$loaclStore.get('msg');
-            // console.log(mssg);
-        //     console.log(this.$refs.shet)
-        //     // this.$router.push({
-        //     //   path: '/operation/zjps/hldj/myQualificationsResult'
-        //     // })
-        //   }
-        // })
-        this.cover(this.allRadio);
         var mssg=this.$loaclStore.get('msg');
-        var lengts = mssg.length-1;
-        if(this.tableData.length-lengts==0){
-              
-           console.log("yiquanxuan")
+        // console.log(mssg);
+        if(mssg.length != this.tableData.length){
+          this.$message({
+            message: '请选择合格/不合格',
+            center: true
+          });
         }else{
-              this.$message({
-              message: '请选择合格/不合格',
-              center: true
-            });
+          this.$router.push({
+            path: '/operation/zjps/hldj/myQualificationsResult'
+          })
         }
       }
     },
