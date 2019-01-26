@@ -150,7 +150,6 @@
             tableData3:[
                 {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
             ],
-            currentPage4: 1,
           dialogSelectionDirector:false
         }
     },

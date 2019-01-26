@@ -68,7 +68,7 @@
                     </el-col>
                     <el-col :span="3">
                         <div class="grid-content bg-purple-dark" style="text-align:center;border-bottom:2px solid #ccc">
-                            <el-button type="primary" size="small" @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
+                            <el-button type="primary" size="small"  @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -119,6 +119,7 @@
                 </el-row>
             </el-main>
         </el-container>
+
       <el-dialog
         title="推举主任情况"
         :visible.sync="dialogSelectionDirector"
@@ -160,13 +161,15 @@ export default {
         handleCurrentChange(currPage){
 
         },
+
+        changeView(name){      //路由跳转传参函数
+            // console.log(name)
+            //this.$router.push({path:`${name}`});
+            window.location.href = name;
+        },
       selectionDirector(){
         this.dialogSelectionDirector =true;
       },
-        changeView(name){      //路由跳转传参函数
-            // console.log(name)
-            this.$router.push({path:`${name}`});
-        },
 
     }
 }

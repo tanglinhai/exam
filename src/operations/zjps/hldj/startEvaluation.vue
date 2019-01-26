@@ -335,6 +335,8 @@
           this.dialogVisible=true
         }
 //         console.log(radio,id);
+
+        console.log(radio,id);
         this.allRadio.push({
           id:id,
           value:radio,
@@ -356,7 +358,8 @@
 
       changeView(name){      //路由跳转传参函数
         // console.log(name)
-        this.$router.push({path:`${name}`});
+        //this.$router.push({path:`${name}`});
+        window.location.href = name;
       },
       allSubmit(){
         if(this.allRadio == ''){
@@ -370,7 +373,6 @@
           })
         }
       }
-// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
     },
   }
 
