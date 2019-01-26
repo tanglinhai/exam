@@ -60,8 +60,8 @@
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
-                    <el-col :span="2" style="padding:0px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：1</div>
+                    <el-col :span="24" style="padding:0px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
 
                   </el-row>
@@ -163,23 +163,20 @@
           <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           <!-- 资格审查项汇总 -->
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -230,7 +227,7 @@
           city: '',
         }],
         tableData: [{
-          people: '审查标准：1111',
+          people: '审查标准：专业等级三级以上？',
           name: '',
           pass: '',
           kong:'',
@@ -240,7 +237,7 @@
           id:1111
         },{
           people: '招标人1：',
-          name: '[1] 阿里巴巴',
+          name: '阿里巴巴',
           pass: '1',
           kong:'',
           ra1:'合格',
@@ -249,7 +246,7 @@
           id:2222
         }, {
           people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司（测试）',
+          name: '普瑞太阳能有限公司（测试）',
           pass: '2',
           kong:'',
           ra1:'合格',
@@ -258,7 +255,7 @@
           id:3333
         }, {
           people: '招标人3：',
-          name: '[3] 夏丰热工研究院有限公司（测试）',
+          name: '夏丰热工研究院有限公司（测试）',
           pass: '1',
           kong:'',
           ra1:'合格',

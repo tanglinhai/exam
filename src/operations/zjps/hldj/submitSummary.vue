@@ -26,26 +26,25 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -55,35 +54,22 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button>
+                      <el-button size="small" @click="changeView('/operation/zjps/hldj/reviewSummary')"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button>
                   </div>
               </el-col>
           </el-row>
           <el-table
             :data="tableData"
             border
-            style="width:100%"
-            :span-method="arraySpanMethod">
+            style="width:100%">
                 <el-table-column
                     prop="num"
                     width="120px"
                     label="投标序号">
-                    <template slot-scope="scope">
-                        <div v-if="scope.$index == 1">
-                            <h5>评标意见：</h5>
-                            <h5>(2000字以内)</h5>
-                        </div>
-                        <div v-else>{{scope.row.num}}</div>
-                    </template>
                 </el-table-column>
                 <el-table-column
+                    prop="name"
                     label="投标人">
-                    <template slot-scope="scope"> 
-                        <div v-if="scope.$index == 1">
-                            <el-input type="textarea"></el-input>
-                        </div>
-                        <div v-else>{{scope.row.name}}</div>
-                    </template>
                 </el-table-column>
                 <el-table-column
                     prop="total"
@@ -94,6 +80,15 @@
                     label="排名">
                 </el-table-column>
           </el-table>
+          <el-row class="myform">
+            <div class="le">
+              评标意见：<br/>
+              (2000字之内)  
+            </div> 
+            <div class="ri">
+              <textarea style="width: 1000px;height: 200px;"></textarea>
+            </div>
+          </el-row>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -107,22 +102,22 @@
       return { 
         activeName:'sec',
         tableData:[
-          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'30000.0000',ip:'1'},
-          {num:''},
+          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'10000.0000',ip:'1'},
+          {num:'1',name:'阿里巴巴',total:'30000.0000',ip:'2'},
+          {num:'2',name:'夏丰热工研究院有限公司（测试）',total:'20000.0000',ip:'3'}
         ],
       }
       
     },
     mounted(){
+
     },
     methods: {
-        arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-            if (rowIndex == 1) {
-                if (columnIndex === 1) {
-                    return [1, 3];
-                }
-            }
-        },     
+      changeView(name){      //路由跳转传参函数
+          // console.log(name)
+          //this.$router.push({path:`${name}`});
+          window.location.href = name;
+      } 
     },
   }
   
@@ -135,6 +130,20 @@
     background:white;
     border-radius:5px;
     overflow: hidden;
+
+    .myform{
+      .le{
+        float: left;
+        width: 120px;
+      }
+      .ri{
+        float: left;
+        textarea{
+          width: 1000px;
+        }
+      }
+    }
+
     .busa_a{
       background:#c8d3d8;
       // height:42px;
