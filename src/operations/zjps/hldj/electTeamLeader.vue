@@ -68,7 +68,7 @@
                     </el-col>
                     <el-col :span="3">
                         <div class="grid-content bg-purple-dark" style="text-align:center;border-bottom:2px solid #ccc">
-                            <el-button type="primary" size="small" @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
+                            <el-button type="primary" size="small"  @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -119,18 +119,20 @@
                 </el-row>
             </el-main>
         </el-container>
+
       <el-dialog
-        :title="showNumApply"
-        :visible.sync="dialogVisible"
+        title="推举主任情况"
+        :visible.sync="dialogSelectionDirector"
         width="700px"
-        >
-        <SelectionDirector ></SelectionDirector>
+      >
+        <SelectionDirector></SelectionDirector>
       </el-dialog>
     </div>
 </template>
 
 <script>
-  import SelectionDirector from '../dialog/SelectionDirector'
+  import SelectionDirector from '../dialog/SelectionDirector';
+
 export default {
   components: {
     SelectionDirector
@@ -149,9 +151,7 @@ export default {
             tableData3:[
                 {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
             ],
-            currentPage4: 1,
-            dialogVisible:false,//查看推举情况
-            showNumApply:'推举主任情况',
+          dialogSelectionDirector:false
         }
     },
     methods:{
@@ -161,17 +161,16 @@ export default {
         handleCurrentChange(currPage){
 
         },
-// <<<<<<< HEAD
-      selectionDirector(){
-        this.dialogVisible =true;
-      },
-// =======
+
         changeView(name){      //路由跳转传参函数
             // console.log(name)
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
-// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
+      selectionDirector(){
+        this.dialogSelectionDirector =true;
+      },
+
     }
 }
 </script>

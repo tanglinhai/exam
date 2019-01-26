@@ -43,9 +43,6 @@
       height: 38px;
       border-top: 1px dotted #ccc;
       border-bottom: 1px dotted #ccc;
-      .coreds{
-        color: red;
-      }
     }
     .dijilun{
       line-height: 38px;

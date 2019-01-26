@@ -336,6 +336,8 @@
         if(radio=='不合格'){
           this.dialogVisible=true
         }
+//         console.log(radio,id);
+
         console.log(radio,id);
         this.allRadio.push({
           id:id,
@@ -350,10 +352,11 @@
           this.tableData[i].radio=1;
         }
         // console.log(this.tableData.radio)
-        // this.tableData.radio2=1;
-        // this.tableData.radio3=1;
-        // this.tableData.radio4=1;
+        this.tableData.radio2=1;
+        this.tableData.radio3=1;
+        this.tableData.radio4=1;
       },
+
 
       changeView(name){      //路由跳转传参函数
         // console.log(name)
