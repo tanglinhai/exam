@@ -264,11 +264,7 @@
           radio:'',
           id:4444
         }],
-// <<<<<<< HEAD
-//
-// =======
         allRadio:[],
-// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
       }
 
     },
@@ -334,19 +330,16 @@
       },
 
       hahaha(radio,id){
-// <<<<<<< HEAD
         console.log(radio,id)
-        if(radio==2){
+        if(radio=='不合格'){
           this.dialogVisible=true
         }
-// =======
-        console.log(radio,id);
+//         console.log(radio,id);
         this.allRadio.push({
           id:id,
           value:radio,
           isSubmit:false,
         });
-// >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
       },
 
       quanbu(){
@@ -355,16 +348,12 @@
           this.tableData[i].radio=1;
         }
         // console.log(this.tableData.radio)
-        // this.tableData.radio2=1;
-        // this.tableData.radio3=1;
-        // this.tableData.radio4=1;
+        this.tableData.radio2=1;
+        this.tableData.radio3=1;
+        this.tableData.radio4=1;
       },
-// <<<<<<< HEAD
-//       failureEntry(){
-//
-//       }
 
-// =======
+
       changeView(name){      //路由跳转传参函数
         // console.log(name)
         this.$router.push({path:`${name}`});
