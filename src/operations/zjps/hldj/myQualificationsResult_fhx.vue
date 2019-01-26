@@ -25,8 +25,16 @@
 
     <div class="quexa_b">
       <el-tabs type="border-card" v-model="activeName">
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        </el-tab-pane>
+
         <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -145,13 +153,7 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
