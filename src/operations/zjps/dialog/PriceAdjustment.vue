@@ -44,7 +44,7 @@
                 <div class="technicalAdjustment">
                     <el-row class="clearfix paddingB15 paddingT10">
                         <el-col :span="12" class="coc0c pull-left lin-height28">
-                            <div class="grid-content bg-purple ">技术性价值调整</div>
+                            <div class="grid-content bg-purple ">技术性价格调整</div>
                         </el-col>
                         <el-col :span="12" class="pull-left text-right">
                             <el-button @click="addBtn" size="small"> <i class="icon iconfont icon-add mr5"></i>添加</el-button>

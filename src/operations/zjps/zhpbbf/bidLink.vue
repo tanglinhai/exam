@@ -160,9 +160,9 @@
         handleCurrentChange(currPage){
 
         },
-      selectionDirector(){
-        this.dialogSelectionDirector =true;
-      },
+      // selectionDirector(){
+      //   this.dialogSelectionDirector =true;
+      // },
     }
 }
 </script>

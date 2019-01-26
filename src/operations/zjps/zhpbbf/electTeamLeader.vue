@@ -153,9 +153,9 @@ export default {
     },
   methods:{
 
-    selectionDirector(){
-      this.dialogSelectionDirector =true;
-    },
+    // selectionDirector(){
+    //   this.dialogSelectionDirector =true;
+    // },
   }
 }
 </script>
