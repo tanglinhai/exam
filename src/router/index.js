@@ -7,6 +7,8 @@ import FrontHome from '@/exam/home'
 import FrontIndex from '@/exam/pages/index' // 学生端首页
 import FrontStudentInfo from '@/exam/pages/studentinfo'  // 学生端个人信息
 import Simulationpractice from '@/exam/pages/Simulationpractice'  // 模拟练习
+import HelpCenter from '@/exam/pages/HelpCenter'  // 帮助中心
+import HelpCenterInpormation from '@/exam/pages/HelpCenterInpormation'   //帮助中心详情
 import ForntExamIndex from '@/exam/pages/examindex'
 import ForntExam from '@/exam/pages/exam'
 //------------ 后台管理----------------//
@@ -44,6 +46,8 @@ export default new Router({
         { path: 'frontindex', name: 'FrontIndex', component: FrontIndex},
         { path: 'frontstudentinfo', name: 'FrontStudentInfo', component: FrontStudentInfo},
         { path: 'Simulationpractice', name: 'Simulationpractice', component: Simulationpractice},
+        { path: 'HelpCenter', name: 'HelpCenter', component: HelpCenter},
+        { path: 'HelpCenterInpormation', name: 'HelpCenterInpormation', component: HelpCenterInpormation},
         { path: 'forntexamindex', name: 'ForntExamIndex', component: ForntExamIndex},
         { path: 'forntexam', name: 'ForntExam', component: ForntExam}
       ]
