@@ -7,10 +7,6 @@
               <el-input class=" pull-left input150" v-model="name" @keyup.enter.native="getMypapers"></el-input>
               <el-button class="pull-left marginL10" type="primary" @click="getMypapers"  icon="search">搜索</el-button>
             </div>
-            <!-- <div class="pull-right">
-              <router-link :to="{path:'edit',query:{'id':'1'}}"><el-button type="primary">新增试卷</el-button></router-link>
-              <el-button type="danger" :disabled="isSelected" @click="deletePaper">批量删除</el-button>
-            </div> -->
         </el-col>
         <el-col>
           <el-table
@@ -58,12 +54,6 @@
             >
               <template scope="scope">
                 <el-button type="primary" size="mini" @click="publish(scope.row._id)">练习</el-button>
-                <!-- <el-button type="primary" size="mini" v-if="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) > 2" @click="publish(scope.row._id)">再次发布</el-button>
-                <el-button type="primary" size="mini" v-else :disabled="scope.row.startTime?true:false" @click="publish(scope.row._id)">{{scope.row.startTime?'已发布':'发布'}}</el-button>
-                <el-button type="danger" size="mini" icon="el-icon-delete" @click="deletePaper(scope.row)">删除</el-button>
-                <router-link :to="{path:'edit',query:{'id':scope.row._id}}">
-                  <el-button type="info" size="mini" icon="el-icon-edit" :disabled="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) < 60">编辑</el-button>
-                </router-link> -->
               </template>
             </el-table-column>
           </el-table>
@@ -95,7 +85,6 @@ export default {
       pageSize:10 ,
       pageTotal: 0, // 数据总数
       examLogs: [],
-      isExam: false,
       mypapers: [] // 试卷数据
     }
   },
@@ -117,8 +106,6 @@ export default {
   },
   mounted(){
     this.getMypapers();
-
-    this.getExamLogs();   //跳转需要的数据
   },
   methods: {
     /**
@@ -163,43 +150,17 @@ export default {
      * 发布试卷
      * @param id 试卷id
      */
-      
+    
+    //操作按钮练习点击跳转
     publish(paper){
       console.log(paper)
       this.judgeTime(paper);
     },
-    getExamLogs(){
-      this.$axios.get('/api/getexamlogs',{
-        params:{
-          name: '',
-          pageNumber: 1,
-          pageSize: 10000,
-        }
-      }).then(response => {
-        let res = response.data;
-        this.examLogs = res.result.exams || [];
-      })
-    },
     judgeTime(paper){
-      // console.log(paper)
-      this.isExam = false;
-      if(this.examLogs.length > 0){
-        this.examLogs.forEach(item => {
-          // console.log(item);
-          if(item._paper&&item._paper._id == paper && item.startTime == paper.startTime){
-            this.isExam = true;
-            this.$message.error('已经参加过本次考试，不能重复参加!');
-            return;
-          }
-        })
-        if(!this.isExam){
-          this.$router.push({name:'ForntExam',params:{id:paper}});
-        }
-      }else {
-        this.$router.push({name:'ForntExam',params:{id:paper}});
-      }
-      
+      this.$router.push({name:'ForntExam',params:{id:paper,id2:11}});
     }
+    //操作按钮练习点击跳转
+
   }
 }
 </script>
