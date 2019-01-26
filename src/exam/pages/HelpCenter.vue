@@ -88,7 +88,7 @@
     text-indent:20px;
     .LmTitleBg{
       height:46px;
-      background:#0861b0;
+      background:#66b1ff;
       width:100%;
       color:white;
       font-size:16px;
