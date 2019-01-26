@@ -109,7 +109,7 @@
                         <el-button type="primary" size="small"  @click="reviewLockRequest">评分解锁</el-button>
                         <el-button type="primary" size="small" @click="checkUnlockRecord">查看评分解锁记录</el-button>
                         <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
-                        <el-button type="primary" size="small">投标人分项得分表</el-button>
+                        <el-button type="primary" size="small" @click="bindScore">投标人分项得分表</el-button>
                     </div>
                 </el-col>
             </el-row>
@@ -125,8 +125,15 @@
       <ReviewLockRequest></ReviewLockRequest>
     </el-dialog>
     <el-dialog
-      title="查看专家个人打分表和投标人分项得分表"
+      title="查看专家个人打分表"
       :visible.sync="dialogVisible"
+      width="1000px"
+    >
+      <CheckProScore></CheckProScore>
+    </el-dialog>
+    <el-dialog
+      title="投标人分项得分表"
+      :visible.sync="dialogBindScore"
       width="1000px"
     >
       <CheckProScore></CheckProScore>
@@ -193,7 +200,8 @@
         dialogScoring:false,//计算报价得分弹框
         dialogSort:false,//排序弹框
         dialogBiddingAdvice: false,//调转评标价弹框
-        dialogViewUnlockRecord:false
+        dialogViewUnlockRecord:false,
+        dialogBindScore:false//投标人分项得分表
       }
     },
     mounted(){
@@ -203,6 +211,9 @@
         this.dialogFormVisible = true;
       },
       checkProScore() {
+        this.dialogBindScore = true;
+      },
+      bindScore(){
         this.dialogVisible = true;
       },
       scoring() {

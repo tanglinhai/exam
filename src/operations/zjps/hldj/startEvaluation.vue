@@ -1,6 +1,5 @@
 <template>
   <div class="aaa">
-
     <div class="aaa_a">
       <el-row :gutter="20">
         <el-col :span="10">
@@ -335,13 +334,16 @@
         // console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
-        };
+
+        }
+
         this.cover(this.allRadio,id,radio,false);
       },
 
       // 本地存储local封装
       cover(num,id,radio){
         num.push({
+
           id:id,
           value:radio,
         });
