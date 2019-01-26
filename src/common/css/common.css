@@ -180,9 +180,7 @@ p{word-wrap:break-word}
     }
 }
 
-.coreds{
-  color: red;
-}
+
 .lin-height22{
   line-height: 22px;
 }
@@ -203,4 +201,7 @@ p{word-wrap:break-word}
 }
 .coc0c{
   color: #c0c4cc;
+}
+.coreds{
+  color: red;
 }
