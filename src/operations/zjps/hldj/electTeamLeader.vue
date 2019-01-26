@@ -168,7 +168,8 @@ export default {
 // =======
         changeView(name){      //路由跳转传参函数
             // console.log(name)
-            this.$router.push({path:`${name}`});
+            //this.$router.push({path:`${name}`});
+            window.location.href = name;
         },
 // >>>>>>> 6635b392ff205a3be79e3429b781b1ec56bb85f2
     }

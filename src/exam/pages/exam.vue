@@ -51,8 +51,8 @@
           <li class="marginB10" v-for="(item,index) in judgeQuestions" :key="item.id">
             <p class="question-title">{{index+1}} 、{{item.name}}</p>
             <div class="question-content">
-              <el-radio v-model="item.sanswer" label="A" :key="index">正确</el-radio>
-              <el-radio v-model="item.sanswer" label="B" :key="index">错误</el-radio>
+              <el-radio v-model="item.sanswer" label="A" :key="'A'+index">正确</el-radio>
+              <el-radio v-model="item.sanswer" label="B" :key="'B'+index">错误</el-radio>
             </div>
           </li>
         </ul>
@@ -83,13 +83,19 @@
               <el-button size="mini" @click="operation_answer(item)">加载操作程序，并开始操作</el-button>
             </p>
             <div class="question-content">
-              <iframe 
-                :ref="'iframe_operation_'+item._operation.name"
-                width="100%"
-                height="auto"
-                frameborder="0"
-                scrolling="no"
-              ></iframe>
+              <el-dialog
+                :title="item.name"
+                :visible.sync="item.show"
+                width="90%"
+              >
+                <iframe 
+                  :ref="'iframe_operation_'+item._operation.name"
+                  width="100%"
+                  height="auto"
+                  frameborder="0"
+                  scrolling="no"
+                ></iframe>
+              </el-dialog>
             </div>
           </li>
         </ul>
@@ -173,17 +179,30 @@
        * 操作题答题按钮
        */
       operation_answer(item){
-        const iframe = this.$refs['iframe_operation_'+item._operation.name][0];
-        if(iframe.getAttribute('isLoaded')){
-          return;
-        }
-        iframe.src = "/operation/zjps/"+
-        (
-          item._operation.name == '专家评审-双信封评标办法' ? 'sxfpbbf' :
-          item._operation.name == '专家评审-综合评分办法' ? 'zhpbbf' : 'hldj'
-        )
-        +"/participateIn"
-        iframe.setAttribute('isLoaded', true);
+        var _this = this;
+        item.show = true;
+        setTimeout(function () {  //设置滚动条位置
+          const iframe = _this.$refs['iframe_operation_'+item._operation.name][0];
+          if(iframe.getAttribute('isLoaded')){
+            return;
+          }
+          iframe.style.cssText = 'min-height: '+(window.screen.height*.7)+'px';
+          iframe.onload = function() {
+              // 提前还原高度
+              this.setAttribute('height', 'auto'); // 或设为''
+              // 再在下一轮事件循环中设置新高度
+              setTimeout(function() {
+                  iframe.setAttribute('height', iframe.contentWindow.document.body.scrollHeight);
+              }, 0);
+          }
+          iframe.src = "/operation/zjps/"+
+          (
+            item._operation.name == '专家评审-双信封评标办法' ? 'sxfpbbf' :
+            item._operation.name == '专家评审-综合评分办法' ? 'zhpbbf' : 'hldj'
+          )
+          +"/participateIn"
+          iframe.setAttribute('isLoaded', true);
+        }, 1000);
       },
       /**
        * 初始化
@@ -231,7 +250,7 @@
               })
             }
 
-            this.$nextTick(() => {
+            /*this.$nextTick(() => {
               //重置iframe的高度
               var iframes = document.getElementsByTagName('iframe');
               for (var i = 0, j = iframes.length; i < j; ++i) {
@@ -247,7 +266,7 @@
                       }
                   })(i);
               }
-            })
+            })*/
           }).catch(err => {
             this.$message.error(err);
           })
