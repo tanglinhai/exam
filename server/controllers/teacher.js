@@ -628,6 +628,9 @@ exports.updatePaper = function (req,res) {
                             item._papers = [];
                             item._papers.push(doc1._id);
                             item._teacher = doc._id;
+                            if(!item._operation){
+                              delete item['_operation']
+                            }
                           })
                           Question.create(addQuestion,(err3,doc3) => {
                             if(err3) {

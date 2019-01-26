@@ -56,14 +56,14 @@
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
                         <el-button @click="quanbu" size="mini" type="info">全部合格</el-button>
-                        <el-button size="mini" type="info">全部提交</el-button>
+                        <el-button size="mini" type="info" @click="allSubmit">全部提交</el-button>
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
                     <el-col :span="2" style="padding:0px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：1</div>
                     </el-col>
-                    
+
                   </el-row>
                   <template>
                       <el-table
@@ -93,7 +93,7 @@
                             <span style="margin-left: 10px">
                               <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
-                                <el-radio :label="scope.row.ra2">不合格</el-radio>
+                                <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
                             </span>
                           </template>
@@ -131,7 +131,7 @@
                         align="center"
                         label="评审因素">
                       </el-table-column>
-                      <el-table-column 
+                      <el-table-column
                       label="投标人"
                       align="center"
                       >
@@ -160,8 +160,8 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -172,8 +172,8 @@
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          商务
+          <span slot="label" @click="changeView('/operation/zjps/hldj/businessAffairs')"><i class="el-icon-edit"></i> 商务</span>
+          <!-- 商务 -->
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -181,16 +181,27 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      title="不合格录入"
+      :visible.sync="dialogVisible"
+      width="700px"
+    >
+      <FailureEntry></FailureEntry>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import FailureEntry from '../dialog/FailureEntry'
   export default {
     name: 'updateBill',
     props:{
     },
+    components: {
+      FailureEntry
+    },
     data () {
       return {
+        dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
           date: '1',
@@ -221,8 +232,8 @@
           name: '',
           pass: '',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
           id:1111
         },{
@@ -230,8 +241,8 @@
           name: '[1] 阿里巴巴',
           pass: '1',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
           id:2222
         }, {
@@ -239,8 +250,8 @@
           name: '[2] 普瑞太阳能有限公司（测试）',
           pass: '2',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
           id:3333
         }, {
@@ -248,14 +259,14 @@
           name: '[3] 夏丰热工研究院有限公司（测试）',
           pass: '1',
           kong:'',
-          ra1:1,
-          ra2:2,
+          ra1:'合格',
+          ra2:'不合格',
           radio:'',
           id:4444
         }],
-        
+        allRadio:[],
       }
-      
+
     },
     mounted(){
     var setting = {
@@ -281,7 +292,7 @@
 			{ id:122, pId:12, name:"叶子节点 1-2-2"},
 			{ id:123, pId:12, name:"叶子节点 1-2-3"},
 			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-		
+
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -310,7 +321,7 @@
           return [1, 5];
         }
       },
-      
+
       arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
        console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 0) {
@@ -318,26 +329,52 @@
         }
       },
 
-      hahaha(radio,id){
+      hahaha(radio,id){D
         console.log(radio,id)
+        if(radio=='不合格'){
+          this.dialogVisible=true
+        }
+        console.log(radio,id);
+        this.allRadio.push({
+          id:id,
+          value:radio,
+          isSubmit:false,
+        });
       },
 
       quanbu(){
-        
+
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio=1;
         }
-        console.log(this.tableData.radio)
+        // console.log(this.tableData.radio)
         // this.tableData.radio2=1;
         // this.tableData.radio3=1;
         // this.tableData.radio4=1;
+      },
+
+      changeView(name){      //路由跳转传参函数
+        // console.log(name)
+        //this.$router.push({path:`${name}`});
+        window.location.href = name;
+      },
+      allSubmit(){
+        if(this.allRadio == ''){
+          this.$message({
+            message: '请选选择合格/不合格',
+            center: true
+          });
+        }else{
+          this.$router.push({
+            path: '/operation/zjps/hldj/electTeamLeader'
+          })
+        }
       }
-     
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -395,7 +432,7 @@
         margin-left:0px!important;
         margin-right:0px!important;
       }
-      .aaa_bleft{ 
+      .aaa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;

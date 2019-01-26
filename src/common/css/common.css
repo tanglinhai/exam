@@ -51,6 +51,7 @@ p{word-wrap:break-word}
 .marginL0 { margin-left: 0;}
 .marginT0 { margin-top: 0;}
 
+.marginT5 { margin-top: 5px; }
 .marginT10 { margin-top: 10px; }
 .marginT20 { margin-top: 20px; }
 .marginT30 { margin-top: 30px; }
@@ -73,6 +74,7 @@ p{word-wrap:break-word}
 .marginR60 { margin-right: 60px; }
 
 .marginB10 { margin-bottom: 10px; }
+.marginB15 { margin-bottom: 15px; }
 .marginB20 { margin-bottom: 20px; }
 .marginB30 { margin-bottom: 30px; }
 .marginB40 { margin-bottom: 40px; }
@@ -168,7 +170,7 @@ p{word-wrap:break-word}
                     border-color: #ebeef5;
                 }
                 .cell{
-                    
+
                 }
             }
         }
@@ -176,4 +178,11 @@ p{word-wrap:break-word}
     td{
         vertical-align: top;
     }
+}
+
+.coreds{
+  color: red;
+}
+.lin-height30{
+  line-height: 30px;
 }

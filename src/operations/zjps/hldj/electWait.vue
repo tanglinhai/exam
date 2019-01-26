@@ -55,6 +55,13 @@
                 </el-table>    
             </el-aside>
             <el-main>
+                <el-row style="line-height:40px;margin-bottom:5px;">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
+                            <h2>请等待其他专家推举......</h2>
+                        </div>
+                    </el-col>
+                </el-row>
                 <el-row style="line-height:40px;border-bottom:2px solid #ccc;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:right;">
@@ -96,7 +103,14 @@
                         label="操作">
                         <template slot-scope="scope"> 
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electWait')">推举</el-button>
+                                <el-select v-model="scope.row.value5" multiple placeholder="请选择">
+                                    <el-option
+                                        v-for="item in tableData3"
+                                        :key="item.name"
+                                        :label="item.name"
+                                        :value="item.name">
+                                    </el-option>
+                                </el-select>
                             </div>
                         </template>
                     </el-table-column>
@@ -113,6 +127,13 @@
                                 layout="total, sizes, prev, pager, next, jumper"
                                 :total="3">
                             </el-pagination>
+                        </div>
+                    </el-col>
+                </el-row>
+                <el-row style="line-height:40px;margin-bottom:5px;">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
+                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/bidLink')">下一步</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -139,7 +160,8 @@ export default {
                 {num:'2',name:'2',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
                 {num:'3',name:'3',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
             ],
-            currentPage4: 1
+            currentPage4: 1,
+            value5:[]
         }
     },
     methods:{

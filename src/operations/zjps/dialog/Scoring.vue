@@ -1,0 +1,101 @@
+<template>
+    <div class="Scoring">
+        <el-row class="failureEntryDialog">
+                <el-table
+                        ref="multipleTable"
+                        :data="msgBox"
+                        size="small"
+                        tooltip-effect="dark"
+                        border
+                        class="changePriceTable"
+                        el-table__header-wrapper>
+                    <el-table-column prop="name" header-align="left" label="投标人名称" width="250px"></el-table-column>
+                    <el-table-column prop="toubiaoPrice" header-align="left" label="投标报价（元）"></el-table-column>
+                    <el-table-column prop="evaluationBid" header-align="left" label="评标价（元）"></el-table-column>
+                    <el-table-column prop="scoringSystem" header-align="left" label="系统计算得分"></el-table-column>
+                    <el-table-column prop="expertConfirmScore" header-align="left" label="专家确认得分" width="220px">
+                        <template slot-scope="scope">
+                            <el-row class="clearfix">
+                                    <el-input size="small" value="1.00" class="pull-left" style="width:169px"></el-input>
+                               <div class="coreds pull-left text-center marginT5" style="width:25px;">&nbsp;*</div>
+                            </el-row>
+                        </template>
+                    </el-table-column>
+                </el-table>
+                <el-row class="text-center marginT30">
+                        <el-button @click="acceptanceSystemScor" size="small" type="primary"><i class="icon iconfont icon-fanhuishouye1 mr5"  ></i>接受系统计算得分</el-button>
+                        <el-button @click="sumbit" size="small" type="primary"><i class="icon iconfont icon-tijiao mr5"  ></i>提交</el-button>
+                        <el-button @click="reback" size="small" type="primary"><i class="icon iconfont icon-fanhuishouye1 mr5"  ></i>返回</el-button>
+                </el-row>
+        </el-row>
+    </div>
+</template>
+<script>
+    export default {
+        name: 'Scoring',
+        components: {},
+        data() {
+            return {
+                msgBox: [
+                    {
+                        toubiaoPrice: '10,000,00 ',
+                        name: '阿里巴巴',
+                        evaluationBid: '10,000,00',
+                        scoringSystem:'50.00',
+                    },{
+                    toubiaoPrice: '20,000,00 ',
+                    name: '普瑞太阳能有限公司',
+                    evaluationBid: '20,000,00',
+                    scoringSystem:'25.00',
+                }, {
+                    toubiaoPrice: '30,000,00',
+                    name: '夏风热工研究有限公司',
+                    evaluationBid: '30,000,00',
+                    scoringSystem:'16.66',
+                }],
+            }
+        },
+        created() {
+        },
+        mounted() {
+
+        },
+        methods: {
+            scoring() {
+                this.dialogVisible = true;
+            },
+            sumbit() {
+
+            },
+            reback() {
+
+            },
+          acceptanceSystemScor(){
+
+          }
+        }
+    }
+</script>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss">
+
+
+    .Scoring {
+        .failureEntryDialog {
+            .failureoOject {
+                line-height: 38px;
+                height: 38px;
+                border-top: 1px dotted #ccc;
+                border-bottom: 1px dotted #ccc;
+            }
+            .dijilun {
+                line-height: 38px;
+                height: 38px;
+                border-bottom: 1px dotted #ccc;
+                margin-bottom: 25px;
+            }
+        }
+    }
+</style>
+
+

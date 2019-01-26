@@ -53,9 +53,9 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small" type="primary">计算包加得分</el-button>
-                      <el-button size="small" type="info">排序</el-button>
-                      <el-button size="small" type="info">评标意见</el-button>
+                      <el-button size="small" type="primary"  @click="scoring">计算报价得分</el-button>
+                      <el-button size="small" type="info" @click="sort">排序</el-button>
+                      <el-button size="small" type="info" @click="biddingAdvice">评标意见</el-button>
                       <el-button size="small" type="info">提交</el-button>
                   </div>
               </el-col>
@@ -72,12 +72,12 @@
                 <el-table-column
                     prop="num"
                     label="投标序号">
-                </el-table-column>               
+                </el-table-column>
                 <el-table-column
                         label="评标委员会">
                         <el-table-column
                             prop="bida"
-                            label="1">  
+                            label="1">
                         </el-table-column>
                         <el-table-column
                             prop="bidb"
@@ -104,9 +104,9 @@
             <el-row>
                 <el-col :span="24">
                     <div class="grid-content bg-purple-dark" style="text-align:center;padding:7px 0;">
-                        <el-button type="primary" size="small">评分解锁</el-button>
+                        <el-button type="primary" size="small"  @click="reviewLockRequest">评分解锁</el-button>
                         <el-button type="primary" size="small">查看评分解锁记录</el-button>
-                        <el-button type="primary" size="small">查看专家个人打分表</el-button>
+                        <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
                         <el-button type="primary" size="small">投标人分项得分表</el-button>
                     </div>
                 </el-col>
@@ -115,30 +115,95 @@
       </el-tabs>
     </div>
 
+    <el-dialog
+      title="评分解锁申请"
+      :visible.sync="dialogFormVisible"
+      width="700px"
+    >
+      <ReviewLockRequest></ReviewLockRequest>
+    </el-dialog>
+    <el-dialog
+      title="查看专家个人打分表和投标人分项得分表"
+      :visible.sync="dialogVisible"
+      width="1000px"
+    >
+      <CheckProScore></CheckProScore>
+    </el-dialog>
+    <el-dialog
+      title="报价分计算"
+      :visible.sync="dialogScoring"
+      width="900px"
+    >
+      <Scoring></Scoring>
+    </el-dialog>
+    <el-dialog
+      title="投标人排序调整"
+      :visible.sync="dialogSort"
+      width="700px"
+      class="sortDialog"
+    >
+      <Sort></Sort>
+    </el-dialog>
+    <el-dialog
+      title="评标意见"
+      :visible.sync="dialogBiddingAdvice"
+      width="700px"
+      class="failureEntryDialog"
+    >
+      <BiddingAdvice></BiddingAdvice>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import ReviewLockRequest from '../dialog/ReviewLockRequest';
+  import CheckProScore from '../dialog/CheckProScore';
+  import Scoring from '../dialog/Scoring';
+  import Sort from '../dialog/Sort';
+  import BiddingAdvice from '../dialog/BiddingAdvice';
   export default {
     name: 'updateBill',
+    components: {
+      ReviewLockRequest,
+      CheckProScore,
+      Scoring,
+      Sort,
+      BiddingAdvice
+    },
     data () {
-      return { 
+      return {
         activeName:'sec',
         tableData:[
           {bidder:'夏丰热工研究院有限公司（测试）',num:'3',bida:'2.00',bidb:'3.30',bidc:'33.00',nub:'3.00',end:'16.10',ip:'1'},
           {bidder:'阿里巴巴(分)',name:'就世纪浩劫',bida:'1.00',bidb:'1.10',bidc:'22.00',nub:'1.00',end:'5.37',ip:'2'},
           {bidder:'普瑞太阳能有限公司（测试）',num:'6',bida:'3.00',bidb:'2.20',bidc:'11.00',nub:'2.00',end:'10.73',ip:'3'}
         ],
+        dialogFormVisible: false,//评分解锁申请弹框
+        dialogVisible: false,//查看专家个人打分表 和 投标人分项得分表弹框
+        dialogScoring:false,//计算报价得分弹框
+        dialogSort:false,//排序弹框
+        dialogBiddingAdvice: false,//调转评标价弹框
       }
-      
     },
     mounted(){
     },
-    methods: {     
+    methods: {
+      reviewLockRequest() {
+        this.dialogFormVisible = true;
+      },
+      checkProScore() {
+        this.dialogVisible = true;
+      },
+      scoring() {
+        this.dialogScoring = true;
+      },
+      sort() {
+        this.dialogSort = true;
+      },
+      biddingAdvice() {
+        this.dialogBiddingAdvice = true;
+      },
     },
   }
-  
-
-  
 </script>
 
 <style lang="scss">
@@ -186,7 +251,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -212,7 +277,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

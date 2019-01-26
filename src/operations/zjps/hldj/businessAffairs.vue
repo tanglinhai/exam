@@ -56,7 +56,7 @@
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <el-button size="small" type="info">查看未完成项</el-button>
                       <el-button size="small" type="info">保存</el-button>
-                      <el-button size="small" type="info">提交商务</el-button>
+                      <el-button size="small" type="info" @click="submitBusiness">提交商务</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -68,14 +68,14 @@
                 <el-table-column
                     prop="num"
                     label="项目">
-                </el-table-column>               
+                </el-table-column>
                 <el-table-column
                         label="投标人">
                         <el-table-column
                             prop="name"
                             label="阿里巴巴（1）">
                             <template slot-scope="scope">
-                                <div>   
+                                <div>
                                     <el-input v-if="scope.$index == 0"></el-input>
                                     <div v-else>{{scope.row.name}}</div>
                                 </div>
@@ -85,7 +85,7 @@
                             prop="name1"
                             label="普瑞太阳能有限公司（测试）（2）">
                             <template slot-scope="scope">
-                                <div>   
+                                <div>
                                     <el-input v-if="scope.$index == 0"></el-input>
                                     <div v-else>{{scope.row.name1}}</div>
                                 </div>
@@ -95,7 +95,7 @@
                             prop="name2"
                             label="夏丰热工研究院有限公司（测试）（3）">
                             <template slot-scope="scope">
-                                <div>   
+                                <div>
                                     <el-input v-if="scope.$index == 0"></el-input>
                                     <div v-else>{{scope.row.name2}}</div>
                                 </div>
@@ -126,13 +126,25 @@
       </el-tabs>
     </div>
 
+    <el-dialog
+      title="商务评审"
+      :visible.sync="dialogVisible"
+      width="600px"
+    >
+      <submitBusiness></submitBusiness>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import SubmitBusiness from '../dialog/SubmitBusiness';
+
   export default {
     name: 'updateBill',
+    components: {
+      SubmitBusiness
+    },
     data () {
-      return { 
+      return {
         currentPage4:1,
         activeName:'sec',
         tableData:[
@@ -140,9 +152,9 @@
           {num:'商务小计(分)',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
           {num:'总分小计(分)',name:'合格',name1:'合格',name2:'合格'}
         ],
-        currentPage4: 1
+        currentPage4: 1,
+        dialogVisible:false//提交商务弹框
       }
-      
     },
     mounted(){
     },
@@ -152,12 +164,15 @@
       },
       handleCurrentChange(currPage){
 
+      },
+      submitBusiness(){
+        this.dialogVisible =true;
       }
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -205,7 +220,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -231,7 +246,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import '../static/font-awesome/css/font-awesome.min.css' // 加载fontawesome字体
 import '@/common/css/common.css'
+import loaclStore from 'storejs'
 
 import * as commonFun from './common/js/commonFun.js'
 
@@ -31,6 +32,7 @@ axios.defaults.headers.common['Cache-Control'] = 'no-store';
 axios.defaults.headers.common['Cache-Control'] = 'no-cache';
 axios.defaults.headers.common['Expires'] = 0;
 Vue.prototype.$axios=axios
+Vue.prototype.$loaclStore=loaclStore
 Vue.prototype.$mySessionStorage = commonFun.mySessionStorage;
 //全局封装一个获取用户信息方法
 var getUserData=function () {
