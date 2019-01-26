@@ -6,69 +6,40 @@
       </div>
     </el-row>
     <el-row class="lin-height35">
-      <el-col :span="6">
-        <div class="grid-content bg-purple" >
-          申请人：
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple-light">
-          <div>
-            1
-          </div>
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple">
-          申请时间：
-        </div>
-      </el-col>
-      <el-col :span="6">
-        <div class="grid-content bg-purple-light">
-          2018/11/27&nbsp;16:52:21
-        </div>
-      </el-col>
+      <el-col :span="4"><div class="grid-content bg-purple" >申请人：</div> </el-col>
+      <el-col :span="8"><div class="grid-content bg-purple-light"><div>187000001 </div> </div></el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">申请时间： </div></el-col>
+      <el-col :span="8"><div class="grid-content bg-purple-light">2018/11/27&nbsp;16:52:21</div></el-col>
     </el-row>
     <el-row class="lin-height35">
-      <el-col :span="12">
-        <div class="grid-content bg-purple">解锁对象：</div>
-      </el-col>
-
-      <el-col :span="6">
-        <div class="grid-content bg-purple">1</div>
-      </el-col>
+      <el-col :span="4"><div class="grid-content bg-purple">解锁对象：</div> </el-col>
+      <el-col :span="20" class="text-center"><div class="grid-content bg-purple">1</div> </el-col>
+    </el-row>
+    <el-row class="lin-height35">
+      <el-col :span="4"> <div class="grid-content bg-purple">申请原因：</div> </el-col>
+      <el-col :span="20"><div class="grid-content bg-purple">aaaaaaaaaa</div></el-col>
 
     </el-row>
     <el-row class="lin-height35">
-      <el-col :span="12">
-        <div class="grid-content bg-purple">申请原因：</div>
-      </el-col>
-
-      <el-col :span="6">
-        <div class="grid-content bg-purple">14</div>
-      </el-col>
-
-    </el-row>
-    <el-row class="lin-height35">
-      <el-col :span="12">
+      <el-col :span="4">
         <div class="grid-content bg-purple">审批人：</div>
       </el-col>
-      <!--<el-col :span="6">-->
-        <!--<div class="grid-content bg-purple-light"></div>-->
-      <!--</el-col>-->
-      <el-col :span="6">
-        <div class="grid-content bg-purple">审批结果</div>
+      <el-col :span="8">
+        <div class="grid-content bg-purple-light">&nbsp;</div>
       </el-col>
-      <el-col :span="6">
+      <el-col :span="4" >
+        <div class="grid-content bg-purple">审批结果:</div>
+      </el-col>
+      <el-col :span="8">
         <div class="grid-content bg-purple-light">同意</div>
       </el-col>
     </el-row>
     <el-row class="lin-height35">
-      <el-col :span="12">
+      <el-col :span="4">
         <div class="grid-content bg-purple">解锁理由：</div>
       </el-col>
 
-      <el-col :span="12">
+      <el-col :span="20">
         <div class="grid-content bg-purple">1</div>
       </el-col>
 

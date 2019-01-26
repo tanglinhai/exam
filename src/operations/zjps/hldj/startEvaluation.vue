@@ -1,6 +1,5 @@
 ﻿<template>
   <div class="aaa">
-
     <div class="aaa_a">
       <el-row :gutter="20">
         <el-col :span="10">
@@ -334,9 +333,6 @@
         if(radio=='不合格'){
           this.dialogVisible=true
         }
-//         console.log(radio,id);
-
-        console.log(radio,id);
         this.allRadio.push({
           id:id,
           value:radio,
