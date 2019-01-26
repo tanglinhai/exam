@@ -12,7 +12,8 @@ import '../static/font-awesome/css/font-awesome.min.css' // 加载fontawesome字
 import '@/common/css/common.css'
 import loaclStore from 'storejs'
 import $ from 'jquery'
-
+// import '@/common/js/css/zTreeStyle/zTreeStyle.css'
+// import '@/common/js/jquery.ztree.core.js'
 
 import * as commonFun from './common/js/commonFun.js'
 
