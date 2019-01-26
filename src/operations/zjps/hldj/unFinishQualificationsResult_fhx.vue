@@ -1,16 +1,16 @@
 <template>
-  <div class="busa">
-    <div class="busa_a">
-      <el-row style="padding:0 15px;">
+  <div class="delet">
+    <div class="delet_a">
+      <el-row :gutter="20">
         <el-col :span="10">
-          <div class="grid-content bg-purple busa_aleft">
+          <div class="grid-content bg-purple delet_aleft">
             <span>标名称：<em>tih招标项目-专家评标2</em></span>
             <span>标号：<em>0635-1909n987</em></span>
             <span>包号：<em>0635-1909n987/1</em></span>
           </div>
         </el-col>
         <el-col :span="14">
-          <div class="grid-content bg-purple busa_aright">
+          <div class="grid-content bg-purple delet_aright">
             <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
             <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
@@ -23,23 +23,54 @@
       </el-row>
     </div>
 
-    <div class="busa_b">
+    <div class="delet_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
+
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
+
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
+          <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
+
+        <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
+          <div>
+            <el-row>
+              <el-col :span="24">
+                <div class="grid-content bg-purple" style="display:block;">
+                  <template>
+                      <el-table
+                        :data="tableData"
+                        border
+                        style="width: 100%">
+                        <el-table-column
+                            prop="name"
+                            label="评审专家"
+                            width="120px">
+                        </el-table-column>
+                        <el-table-column
+                            label="资格审查项进度">
+                            <template slot-scope="scope">
+                                <el-progress :percentage="100"></el-progress>
+                            </template>
+                        </el-table-column>
+                        <el-table-column
+                            label="是否提交资格审查结果">
+                            <template slot-scope="scope">
+                                <span>{{scope.row.address}}</span>
+                            </template>
+                        </el-table-column>
+                      </el-table>                      
+                  </template>
+                </div>
+              </el-col>
+            </el-row>
+          </div>
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
@@ -47,53 +78,8 @@
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane name="sec">
+        <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          <el-row style="line-height:40px;border-bottom:2px solid #66b1ff;margin-bottom:5px;">
-              <el-col :span="4">
-                  <div class="grid-content bg-purple" style="font-size:16px;color:#66b1ff">评审汇总</div>
-              </el-col>
-              <el-col :span="20">
-                  <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button>
-                  </div>
-              </el-col>
-          </el-row>
-          <el-table
-            :data="tableData"
-            border
-            style="width:100%"
-            :span-method="arraySpanMethod">
-                <el-table-column
-                    prop="num"
-                    width="120px"
-                    label="投标序号">
-                    <template slot-scope="scope">
-                        <div v-if="scope.$index == 1">
-                            <h5>评标意见：</h5>
-                            <h5>(2000字以内)</h5>
-                        </div>
-                        <div v-else>{{scope.row.num}}</div>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    label="投标人">
-                    <template slot-scope="scope"> 
-                        <div v-if="scope.$index == 1">
-                            <el-input type="textarea"></el-input>
-                        </div>
-                        <div v-else>{{scope.row.name}}</div>
-                    </template>
-                </el-table-column>
-                <el-table-column
-                    prop="total"
-                    label="评标价(人名币)">
-                </el-table-column>
-                <el-table-column
-                    prop="ip"
-                    label="排名">
-                </el-table-column>
-          </el-table>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -103,26 +89,35 @@
 <script>
   export default {
     name: 'updateBill',
+    props:{
+    },
     data () {
-      return { 
-        activeName:'sec',
-        tableData:[
-          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'30000.0000',ip:'1'},
-          {num:''},
-        ],
+      return {
+        tableData: [{
+          date: '100.0%',
+          name: '1',
+          address: '未完成'
+        }, {
+          date: '100.0%',
+          name: '2',
+          address: '已完成'
+        }, {
+          date: '100.0%',
+          name: '3',
+          address: '已完成'
+        }],
+        activeName:'sec'
       }
       
     },
     mounted(){
     },
     methods: {
-        arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-            if (rowIndex == 1) {
-                if (columnIndex === 1) {
-                    return [1, 3];
-                }
-            }
-        },     
+      changeView(name){      //路由跳转传参函数
+          // console.log(name)
+          //this.$router.push({path:`${name}`});
+          window.location.href = name;
+      },
     },
   }
   
@@ -131,17 +126,17 @@
 </script>
 
 <style lang="scss">
-  .busa{
+  .delet{
     background:white;
     border-radius:5px;
     overflow: hidden;
-    .busa_a{
+    .delet_a{
       background:#c8d3d8;
-      // height:42px;
+      height:42px;
       .el-row{
-        // margin-left:0px!important;
-        // margin-right:0px!important;
-        .busa_aleft{
+        margin-left:0px!important;
+        margin-right:0px!important;
+        .delet_aleft{
           line-height:42px;
           span{
             color:#777777;
@@ -154,7 +149,7 @@
             }
           }
         }
-        .busa_aright{
+        .delet_aright{
           float: right;
           button{
             margin-top:5px;
@@ -162,7 +157,7 @@
         }
       }
     }
-    .busa_b{
+    .delet_b{
       border-bottom:1px solid #d0d0d0;
       margin-top:10px;
       .el-tabs__nav{
@@ -175,7 +170,13 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .el-col-4,.el-row{
+        padding-left:0px!important;
+        padding-right:0px!important;
+        margin-left:0px!important;
+        margin-right:0px!important;
+      }
+      .delet_bleft{ 
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -191,7 +192,7 @@
           margin-top:20px;
         }
       }
-      .busa_bright{
+      .delet_bright{
         display:none;
         .a_bright_title{
           margin-bottom:10px;
@@ -221,27 +222,6 @@
     }
     .el-progress-bar{
       width:35%;
-    }
-    .btnBox{
-        .el-button{
-            margin-right:5px;
-        }
-    }
-    .with{
-      border: 1px solid #ebeef5;
-      border-top:none;
-      padding: 15px;
-      .letter{
-        padding-bottom: 5px;
-        font-size: 14px;
-      }
-      .pad{
-        padding-left: 28px;
-        font-size: 14px;
-      }
-      .iconfont{
-          font-size:14px;
-      }
     }
   }
 </style>

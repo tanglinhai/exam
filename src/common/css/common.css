@@ -53,6 +53,7 @@ p{word-wrap:break-word}
 
 .marginT5 { margin-top: 5px; }
 .marginT10 { margin-top: 10px; }
+.marginT15 { margin-top: 15px; }
 .marginT20 { margin-top: 20px; }
 .marginT30 { margin-top: 30px; }
 .marginT40 { margin-top: 40px; }
@@ -86,7 +87,6 @@ p{word-wrap:break-word}
 .input120 { width:120px;}
 .input150 { width:150px;}
 .input200 { width:200px;}
-
 
 /*清除浮动*/
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
@@ -183,6 +183,24 @@ p{word-wrap:break-word}
 .coreds{
   color: red;
 }
+.lin-height22{
+  line-height: 22px;
+}
+.lin-height28{
+  line-height: 28px;
+}
 .lin-height30{
   line-height: 30px;
+}
+.lin-height35{
+  line-height: 35px;
+}
+.fs15{
+  font-size: 15px;
+}
+.fwb{
+  font-weight: bold;
+}
+.coc0c{
+  color: #c0c4cc;
 }
