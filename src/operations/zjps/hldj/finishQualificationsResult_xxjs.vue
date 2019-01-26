@@ -57,7 +57,7 @@
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
                     <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">提交</el-button>
                     <el-button size="small" type="info" @click="individualTrial">查看个人资格审查项表</el-button>
-                    <el-button size="small" type="info">查看资格审查项解锁记录</el-button>
+                    <el-button size="small" type="info" @click="checkUnlockRecord">查看资格审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">资格审查项解锁</el-button>
                 </div>
               </el-col>
@@ -135,16 +135,26 @@
     >
       <QualificationUnlock ></QualificationUnlock>
     </el-dialog>
+    <el-dialog
+      title="查看资格审查项解锁记录"
+      :visible.sync=" dialogViewUnlockRecord"
+      width="700px"
+    >
+      <ViewUnlockRecord ></ViewUnlockRecord>
+    </el-dialog>
   </div>
 </template>
 <script>
   import IndividualTrial from '../dialog/IndividualTrial';
-  import QualificationUnlock from '../dialog/QualificationUnlockApplication'
+  import QualificationUnlock from '../dialog/QualificationUnlockApplication';
+  import ViewUnlockRecord from '../dialog/ViewUnlockRecord';
+
   export default {
     name: 'updateBill',
     components: {
       IndividualTrial,
-      QualificationUnlock
+      QualificationUnlock,
+      ViewUnlockRecord
     },
 
     data () {
@@ -158,7 +168,8 @@
         dialogVisible:false,//查看个人资格审查项表弹框
         title:'个人初审类活动表',
         dialogFormVisible:false,//资格审查项汇总解锁申请
-        dialogVisibleTitle:'资格审查项汇总解锁申请'
+        dialogVisibleTitle:'资格审查项汇总解锁申请',
+        dialogViewUnlockRecord:false
       }
     },
     mounted(){
@@ -173,6 +184,9 @@
       qualificationUnlockApplication(){
         this.dialogFormVisible = true;
       },
+      checkUnlockRecord(){
+        this.dialogViewUnlockRecord=true;
+      }
     },
   }
 
