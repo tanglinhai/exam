@@ -42,8 +42,10 @@
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          商务
+          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+        </el-tab-pane>
+        <el-tab-pane>
+          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -105,7 +107,7 @@
                 <el-col :span="24">
                     <div class="grid-content bg-purple-dark" style="text-align:center;padding:7px 0;">
                         <el-button type="primary" size="small"  @click="reviewLockRequest">评分解锁</el-button>
-                        <el-button type="primary" size="small">查看评分解锁记录</el-button>
+                        <el-button type="primary" size="small" @click="checkUnlockRecord">查看评分解锁记录</el-button>
                         <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
                         <el-button type="primary" size="small">投标人分项得分表</el-button>
                     </div>
@@ -152,6 +154,13 @@
     >
       <BiddingAdvice></BiddingAdvice>
     </el-dialog>
+    <el-dialog
+      title="解锁申请记录"
+      :visible.sync=" dialogViewUnlockRecord"
+      width="700px"
+    >
+      <ViewUnlockRecord ></ViewUnlockRecord>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -160,6 +169,7 @@
   import Scoring from '../dialog/Scoring';
   import Sort from '../dialog/Sort';
   import BiddingAdvice from '../dialog/BiddingAdvice';
+  import ViewUnlockRecord from '../dialog/ViewUnlockRecord';
   export default {
     name: 'updateBill',
     components: {
@@ -167,7 +177,8 @@
       CheckProScore,
       Scoring,
       Sort,
-      BiddingAdvice
+      BiddingAdvice,
+      ViewUnlockRecord
     },
     data () {
       return {
@@ -182,6 +193,7 @@
         dialogScoring:false,//计算报价得分弹框
         dialogSort:false,//排序弹框
         dialogBiddingAdvice: false,//调转评标价弹框
+        dialogViewUnlockRecord:false
       }
     },
     mounted(){
@@ -202,6 +214,9 @@
       biddingAdvice() {
         this.dialogBiddingAdvice = true;
       },
+      checkUnlockRecord(){
+        this.dialogViewUnlockRecord=true;
+      }
     },
   }
 </script>

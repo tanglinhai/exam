@@ -10,7 +10,7 @@
             <el-col :span="18">
                 <div class="grid-content bg-purple-dark">
                     <h2>项目名称：tlh招标项目-专家评标2</h2>
-                    <div class="num">项目编号：0635-1909N987</div>	
+                    <div class="num">项目编号：0635-1909N987</div>
                 </div>
             </el-col>
             <el-col :span="2">
@@ -52,7 +52,7 @@
                         prop="file"
                         label="招标文件">
                     </el-table-column>
-                </el-table>    
+                </el-table>
             </el-aside>
             <el-main>
                 <el-row style="line-height:40px;margin-bottom:15px;">
@@ -68,7 +68,7 @@
                     </el-col>
                     <el-col :span="3">
                         <div class="grid-content bg-purple-dark" style="text-align:center;border-bottom:2px solid #ccc">
-                            <el-button type="primary" size="small"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
+                            <el-button type="primary" size="small" @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"  ></i>&nbsp;&nbsp;查看推举情况</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -95,10 +95,10 @@
                     </el-table-column>
                     <el-table-column
                         label="操作">
-                        <template slot-scope="scope"> 
+                        <template slot-scope="scope">
                             <div>
                                 <el-button size="small" @click="changeView('/operation/zjps/hldj/startEvaluation')">评标</el-button>
-                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electAfter')">推举组长</el-button>
+                                <el-button size="small" @click="adjustedValuation"> 调整评标价</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -120,11 +120,32 @@
                 </el-row>
             </el-main>
         </el-container>
+      <el-dialog
+        title="投标人最新报价列表"
+        :visible.sync="dialogVisible"
+      >
+        <ChangePrice></ChangePrice>
+      </el-dialog>
+      <el-dialog
+        title="推举主任情况"
+        :visible.sync="dialogSelectionDirector"
+        width="700px"
+      >
+        <SelectionDirector></SelectionDirector>
+      </el-dialog>
     </div>
 </template>
 
 <script>
+  import ChangePrice from '../dialog/ChangePrice';
+  import SelectionDirector from '../dialog/SelectionDirector';
+
+
 export default {
+  components: {
+    ChangePrice,
+    SelectionDirector
+  },
     data(){
         return {
             currentPage4:1,
@@ -139,7 +160,8 @@ export default {
             tableData3:[
                 {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
             ],
-            currentPage4: 1
+          dialogVisible:false,
+          dialogSelectionDirector:false
         }
     },
     methods:{
@@ -154,6 +176,13 @@ export default {
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
+      adjustedValuation(){
+        this.dialogVisible = true;
+      },
+      selectionDirector(){
+        this.dialogSelectionDirector =true;
+      },
+
     }
 }
 </script>
@@ -186,7 +215,7 @@ export default {
         background: green;
         text-align: center;
         padding: 5px 0;
-        margin: 5px 0; 
+        margin: 5px 0;
         color: #fff;
         font-size: 14px;
     }

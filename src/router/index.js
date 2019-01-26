@@ -81,11 +81,23 @@ export default new Router({
         { path: 'zjps/hldj/electAfter', name: 'zjps/hldj/electAfter', component: () => import('../operations/zjps/hldj/electAfter.vue'), meta: {breadName:'推举组长下一步'},}, // 推举组长下一步
         { path: 'zjps/hldj/electWait', name: 'zjps/hldj/electWait', component: () => import('../operations/zjps/hldj/electWait.vue'), meta: {breadName:'推举组长下一步'},}, // 等待推举
         { path: 'zjps/hldj/bidLink', name: 'zjps/hldj/bidLink.vue', component: () => import('../operations/zjps/hldj/bidLink.vue'), meta: {breadName:'评标环节'},}, // 评标环节
+        //资格审查项
         { path: 'zjps/hldj/startEvaluation', name: 'zjps/hldj/startEvaluation.vue', component: () => import('../operations/zjps/hldj/startEvaluation.vue'), meta: {breadName:'开始评标'},}, // 开始评标
         { path: 'zjps/hldj/myQualificationsResult', name: 'zjps/hldj/myQualificationsResult.vue', component: () => import('../operations/zjps/hldj/myQualificationsResult.vue'), meta: {breadName:'单项评标结果'},}, // 单项评标结果
         { path: 'zjps/hldj/unFinishQualificationsResult', name: 'zjps/hldj/unFinishQualificationsResult.vue', component: () => import('../operations/zjps/hldj/unFinishQualificationsResult.vue'), meta: {breadName:'未完成时的评审汇总'},}, // 未完成时的评审汇总
         { path: 'zjps/hldj/finishQualificationsResult', name: 'zjps/hldj/finishQualificationsResult.vue', component: () => import('../operations/zjps/hldj/finishQualificationsResult.vue'), meta: {breadName:'完成时的评审汇总'},}, // 完成时的评审汇总
-        { path: 'zjps/hldj/businessAffairs', name: 'zjps/hldj/businessAffairs.vue', component: () => import('../operations/zjps/hldj/businessAffairs.vue'), meta: {breadName:'商务评审'},}, // 商务评审
+        // 符合性审查项
+        { path: 'zjps/hldj/startEvaluation_fhx', name: 'zjps/hldj/startEvaluation_fhx.vue', component: () => import('../operations/zjps/hldj/startEvaluation_fhx.vue'), meta: {breadName:'开始评标'},}, // 开始评标
+        { path: 'zjps/hldj/myQualificationsResult_fhx', name: 'zjps/hldj/myQualificationsResult_fhx.vue', component: () => import('../operations/zjps/hldj/myQualificationsResult_fhx.vue'), meta: {breadName:'单项评标结果'},}, // 单项评标结果
+        { path: 'zjps/hldj/unFinishQualificationsResult_fhx', name: 'zjps/hldj/unFinishQualificationsResult_fhx.vue', component: () => import('../operations/zjps/hldj/unFinishQualificationsResult_fhx.vue'), meta: {breadName:'未完成时的评审汇总'},}, // 未完成时的评审汇总
+        { path: 'zjps/hldj/finishQualificationsResult_fhx', name: 'zjps/hldj/finishQualificationsResult_fhx.vue', component: () => import('../operations/zjps/hldj/finishQualificationsResult_fhx.vue'), meta: {breadName:'完成时的评审汇总'},}, // 完成时的评审汇总
+        
+        // 详细技术评审
+        { path: 'zjps/hldj/startEvaluation_xxjs', name: 'zjps/hldj/startEvaluation_xxjs.vue', component: () => import('../operations/zjps/hldj/startEvaluation_xxjs.vue'), meta: {breadName:'开始评标'},}, // 开始评标
+        { path: 'zjps/hldj/myQualificationsResult_xxjs', name: 'zjps/hldj/myQualificationsResult_xxjs.vue', component: () => import('../operations/zjps/hldj/myQualificationsResult_xxjs.vue'), meta: {breadName:'单项评标结果'},}, // 单项评标结果
+        { path: 'zjps/hldj/unFinishQualificationsResult_xxjs', name: 'zjps/hldj/unFinishQualificationsResult_xxjs.vue', component: () => import('../operations/zjps/hldj/unFinishQualificationsResult_xxjs.vue'), meta: {breadName:'未完成时的评审汇总'},}, // 未完成时的评审汇总
+        { path: 'zjps/hldj/finishQualificationsResult_xxjs', name: 'zjps/hldj/finishQualificationsResult_xxjs.vue', component: () => import('../operations/zjps/hldj/finishQualificationsResult_xxjs.vue'), meta: {breadName:'完成时的评审汇总'},}, // 完成时的评审汇总
+        
         { path: 'zjps/hldj/reviewSummary', name: 'zjps/hldj/reviewSummary.vue', component: () => import('../operations/zjps/hldj/reviewSummary.vue'), meta: {breadName:'评审汇总'},}, // 评审汇总
         { path: 'zjps/hldj/submitSummary', name: 'zjps/hldj/submitSummary.vue', component: () => import('../operations/zjps/hldj/submitSummary.vue'), meta: {breadName:'提交评审汇总'},}, // 提交评审汇总
 
