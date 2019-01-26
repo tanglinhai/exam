@@ -48,7 +48,7 @@
             </el-table-column>
             <el-table-column
               width="190"
-              align="center"s
+              align="center"
               label="考试时间"
             >
             <template scope="scope">

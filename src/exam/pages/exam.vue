@@ -161,6 +161,8 @@
     mounted(){
       this.nowTime = new Date();
       this.id = this.$route.params.id;
+      this.id2 = this.$route.params.id2;   //传递第二个值用于判断是不是练习入口进入
+      console.log(this.id2,this.id)
       // this.startTime = new Date();
       this.init();
       window.addEventListener('scroll', this.handleScroll);
@@ -205,7 +207,7 @@
               }
               this.startTime = res.result.startTime;
               this.examTime = this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
-              if(this.examTime <= 0){
+              if(this.examTime <= 0&&!this.id2){
                 this.$message.error('考试时间已过!');
                 this.$router.go(-1);
               }
