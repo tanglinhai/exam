@@ -3,7 +3,7 @@
     <h3 class="text-center marginT10">{{paperData.name}}</h3>
     <div class="text-center marginT10">考试时长：{{paperData.time}}分钟  总分：{{paperData.totalPoints}}分</div>
     <hr>  
-    <div class="submit-box" ref="submitBox">
+    <div class="submit-box" ref="submitBox" v-show="lianxi">
       <el-button @click="submit" type="primary" class="submit-btn">提交试卷</el-button>
       <div class="timeout">
         <p>距离考试结束</p>
@@ -140,7 +140,8 @@
         operationQuestions:[],
         options:['A','B','C','D','E','F','G','H','I','J','K',
           'L','M','N','O','P','Q','R','S','T'],
-        scroll: document.body.scrollTop
+        scroll: document.body.scrollTop,
+        lianxi:true,    //如果练习点击进入此项不显示
       }
     },
     computed:{
@@ -210,6 +211,10 @@
        * 初始化
        */
       init(){
+        if(this.id&&this.id2==11){    //如果练习点击进入此项不显示
+          this.lianxi=false;
+        }
+
         if(this.id == '' || !this.id ){
             this.$router.push({path:'forntexamindex'});
             return
