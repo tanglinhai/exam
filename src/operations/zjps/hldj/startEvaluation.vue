@@ -66,19 +66,17 @@
 
                   </el-row>
                   <template>
+                      <el-row class="qu">
+                          <el-col :span="24">
+                              <div class="grid-content bg-purple" style="padding-left:5px;">
+                                  审查标准：2222222
+                              </div>
+                          </el-col>
+                      </el-row>
                       <el-table
                         :data="tableData"
                         border
-                        :span-method="arraySpanMethod2"
                         style="width: 100%">
-                        <el-table-column
-                          prop="people"
-                          width="100"
-                          label="人">
-                          <template slot-scope="scope">
-                            <span style="margin-left: 10px">{{scope.row.people}}</span>
-                          </template>
-                        </el-table-column>
                         <el-table-column
                           prop="name"
                           label="名称">
@@ -91,7 +89,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" v-model="scope.row.radio">
+                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -228,15 +226,6 @@
           city: '',
         }],
         tableData: [{
-          people: '审查标准：1111',
-          name: '',
-          pass: '',
-          kong:'',
-          ra1:'合格',
-          ra2:'不合格',
-          radio: '',
-          id:1111
-        },{
           people: '招标人1：',
           name: '[1] 阿里巴巴',
           pass: '1',
@@ -254,6 +243,15 @@
           ra2:'不合格',
           radio: '',
           id:3333
+        },{
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司（测试）',
+          pass: '2',
+          kong:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:55555
         }, {
           people: '招标人3：',
           name: '[3] 夏丰热工研究院有限公司（测试）',
@@ -263,7 +261,16 @@
           ra2:'不合格',
           radio:'',
           id:4444
-        }],
+        }, {
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司（测试）',
+          pass: '2',
+          kong:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:6666
+        }, ],
         allRadio:[],
       }
 
@@ -316,36 +323,40 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
+      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
       },
 
-      arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
-        if (rowIndex === 0) {
-          return [1, 4];
-        }
-      },
-
-      hahaha(radio,id){D
-        console.log(radio,id)
+      hahaha(radio,id){
+        // console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
-        }
-        console.log(radio,id);
-        this.allRadio.push({
+        };
+        this.cover(this.allRadio,id,radio,false);
+      },
+
+      cover(num,id,radio,booler){
+        num.push({
           id:id,
           value:radio,
-          isSubmit:false,
+          isSubmit:booler,
         });
+        let str={};
+        num.forEach(item => {
+          str[item.id]=item;
+        })
+        let ps=Object.values(str);
+        // console.log(ps);
+        this.$loaclStore.set('msg',ps);
       },
 
       quanbu(){
 
         for(var i = 0;i<this.tableData.length;i++){
-          this.tableData[i].radio=1;
+          this.tableData[i].radio='合格';
+          this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio,false);
         }
         // console.log(this.tableData.radio)
         // this.tableData.radio2=1;
@@ -359,15 +370,34 @@
         window.location.href = name;
       },
       allSubmit(){
-        if(this.allRadio == ''){
-          this.$message({
-            message: '请选选择合格/不合格',
-            center: true
-          });
+        // this.tableData.forEach(item => {
+        //   // console.log(item)
+        //   if(this.allRadio == ''){
+        //     this.$message({
+        //       message: '请选择合格/不合格',
+        //       center: true
+        //     });
+        //   }else{
+        //     this.cover(this.allRadio,item.id,item.radio,true);
+            // var mssg=this.$loaclStore.get('msg');
+            // console.log(mssg);
+        //     console.log(this.$refs.shet)
+        //     // this.$router.push({
+        //     //   path: '/operation/zjps/hldj/myQualificationsResult'
+        //     // })
+        //   }
+        // })
+        this.cover(this.allRadio);
+        var mssg=this.$loaclStore.get('msg');
+        var lengts = mssg.length-1;
+        if(this.tableData.length-lengts==0){
+              
+           console.log("yiquanxuan")
         }else{
-          this.$router.push({
-            path: '/operation/zjps/hldj/electTeamLeader'
-          })
+              this.$message({
+              message: '请选择合格/不合格',
+              center: true
+            });
         }
       }
     },
@@ -468,6 +498,13 @@
           display:none;
         }
       }
+    }
+    .qu{
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #ebeef5;
+        border-bottom: none;
+        font-size: 14px;
     }
   }
 </style>
