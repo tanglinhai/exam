@@ -341,24 +341,22 @@
         // console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
-
         }
-
         this.cover(this.allRadio,id,radio,false);
       },
 
       // 本地存储local封装
       cover(num,id,radio){
         num.push({
-
           id:id,
           value:radio,
         });
         let str={};
         num.forEach(item => {
           str[item.id]=item;
-        })
+        });
         let ps=Object.values(str);
+        console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 

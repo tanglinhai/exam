@@ -63,7 +63,7 @@
                     <el-col :span="2" style="padding:0px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：1</div>
                     </el-col>
-                    
+
                   </el-row>
                   <template>
                       <el-table
@@ -131,24 +131,24 @@
                         align="center"
                         label="评审因素">
                       </el-table-column>
-                      <el-table-column 
+                      <el-table-column
                       label="投标人"
                       align="center"
                       >
                           <el-table-column
                             prop="province"
                             align="center"
-                            label="阿里巴巴(2)">
+                            label="重庆网控科技发展有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="city"
                             align="center"
-                            label="普瑞太阳能有限公司(测试)(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="name"
                             align="center"
-                            label="夏丰热工研究院有限公司(测试)(3)">
+                            label="夏丰热工研究院有限公司">
                           </el-table-column>
                       </el-table-column>
                     </el-table>
@@ -193,13 +193,13 @@
       return {
         tableData3: [{
           number:'1',
-          date: '1',
+          date: '投标文件签字盖章',
           name: '√',
           province: '√',
           city: '√',
         }, {
           number:'2',
-          date: '11',
+          date: '联合体投标人',
           name: '√',
           province: '√',
           city: '√',
@@ -227,7 +227,7 @@
           id:1111
         },{
           people: '招标人1：',
-          name: '[1] 阿里巴巴',
+          name: '[1] 重庆网控科技发展有限公司',
           pass: '1',
           kong:'',
           ra1:1,
@@ -236,7 +236,7 @@
           id:2222
         }, {
           people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司（测试）',
+          name: '[2] 普瑞太阳能有限公司',
           pass: '2',
           kong:'',
           ra1:1,
@@ -245,7 +245,7 @@
           id:3333
         }, {
           people: '招标人3：',
-          name: '[3] 夏丰热工研究院有限公司（测试）',
+          name: '[3] 夏丰热工研究院有限公司',
           pass: '1',
           kong:'',
           ra1:1,
@@ -253,9 +253,9 @@
           radio:'',
           id:4444
         }],
-        
+
       }
-      
+
     },
     mounted(){
     var setting = {
@@ -281,7 +281,7 @@
 			{ id:122, pId:12, name:"叶子节点 1-2-2"},
 			{ id:123, pId:12, name:"叶子节点 1-2-3"},
 			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-		
+
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -310,7 +310,7 @@
           return [1, 5];
         }
       },
-      
+
       arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
        console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 0) {
@@ -323,7 +323,7 @@
       },
 
       quanbu(){
-        
+
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio=1;
         }
@@ -332,12 +332,12 @@
         // this.tableData.radio3=1;
         // this.tableData.radio4=1;
       }
-     
+
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -395,7 +395,7 @@
         margin-left:0px!important;
         margin-right:0px!important;
       }
-      .aaa_bleft{ 
+      .aaa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;

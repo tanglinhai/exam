@@ -183,17 +183,17 @@
                           <el-table-column
                             prop="province"
                             align="center"
-                            label="阿里巴巴(2)">
+                            label="重庆网控科技发展有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="city"
                             align="center"
-                            label="普瑞太阳能有限公司(测试)(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="name"
                             align="center"
-                            label="夏丰热工研究院有限公司(测试)(3)">
+                            label="夏丰热工研究院有限公司">
                           </el-table-column>
                       </el-table-column>
                     </el-table>
@@ -248,13 +248,13 @@
         dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
-          date: '1',
+          date: '投标文件签字盖章',
           name: '√',
           province: '√',
           city: '√',
         }, {
           number:'2',
-          date: '11',
+          date: '联合体投标人',
           name: '√',
           province: '√',
           city: '√',
@@ -294,7 +294,7 @@
         },{
           index:2,
           people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司',
+          name: '[2] 夏丰热工研究院有限公司',
           pass: '2',
           content:'',
           ra1:'合格',
@@ -325,7 +325,7 @@
         },{
           index:2,
           people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司',
+          name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
           msg:'',
           ra1:'合格',
@@ -427,6 +427,7 @@
           str[item.id]=item;
         });
         let ps=Object.values(str);
+        console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 
@@ -456,7 +457,6 @@
       },
       childByValue: function (childValue) {
         // childValue就是子组件传过来的值
-          console.log(childValue,'1111');
         for(var i = 0;i<this.tableData.length;i++){
           if(this.tableData[i].id==this.idradionoprss){
             this.tableData[i].content=childValue;
