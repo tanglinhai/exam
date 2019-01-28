@@ -182,7 +182,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry @sendToP="getMsg"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -283,6 +283,7 @@
 
     },
     mounted(){
+      console.log(localStorage.getItem('aa'));
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -386,6 +387,9 @@
             path: '/operation/zjps/hldj/myQualificationsResult'
           })
         }
+      },
+      getMsg(data){
+        console.log(data);
       }
     },
   }
