@@ -37,12 +37,14 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+            
           } else {
             console.log('error submit!!');
             return false;
           }
         });
+
+        alert('提交后您将没有权限参与此项目，此模拟系统暂时不支持此操作！');
       },
       reback(){
 

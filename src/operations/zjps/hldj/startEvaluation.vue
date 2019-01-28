@@ -87,7 +87,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id,scope.$index)" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -97,8 +97,9 @@
                         <el-table-column
                           prop="kong"
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -119,7 +120,7 @@
                           </el-col>
                       </el-row>
                       <el-table
-                        :data="tableData"
+                        :data="tableData11"
                         border
                         style="width: 100%">
                         <el-table-column
@@ -130,11 +131,11 @@
                           </template>
                         </el-table-column>
                         <el-table-column
-                          prop="pass"
+                          prop="pass2"
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id,scope.$index)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio2(scope.row.radio,scope.row.id,scope.$index)" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -146,7 +147,7 @@
                           label="">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              {{scope.row.kong}}
+                              {{scope.row.msg}}
                             </span>
                           </template>
                         </el-table-column>
@@ -182,17 +183,17 @@
                           <el-table-column
                             prop="province"
                             align="center"
-                            label="阿里巴巴(2)">
+                            label="重庆网控科技发展有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="city"
                             align="center"
-                            label="普瑞太阳能有限公司(测试)(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="name"
                             align="center"
-                            label="夏丰热工研究院有限公司(测试)(3)">
+                            label="夏丰热工研究院有限公司">
                           </el-table-column>
                       </el-table-column>
                     </el-table>
@@ -229,7 +230,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry  v-on:childByValue="childByValue"></FailureEntry>
+      <FailureEntry @childByValue="childByValue"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -247,13 +248,13 @@
         dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
-          date: '1',
+          date: '投标文件签字盖章',
           name: '√',
           province: '√',
           city: '√',
         }, {
           number:'2',
-          date: '11',
+          date: '联合体投标人',
           name: '√',
           province: '√',
           city: '√',
@@ -271,39 +272,75 @@
           city: '',
         }],
         tableData: [{
+          index:0,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass: '1',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:2222,
         }, {
+          index:1,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass: '2',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:3333,
         },{
+          index:2,
+          people: '招标人2：',
+          name: '[2] 夏丰热工研究院有限公司',
+          pass: '2',
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:55555,
+        }],
+        tableData11: [{
+          index:0,
+          people: '招标人1：',
+          name: '[1]重庆网控科技发展有限公司',
+          pass2: '1',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:2222,
+        }, {
+          index:1,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
-          pass: '2',
-          kong:'',
+          pass2: '2',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:3333,
+        },{
+          index:2,
+          people: '招标人2：',
+          name: '[2] 夏丰热工研究院有限公司',
+          pass2: '2',
+          msg:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:55555,
         }],
         allRadio:[],
+        idradionoprss:'',//不合格的id
+        idqualified:"",//合格的id
+        idradionoprss2:"",
+        idqualified2:"",
       }
-
     },
     mounted(){
-
       var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -319,7 +356,6 @@
 			{ id:1, pId:0, name:"资格审查项", open:true},
 			{ id:11, pId:1, name:"专业资质是否达标", open:false},
 			{ id:12, pId:1, name:"公司投资金额是否达标", open:false},
-
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -331,7 +367,7 @@
 		});
       setTimeout(function(){
         $("#treeDemo_1_a").addClass("curSelectedNode");
-      },200)
+      },200);
       $("#treeDemo").on('click','#treeDemo_1_a',function(){
         $(".a1").show();
         $(".a2").hide();
@@ -349,15 +385,37 @@
         }
       },
 
-      hahaha(radio,id,index){
+      failuredRadio(radio,id,index){
         console.log(radio,id,index);
         if(radio=='不合格'){
-          this.dialogVisible=true
+          this.idradionoprss=id;
+          this.dialogVisible=true;
+        }else if(radio=='合格'){
+          this.idqualified=id;
+          for(var i = 0;i<this.tableData.length;i++){
+            if(this.tableData[i].id==this.idqualified){
+              this.tableData[i].content='';
+            }
+          }
+        }
+        this.cover(this.allRadio,id,radio,false);
+      },
+      failuredRadio2(radio,id,index){
+        console.log(radio,id,index);
+        if(radio=='不合格'){
+          this.idradionoprss2=id;
+          this.dialogVisible=true;
+        }else if(radio=='合格'){
+          this.idqualified2=id;
+          for(var i = 0;i<this.tableData11.length;i++){
+            if(this.tableData11[i].id==this.idqualified2){
+              this.tableData11[i].msg='';
+            }
+          }
         }
         this.cover(this.allRadio,id,radio);
         this.$loaclStore.set('isSubmit',false);
       },
-
       // 本地存储local封装
       cover(num,id,radio){
         num.push({
@@ -367,8 +425,9 @@
         let str={};
         num.forEach(item => {
           str[item.id]=item;
-        })
+        });
         let ps=Object.values(str);
+        console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 
@@ -398,13 +457,19 @@
       },
       childByValue: function (childValue) {
         // childValue就是子组件传过来的值
-        console.log(childValue,'1111');
-        this.tableData.kong=childValue;
+        for(var i = 0;i<this.tableData.length;i++){
+          if(this.tableData[i].id==this.idradionoprss){
+            this.tableData[i].content=childValue;
+          }
+        }
+        for(var i = 0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].id==this.idradionoprss2){
+            this.tableData11[i].msg=childValue;
+          }
+        }
       }
     },
   }
-
-
 
 </script>
 

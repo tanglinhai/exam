@@ -188,17 +188,17 @@
                           <el-table-column
                             prop="province"
                             align="center"
-                            label="阿里巴巴(2)">
+                            label="重庆网控科技发展有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="city"
                             align="center"
-                            label="普瑞太阳能有限公司(测试)(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="name"
                             align="center"
-                            label="夏丰热工研究院有限公司(测试)(3)">
+                            label="夏丰热工研究院有限公司">
                           </el-table-column>
                       </el-table-column>
                     </el-table>
@@ -289,7 +289,7 @@
           id:3333
         },{
           people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司',
+          name: '[2] 夏丰热工研究院有限公司',
           pass: '2',
           kong:'',
           ra1:'合格',

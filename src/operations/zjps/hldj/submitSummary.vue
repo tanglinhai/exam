@@ -83,8 +83,8 @@
           <el-row class="myform">
             <div class="le">
               评标意见：<br/>
-              (2000字之内)  
-            </div> 
+              (2000字之内)
+            </div>
             <div class="ri">
               <textarea style="width: 1000px;height: 200px;"></textarea>
             </div>
@@ -99,15 +99,15 @@
   export default {
     name: 'updateBill',
     data () {
-      return { 
+      return {
         activeName:'sec',
         tableData:[
-          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'10000.0000',ip:'1'},
-          {num:'1',name:'阿里巴巴',total:'30000.0000',ip:'2'},
+          {num:'1',name:'重庆网控科技发展有限公司',total:'30000.0000',ip:'1'},
+          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'10000.0000',ip:'2'},
           {num:'2',name:'夏丰热工研究院有限公司（测试）',total:'20000.0000',ip:'3'}
         ],
       }
-      
+
     },
     mounted(){
 
@@ -117,12 +117,12 @@
           // console.log(name)
           //this.$router.push({path:`${name}`});
           window.location.href = name;
-      } 
+      }
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -184,7 +184,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -210,7 +210,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

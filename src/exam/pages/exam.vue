@@ -96,9 +96,9 @@
                   frameborder="0"
                   scrolling="no"
                 ></iframe>
-                <span slot="footer" class="dialog-footer">
-                  <el-button type="danger" @click="endOperation(item)" size="small">结束操作</el-button>
-                </span>
+                <div class="submit-box" slot="footer" style="top: 50px;">
+                  <el-button @click="endOperation(item)" type="danger" size="small">结束操作</el-button>
+                </div>
               </el-dialog>
             </div>
           </li>
