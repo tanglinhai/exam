@@ -368,9 +368,11 @@
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
         }
       },
-      changeView(name){      //路由跳转传参函数
+      changeView(name){      
+        //路由跳转传参函数
         // console.log(name)
         //this.$router.push({path:`${name}`});
+        this.$commonFun.exam_operation_answer_calc();
         window.location.href = name;
       },
       allSubmit(){

@@ -5,7 +5,7 @@ const Student = require('../model/student');
 const Operation = require('../model/operation');
 const crypto = require('crypto');
 
-const operations = [{name:'模拟评标-最低价法'},{name:'模拟评标-综合评分办法'},{name:'模拟评标-双信封评标办法'}];
+const operations = [{name:'模拟评标-最低价法',type:'1'},{name:'模拟评标-综合评分办法',type:'2'},{name:'模拟评标-双信封评标办法',type:'3'}];
 
 Operation.find(function(err, docs){
   if(!docs || docs.length == 0)
@@ -73,7 +73,6 @@ let mdHash = function(data){
 // 操作题目数据
 exports.getOperations = function (req,res) {
   Operation.find((err,docs) => {
-    console.log('=============1111111111================', docs);
     res.json(docs)
   });
 }

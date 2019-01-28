@@ -110,7 +110,7 @@
                         label="操作">
                         <template slot-scope="scope">
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electAfter')">推举组长</el-button>
+                                <el-button size="small" @click="selectTeamLeader()">推举组长</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -179,6 +179,10 @@ export default {
             // console.log(name)
             //this.$router.push({path:`${name}`});
             window.location.href = name;
+        },
+
+        selectTeamLeader(){
+            this.changeView('/operation/zjps/hldj/electAfter');
         },
       selectionDirector(){
         this.dialogSelectionDirector =true;

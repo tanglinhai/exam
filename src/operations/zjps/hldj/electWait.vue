@@ -145,7 +145,7 @@
                 <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
-                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/bidLink')">下一步</el-button>
+                            <el-button type="primary" size="small" @click="endSelect()">下一步</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -188,6 +188,11 @@ export default {
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
+        endSelect(){
+            //下一步加分
+            this.$commonFun.exam_operation_answer_calc();
+            this.changeView('/operation/zjps/hldj/bidLink')
+        }
     }
 }
 </script>

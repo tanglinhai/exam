@@ -15,7 +15,7 @@ import $ from 'jquery'
 import '@/common/js/css/zTreeStyle/zTreeStyle.css'
 import '@/common/js/jquery.ztree.core.js'
 
-import * as commonFun from './common/js/commonFun.js'
+import commonFun from './common/js/commonFun.js'
 
 
 axios.interceptors.response.use(res => {//
@@ -36,10 +36,12 @@ axios.defaults.headers.common['Cache-Control'] = 'no-cache';
 axios.defaults.headers.common['Expires'] = 0;
 Vue.prototype.$axios=axios
 Vue.prototype.$loaclStore=loaclStore
-Vue.prototype.$mySessionStorage = commonFun.mySessionStorage;
+Vue.prototype.$mySessionStorage = commonFun.storage;
+
+Vue.prototype.$commonFun = commonFun;
 //全局封装一个获取用户信息方法
 var getUserData=function () {
-  var sessionData = commonFun.mySessionStorage.get('currentUser', 'json')||{};
+  var sessionData = commonFun.storage.get('currentUser', 'json')||{};
   //console.log(sessionData)
   return {
     userName: sessionData.userName,
@@ -125,10 +127,11 @@ Array.prototype.equals = function (array) {
 }
 
 /* eslint-disable no-new */
-new Vue({
+var vm = new Vue({
   el: '#app',
   router, // 使用路由
   // store, // 使用vuex
   template: '<App/>',
   components: { App }
-})
+});
+window.vm  = vm;
