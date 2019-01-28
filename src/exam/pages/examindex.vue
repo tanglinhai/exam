@@ -131,14 +131,14 @@
           // console.log(paper)
           this.isExam = false;
           if(this.examLogs.length > 0){
-            this.examLogs.forEach(item => {
+            /*this.examLogs.forEach(item => {
               // console.log(item);
               if(item._paper&&item._paper._id == paper._id && item.startTime == paper.startTime){
                 this.isExam = true;
                 this.$message.error('已经参加过本次考试，不能重复参加!');
                 return;
               }
-            })
+            })*/
             if(!this.isExam){
               this.$router.push({name:'ForntExam',params:{id:paper._id}});
             }

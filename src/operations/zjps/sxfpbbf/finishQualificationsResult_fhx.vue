@@ -58,8 +58,7 @@
             <el-table
                 :data="tableData"
                 border
-                style="width:100%"
-                :span-method="arraySpanMethod">
+                style="width:100%">
                 <el-table-column
                     prop="num"
                     label="序号"

@@ -36,10 +36,12 @@
                         prop="file"
                         label="招标文件">
                     <template slot-scope="scope">
-                      <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
-                        <span> {{scope.row.file}}</span>
-                        <i class="fa fa-file fa-fw"></i>
-                      </a>
+                      <div @click="downloadZB">
+                        <a href="javascript:void(0);" class="curStyot">
+                          <span>{{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </div>
                     </template>
                   </el-table-column>
                 </el-table>
@@ -59,10 +61,12 @@
                         label="招标文件">
 
                     <template slot-scope="scope">
-                      <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
-                        <span>{{scope.row.file}}</span>
-                        <i class="fa fa-file fa-fw"></i>
-                      </a>
+                      <div @click="downloadTouBiao">
+                        <a class="curStyot"  href="javascript:void(0);">
+                          <span> {{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </div>
                     </template>
                   </el-table-column>
                 </el-table>
@@ -110,7 +114,7 @@
                         label="操作">
                         <template slot-scope="scope">
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electAfter')">推举组长</el-button>
+                                <el-button size="small" @click="selectTeamLeader()">推举组长</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -180,9 +184,19 @@ export default {
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
+
+        selectTeamLeader(){
+            this.changeView('/operation/zjps/hldj/electAfter');
+        },
       selectionDirector(){
         this.dialogSelectionDirector =true;
       },
+      downloadZB(){
+        window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
+      },
+      downloadTouBiao(){
+        window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
+      }
 
     }
 }

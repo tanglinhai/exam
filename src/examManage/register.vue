@@ -5,10 +5,10 @@
         <div class="login-logo marginB10"><img width="300"  v-lazy="logoSrc" alt="logo"></div>
         <el-form :model="userForm" :rules="rules" ref="ruleForm"  class="demo-ruleForm">
           <el-form-item label="" prop="userId">
-            <el-input v-model="userForm.userId" placeholder="请输入教师工号"></el-input>
+            <el-input v-model="userForm.userId" placeholder="请输入工号"></el-input>
           </el-form-item>
           <el-form-item label="" prop="userName">
-            <el-input v-model="userForm.userName" placeholder="请输入教师姓名"></el-input>
+            <el-input v-model="userForm.userName" placeholder="请输入姓名"></el-input>
           </el-form-item>
           <el-form-item label="" prop="passWord">
             <el-input type="password" v-model="userForm.passWord" placeholder="请输入账号密码"></el-input>
@@ -41,11 +41,11 @@
         logoSrc:require('../common/img/logo.png'),
         rules:{
           userId: [
-            { required: true, message: '请输入教师工号', trigger: 'blur' },
+            { required: true, message: '请输入工号', trigger: 'blur' },
             { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           userName: [
-            { required: true, message: '请输入教师姓名', trigger: 'blur' },
+            { required: true, message: '请输入姓名', trigger: 'blur' },
             {min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur'}
           ],
           passWord: [

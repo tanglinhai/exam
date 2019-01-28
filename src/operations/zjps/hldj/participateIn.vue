@@ -18,10 +18,13 @@
                         prop="file"
                         label="招标文件">
                       <template slot-scope="scope">
-                        <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
-                          <span>{{scope.row.file}}</span>
-                          <i class="fa fa-file fa-fw"></i>
-                        </a>
+                        <div @click="downloadZB">
+                          <a href="javascript:void(0);" class="curStyot">
+                            <span>{{scope.row.file}}</span>
+                            <i class="fa fa-file fa-fw"></i>
+                          </a>
+                        </div>
+
                       </template>
                     </el-table-column>
                 </el-table>
@@ -40,10 +43,12 @@
                         prop="file"
                         label="投标文件">
                       <template slot-scope="scope">
-                        <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
-                          {{scope.row.file}}
-                          <i class="fa fa-file fa-fw"></i>
-                        </a>
+                        <div @click="downloadTouBiao">
+                            <a class="curStyot"  href="javascript:void(0);">
+                              <span> {{scope.row.file}}</span>
+                              <i class="fa fa-file fa-fw"></i>
+                            </a>
+                        </div>
                       </template>
                     </el-table-column>
                 </el-table>
@@ -173,6 +178,7 @@ export default {
 
         },
         participateIn(){
+            this.$commonFun.exam_operation_answer_calc();
             window.location.href = '/operation/zjps/hldj/electTeamLeader';
             /*this.$router.push({
                 path: '/operation/zjps/hldj/electTeamLeader'
@@ -180,6 +186,12 @@ export default {
         },
       applyAvoid(){
         this.dialogApplyAvoid=true
+      },
+      downloadZB(){
+        window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
+      },
+      downloadTouBiao(){
+        window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
       }
     }
 }
@@ -203,5 +215,6 @@ export default {
         padding: 0 15px;
         overflow: hidden;
     }
+
 }
 </style>
