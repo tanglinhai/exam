@@ -79,9 +79,9 @@
             <el-row class="with">
               <el-col :span="24">
                 <div class="grid-content bg-purple">
-                  <div class="letter">注：1、对于实质性响应项，凡资格审查项中有任何一条未通过评审要求，即定位无效投标人。</div>
-                  <div class="letter pad">2、对于非实质响应项，当启用废标设置并且为通过评审要求的项数大于最大偏离项，即界定为无效投标人。</div>
-                  <div class="pad">3、评标委员会各成员在表格响应位置中记录各投标人是否符合要求，符合要求打'✔'，不符合要求打'✖'。结论为'合格'或'不合格'</div>
+                  <div class="letter">注：1、对于实质性响应项，凡资格审查项中有任何一条未通过评审要求，即界定为无效投标人。</div>
+                  <div class="letter pad">2、对于非实质响应项，当启用废标设置并且未通过评审要求的项数大于最大偏离项，即界定为无效投标人。</div>
+                  <div class="pad">3、评标委员会各成员在表格相应位置中记录各投标人是否符合要求，符合要求打“√”，不符合要求打“×”。结论为“合格”或“不合格”。 </div>
                 </div>
               </el-col>
             </el-row>
@@ -103,19 +103,19 @@
         <el-tab-pane>
           <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
@@ -159,12 +159,17 @@
       return {
         activeName:'sec',
         tableData:[
+// <<<<<<< HEAD
           {num:'1',factor:'投标报价',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'2',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'3',factor:'资质要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'4',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'5',factor:'项目经理要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'6',factor:'业绩要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
+// =======
+//           {num:'1',factor:'1',name:'√(3√0×)',name1:'√(3√0×)',name2:'√(3√0×)'},
+//           {num:'2',factor:'11',name:'√(3√0×)',name1:'√(3√0×)',name2:'√(3√0×)'},
+// >>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66
           {num:'结论',factor:'是否通过资格审查项检查',name:'合格',name1:'合格',name2:'合格'}
         ],
         dialogVisible:false,//查看个人资格审查项表弹框

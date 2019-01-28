@@ -71,15 +71,21 @@
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
+<<<<<<< HEAD
                     <el-col :span="2" style="padding:0px;padding-top:15px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：1</div>
                     </el-col>
+=======
+                    <el-col :span="24" style="padding:0px;padding-top:15px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">详细评审（技术）项：cpu品牌及型号</div>
+                    </el-col>
+>>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66
                   </el-row>
                   <template>
                       <el-row class="qu">
                           <el-col :span="24">
                               <div class="grid-content bg-purple" style="padding-left:5px;">
-                                  审查标准：11111
+                                  审查标准：cpu品牌是否为intel？
                               </div>
                           </el-col>
                       </el-row>
@@ -110,15 +116,21 @@
                       </el-table>
                   </template>
                   <el-row :gutter="20">
+<!--<<<<<<< HEAD-->
                     <el-col :span="2" style="padding:0px;padding-top:15px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：2222</div>
                     </el-col>
+<!--=======-->
+                    <!--<el-col :span="24" style="padding:0px;padding-top:15px;">-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">详细评审（技术）项：显卡品牌及是否独立内存大小</div>-->
+                    <!--</el-col>                    -->
+<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
                   </el-row>
                   <template>
                       <el-row class="qu">
                           <el-col :span="24">
                               <div class="grid-content bg-purple" style="padding-left:5px;">
-                                  审查标准：2222222
+                                  审查标准：显卡品牌为惠普？是否独立显卡？
                               </div>
                           </el-col>
                       </el-row>
@@ -151,7 +163,7 @@
                   <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
-                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">下一步</el-button>
+                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_xxjs')">下一步</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -163,7 +175,7 @@
         <el-tab-pane>
           <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
           评审汇总
         </el-tab-pane>

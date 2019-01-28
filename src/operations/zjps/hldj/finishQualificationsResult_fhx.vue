@@ -48,10 +48,10 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">提交</el-button>
-                    <el-button size="small" type="info" @click="individualTrial">查看个人资格审查项表</el-button>
-                    <el-button size="small" type="info" @click="checkUnlockRecord">查看资格审查项解锁记录</el-button>
-                    <el-button size="small" type="info" @click="qualificationUnlockApplication">资格审查项解锁</el-button>
+                    <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/startEvaluation_xxjs')">提交</el-button>
+                    <el-button size="small" type="info" @click="individualTrial">查看个人符合性审查项表</el-button>
+                    <el-button size="small" type="info">查看符合性审查项解锁记录</el-button>
+                    <el-button size="small" type="info" @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
                 </div>
               </el-col>
             </el-row>
@@ -88,9 +88,9 @@
             <el-row class="with">
               <el-col :span="24">
                 <div class="grid-content bg-purple">
-                  <div class="letter">注：1、对于实质性响应项，凡资格审查项中有任何一条未通过评审要求，即定位无效投标人。</div>
-                  <div class="letter pad">2、对于非实质响应项，当启用废标设置并且为通过评审要求的项数大于最大偏离项，即界定为无效投标人。</div>
-                  <div class="pad">3、评标委员会各成员在表格响应位置中记录各投标人是否符合要求，符合要求打'✔'，不符合要求打'✖'。结论为'合格'或'不合格'</div>
+                  <div class="letter">注：1、对于实质性响应项，凡符合性审查项中有任何一条未通过评审要求，即界定为无效投标人。</div>
+                  <div class="letter pad">2、对于非实质响应项，当启用废标设置并且未通过评审要求的项数大于最大偏离项，即界定为无效投标人。</div>
+                  <div class="pad">3、评标委员会各成员在表格相应位置中记录各投标人是否符合要求，符合要求打“√”，不符合要求打“×”。结论为“合格”或“不合格”。 </div>
                 </div>
               </el-col>
             </el-row>
@@ -112,10 +112,10 @@
         <el-tab-pane>
           <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
@@ -169,8 +169,8 @@
         ],
         dialogVisible:false,//查看个人资格审查项表弹框
         title:'个人初审类活动表',
-        dialogFormVisible:false,//资格审查项汇总解锁申请
-        dialogVisibleTitle:'资格审查项汇总解锁申请',
+        dialogFormVisible:false,//资格审查项汇总解锁申
+        dialogVisibleTitle:'符合性审查项汇总解锁申请',
         dialogViewUnlockRecord:false
       }
     },

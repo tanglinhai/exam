@@ -63,19 +63,19 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>

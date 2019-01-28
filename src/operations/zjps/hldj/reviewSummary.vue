@@ -26,26 +26,25 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        </el-tab-pane>
+
+        <el-tab-pane>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -58,15 +57,14 @@
                       <el-button size="small" type="primary"  @click="scoring">计算报价得分</el-button>
                       <el-button size="small" type="info" @click="sort">排序</el-button>
                       <el-button size="small" type="info" @click="biddingAdvice">评标意见</el-button>
-                      <el-button size="small" type="info">提交</el-button>
+                      <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/submitSummary')">提交</el-button>
                   </div>
               </el-col>
           </el-row>
           <el-table
                 :data="tableData"
                 border
-                style="width:100%"
-                :span-method="arraySpanMethod">
+                style="width:100%">
                 <el-table-column
                     prop="bidder"
                     label="投标人">
@@ -207,6 +205,11 @@
     mounted(){
     },
     methods: {
+      changeView(name){      //路由跳转传参函数
+          // console.log(name)
+          //this.$router.push({path:`${name}`});
+          window.location.href = name;
+      },
       reviewLockRequest() {
         this.dialogFormVisible = true;
       },

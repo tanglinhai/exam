@@ -75,8 +75,8 @@
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
-                    <el-col :span="2" style="padding:0px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：1</div>
+                    <el-col :span="24" style="padding:0px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">详细评审（技术）项：cpu品牌及型号 </div>
                     </el-col>
 
                   </el-row>
@@ -179,7 +179,7 @@
           <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
 
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
@@ -232,7 +232,7 @@
           city: '',
         }],
         tableData: [{
-          people: '审查标准：1111',
+          people: '审查标准：cpu品牌是否为intel？',
           name: '',
           pass: '',
           kong:'',
@@ -372,7 +372,7 @@
           /*this.$router.push({
             path: '/operation/zjps/hldj/electTeamLeader'
           })*/
-          window.location.href = '/operation/zjps/hldj/myQualificationsResult';
+          window.location.href = '/operation/zjps/hldj/myQualificationsResult_xxjs';
         }
       }
     },

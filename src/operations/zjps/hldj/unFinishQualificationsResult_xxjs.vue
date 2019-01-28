@@ -78,7 +78,7 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
           评审汇总
         </el-tab-pane>

@@ -98,7 +98,7 @@
                 <el-row>
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;padding-top:200px;">
-                            <el-checkbox></el-checkbox> <b style="font-weight:bold;font-size:14px;"> &nbsp;我已读并同意了此承诺书</b>  <a style="font-size:14px;" href="javascript:void(0)">《承诺书协议》</a>
+                            <el-checkbox v-model="agreement"></el-checkbox> <b style="font-weight:bold;font-size:14px;"> &nbsp;我已读并同意了此承诺书</b>  <a style="font-size:14px;" href="javascript:void(0)">《承诺书协议》</a>
                         </div>
                     </el-col>
                 </el-row>
@@ -106,7 +106,7 @@
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;padding-top:15px;">
                             <el-button size="small" type="primary">申请回避</el-button>
-                            <el-button size="small" type="primary" disabled>参加评标</el-button>
+                            <el-button size="small" type="primary" :disabled="!agreement" @click="participateIn">参加评标</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -119,6 +119,8 @@
 export default {
     data(){
         return {
+            agreement: false,
+            currentPage4:1,
             tableData:[
                 {num:1,file:'招标文件(pdf)'}
             ],
@@ -137,6 +139,20 @@ export default {
                 {num:'3',file:'夏丰热工研究院有限公司(测试)',id:'0635-198N517/1'}
             ],
             currentPage4: 1
+        }
+    },
+    methods:{
+        handleSizeChange(pageSize){
+
+        },
+        handleCurrentChange(currPage){
+
+        },
+        participateIn(){
+            window.location.href = '/operation/zjps/hldj/electTeamLeader';
+            /*this.$router.push({
+                path: '/operation/zjps/hldj/electTeamLeader'
+            })*/
         }
     }
 }

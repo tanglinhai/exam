@@ -86,7 +86,7 @@
               <el-dialog
                 :title="item.name"
                 :visible.sync="item.show"
-                width="90%"
+                width="100%"
               >
                 <iframe 
                   :ref="'iframe_operation_'+item._operation.name"
@@ -410,7 +410,7 @@
     }
   }
 </script>
-<style scoped rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss">
   .exam{
     padding: 20px 0;
     .main{
@@ -443,6 +443,15 @@
             .question-content{
               padding: 20px;
               padding-top: 0;
+              .el-dialog{
+                position: fixed;
+                top:0;
+                left:0;
+                margin: 0 !important;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+              }
             }
           }
         }
