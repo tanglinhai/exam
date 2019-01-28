@@ -110,7 +110,9 @@ export default new Router({
         { path: 'zjps/zhpbbf/unFinishQualificationsResult', name: 'zjps/zhpbbf/unFinishQualificationsResult.vue', component: () => import('../operations/zjps/zhpbbf/unFinishQualificationsResult.vue'), meta: {breadName:'未完成时的评审汇总'},}, // 未完成时的评审汇总
         { path: 'zjps/zhpbbf/finishQualificationsResult', name: 'zjps/zhpbbf/finishQualificationsResult.vue', component: () => import('../operations/zjps/zhpbbf/finishQualificationsResult.vue'), meta: {breadName:'完成时的评审汇总'},}, // 完成时的评审汇总
         { path: 'zjps/zhpbbf/businessAffairs', name: 'zjps/zhpbbf/businessAffairs.vue', component: () => import('../operations/zjps/zhpbbf/businessAffairs.vue'), meta: {breadName:'商务评审'},}, // 商务评审
-        { path: 'zjps/zhpbbf/businessAffairs2', name: 'zjps/zhpbbf/businessAffairs2.vue', component: () => import('../operations/zjps/zhpbbf/businessAffairs2.vue'), meta: {breadName:'商务评审第二个'},}, // 商务评审第二个
+        { path: 'zjps/zhpbbf/businessAffairs2', name: 'zjps/zhpbbf/businessAffairs2.vue', component: () => import('../operations/zjps/zhpbbf/businessAffairs2.vue'), meta: {breadName:'商务评审第二个'},}, // 商务评审可输入
+        { path: 'zjps/zhpbbf/businessAffairs3', name: 'zjps/zhpbbf/businessAffairs3.vue', component: () => import('../operations/zjps/zhpbbf/businessAffairs3.vue'), meta: {breadName:'商务评审第三个'},}, // 商务评审输入完成之后查看
+        { path: 'zjps/zhpbbf/businessAffairs4', name: 'zjps/zhpbbf/businessAffairs4.vue', component: () => import('../operations/zjps/zhpbbf/businessAffairs4.vue'), meta: {breadName:'商务评审技术'},}, // 商务评审技术
         { path: 'zjps/zhpbbf/reviewSummary', name: 'zjps/zhpbbf/reviewSummary.vue', component: () => import('../operations/zjps/zhpbbf/reviewSummary.vue'), meta: {breadName:'评审汇总'},}, // 评审汇总
         { path: 'zjps/zhpbbf/submitSummary', name: 'zjps/zhpbbf/submitSummary.vue', component: () => import('../operations/zjps/zhpbbf/submitSummary.vue'), meta: {breadName:'提交评审汇总'},}, // 提交评审汇总
 

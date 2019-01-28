@@ -38,11 +38,15 @@
           符合性审查项
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
+          <span slot="label" @click="changeView('/operation/zjps/zhpbbf/businessAffairs2')"><i class="el-icon-edit"></i> 商务</span>
+          
+        </el-tab-pane>
+        <el-tab-pane name="jishu">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
           <el-row style="line-height:40px;">
               <el-col :span="1">
                   <div class="grid-content bg-purple" style="font-size:14px;">进度：</div>
@@ -55,9 +59,9 @@
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <span style="display:inline-block; margin-top:5px;">专家： 新增专家一号</span>
-                      <el-button size="small" type="info">查看未完成项</el-button>
+                      <!-- <el-button size="small" type="info">查看未完成项</el-button>
                       <el-button size="small" type="info">保存</el-button>
-                      <el-button size="small" type="info" @click="changeView('/operation/zjps/zhpbbf/businessAffairs3')">提交商务</el-button>
+                      <el-button size="small" type="info">提交商务</el-button> -->
                   </div>
               </el-col>
           </el-row>
@@ -76,41 +80,20 @@
                         <el-table-column
                             prop="name"
                             label="夏丰热工研究院有限公司（测试）（1）">
-                            <template slot-scope="scope">
-                                <div> 
-                                    <div v-if="scope.$index == 0||scope.$index == 1"> 
-                                      <el-input style="width:150px;" value="8"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div> 
-                                    <div v-else>{{scope.row.name}}</div>
-                                </div>
-                            </template>
+                            
                         </el-table-column>
                         <el-table-column
                             prop="name1"
                             label="益达天然产物有限公司（测试）（2）">
-                            <template slot-scope="scope">
-                                <div>   
-                                    <div v-if="scope.$index == 0||scope.$index == 1"> 
-                                      <el-input style="width:150px;" value="7"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div> 
-                                    <div v-else>{{scope.row.name1}}</div>
-                                </div>
-                            </template>
+                            <!-- <template slot-scope="scope">
+                            </template> -->
                         </el-table-column>
                         <el-table-column
                             prop="name2"
                             label="北京蓝天环境保护有限公司（测试）（3）">
-                            <template slot-scope="scope">
-                                <div>   
-                                    <div v-if="scope.$index == 0||scope.$index == 1"> 
-                                      <el-input style="width:150px;" value="8.5"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div> 
-                                    <div v-else>{{scope.row.name2}}</div>
-                                </div>
-                            </template>
+                            <!-- <template slot-scope="scope">
+                                
+                            </template> -->
                         </el-table-column>
                     </el-table-column>
             </el-table>
@@ -128,11 +111,8 @@
                 </el-col>
             </el-row>
         </el-tab-pane>
-        <el-tab-pane >
-          <span slot="label" @click="changeView('/operation/zjps/zhpbbf/businessAffairs4')"><i class="el-icon-edit"></i> 技术</span>
-        </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label"  class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
           评审汇总
         </el-tab-pane>
       </el-tabs>
@@ -145,12 +125,18 @@
     name: 'updateBill',
     data () {
       return { 
-        activeName:'sec',
+        activeName:'jishu',
         tableData:[
-          {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'1',name1:'2',name2:'3'},
-           {num:'第二章、其他要求(0.00分-10.00分)',name:'1',name1:'2',name2:'3'},
-          {num:'商务小计(分)',name:'16',name1:'14',name2:'17.50'},
-          {num:'总分小计(分)',name:'16',name1:'14',name2:'17.5'}
+          {num:'第一章、施工方案与技术措施(0.00分-5.00分)',name:'5',name1:'5',name2:'5'},
+          {num:'第二章、质量管理体系与措施(0.00分-5.00分)',name:'4',name1:'3',name2:'4'},
+          {num:'第三章、安全管理体系与措施(0.00分-5.00分)',name:'4',name1:'4',name2:'2'},
+          {num:'第四章、环境保护管理体系与措施(0.00分-5.00分)',name:'4',name1:'2',name2:'3'},
+          {num:'第五章、工程进度计划与措施(0.00分-5.00分)',name:'4.5',name1:'3',name2:'3'},
+          {num:'第六章、资源配备计划(0.00分-1.00分)',name:'1',name1:'1',name2:'1'},
+          {num:'第七章、施工设备(0.00分-2.00分)',name:'2',name1:'0',name2:'1.5'},
+          {num:'第八章、试验,检测仪器设备(0.00分-2.00分)',name:'2',name1:'1',name2:'1.5'},
+          {num:'技术小计(分)',name:'26.5',name1:'19.0',name2:'21.0'},
+          {num:'总分小计(分)',name:'42.5',name1:'33.0',name2:'38.5'}
         ],
         currentPage4: 1
       }
@@ -158,14 +144,14 @@
     },
     mounted(){
     },
-    methods: {  
+    methods: {   
       changeView(name){      //路由跳转传参函数
           // console.log(name)
           //this.$router.push({path:`${name}`});
           window.location.href = name;
-      }, 
+      },   
       tableRowClassName({row, rowIndex}) {
-        if (rowIndex === 0||rowIndex === 1) {
+        if (rowIndex === 0||rowIndex === 1||rowIndex === 2||rowIndex === 3||rowIndex === 4||rowIndex === 5||rowIndex === 6||rowIndex === 7) {
           return 'success-row';
         }
         return '';
