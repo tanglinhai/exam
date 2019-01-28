@@ -1,6 +1,24 @@
 <template>
-    <!-- 申请回避或者参加评标 -->
-    <div class="information">
+    <!-- 推举组长，等待其他专家签到和推举组长，自己推举之后就在等待中，一直到所有专家都推举之后，然后进入评标环节 -->
+    <div class="elect">
+        <el-row class="nav">
+            <el-col :span="4">
+                <div class="grid-content bg-purple-dark">
+                    <img src="../../../common/img/nav_logo.png" alt="">
+                </div>
+            </el-col>
+            <el-col :span="18">
+                <div class="grid-content bg-purple-dark">
+                    <h2>项目名称：tlh招标项目-专家评标2</h2>
+                    <div class="num">项目编号：0635-1909N987</div>	
+                </div>
+            </el-col>
+            <el-col :span="2">
+                <div class="grid-content bg-purple-dark" style="text-align:center;">
+                    <el-button type="warning" size="small">关闭</el-button>
+                </div>
+            </el-col>
+        </el-row>
         <el-container>
             <el-aside width="500px">
                 <h4>项目资料</h4>
@@ -37,31 +55,14 @@
                 </el-table>    
             </el-aside>
             <el-main>
-                <h4>专家个人信息</h4>
-                <el-table
-                    :data="tableData2"
-                    :show-header="false"
-                    border
-                    style="width: 100%">
-                    <el-table-column
-                        prop="name"
-                        label="1"
-                        width="180">
-                    </el-table-column>
-                    <el-table-column
-                        prop="num"
-                        label="招标文件">
-                    </el-table-column>
-                    <el-table-column
-                        prop="tel"
-                        label="招标文件">
-                    </el-table-column>
-                    <el-table-column
-                        prop="telNum"
-                        label="招标文件">
-                    </el-table-column>
-                </el-table> 
-                <h4>投标人信息</h4>
+                <el-row style="line-height:40px;border-bottom:2px solid #ccc;margin-bottom:5px;">
+                    <el-col :span="24">
+                        <div class="grid-content bg-purple-dark" style="text-align:right;">
+                            <el-button type="primary" size="small">返回</el-button>
+                        </div>
+                    </el-col>
+                </el-row>
+                <h4>推举评委会主人第1轮</h4>
                 <el-table
                     :data="tableData3"
                     border
@@ -72,12 +73,32 @@
                         width="180">
                     </el-table-column>
                     <el-table-column
-                        prop="file"
-                        label="招标人名称">
+                        prop="name"
+                        label="专家姓名">
+                    </el-table-column>
+                    <el-table-column
+                        prop="endNum"
+                        label="得票数">
+                    </el-table-column>
+                    <el-table-column
+                        prop="phoneNum"
+                        label="手机号">
                     </el-table-column>
                     <el-table-column
                         prop="id"
-                        label="所投分包">
+                        label="证件号">
+                    </el-table-column>
+                    <el-table-column
+                        prop="min"
+                        label="单位">
+                    </el-table-column>
+                    <el-table-column
+                        label="操作">
+                        <template slot-scope="scope"> 
+                            <div>
+                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electWait')">推举</el-button>
+                            </div>
+                        </template>
                     </el-table-column>
                 </el-table>
                 <el-row>
@@ -95,21 +116,6 @@
                         </div>
                     </el-col>
                 </el-row>
-                <el-row>
-                    <el-col :span="24">
-                        <div class="grid-content bg-purple-dark" style="text-align:center;padding-top:200px;">
-                            <el-checkbox v-model="agreement"></el-checkbox> <b style="font-weight:bold;font-size:14px;"> &nbsp;我已读并同意了此承诺书</b>  <a style="font-size:14px;" href="javascript:void(0)">《承诺书协议》</a>
-                        </div>
-                    </el-col>
-                </el-row>
-                <el-row>
-                    <el-col :span="24">
-                        <div class="grid-content bg-purple-dark" style="text-align:center;padding-top:15px;">
-                            <el-button size="small" type="primary">申请回避</el-button>
-                            <el-button size="small" type="primary" :disabled="!agreement" @click="participateIn">参加评标</el-button>
-                        </div>
-                    </el-col>
-                </el-row>
             </el-main>
         </el-container>
     </div>
@@ -119,7 +125,6 @@
 export default {
     data(){
         return {
-            agreement: false,
             currentPage4:1,
             tableData:[
                 {num:1,file:'招标文件(pdf)'}
@@ -129,14 +134,10 @@ export default {
                 {num:'0635-198N517/1',file:'普瑞太阳能有限公司(测试)(2)'},
                 {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
             ],
-            tableData2:[
-                {name:'姓名：',num:'3',tel:"手机：",telNum:'18700000003'},
-                {name:'证件号码：',num:''},
-            ],
             tableData3:[
-                {num:'1',file:'阿里巴巴',id:'0635-198N517/1'},
-                {num:'2',file:'普瑞太阳能有限公司(测试)',id:'0635-198N517/1'},
-                {num:'3',file:'夏丰热工研究院有限公司(测试)',id:'0635-198N517/1'}
+                {num:'1',name:'1',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
+                {num:'2',name:'2',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
+                {num:'3',name:'3',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
             ],
             currentPage4: 1
         }
@@ -148,23 +149,40 @@ export default {
         handleCurrentChange(currPage){
 
         },
-        participateIn(){
-            window.location.href = '/operation/zjps/hldj/electTeamLeader';
-            /*this.$router.push({
-                path: '/operation/zjps/hldj/electTeamLeader'
-            })*/
-        }
+        changeView(name){      //路由跳转传参函数
+            // console.log(name)
+            //this.$router.push({path:`${name}`});
+            window.location.href = name;
+        },
     }
 }
 </script>
 
 <style lang="scss">
-.information{
+.elect{
     background: #fff;
-    padding: 15px;
-    padding-bottom: 30px;
+    padding: 15px 0;
+    .nav{
+        background: #F8F8F8;
+        padding:0 15px;
+        height:60px;
+        line-height: 60px;
+        img{
+            vertical-align: middle;
+        }
+        h2{
+            font-size: 18px;
+            color:orange;
+            font-weight: bold;
+            line-height: 30px;
+        }
+        .num{
+            // padding-top: 5px;
+            line-height: 30px;
+        }
+    }
     h4{
-        width:120px;
+        width:160px;
         background: green;
         text-align: center;
         padding: 5px 0;
@@ -175,6 +193,9 @@ export default {
     .el-main{
         padding: 0 15px;
         overflow: hidden;
+    }
+    .el-container{
+        padding: 0 15px;
     }
 }
 </style>
