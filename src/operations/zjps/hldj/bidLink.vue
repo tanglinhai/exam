@@ -9,7 +9,7 @@
             </el-col>
             <el-col :span="18">
                 <div class="grid-content bg-purple-dark">
-                    <h2>项目名称：tlh招标项目-专家评标2</h2>
+                    <h2>项目名称：雄安施工项目总承包（施工类）001</h2>
                     <div class="num">项目编号：0635-1909N987</div>
                 </div>
             </el-col>
