@@ -50,7 +50,7 @@
                 :data="tableData"
                 border
                 style="width:100%"
-                :span-method="arraySpanMethod">
+                >
                 <el-table-column
                     prop="num"
                     label="序号"

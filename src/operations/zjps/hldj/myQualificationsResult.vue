@@ -203,15 +203,15 @@
         tableData: [{
           date: '阿里巴巴(2)',
           name: '投标人',
-          address: '合格'
+          address: ''
         }, {
           date: '普瑞太阳能有限公司(测试)(2)',
           name: '投标人',
-          address: '合格'
+          address: ''
         }, {
           date: '夏丰热工研究院有限公司(测试)(3)',
           name: '投标人',
-          address: '合格'
+          address: ''
         }]
       }
       
@@ -230,17 +230,8 @@
 
 		var zNodes =[
 			{ id:1, pId:0, name:"资格审查项", open:true},
-			{ id:11, pId:1, name:"1", open:false},
-			{ id:111, pId:11, name:"叶子节点 1-1-1"},
-			{ id:112, pId:11, name:"叶子节点 1-1-2"},
-			{ id:113, pId:11, name:"叶子节点 1-1-3"},
-			{ id:114, pId:11, name:"叶子节点 1-1-4"},
-			{ id:12, pId:1, name:"11", open:false},
-			{ id:121, pId:12, name:"叶子节点 1-2-1"},
-			{ id:122, pId:12, name:"叶子节点 1-2-2"},
-			{ id:123, pId:12, name:"叶子节点 1-2-3"},
-			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-		
+			{ id:11, pId:1, name:"专业资质是否达标", open:false},
+			{ id:12, pId:1, name:"公司投资金额是否达标", open:false},
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -261,13 +252,21 @@
         $(".a2").show();
         $(".a1").hide();
       })
+
+
+      let startMsg=this.$loaclStore.get('msg');
+      startMsg.forEach((val,index) => {
+        console.log(val,index)
+        this.tableData[index].address = startMsg[index].value;
+      })
+      console.log(this.tableData);
     },
     methods: {
       changeView(url){
         window.location.href = url;
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
+      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }

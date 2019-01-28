@@ -99,7 +99,7 @@
                         prop="min"
                         label="单位">
                     </el-table-column>
-                    <el-table-column
+                    <!-- <el-table-column
                         label="操作">
                         <template slot-scope="scope"> 
                             <div>
@@ -113,7 +113,7 @@
                                 </el-select>
                             </div>
                         </template>
-                    </el-table-column>
+                    </el-table-column> -->
                 </el-table>
                 <el-row>
                     <el-col :span="24">
@@ -130,13 +130,13 @@
                         </div>
                     </el-col>
                 </el-row>
-                <el-row style="line-height:40px;margin-bottom:5px;">
+                <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
                             <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/bidLink')">下一步</el-button>
                         </div>
                     </el-col>
-                </el-row>
+                </el-row> -->
             </el-main>
         </el-container>
     </div>
@@ -156,9 +156,9 @@ export default {
                 {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
             ],
             tableData3:[
-                {num:'1',name:'1',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
-                {num:'2',name:'2',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
-                {num:'3',name:'3',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
+                {num:'1',name:'张三',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
+                {num:'2',name:'李四',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
+                {num:'3',name:'王五',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
             ],
             currentPage4: 1,
             value5:[]
@@ -176,6 +176,26 @@ export default {
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
+    },
+    mounted(){
+        setTimeout(() => {
+            this.$message({
+                message: '李四推举张三为组长',
+                center: true
+            });
+            this.tableData3[0].endNum = 2;
+        },1000)
+        setTimeout(() => {
+            this.$message({
+                message: '王五推举张三为组长',
+                center: true
+            });
+            this.tableData3[0].endNum = 3;
+        },3000)
+        setTimeout(() => {
+            this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
+            window.location.href = '/operation/zjps/hldj/bidLink';
+        },5000)
     }
 }
 </script>

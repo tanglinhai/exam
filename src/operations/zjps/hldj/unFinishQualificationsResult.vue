@@ -47,7 +47,7 @@
                         <el-table-column
                             label="资格审查项进度">
                             <template slot-scope="scope">
-                                <el-progress :percentage="100"></el-progress>
+                                <el-progress :percentage="0"></el-progress>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -97,17 +97,19 @@
         }, {
           date: '100.0%',
           name: '2',
-          address: '已完成'
+          address: '未完成'
         }, {
           date: '100.0%',
           name: '3',
-          address: '已完成'
+          address: '未完成'
         }],
-        activeName:'sec'
+        activeName:'sec',
+        progres:'',
       }
       
     },
     mounted(){
+      
     },
     methods: {
       changeView(name){      //路由跳转传参函数
