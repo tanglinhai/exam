@@ -32,14 +32,12 @@
                         prop="num"
                         width="100">
                     </el-table-column>
-                    <!--<el-table-column-->
-                        <!--prop="file"-->
-                        <!--label="招标文件">-->
-                    <!--</el-table-column>-->
-                  <el-table-column>
+                    <el-table-column
+                        prop="file"
+                        label="招标文件">
                     <template slot-scope="scope">
-                      <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
-                        <span>招标文件(pdf)</span>
+                      <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
+                        <span> {{scope.row.file}}</span>
                         <i class="fa fa-file fa-fw"></i>
                       </a>
                     </template>
@@ -56,15 +54,13 @@
                         label="1"
                         width="180">
                     </el-table-column>
-                    <!--<el-table-column-->
-                        <!--prop="file"-->
-                        <!--label="招标文件">-->
-                    <!--</el-table-column>-->
+                    <el-table-column
+                        prop="file"
+                        label="招标文件">
 
-                  <el-table-column>
                     <template slot-scope="scope">
                       <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
-                        <span>招标文件(pdf)</span>
+                        <span>{{scope.row.file}}</span>
                         <i class="fa fa-file fa-fw"></i>
                       </a>
                     </template>
