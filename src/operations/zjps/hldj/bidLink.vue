@@ -42,7 +42,6 @@
                     label="">
                     >
                     <template slot-scope="scope">
-
                       <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
                           <span>招标文件(pdf)</span>
                           <i class="fa fa-file fa-fw"></i>
