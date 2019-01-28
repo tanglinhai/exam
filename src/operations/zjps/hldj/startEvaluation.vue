@@ -134,7 +134,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id,scope.$index)" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -142,10 +142,11 @@
                           </template>
                         </el-table-column>
                         <el-table-column
-                          prop="kong"
+                          prop=""
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.kong}}
                             </span>
                           </template>
                         </el-table-column>
@@ -228,7 +229,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry  v-on:childByValue="childByValue"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -277,7 +278,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222
+          id:2222,
         }, {
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
@@ -286,7 +287,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333
+          id:3333,
         },{
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
@@ -295,14 +296,15 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555
+          id:55555,
         }],
         allRadio:[],
       }
 
     },
     mounted(){
-    var setting = {
+
+      var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
 			},
@@ -347,13 +349,11 @@
         }
       },
 
-      hahaha(radio,id){
-        // console.log(radio,id)
+      hahaha(radio,id,index){
+        console.log(radio,id,index);
         if(radio=='不合格'){
           this.dialogVisible=true
-
         }
-
         this.cover(this.allRadio,id,radio,false);
       },
 
@@ -385,7 +385,7 @@
         if(pros == undefined){
           window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
         }else{
-          console.log(pros)
+          console.log(pros);
           window.location.href = '/operation/zjps/hldj/finishQualificationsResult';
         }
         // window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
@@ -403,6 +403,11 @@
             path: '/operation/zjps/hldj/myQualificationsResult'
           })
         }
+      },
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        console.log(childValue,'1111');
+        this.tableData.kong=childValue;
       }
     },
   }

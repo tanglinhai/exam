@@ -182,7 +182,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry @sendToP="getMsg"></FailureEntry>
+      <FailureEntry></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -388,9 +388,7 @@
           })
         }
       },
-      getMsg(data){
-        console.log(data);
-      }
+
     },
   }
 
