@@ -119,7 +119,7 @@
         activeName:'sec',
         tableData:[
           {num:'3',name:'普瑞太阳能有限公司（测试）',total:'10000.0000',ip:'1'},
-          {num:'1',name:'阿里巴巴',total:'30000.0000',ip:'2'},
+          {num:'1',name:'益达天然产物有限公司（测试）',total:'30000.0000',ip:'2'},
           {num:'2',name:'夏丰热工研究院有限公司（测试）',total:'20000.0000',ip:'3'}
         ],
         dialogSort:false,//排序弹框
