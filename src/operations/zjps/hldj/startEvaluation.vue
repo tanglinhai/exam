@@ -62,13 +62,12 @@
                     <el-col :span="24" style="padding:0px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
-
                   </el-row>
                   <template>
                       <el-row class="qu">
                           <el-col :span="24">
                               <div class="grid-content bg-purple" style="padding-left:5px;">
-                                  审查标准：2222222
+                                  审查标准：专业等级三级以上？
                               </div>
                           </el-col>
                       </el-row>
@@ -80,7 +79,7 @@
                           prop="name"
                           label="名称">
                           <template slot-scope="scope">
-                            <span style="margin-left: 10px"><i class="el-icon-search fs14 mr3"></i>{{scope.row.name}}</span>
+                            <span style="margin-left: 10px">投标人：<i class="el-icon-search fs14 mr3"></i>{{scope.row.name}}</span>
                           </template>
                         </el-table-column>
                         <el-table-column
@@ -100,6 +99,54 @@
                           label="">
                           <template>
                             <span style="margin-left: 10px">
+                            </span>
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                  </template>
+
+                  <el-row :gutter="20">
+                    <el-col :span="24" style="padding:0px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：公司投资金额是否达标？</div>
+                    </el-col>
+                  </el-row>
+                  <template>
+                      <el-row class="qu">
+                          <el-col :span="24">
+                              <div class="grid-content bg-purple" style="padding-left:5px;">
+                                  审查标准：公司投资金额是否达到20000万以上？
+                              </div>
+                          </el-col>
+                      </el-row>
+                      <el-table
+                        :data="tableData"
+                        border
+                        style="width: 100%">
+                        <el-table-column
+                          prop="name"
+                          label="名称">
+                          <template slot-scope="scope">
+                            <span style="margin-left: 10px">投标人：<i class="el-icon-search fs14 mr3"></i>{{scope.row.name}}</span>
+                          </template>
+                        </el-table-column>
+                        <el-table-column
+                          prop="pass"
+                          label="是否合格">
+                          <template slot-scope="scope">
+                            <span style="margin-left: 10px">
+                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id,scope.$index)" ref="shet" v-model="scope.row.radio">
+                                <el-radio :label="scope.row.ra1">合格</el-radio>
+                                <el-radio :label="scope.row.ra2" >不合格</el-radio>
+                              </el-radio-group>
+                            </span>
+                          </template>
+                        </el-table-column>
+                        <el-table-column
+                          prop=""
+                          label="">
+                          <template slot-scope="scope">
+                            <span style="margin-left: 10px">
+                              {{scope.row.kong}}
                             </span>
                           </template>
                         </el-table-column>
@@ -157,7 +204,7 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" @click="changeView"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane disabled>
@@ -182,7 +229,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry  v-on:childByValue="childByValue"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -224,15 +271,6 @@
           city: '',
         }],
         tableData: [{
-          people: '审查标准：专业等级三级以上？',
-          name: '',
-          pass: '',
-          kong:'',
-          ra1:'合格',
-          ra2:'不合格',
-          radio: '',
-          id:1111
-        },{
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass: '1',
@@ -240,7 +278,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222
+          id:2222,
         }, {
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
@@ -249,7 +287,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333
+          id:3333,
         },{
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
@@ -258,32 +296,15 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555
-        }, {
-          people: '招标人3：',
-          name: '[3] 夏丰热工研究院有限公司',
-          pass: '1',
-          kong:'',
-          ra1:'合格',
-          ra2:'不合格',
-          radio:'',
-          id:4444
-        }, {
-          people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司（测试）',
-          pass: '2',
-          kong:'',
-          ra1:'合格',
-          ra2:'不合格',
-          radio: '',
-          id:6666
-        }, ],
+          id:55555,
+        }],
         allRadio:[],
       }
 
     },
     mounted(){
-    var setting = {
+
+      var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
 			},
@@ -296,16 +317,8 @@
 
 		var zNodes =[
 			{ id:1, pId:0, name:"资格审查项", open:true},
-			{ id:11, pId:1, name:"1", open:false},
-			{ id:111, pId:11, name:"叶子节点 1-1-1"},
-			{ id:112, pId:11, name:"叶子节点 1-1-2"},
-			{ id:113, pId:11, name:"叶子节点 1-1-3"},
-			{ id:114, pId:11, name:"叶子节点 1-1-4"},
-			{ id:12, pId:1, name:"11", open:false},
-			{ id:121, pId:12, name:"叶子节点 1-2-1"},
-			{ id:122, pId:12, name:"叶子节点 1-2-2"},
-			{ id:123, pId:12, name:"叶子节点 1-2-3"},
-			{ id:124, pId:12, name:"叶子节点 1-2-4"},
+			{ id:11, pId:1, name:"专业资质是否达标", open:false},
+			{ id:12, pId:1, name:"公司投资金额是否达标", open:false},
 
 		];
 
@@ -336,20 +349,17 @@
         }
       },
 
-      hahaha(radio,id){
-        // console.log(radio,id)
+      hahaha(radio,id,index){
+        console.log(radio,id,index);
         if(radio=='不合格'){
           this.dialogVisible=true
-
         }
-
         this.cover(this.allRadio,id,radio,false);
       },
 
       // 本地存储local封装
       cover(num,id,radio){
         num.push({
-
           id:id,
           value:radio,
         });
@@ -362,7 +372,6 @@
       },
 
       quanbu(){
-
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
@@ -373,10 +382,20 @@
         // console.log(name)
         //this.$router.push({path:`${name}`});
         this.$commonFun.exam_operation_answer_calc();
-        window.location.href = name;
+        // console.log(name)
+        //this.$router.push({path:`${name}`});
+        let pros=this.$loaclStore.get('msg');
+        // console.log(pros)
+        if(pros == undefined){
+          window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
+        }else{
+          console.log(pros);
+          window.location.href = '/operation/zjps/hldj/finishQualificationsResult';
+        }
+        // window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
       },
       allSubmit(){
-        var mssg=this.$loaclStore.get('msg');
+        let mssg=this.$loaclStore.get('msg');
         // console.log(mssg);
         if(mssg.length != this.tableData.length){
           this.$message({
@@ -388,6 +407,11 @@
             path: '/operation/zjps/hldj/myQualificationsResult'
           })
         }
+      },
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        console.log(childValue,'1111');
+        this.tableData.kong=childValue;
       }
     },
   }

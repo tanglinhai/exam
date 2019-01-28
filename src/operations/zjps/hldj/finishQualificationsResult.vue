@@ -49,7 +49,8 @@
             <el-table
                 :data="tableData"
                 border
-                style="width:100%">
+                style="width:100%"
+                >
                 <el-table-column
                     prop="num"
                     label="序号"
@@ -158,17 +159,12 @@
       return {
         activeName:'sec',
         tableData:[
-// <<<<<<< HEAD
           {num:'1',factor:'投标报价',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'2',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'3',factor:'资质要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'4',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'5',factor:'项目经理要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'6',factor:'业绩要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
-// =======
-//           {num:'1',factor:'1',name:'√(3√0×)',name1:'√(3√0×)',name2:'√(3√0×)'},
-//           {num:'2',factor:'11',name:'√(3√0×)',name1:'√(3√0×)',name2:'√(3√0×)'},
-// >>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66
           {num:'结论',factor:'是否通过资格审查项检查',name:'合格',name1:'合格',name2:'合格'}
         ],
         dialogVisible:false,//查看个人资格审查项表弹框

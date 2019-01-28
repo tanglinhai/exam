@@ -36,10 +36,12 @@
                         prop="file"
                         label="招标文件">
                       <template slot-scope="scope">
-                        <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
-                          <span>{{scope.row.file}}</span>
-                          <i class="fa fa-file fa-fw"></i>
-                        </a>
+                        <div @click="downloadZB">
+                          <a href="javascript:void(0);" class="curStyot">
+                            <span>{{scope.row.file}}</span>
+                            <i class="fa fa-file fa-fw"></i>
+                          </a>
+                        </div>
                       </template>
                     </el-table-column>
                 </el-table>
@@ -58,10 +60,12 @@
                         prop="file"
                         label="招标文件">
                       <template slot-scope="scope">
-                        <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
-                          <span>{{scope.row.file}}</span>
-                          <i class="fa fa-file fa-fw"></i>
-                        </a>
+                        <div @click="downloadTouBiao">
+                          <a class="curStyot"  href="javascript:void(0);">
+                            <span> {{scope.row.file}}</span>
+                            <i class="fa fa-file fa-fw"></i>
+                          </a>
+                        </div>
                       </template>
                     </el-table-column>
                 </el-table>
@@ -111,7 +115,7 @@
                         prop="min"
                         label="单位">
                     </el-table-column>
-                    <el-table-column
+                    <!-- <el-table-column
                         label="操作">
                         <template slot-scope="scope">
                             <div>
@@ -125,7 +129,7 @@
                                 </el-select>
                             </div>
                         </template>
-                    </el-table-column>
+                    </el-table-column> -->
                 </el-table>
                 <el-row>
                     <el-col :span="24">
@@ -142,13 +146,13 @@
                         </div>
                     </el-col>
                 </el-row>
-                <el-row style="line-height:40px;margin-bottom:5px;">
+                <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
                             <el-button type="primary" size="small" @click="endSelect()">下一步</el-button>
                         </div>
                     </el-col>
-                </el-row>
+                </el-row> -->
             </el-main>
         </el-container>
     </div>
@@ -192,7 +196,35 @@ export default {
             //下一步加分
             this.$commonFun.exam_operation_answer_calc();
             this.changeView('/operation/zjps/hldj/bidLink')
+        },
+
+        downloadZB(){
+            window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
+        },
+        downloadTouBiao(){
+            window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
         }
+
+    },
+    mounted(){
+        setTimeout(() => {
+            this.$message({
+                message: '李四推举张三为组长',
+                center: true
+            });
+            this.tableData3[0].endNum = 2;
+        },1000)
+        setTimeout(() => {
+            this.$message({
+                message: '王五推举张三为组长',
+                center: true
+            });
+            this.tableData3[0].endNum = 3;
+        },3000)
+        setTimeout(() => {
+            this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
+            window.location.href = '/operation/zjps/hldj/bidLink';
+        },5000)
     }
 }
 </script>

@@ -205,3 +205,8 @@ p{word-wrap:break-word}
 .coreds{
   color: red;
 }
+.curStyot :hover{
+  color:#348fe2!important;;
+  cursor: pointer!important;;
+  text-decoration: underline!important;;
+}

@@ -9,7 +9,7 @@
                   <el-input type="textarea" v-model="ruleForm.desc" class="textarea"></el-input>
               </el-form-item>
               <el-form-item class="text-center">
-                  <el-button type="primary" @click="submitForm('ruleForm')" size="small" > <i class="icon iconfont icon-baocun1 mr5"  ></i> 确定</el-button>
+                  <el-button type="primary" @click="sendToP('ruleForm')" size="small" > <i class="icon iconfont icon-baocun1 mr5"  ></i> 确定</el-button>
                   <el-button @click="reback" size="small" type="primary"> <i class="icon iconfont icon-fanhuishouye1 mr5"  ></i>返回</el-button>
               </el-form-item>
           </el-form>
@@ -37,10 +37,11 @@
 
         },
         methods: {
-            submitForm(formName) {
+          sendToP(formName) {
                 this.$refs[formName].validate((valid) => {
                     if (valid) {
-                        alert('submit!');
+                      this.$emit("childByValue",this.$data.ruleForm.desc);
+                      this.$data.ruleForm.desc='';
                     } else {
                         console.log('error submit!!');
                         return false;

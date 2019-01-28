@@ -283,6 +283,7 @@
 
     },
     mounted(){
+      console.log(localStorage.getItem('aa'));
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -386,7 +387,8 @@
             path: '/operation/zjps/hldj/myQualificationsResult'
           })
         }
-      }
+      },
+
     },
   }
 
