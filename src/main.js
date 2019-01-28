@@ -36,7 +36,6 @@ axios.defaults.headers.common['Cache-Control'] = 'no-cache';
 axios.defaults.headers.common['Expires'] = 0;
 Vue.prototype.$axios=axios
 Vue.prototype.$loaclStore=loaclStore
-Vue.prototype.$=$
 Vue.prototype.$mySessionStorage = commonFun.mySessionStorage;
 //全局封装一个获取用户信息方法
 var getUserData=function () {
