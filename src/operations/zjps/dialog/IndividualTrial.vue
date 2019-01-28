@@ -22,12 +22,12 @@
                     <el-table-column prop="bidder" header-align="left" label="投标人">
                         <el-table-column
                                 prop="panduan1"
-                                label="阿里巴巴（1）"
+                                label="重庆网控科技发展有限公司"
                                >
                         </el-table-column>
-                        <el-table-column label="普瑞太阳能有限公司（2）" prop="panduan2" >
+                        <el-table-column label="普瑞太阳能有限公司" prop="panduan2" >
                         </el-table-column>
-                        <el-table-column label="夏丰热工研究院有限公司（3）" prop="panduan3" >
+                        <el-table-column label="夏丰热工研究院有限公司" prop="panduan3" >
                         </el-table-column>
                     </el-table-column>
                 </el-table>
@@ -58,12 +58,12 @@
                     <el-table-column prop="bidder" header-align="left" label="投标人">
                         <el-table-column
                                 prop="panduan1"
-                                label="阿里巴巴（1）"
+                                label="重庆网控科技发展有限公司"
                         >
                         </el-table-column>
-                        <el-table-column label="普瑞太阳能有限公司（2）" prop="panduan2" >
+                        <el-table-column label="普瑞太阳能有限公司" prop="panduan2" >
                         </el-table-column>
-                        <el-table-column label="夏丰热工研究院有限公司（3）" prop="panduan3" >
+                        <el-table-column label="夏丰热工研究院有限公司" prop="panduan3" >
                         </el-table-column>
                     </el-table-column>
                 </el-table>

@@ -1,12 +1,12 @@
 <template>
   <div class="exam">
     <h3 class="text-center marginT10">{{paperData.name}}</h3>
-    <div class="text-center marginT10">考试时长：{{paperData.time}}分钟  总分：{{paperData.totalPoints}}分</div>
+    <div class="text-center marginT10">模拟评标时长：{{paperData.time}}分钟  总分：{{paperData.totalPoints}}分</div>
     <hr>  
     <div class="submit-box" ref="submitBox" v-show="lianxi">
-      <el-button @click="submit" type="primary" class="submit-btn">提交试卷</el-button>
+      <el-button @click="submit" type="primary" class="submit-btn">提交模拟评标</el-button>
       <div class="timeout">
-        <p>距离考试结束</p>
+        <p>距离模拟评标结束</p>
         <p>{{time}}</p>
       </div>
     </div>
@@ -80,13 +80,14 @@
           <li class="marginB10" v-for="(item,index) in operationQuestions" :key="item.id">
             <p class="question-title">
               {{index+1}} 、{{item.name}}
-              <el-button size="mini" @click="operation_answer(item)">加载操作程序，并开始操作</el-button>
+              <el-button size="mini" @click="operation_answer(item)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
             </p>
             <div class="question-content">
               <el-dialog
                 :title="item.name"
                 :visible.sync="item.show"
-                width="90%"
+                width="100%"
+                center
               >
                 <iframe 
                   :ref="'iframe_operation_'+item._operation.name"
@@ -95,6 +96,9 @@
                   frameborder="0"
                   scrolling="no"
                 ></iframe>
+                <span slot="footer" class="dialog-footer">
+                  <el-button type="danger" @click="endOperation(item)" size="small">结束操作</el-button>
+                </span>
               </el-dialog>
             </div>
           </li>
@@ -179,14 +183,25 @@
     },
     methods:{
       /**
+       * 结束操作
+       */
+      endOperation(item){
+        item.isEnd = true;
+        item.show = false;
+        //统计分数
+        //。。。。
+      },
+      /**
        * 操作题答题按钮
        */
       operation_answer(item){
         var _this = this;
+
+        if(!item.isEnd)
         item.show = true;
         setTimeout(function () {  //设置滚动条位置
           const iframe = _this.$refs['iframe_operation_'+item._operation.name][0];
-          if(iframe.getAttribute('isLoaded')){
+          if(iframe.getAttribute('isLoaded') || item.isEnd){
             return;
           }
           iframe.style.cssText = 'min-height: '+(window.screen.height*.7)+'px';
@@ -410,7 +425,7 @@
     }
   }
 </script>
-<style scoped rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss">
   .exam{
     padding: 20px 0;
     .main{
@@ -443,6 +458,15 @@
             .question-content{
               padding: 20px;
               padding-top: 0;
+              .el-dialog{
+                position: fixed;
+                top:0;
+                left:0;
+                margin: 0 !important;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+              }
             }
           }
         }

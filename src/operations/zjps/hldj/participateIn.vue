@@ -17,6 +17,12 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                      <template slot-scope="scope">
+                        <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
+                          <span>{{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </template>
                     </el-table-column>
                 </el-table>
                 <h4>投标文件查看：</h4>
@@ -32,9 +38,15 @@
                     </el-table-column>
                     <el-table-column
                         prop="file"
-                        label="招标文件">
+                        label="投标文件">
+                      <template slot-scope="scope">
+                        <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
+                          {{scope.row.file}}
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </template>
                     </el-table-column>
-                </el-table>    
+                </el-table>
             </el-aside>
             <el-main>
                 <h4>专家个人信息</h4>
@@ -60,7 +72,7 @@
                         prop="telNum"
                         label="招标文件">
                     </el-table-column>
-                </el-table> 
+                </el-table>
                 <h4>投标人信息</h4>
                 <el-table
                     :data="tableData3"
@@ -105,18 +117,29 @@
                 <el-row>
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;padding-top:15px;">
-                            <el-button size="small" type="primary">申请回避</el-button>
+                            <el-button size="small" type="primary" @click="applyAvoid">申请回避</el-button>
                             <el-button size="small" type="primary" :disabled="!agreement" @click="participateIn">参加评标</el-button>
                         </div>
                     </el-col>
                 </el-row>
             </el-main>
         </el-container>
+      <el-dialog
+        title="申请回避"
+        :visible.sync="dialogApplyAvoid"
+        width="700px"
+      >
+        <ApplyAvoid ></ApplyAvoid>
+      </el-dialog>
     </div>
 </template>
 
 <script>
+  import ApplyAvoid from '../dialog/ApplyAvoid';
 export default {
+  components: {
+    ApplyAvoid
+  },
     data(){
         return {
             agreement: false,
@@ -125,20 +148,21 @@ export default {
                 {num:1,file:'招标文件(pdf)'}
             ],
             tableData1:[
-                {num:'0635-198N517/1',file:'阿里巴巴(1)'},
-                {num:'0635-198N517/1',file:'普瑞太阳能有限公司(测试)(2)'},
-                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
+                {num:'0635-198N517/1',file:'重庆网控科技发展有限公司 '},
+                {num:'0635-198N517/1',file:'普瑞太阳能有限公司'},
+                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData2:[
-                {name:'姓名：',num:'3',tel:"手机：",telNum:'18700000003'},
+                {name:'姓名：',num:'张三',tel:"手机：",telNum:'18700000003'},
                 {name:'证件号码：',num:''},
             ],
             tableData3:[
-                {num:'1',file:'阿里巴巴',id:'0635-198N517/1'},
-                {num:'2',file:'普瑞太阳能有限公司(测试)',id:'0635-198N517/1'},
-                {num:'3',file:'夏丰热工研究院有限公司(测试)',id:'0635-198N517/1'}
+                {num:'1',file:'重庆网控科技发展有限公司',id:'0635-198N517/1'},
+                {num:'2',file:'普瑞太阳能有限公司',id:'0635-198N517/1'},
+                {num:'3',file:'夏丰热工研究院有限公司',id:'0635-198N517/1'}
             ],
-            currentPage4: 1
+            currentPage4: 1,
+           dialogApplyAvoid:false,//申请回避弹框
         }
     },
     methods:{
@@ -153,7 +177,10 @@ export default {
             /*this.$router.push({
                 path: '/operation/zjps/hldj/electTeamLeader'
             })*/
-        }
+        },
+      applyAvoid(){
+        this.dialogApplyAvoid=true
+      }
     }
 }
 </script>
@@ -168,7 +195,7 @@ export default {
         background: green;
         text-align: center;
         padding: 5px 0;
-        margin: 5px 0; 
+        margin: 5px 0;
         color: #fff;
         font-size: 14px;
     }

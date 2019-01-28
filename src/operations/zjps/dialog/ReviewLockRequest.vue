@@ -3,9 +3,9 @@
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
                 <el-form-item label="提出专家：" prop="type">
                     <el-checkbox-group v-model="ruleForm.type">
-                        <el-checkbox label="1" name="type"></el-checkbox>
-                        <el-checkbox label="2" name="type"></el-checkbox>
-                        <el-checkbox label="3" name="type"></el-checkbox>
+                        <el-checkbox label="张三" name="type"></el-checkbox>
+                        <el-checkbox label="李四" name="type"></el-checkbox>
+                        <el-checkbox label="王五" name="type"></el-checkbox>
                     </el-checkbox-group>
                 </el-form-item>
                 <el-form-item label="解锁申请类别：" prop="resource">

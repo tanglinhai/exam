@@ -35,7 +35,15 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                    >
+                      <template slot-scope="scope">
+                        <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
+                          <span>{{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </template>
                     </el-table-column>
+
                 </el-table>
                 <h4>投标文件查看：</h4>
                 <el-table
@@ -51,6 +59,12 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                      <template slot-scope="scope">
+                        <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
+                          <span>{{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </template>
                     </el-table-column>
                 </el-table>
             </el-aside>
@@ -153,9 +167,9 @@ export default {
                 {num:1,file:'招标文件(pdf)'}
             ],
             tableData1:[
-                {num:'0635-198N517/1',file:'阿里巴巴(1)'},
-                {num:'0635-198N517/1',file:'普瑞太阳能有限公司(测试)(2)'},
-                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
+                {num:'0635-198N517/1',file:'重庆网控科技发展有限公司'},
+                {num:'0635-198N517/1',file:'普瑞太阳能有限公司'},
+                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData3:[
                 {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
@@ -165,6 +179,9 @@ export default {
         }
     },
     methods:{
+      // downloadZhaobiao(){
+      //   window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
+      // },
         handleSizeChange(pageSize){
 
         },

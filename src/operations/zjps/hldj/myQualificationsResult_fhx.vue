@@ -63,9 +63,15 @@
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
+<!--<<<<<<< HEAD-->
+                    <!--<el-col :span="2" style="padding:0px;padding-top:15px;">-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：1</div>-->
+                    <!--</el-col>-->
+<!--=======-->
                     <el-col :span="24" style="padding:0px;padding-top:15px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">符合性审查项：专业是否符合？</div>
-                    </el-col>                    
+                    </el-col>
+<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
                   </el-row>
                   <template>
                       <el-row class="qu">
@@ -99,12 +105,18 @@
                                 <span style="color:red;">{{scope.row.address}}</span>
                             </template>
                         </el-table-column>
-                      </el-table>                      
+                      </el-table>
                   </template>
                   <el-row :gutter="20">
-                    <el-col :span="24" style="padding:0px;padding-top:15px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">符合性审查项：投标报价符合招标文件要求</div>
-                    </el-col>                    
+<!--<<<<<<< HEAD-->
+                    <el-col :span="2" style="padding:0px;padding-top:15px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：2222</div>
+                    </el-col>
+<!--=======-->
+                    <!--<el-col :span="24" style="padding:0px;padding-top:15px;">-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">符合性审查项：投标报价符合招标文件要求</div>-->
+                    <!--</el-col>                    -->
+<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
                   </el-row>
                   <template>
                       <el-row class="qu">
@@ -138,7 +150,7 @@
                                 <span style="color:red">{{scope.row.address}}</span>
                             </template>
                         </el-table-column>
-                      </el-table>                      
+                      </el-table>
                   </template>
                   <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
@@ -203,20 +215,20 @@
           city: '',
         }],
         tableData: [{
-          date: '阿里巴巴(2)',
+          date: '重庆网控科技发展有限公司',
           name: '投标人',
           address: '合格'
         }, {
-          date: '普瑞太阳能有限公司(测试)(2)',
+          date: '普瑞太阳能有限公司',
           name: '投标人',
           address: '合格'
         }, {
-          date: '夏丰热工研究院有限公司(测试)(3)',
+          date: '夏丰热工研究院有限公司',
           name: '投标人',
           address: '合格'
         }]
       }
-      
+
     },
     mounted(){
       var setting = {
@@ -242,7 +254,7 @@
 			{ id:122, pId:12, name:"叶子节点 1-2-2"},
 			{ id:123, pId:12, name:"叶子节点 1-2-3"},
 			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-		
+
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -274,13 +286,13 @@
           return [1, 5];
         }
       },
-      
-     
+
+
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -338,7 +350,7 @@
         margin-left:0px!important;
         margin-right:0px!important;
       }
-      .quexa_bleft{ 
+      .quexa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;

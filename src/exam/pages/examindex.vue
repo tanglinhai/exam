@@ -1,11 +1,11 @@
 <template>
   <div class="examindexindex">
     <el-row v-if="exams.length>0">
-      <h3 class="text-center marginT10 marginB10">可以参加的考试</h3>
+      <h3 class="text-center marginT10 marginB10">可以参加的模拟评标</h3>
       <el-col :span="20" :offset="2" class="box">
         <el-row>
           <el-col :span="7" class="search">
-            <el-input v-model="name" placeholder="请输入试卷名" @keyup.enter.native="search"></el-input>
+            <el-input v-model="name" placeholder="请输入模拟名称" @keyup.enter.native="search"></el-input>
           </el-col>
           <el-col :span="3" class="search">
             <el-button type="primary" icon="search" @click="search">搜索</el-button>
@@ -16,12 +16,12 @@
             <el-card :body-style="{ padding: '0px',cursor:'pointer'}" v-if="(nowTime - new Date(item.startTime))/(1000*60) < item.time">
               <div style="padding: 14px;">
                 <p>{{item.name}}</p>
-                <p class="time">考试时间: {{ new Date(item.startTime).toLocaleString()}}</p>
-                <p>考试时长: {{item.time}} 分钟</p>
+                <p class="time">模拟评标过程时间: {{ new Date(item.startTime).toLocaleString()}}</p>
+                <p>练习时长: {{item.time}} 分钟</p>
                 <p>总分: {{item.totalPoints}} 分</p>
                 <!--<p>{{(nowTime - new Date(item.startTime))/(1000*60)}}</p>-->
                 <!-- <p v-if="(nowTime - new Date(item.startTime))/(1000*60) > 60" class="over">考试时间已过</p> -->
-                <el-button type="text" @click="goToExam(item)" class="pull-right" :disabled="item._questions.length == 0">参加考试</el-button>
+                <el-button type="text" @click="goToExam(item)" class="pull-right" :disabled="item._questions.length == 0">参加模拟评标</el-button>
               </div>
             </el-card>
           </el-col>
@@ -41,7 +41,7 @@
       </el-col>
 
     </el-row>
-    <h2 v-else class="text-center marginT50">没有可以参加的考试，请等待老师发布考试！</h2>
+    <h2 v-else class="text-center marginT50">没有可以参加的模拟评标，请等待管理员发布模拟评标过程！</h2>
   </div>
 </template>
 

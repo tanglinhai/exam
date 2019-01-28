@@ -4,7 +4,7 @@
         <el-tab-pane label="考试记录">
           <div class="main">
             <div class="pull-left search-warpper marginB10">
-              <div class="pull-left search-title marginR10">试卷名称:</div>
+              <div class="pull-left search-title marginR10">模拟过程名称:</div>
               <el-input class=" pull-left input150" v-model="name" @keyup.enter="search"></el-input>
               <el-button class="pull-left marginL10" type="primary" icon="search" @click="search">搜索</el-button>
             </div>
@@ -15,19 +15,19 @@
               style="width: 100%">
               <el-table-column
                 prop="name"
-                label="试卷名称"
+                label="模拟过程名称"
                 width="300">
               </el-table-column>
               <el-table-column
                 prop="date"
-                label="考试时间"
+                label="模拟评标时间"
                 width="300">
               </el-table-column>
               <el-table-column
                 prop="score"
-                label="考试成绩">
+                label="模拟评标成绩">
                 <template scope="scope">
-                  <el-tag type="warning" v-if="scope.row.score==='等待老师阅卷'">{{scope.row.score}}</el-tag>
+                  <el-tag type="warning" v-if="scope.row.score==='等待管理员评分'">{{scope.row.score}}</el-tag>
                   <span v-else>{{scope.row.score}}</span>
                 </template>
               </el-table-column>

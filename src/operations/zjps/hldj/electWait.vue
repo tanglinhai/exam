@@ -10,7 +10,7 @@
             <el-col :span="18">
                 <div class="grid-content bg-purple-dark">
                     <h2>项目名称：tlh招标项目-专家评标2</h2>
-                    <div class="num">项目编号：0635-1909N987</div>	
+                    <div class="num">项目编号：0635-1909N987</div>
                 </div>
             </el-col>
             <el-col :span="2">
@@ -35,6 +35,12 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                      <template slot-scope="scope">
+                        <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
+                          <span>{{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </template>
                     </el-table-column>
                 </el-table>
                 <h4>投标文件查看：</h4>
@@ -51,8 +57,14 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                      <template slot-scope="scope">
+                        <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
+                          <span>{{scope.row.file}}</span>
+                          <i class="fa fa-file fa-fw"></i>
+                        </a>
+                      </template>
                     </el-table-column>
-                </el-table>    
+                </el-table>
             </el-aside>
             <el-main>
                 <el-row style="line-height:40px;margin-bottom:5px;">
@@ -101,7 +113,7 @@
                     </el-table-column>
                     <!-- <el-table-column
                         label="操作">
-                        <template slot-scope="scope"> 
+                        <template slot-scope="scope">
                             <div>
                                 <el-select v-model="scope.row.value5" multiple placeholder="请选择">
                                     <el-option
@@ -151,9 +163,9 @@ export default {
                 {num:1,file:'招标文件(pdf)'}
             ],
             tableData1:[
-                {num:'0635-198N517/1',file:'阿里巴巴(1)'},
-                {num:'0635-198N517/1',file:'普瑞太阳能有限公司(测试)(2)'},
-                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
+                {num:'0635-198N517/1',file:'重庆网控科技发展有限公司'},
+                {num:'0635-198N517/1',file:'普瑞太阳能有限公司'},
+                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData3:[
                 {num:'1',name:'张三',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
@@ -228,7 +240,7 @@ export default {
         background: green;
         text-align: center;
         padding: 5px 0;
-        margin: 5px 0; 
+        margin: 5px 0;
         color: #fff;
         font-size: 14px;
     }
