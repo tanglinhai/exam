@@ -3,7 +3,7 @@
       <el-row>
         <el-col>
             <div class="pull-left search-warpper marginB10">
-              <div class="pull-left search-title marginR10">试卷名称:</div>
+              <div class="pull-left search-title marginR10">模拟过程名称:</div>
               <el-input class=" pull-left input150" v-model="name" @keyup.enter.native="getMypapers"></el-input>
               <el-button class="pull-left marginL10" type="primary" @click="getMypapers"  icon="search">搜索</el-button>
             </div>
@@ -19,7 +19,7 @@
             >
             
             <el-table-column
-              label="试卷名称"
+              label="模拟过程名称"
               prop="name"
               show-overflow-tooltip>
               <template scope="scope">
@@ -27,7 +27,7 @@
               </template>
             </el-table-column>
             <el-table-column
-              label="试卷总分"
+              label="模拟评标总分"
               prop="totalPoints"
               align="center"
               width="100">
@@ -36,16 +36,16 @@
               prop="time"
               width="100"
               align="center"
-              label="考试时长"
+              label="模拟评标时长"
              >
             </el-table-column>
             <el-table-column
               width="190"
               align="center"
-              label="考试时间"
+              label="模拟评标时间"
             >
             <template scope="scope">
-              {{scope.row.startTime?new Date(scope.row.startTime).toLocaleString():'还未开考'}}
+              {{scope.row.startTime?new Date(scope.row.startTime).toLocaleString():'还未开始模拟过程'}}
             </template>
             </el-table-column>
             <el-table-column
