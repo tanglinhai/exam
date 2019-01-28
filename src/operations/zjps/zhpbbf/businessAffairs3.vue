@@ -26,24 +26,24 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label"  class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           资格审查项
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label"  class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           资格审查项汇总
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label"  class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           符合性审查项
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          <el-row style="line-height:40px;">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
+          <!-- <el-row style="line-height:40px;">
               <el-col :span="1">
                   <div class="grid-content bg-purple" style="font-size:14px;">进度：</div>
               </el-col>
@@ -54,13 +54,13 @@
               </el-col>
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
-                      <el-button size="small" type="info" @click="unfinishedGrade">查看未完成项</el-button>
+                      <span style="display:inline-block; margin-top:5px;">专家： 新增专家一号</span>
+                      <el-button size="small" type="info">查看未完成项</el-button>
                       <el-button size="small" type="info">保存</el-button>
-                      <el-button size="small" type="info" @click="changeView('/operation/zjps/zhpbbf/businessAffairs3')">提交商务</el-button>
+                      <el-button size="small" type="info">提交商务</el-button>
                   </div>
               </el-col>
-          </el-row>
+          </el-row> -->
           <el-table
                 :data="tableData"
                 :row-class-name="tableRowClassName"
@@ -70,47 +70,26 @@
                 <el-table-column
                     prop="num"
                     label="项目">
-                </el-table-column>
+                </el-table-column>               
                 <el-table-column
                         label="投标人">
                         <el-table-column
                             prop="name"
-                            label="重庆网控科技发展有限公司">
-                            <template slot-scope="scope">
-                                <div>
-                                    <div v-if="scope.$index == 0||scope.$index == 1">
-                                      <el-input style="width:150px;" value="8"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div>
-                                    <div v-else>{{scope.row.name}}</div>
-                                </div>
-                            </template>
+                            label="夏丰热工研究院有限公司（测试）（1）">
+                            
                         </el-table-column>
                         <el-table-column
                             prop="name1"
-                            label="普瑞太阳能有限公司">
-                            <template slot-scope="scope">
-                                <div>
-                                    <div v-if="scope.$index == 0||scope.$index == 1">
-                                      <el-input style="width:150px;" value="7"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div>
-                                    <div v-else>{{scope.row.name1}}</div>
-                                </div>
-                            </template>
+                            label="益达天然产物有限公司（测试）（2）">
+                            <!-- <template slot-scope="scope">
+                            </template> -->
                         </el-table-column>
                         <el-table-column
                             prop="name2"
-                            label="夏丰热工研究院有限公司">
-                            <template slot-scope="scope">
-                                <div>
-                                    <div v-if="scope.$index == 0||scope.$index == 1">
-                                      <el-input style="width:150px;" value="8.5"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div>
-                                    <div v-else>{{scope.row.name2}}</div>
-                                </div>
-                            </template>
+                            label="北京蓝天环境保护有限公司（测试）（3）">
+                            <!-- <template slot-scope="scope">
+                                
+                            </template> -->
                         </el-table-column>
                     </el-table-column>
             </el-table>
@@ -128,8 +107,8 @@
                 </el-col>
             </el-row>
         </el-tab-pane>
-        <el-tab-pane >
-          <span slot="label" @click="changeView('/operation/zjps/zhpbbf/businessAffairs4')"><i class="el-icon-edit"></i> 技术</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/zhpbbf/businessAffairs4')"><i class="el-icon-edit"></i> 技术</span>
         </el-tab-pane>
         <el-tab-pane>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -137,61 +116,44 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-    <el-dialog
-      title="未完成打分项"
-      :visible.sync="dialogUnfinishedGrade"
-      width="700px"
-    >
-      <UnfinishedGrade ></UnfinishedGrade>
-    </el-dialog>
+
   </div>
 </template>
 <script>
-  import UnfinishedGrade  from '../dialog/UnfinishedGrade';
   export default {
     name: 'updateBill',
-    components: {
-      UnfinishedGrade,
-    },
     data () {
-      return {
+      return { 
         activeName:'sec',
         tableData:[
-          {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'1',name1:'2',name2:'3'},
-           {num:'第二章、其他要求(0.00分-10.00分)',name:'1',name1:'2',name2:'3'},
+          {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'8',name1:'7',name2:'8.5'},
+           {num:'第二章、其他要求(0.00分-10.00分)',name:'8',name1:'7',name2:'8.5'},
           {num:'商务小计(分)',name:'16',name1:'14',name2:'17.50'},
           {num:'总分小计(分)',name:'16',name1:'14',name2:'17.5'}
         ],
-        currentPage4: 1,
-        dialogUnfinishedGrade:false,//未完成打分项弹框
+        currentPage4: 1
       }
-
+      
     },
     mounted(){
     },
-
     methods: {  
       changeView(name){      //路由跳转传参函数
           // console.log(name)
           //this.$router.push({path:`${name}`});
           window.location.href = name;
-      }, 
-
+      },   
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 0||rowIndex === 1) {
           return 'success-row';
         }
         return '';
-      },
-      unfinishedGrade(){
-        this.dialogUnfinishedGrade=true;
-      }
+      } 
     },
-
   }
+  
 
-
-
+  
 </script>
 
 <style lang="scss">
@@ -199,6 +161,11 @@
     background:white;
     border-radius:5px;
     overflow: hidden;
+    .paddmar{
+      display:block;
+      width:100%;
+      height:100%;
+    }
     .busa_a{
       background:#c8d3d8;
       // height:42px;
@@ -239,7 +206,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{
+      .busa_bleft{ 
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -265,7 +232,7 @@
           }
         }
       }
-
+     
     }
     .qu{
         height: 40px;
