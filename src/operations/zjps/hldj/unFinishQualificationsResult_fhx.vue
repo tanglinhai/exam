@@ -65,7 +65,7 @@
                                 <span>{{scope.row.address}}</span>
                             </template>
                         </el-table-column>
-                      </el-table>                      
+                      </el-table>
                   </template>
                 </div>
               </el-col>
@@ -95,20 +95,20 @@
       return {
         tableData: [{
           date: '100.0%',
-          name: '1',
+          name: '张三',
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '2',
+          name: '李四',
           address: '已完成'
         }, {
           date: '100.0%',
-          name: '3',
+          name: '王五',
           address: '已完成'
         }],
         activeName:'sec'
       }
-      
+
     },
     mounted(){
     },
@@ -120,9 +120,9 @@
       },
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -176,7 +176,7 @@
         margin-left:0px!important;
         margin-right:0px!important;
       }
-      .delet_bleft{ 
+      .delet_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -202,7 +202,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

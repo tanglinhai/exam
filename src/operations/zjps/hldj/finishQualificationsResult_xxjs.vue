@@ -80,15 +80,15 @@
                     label="投标人">
                     <el-table-column
                         prop="name"
-                        label="阿里巴巴（1）">
+                        label="重庆网控科技发展有限公司">
                     </el-table-column>
                     <el-table-column
                         prop="name1"
-                        label="普瑞太阳能有限公司（测试）（2）">
+                        label="普瑞太阳能有限公司">
                     </el-table-column>
                     <el-table-column
                         prop="name2"
-                        label="夏丰热工研究院有限公司（测试）（3）">
+                        label="夏丰热工研究院有限公司">
                     </el-table-column>
                 </el-table-column>
             </el-table>
@@ -161,8 +161,12 @@
       return {
         activeName:'sec',
         tableData:[
-          {num:'1',factor:'1',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
-          {num:'2',factor:'11',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
+          {num:'1',factor:'投标报价',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
+          {num:'2',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
+          {num:'3',factor:'资质要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
+          {num:'4',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
+          {num:'5',factor:'项目经理要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
+          {num:'6',factor:'业绩要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'结论',factor:'是否通过资格审查项检查',name:'合格',name1:'合格',name2:'合格'}
         ],
         dialogVisible:false,//查看个人资格审查项表弹框

@@ -12,6 +12,8 @@
                     <el-table-column prop="name" header-align="left" label="投标人名称" width="250px"></el-table-column>
                     <el-table-column prop="toubiaoPrice" header-align="left" label="投标报价（元）"></el-table-column>
                     <el-table-column prop="evaluationBid" header-align="left" label="评标价（元）"></el-table-column>
+                    <el-table-column prop="standardPrice" header-align="left" label="基准价（M）"></el-table-column>
+                    <el-table-column prop="beitaValue" header-align="left" label="β（%）"></el-table-column>
                     <el-table-column prop="scoringSystem" header-align="left" label="系统计算得分"></el-table-column>
                     <el-table-column prop="expertConfirmScore" header-align="left" label="专家确认得分" width="220px">
                         <template slot-scope="scope">
@@ -22,6 +24,9 @@
                         </template>
                     </el-table-column>
                 </el-table>
+                <el-row class="coreds lin-height35">
+                   提示：报价得分、计算基准价由系统根据招标文件中设定的计算方法自动生成。
+                </el-row>
                 <el-row class="text-center marginT30">
                         <el-button @click="acceptanceSystemScor" size="small" type="primary"><i class="icon iconfont icon-fanhuishouye1 mr5"  ></i>接受系统计算得分</el-button>
                         <el-button @click="sumbit" size="small" type="primary"><i class="icon iconfont icon-tijiao mr5"  ></i>提交</el-button>
@@ -39,18 +44,24 @@
                 msgBox: [
                     {
                         toubiaoPrice: '10,000,00 ',
-                        name: '阿里巴巴',
+                        name: '夏丰热工研究院有限公司',
                         evaluationBid: '10,000,00',
+                        standardPrice:'-1333.33',
+                        beitaValue:'200.00',
                         scoringSystem:'50.00',
                     },{
                     toubiaoPrice: '20,000,00 ',
                     name: '普瑞太阳能有限公司',
                     evaluationBid: '20,000,00',
+                    standardPrice:'-1333.33',
+                    beitaValue:'200.00',
                     scoringSystem:'25.00',
                 }, {
                     toubiaoPrice: '30,000,00',
                     name: '夏风热工研究有限公司',
                     evaluationBid: '30,000,00',
+                    standardPrice:'-1333.33',
+                    beitaValue:'200.00',
                     scoringSystem:'16.66',
                 }],
             }

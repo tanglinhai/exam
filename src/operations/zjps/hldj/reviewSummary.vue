@@ -191,9 +191,9 @@
       return {
         activeName:'sec',
         tableData:[
-          {bidder:'夏丰热工研究院有限公司（测试）',num:'3',bida:'2.00',bidb:'3.30',bidc:'33.00',nub:'3.00',end:'16.10',ip:'1'},
-          {bidder:'阿里巴巴(分)',name:'就世纪浩劫',bida:'1.00',bidb:'1.10',bidc:'22.00',nub:'1.00',end:'5.37',ip:'2'},
-          {bidder:'普瑞太阳能有限公司（测试）',num:'6',bida:'3.00',bidb:'2.20',bidc:'11.00',nub:'2.00',end:'10.73',ip:'3'}
+          {bidder:'夏丰热工研究院有限公司',num:'3',bida:'2.00',bidb:'3.30',bidc:'33.00',nub:'3.00',end:'16.10',ip:'1'},
+          {bidder:'重庆网控科技发展有限公司',name:'就世纪浩劫',bida:'1.00',bidb:'1.10',bidc:'22.00',nub:'1.00',end:'5.37',ip:'2'},
+          {bidder:'普瑞太阳能有限公司',num:'6',bida:'3.00',bidb:'2.20',bidc:'11.00',nub:'2.00',end:'10.73',ip:'3'}
         ],
         dialogFormVisible: false,//评分解锁申请弹框
         dialogVisible: false,//查看专家个人打分表 和 投标人分项得分表弹框

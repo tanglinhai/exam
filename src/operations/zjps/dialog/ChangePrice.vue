@@ -41,16 +41,16 @@
                 dialogVisible: false,//调转评标价弹框
                 msgBox: [{
                     firstPrice: '1,000,000,00 人民币',
-                    name: '北京蓝天环境保护有限公司',
+                    name: '重庆网控科技发展有限公司',
                     finalQuotation: '1,000,000,00'
                 },
 
                   {  firstPrice: '1,000,000,00 人民币',
-                  name: '蓝天环境保护有限公司',
+                  name: '普瑞太阳能有限公司',
                   finalQuotation: '1,000,000,00'
                  },
                   { firstPrice: '1,000,000,00 人民币',
-                    name: '北京环境保护有限公司',
+                    name: '夏丰热工研究院有限公司',
                     finalQuotation: '1,000,000,00'
                   },
                 ],

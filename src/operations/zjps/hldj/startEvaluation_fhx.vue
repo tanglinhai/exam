@@ -33,7 +33,7 @@
         <el-tab-pane>
           <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        
+
         <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
           <div>
@@ -146,17 +146,17 @@
                           <el-table-column
                             prop="province"
                             align="center"
-                            label="阿里巴巴(2)">
+                            label="重庆网控科技发展有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="city"
                             align="center"
-                            label="普瑞太阳能有限公司(测试)(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="name"
                             align="center"
-                            label="夏丰热工研究院有限公司(测试)(3)">
+                            label="夏丰热工研究院有限公司">
                           </el-table-column>
                       </el-table-column>
                     </el-table>
@@ -240,7 +240,7 @@
           id:1111
         },{
           people: '招标人1：',
-          name: '[1] 阿里巴巴',
+          name: '[1]重庆网控科技发展有限公司',
           pass: '1',
           kong:'',
           ra1:'合格',
@@ -249,7 +249,7 @@
           id:2222
         }, {
           people: '招标人2：',
-          name: '[2] 普瑞太阳能有限公司（测试）',
+          name: '[2] 普瑞太阳能有限公司',
           pass: '2',
           kong:'',
           ra1:'合格',
@@ -258,7 +258,7 @@
           id:3333
         }, {
           people: '招标人3：',
-          name: '[3] 夏丰热工研究院有限公司（测试）',
+          name: '[3] 夏丰热工研究院有限公司',
           pass: '1',
           kong:'',
           ra1:'合格',
