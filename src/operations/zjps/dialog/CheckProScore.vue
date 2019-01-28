@@ -22,35 +22,35 @@
                     <el-table-column prop="bidder" header-align="left" label="评审人">
                         <el-table-column
                                 prop="panduan1"
-                                label="1"
+                                label="张三"
                         >
-                            <el-table-column   prop="panduan_1"    label="阿里巴巴（1）">
+                            <el-table-column   prop="panduan_1"    label="重庆网控科技发展有限公司">
                             </el-table-column>
-                            <el-table-column label="普瑞太阳能有限公司（2）" prop="panduan_2" >
+                            <el-table-column label="普瑞太阳能有限公司" prop="panduan_2" >
                             </el-table-column>
-                            <el-table-column label="夏丰热工研究院有限公司（3）" prop="panduan_3" >
+                            <el-table-column label="夏丰热工研究院有限公司" prop="panduan_3" >
                             </el-table-column>
                         </el-table-column>
-                        <el-table-column label="2" prop="panduan2" >
+                        <el-table-column label="李四" prop="panduan2" >
                             <el-table-column
                                     prop="panduan__1"
-                                    label="阿里巴巴（1）"
+                                    label="重庆网控科技发展有限公司"
                             >
                             </el-table-column>
-                            <el-table-column label="普瑞太阳能有限公司（2）" prop="panduan__2" >
+                            <el-table-column label="普瑞太阳能有限公司" prop="panduan__2" >
                             </el-table-column>
-                            <el-table-column label="夏丰热工研究院有限公司（3）" prop="panduan__3" >
+                            <el-table-column label="夏丰热工研究院有限公司" prop="panduan__3" >
                             </el-table-column>
                         </el-table-column>
-                        <el-table-column label="3" prop="panduan3" >
+                        <el-table-column label="王五" prop="panduan3" >
                             <el-table-column
                                     prop="panduan___1"
-                                    label="阿里巴巴（1）"
+                                    label="重庆网控科技发展有限公司"
                             >
                             </el-table-column>
-                            <el-table-column label="普瑞太阳能有限公司（2）" prop="panduan___2" >
+                            <el-table-column label="普瑞太阳能有限公司" prop="panduan___2" >
                             </el-table-column>
-                            <el-table-column label="夏丰热工研究院有限公司（3）" prop="panduan___3" >
+                            <el-table-column label="夏丰热工研究院有限公司" prop="panduan___3" >
                             </el-table-column>
                         </el-table-column>
                     </el-table-column>

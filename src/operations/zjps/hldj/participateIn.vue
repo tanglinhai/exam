@@ -34,7 +34,7 @@
                         prop="file"
                         label="招标文件">
                     </el-table-column>
-                </el-table>    
+                </el-table>
             </el-aside>
             <el-main>
                 <h4>专家个人信息</h4>
@@ -60,7 +60,7 @@
                         prop="telNum"
                         label="招标文件">
                     </el-table-column>
-                </el-table> 
+                </el-table>
                 <h4>投标人信息</h4>
                 <el-table
                     :data="tableData3"
@@ -125,18 +125,18 @@ export default {
                 {num:1,file:'招标文件(pdf)'}
             ],
             tableData1:[
-                {num:'0635-198N517/1',file:'阿里巴巴(1)'},
-                {num:'0635-198N517/1',file:'普瑞太阳能有限公司(测试)(2)'},
-                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
+                {num:'0635-198N517/1',file:'重庆网控科技发展有限公司'},
+                {num:'0635-198N517/1',file:'普瑞太阳能有限公司'},
+                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData2:[
-                {name:'姓名：',num:'3',tel:"手机：",telNum:'18700000003'},
+                {name:'姓名：',num:'张三',tel:"手机：",telNum:'18700000003'},
                 {name:'证件号码：',num:''},
             ],
             tableData3:[
-                {num:'1',file:'阿里巴巴',id:'0635-198N517/1'},
-                {num:'2',file:'普瑞太阳能有限公司(测试)',id:'0635-198N517/1'},
-                {num:'3',file:'夏丰热工研究院有限公司(测试)',id:'0635-198N517/1'}
+                {num:'1',file:'重庆网控科技发展有限公司',id:'0635-198N517/1'},
+                {num:'2',file:'普瑞太阳能有限公司',id:'0635-198N517/1'},
+                {num:'3',file:'夏丰热工研究院有限公司',id:'0635-198N517/1'}
             ],
             currentPage4: 1
         }
@@ -168,7 +168,7 @@ export default {
         background: green;
         text-align: center;
         padding: 5px 0;
-        margin: 5px 0; 
+        margin: 5px 0;
         color: #fff;
         font-size: 14px;
     }

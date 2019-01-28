@@ -5,7 +5,7 @@
       <div class="sortDiv pull-left">
         <ul>
           <li>夏丰热工研究院有限公司</li>
-          <li>阿里巴巴</li>
+          <li>重庆网控科技发展有限公司</li>
           <li>普瑞太阳能有限公司</li>
         </ul>
       </div>

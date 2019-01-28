@@ -118,8 +118,9 @@
       return { 
         activeName:'sec',
         tableData:[
-          {num:'3',name:'中招国际招标有限公司',total:'10000.0000',ip:'1'},
-          {num:'4',name:'北京麦徳森医疗器械有限公司',total:'30000.0000',ip:'2'},
+          {bidder:'夏丰热工研究院有限公司',num:'3',bida:'2.00',bidb:'3.30',bidc:'33.00',nub:'3.00',end:'16.10',ip:'1'},
+          {bidder:'重庆网控科技发展有限公司',name:'就世纪浩劫',bida:'1.00',bidb:'1.10',bidc:'22.00',nub:'1.00',end:'5.37',ip:'2'},
+          {bidder:'普瑞太阳能有限公司',num:'6',bida:'3.00',bidb:'2.20',bidc:'11.00',nub:'2.00',end:'10.73',ip:'3'}
         ],
         dialogSort:false,//排序弹框
       }
