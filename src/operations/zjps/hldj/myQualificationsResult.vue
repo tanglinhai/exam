@@ -56,9 +56,19 @@
                   </el-row>
                   <el-row :gutter="20">
                     <el-col :span="2" style="padding:0px;padding-top:15px;">
-
+<!--<<<<<<< HEAD-->
+<!--<<<<<<< HEAD-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：1</div>-->
+                    </el-col>
+<!--=======-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>-->
+                    <!--</el-col>                    -->
+<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
+<!--=======-->
+                    <el-col>
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>
-                    </el-col>                    
+                    </el-col>
+
 
                   </el-row>
                   <template>
@@ -96,10 +106,21 @@
                       </el-table>
                   </template>
                   <el-row :gutter="20">
+<!--<<<<<<< HEAD-->
+<!--<<<<<<< HEAD-->
+                    <!--<el-col :span="2" style="padding:0px;padding-top:15px;">-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：2222</div>-->
+                    <!--</el-col>-->
+<!--=======-->
+                    <!--<el-col :span="24" style="padding:0px;padding-top:15px;">-->
+                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>-->
+                    <!--</el-col>-->
+<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
+<!--=======-->
 
                     <el-col :span="24" style="padding:0px;padding-top:15px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>
-                    </el-col>                    
+                    </el-col>
 
                   </el-row>
                   <template>
