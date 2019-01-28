@@ -26,22 +26,19 @@
     <div class="quexa_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          
         </el-tab-pane>
-
-        <el-tab-pane name="sec">
+        <el-tab-pane   name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
           <div>
             <el-row :gutter="20">
@@ -71,17 +68,15 @@
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
-
-                    <el-col :span="24" style="padding:0px;padding-top:15px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">详细评审（技术）项：cpu品牌及型号</div>
+                    <el-col>
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
-
                   </el-row>
                   <template>
                       <el-row class="qu">
                           <el-col :span="24">
                               <div class="grid-content bg-purple" style="padding-left:5px;">
-                                  审查标准：cpu品牌是否为intel？
+                                  审查标准：专业等级三级以上？
                               </div>
                           </el-col>
                       </el-row>
@@ -111,22 +106,16 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <el-row :gutter="20">
-<!--<<<<<<< HEAD-->
-                    <!--<el-col :span="2" style="padding:0px;padding-top:15px;">-->
-                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：2222</div>-->
-                    <!--</el-col>-->
-<!--=======-->
-                    <el-col :span="24" style="padding:0px;padding-top:15px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">详细评审（技术）项：显卡品牌及是否独立内存大小</div>
+                  <el-row>
+                    <el-col :span="24">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：公司投资金额是否达标？</div>
                     </el-col>
-<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
                   </el-row>
                   <template>
                       <el-row class="qu">
                           <el-col :span="24">
                               <div class="grid-content bg-purple" style="padding-left:5px;">
-                                  审查标准：显卡品牌为惠普？是否独立显卡？
+                                  审查标准：公司投资金额是否达到20000万以上？
                               </div>
                           </el-col>
                       </el-row>
@@ -156,24 +145,16 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <el-row style="line-height:40px;margin-bottom:5px;">
-                    <el-col :span="24">
-                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
-                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_xxjs')">下一步</el-button>
-                        </div>
-                    </el-col>
-                </el-row>
                 </div>
               </el-col>
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+        <el-tab-pane >
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -216,15 +197,15 @@
         tableData: [{
           date: '重庆网控科技发展有限公司',
           name: '投标人',
-          address: '合格'
+          address: ''
         }, {
           date: '普瑞太阳能有限公司',
           name: '投标人',
-          address: '合格'
+          address: ''
         }, {
           date: '夏丰热工研究院有限公司',
           name: '投标人',
-          address: '合格'
+          address: ''
         }]
       }
 
@@ -243,17 +224,8 @@
 
 		var zNodes =[
 			{ id:1, pId:0, name:"资格审查项", open:true},
-			{ id:11, pId:1, name:"1", open:false},
-			{ id:111, pId:11, name:"叶子节点 1-1-1"},
-			{ id:112, pId:11, name:"叶子节点 1-1-2"},
-			{ id:113, pId:11, name:"叶子节点 1-1-3"},
-			{ id:114, pId:11, name:"叶子节点 1-1-4"},
-			{ id:12, pId:1, name:"11", open:false},
-			{ id:121, pId:12, name:"叶子节点 1-2-1"},
-			{ id:122, pId:12, name:"叶子节点 1-2-2"},
-			{ id:123, pId:12, name:"叶子节点 1-2-3"},
-			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-
+			{ id:11, pId:1, name:"专业资质是否达标", open:false},
+			{ id:12, pId:1, name:"公司投资金额是否达标", open:false},
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -274,13 +246,21 @@
         $(".a2").show();
         $(".a1").hide();
       })
+
+
+      let startMsg=this.$loaclStore.get('msg');
+      startMsg.forEach((val,index) => {
+        console.log(val,index)
+        this.tableData[index].address = startMsg[index].value;
+      })
+      // console.log(this.tableData);
     },
     methods: {
-      changeView(url){
-        window.location.href = url;
+       viewChange(name){
+        this.$router.push({path:`${name}`});
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
+      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }

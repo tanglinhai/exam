@@ -26,10 +26,10 @@
     <div class="quexa_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane  name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -60,9 +60,9 @@
                       </div>
                     </el-col>
                   </el-row>
-                  <el-row :gutter="20">
+                  <el-row>
                     <el-col>
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
                   </el-row>
                   <template>
@@ -138,20 +138,13 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <!-- <el-row style="line-height:40px;margin-bottom:5px;">
-                    <el-col :span="24">
-                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
-                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">下一步</el-button>
-                        </div>
-                    </el-col>
-                </el-row> -->
                 </div>
               </el-col>
             </el-row>
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           
         </el-tab-pane>
         <el-tab-pane disabled>
@@ -263,8 +256,8 @@
       // console.log(this.tableData);
     },
     methods: {
-      changeView(){
-        window.location.href = '/operation/zjps/hldj/finishQualificationsResult_fhx';
+       viewChange(name){
+        this.$router.push({path:`${name}`});
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       //  console.log(row, column, rowIndex, columnIndex)
@@ -374,8 +367,8 @@
       }
     }
     .qu{
-        height: 40px;
-        line-height: 40px;
+        // height: 40px;
+        // line-height: 40px;
         border: 1px solid #ebeef5;
         border-bottom: none;
         font-size: 14px;

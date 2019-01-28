@@ -54,22 +54,10 @@
                       </div>
                     </el-col>
                   </el-row>
-                  <el-row :gutter="20">
-                    <el-col :span="2" style="padding:0px;padding-top:15px;">
-<!--<<<<<<< HEAD-->
-<!--<<<<<<< HEAD-->
-                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：1</div>-->
-                    </el-col>
-<!--=======-->
-                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>-->
-                    <!--</el-col>                    -->
-<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
-<!--=======-->
+                  <el-row>
                     <el-col>
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
-
-
                   </el-row>
                   <template>
                       <el-row class="qu">
@@ -105,23 +93,10 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <el-row :gutter="20">
-<!--<<<<<<< HEAD-->
-<!--<<<<<<< HEAD-->
-                    <!--<el-col :span="2" style="padding:0px;padding-top:15px;">-->
-                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：2222</div>-->
-                    <!--</el-col>-->
-<!--=======-->
-                    <!--<el-col :span="24" style="padding:0px;padding-top:15px;">-->
-                      <!--<div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>-->
-                    <!--</el-col>-->
-<!--&gt;>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66-->
-<!--=======-->
-
-                    <el-col :span="24" style="padding:0px;padding-top:15px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>
+                  <el-row>
+                    <el-col :span="24">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：公司投资金额是否达标？</div>
                     </el-col>
-
                   </el-row>
                   <template>
                       <el-row class="qu">
@@ -157,13 +132,13 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <el-row style="line-height:40px;margin-bottom:5px;">
+                  <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
                             <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">下一步</el-button>
                         </div>
                     </el-col>
-                </el-row>
+                </el-row> -->
                 </div>
               </el-col>
             </el-row>

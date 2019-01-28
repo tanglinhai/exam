@@ -140,13 +140,13 @@
                         </el-table-column>
                       </el-table>                      
                   </template>
-                  <el-row style="line-height:40px;margin-bottom:5px;">
+                  <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
                             <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')">下一步</el-button>
                         </div>
                     </el-col>
-                </el-row>
+                </el-row> -->
                 </div>
               </el-col>
             </el-row>

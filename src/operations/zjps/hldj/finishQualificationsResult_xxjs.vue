@@ -179,7 +179,7 @@
     },
     methods: {
       goToNextStage(){
-        this.$commonFun.exam_operation_answer_calc();
+        // this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/reviewSummary');
       },
       changeView(url){
