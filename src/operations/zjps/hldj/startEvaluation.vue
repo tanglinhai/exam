@@ -119,7 +119,7 @@
                           </el-col>
                       </el-row>
                       <el-table
-                        :data="tableData"
+                        :data="tableData1"
                         border
                         style="width: 100%">
                         <el-table-column
@@ -271,6 +271,34 @@
           city: '',
         }],
         tableData: [{
+          people: '招标人1：',
+          name: '[1]重庆网控科技发展有限公司',
+          pass: '1',
+          kong:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:2222,
+        }, {
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司',
+          pass: '2',
+          kong:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:3333,
+        },{
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司',
+          pass: '2',
+          kong:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:55555,
+        }],
+        tableData1: [{
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass: '1',

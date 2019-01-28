@@ -1,6 +1,24 @@
 <template>
     <!-- 申请回避或者参加评标 -->
     <div class="information">
+        <el-row class="nav">
+            <el-col :span="4">
+                <div class="grid-content bg-purple-dark">
+                    <img src="../../../common/img/nav_logo.png" alt="">
+                </div>
+            </el-col>
+            <el-col :span="18">
+                <div class="grid-content bg-purple-dark">
+                    <h2>项目名称：雄安施工项目总承包（施工类）001</h2>
+                    <div class="num">项目编号：0635-1909N987</div>
+                </div>
+            </el-col>
+            <el-col :span="2">
+                <div class="grid-content bg-purple-dark" style="text-align:center;">
+                    <el-button type="warning" size="small">关闭</el-button>
+                </div>
+            </el-col>
+        </el-row>
         <el-container>
             <el-aside width="500px">
                 <h4>项目资料</h4>
@@ -159,7 +177,7 @@ export default {
             ],
             tableData2:[
                 {name:'姓名：',num:'张三',tel:"手机：",telNum:'18700000003'},
-                {name:'证件号码：',num:''},
+                {name:'证件号码：',num:'352226199505120036'},
             ],
             tableData3:[
                 {num:'1',file:'重庆网控科技发展有限公司',id:'0635-198N517/1'},
@@ -202,6 +220,25 @@ export default {
     background: #fff;
     padding: 15px;
     padding-bottom: 30px;
+    .nav{
+        background: #F8F8F8;
+        padding:0 15px;
+        height:60px;
+        line-height: 60px;
+        img{
+            vertical-align: middle;
+        }
+        h2{
+            font-size: 18px;
+            color:orange;
+            font-weight: bold;
+            line-height: 30px;
+        }
+        .num{
+            // padding-top: 5px;
+            line-height: 30px;
+        }
+    }
     h4{
         width:120px;
         background: green;
