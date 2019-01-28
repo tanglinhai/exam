@@ -170,7 +170,7 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" @click="changeView"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
           <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -284,11 +284,11 @@
         console.log(val,index)
         this.tableData[index].address = startMsg[index].value;
       })
-      console.log(this.tableData);
+      // console.log(this.tableData);
     },
     methods: {
-      changeView(url){
-        window.location.href = url;
+      changeView(){
+        window.location.href = '/operation/zjps/hldj/finishQualificationsResult';
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       //  console.log(row, column, rowIndex, columnIndex)

@@ -55,7 +55,7 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="changeView('/operation/zjps/hldj/reviewSummary')">提交</el-button>
+                    <el-button size="small" type="info" @click="goToNextStage()">提交</el-button>
                     <el-button size="small" type="info" @click="individualTrial">查看个人详细评审（技术）审查项表</el-button>
                     <el-button size="small" type="info">查看详细评审（技术）审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">详细评审（技术）审查项解锁</el-button>
@@ -65,8 +65,7 @@
             <el-table
                 :data="tableData"
                 border
-                style="width:100%"
-                :span-method="arraySpanMethod">
+                style="width:100%">
                 <el-table-column
                     prop="num"
                     label="序号"
@@ -179,6 +178,10 @@
     mounted(){
     },
     methods: {
+      goToNextStage(){
+        this.$commonFun.exam_operation_answer_calc();
+        this.changeView('/operation/zjps/hldj/reviewSummary');
+      },
       changeView(url){
         window.location.href = url;
       },

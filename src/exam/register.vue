@@ -5,16 +5,16 @@
         <div class="login-logo marginB10"><img width="300" v-lazy="logoSrc" alt="logo"></div>
         <el-form :model="userForm" :rules="rules" ref="ruleForm"  class="demo-ruleForm">
           <el-form-item label="" prop="userId">
-            <el-input v-model="userForm.userId" placeholder="请输入学号"></el-input>
+            <el-input v-model="userForm.userId" placeholder="请输入工号"></el-input>
           </el-form-item>
           <el-form-item label="" prop="userName">
             <el-input v-model="userForm.userName" placeholder="请输入姓名"></el-input>
           </el-form-item>
           <el-form-item label="" prop="grade">
-            <el-input v-model="userForm.grade" placeholder="请输入年级"></el-input>
+            <el-input v-model="userForm.grade" placeholder="请输入级别"></el-input>
           </el-form-item>
           <el-form-item label="" prop="class">
-            <el-input v-model="userForm.class" placeholder="请输入班级"></el-input>
+            <el-input v-model="userForm.class" placeholder="请输入专业"></el-input>
           </el-form-item>
           <el-form-item label="" prop="passWord">
             <el-input type="password" v-model="userForm.passWord" placeholder="请输入密码"></el-input>
@@ -47,7 +47,7 @@
         },
         rules:{
           userId: [
-            { required: true, message: '请输入学号', trigger: 'blur' },
+            { required: true, message: '请输入工号', trigger: 'blur' },
             { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           userName: [
@@ -55,11 +55,11 @@
             {min: 2, max: 8, message: '长度在 2 到 8 个字符', trigger: 'blur'}
           ],
           grade: [
-            { required: true, message: '请输入年级', trigger: 'blur' },
+            { required: true, message: '请输入级别', trigger: 'blur' },
             { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           class: [
-            { required: true, message: '请输入班级', trigger: 'blur' },
+            { required: true, message: '请输入专业', trigger: 'blur' },
             { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           passWord: [

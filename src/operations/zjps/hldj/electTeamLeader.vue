@@ -9,7 +9,7 @@
             </el-col>
             <el-col :span="18">
                 <div class="grid-content bg-purple-dark">
-                    <h2>项目名称：tlh招标项目-专家评标2</h2>
+                    <h2>项目名称：雄安施工项目总承包（施工类）001</h2>
                     <div class="num">项目编号：0635-1909N987</div>
                 </div>
             </el-col>
@@ -80,7 +80,7 @@
                     </el-col>
                     <el-col :span="19">
                         <div class="grid-content bg-purple-dark" style="text-align:right;border-bottom:2px solid #ccc">
-                            评标专家：<font style="color:red;">3</font>
+                            评标专家：<font style="color:red;">张三</font>
                         </div>
                     </el-col>
                     <el-col :span="3">
@@ -114,7 +114,7 @@
                         label="操作">
                         <template slot-scope="scope">
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/hldj/electAfter')">推举组长</el-button>
+                                <el-button size="small" @click="selectTeamLeader()">推举组长</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -183,6 +183,10 @@ export default {
             // console.log(name)
             //this.$router.push({path:`${name}`});
             window.location.href = name;
+        },
+
+        selectTeamLeader(){
+            this.changeView('/operation/zjps/hldj/electAfter');
         },
       selectionDirector(){
         this.dialogSelectionDirector =true;

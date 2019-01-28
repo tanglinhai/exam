@@ -80,7 +80,7 @@
           <li class="marginB10" v-for="(item,index) in operationQuestions" :key="item.id">
             <p class="question-title">
               {{index+1}} 、{{item.name}}
-              <el-button size="mini" @click="operation_answer(item)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
+              <el-button size="mini" @click="operation_answer(item,index)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
             </p>
             <div class="question-content">
               <el-dialog
@@ -96,9 +96,9 @@
                   frameborder="0"
                   scrolling="no"
                 ></iframe>
-                <span slot="footer" class="dialog-footer">
-                  <el-button type="danger" @click="endOperation(item)" size="small">结束操作</el-button>
-                </span>
+                <div class="submit-box" slot="footer" style="top: 50px;">
+                  <el-button @click="endOperation(item)" type="danger" size="small">结束操作</el-button>
+                </div>
               </el-dialog>
             </div>
           </li>
@@ -124,6 +124,7 @@
 </template>
 <script>
   export default{
+    name: 'exam',
     data(){
       return {
         id: '',
@@ -183,18 +184,54 @@
     },
     methods:{
       /**
+       * 操作题统计分数
+       */
+      operationAnswer(itemIndex, url){
+        var _item = this.operationQuestions[itemIndex];
+        _item.sanswer = _item.sanswer || [];
+        let isExist = false;
+
+        for(var i=0;i<_item.sanswer.length;i++){
+          if(_item.sanswer[i].url == url){
+            isExist = true;
+            break;
+          }
+        }
+        if(!isExist){
+          _item.sanswer.push({
+            url: url,
+            score: 1
+          });
+        }
+      },
+      /**
        * 结束操作
        */
       endOperation(item){
-        item.isEnd = true;
-        item.show = false;
-        //统计分数
-        //。。。。
+        
+        this.$confirm('结束不可再继续操作, 您是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          item.sanswer = item.sanswer ? item.sanswer : [];
+          item.isEnd = true;
+          item.show = false;
+          this.$message({
+            type: 'success',
+            message: '结束操作成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消操作'
+          });          
+        });
       },
       /**
        * 操作题答题按钮
        */
-      operation_answer(item){
+      operation_answer(item,index){
         var _this = this;
 
         if(!item.isEnd)
@@ -211,6 +248,7 @@
               // 再在下一轮事件循环中设置新高度
               setTimeout(function() {
                   iframe.setAttribute('height', iframe.contentWindow.document.body.scrollHeight);
+                  iframe.contentWindow.itemIndex = index;
               }, 0);
           }
           iframe.src = "/operation/zjps/"+
@@ -339,6 +377,7 @@
         let mutil = true;
         let judge = true;
         let QA = true;
+        let operation__ = true;
         this.singleQuestions.some((item) => {
           single = !item.sanswer == '';
         })
@@ -351,7 +390,10 @@
         this.QAQuestions.some((item) => {
           QA = !item.sanswer == '';
         })
-        if(single&&mutil&&judge&&QA){
+        this.operationQuestions.some((item) => {
+          operation__ = item.sanswer !== '';
+        })
+        if(single&&mutil&&judge&&QA&&operation__){
           isAllAnswer = true;
         } else {
           isAllAnswer = false;
@@ -386,6 +428,26 @@
               })
             })
           }
+          this.operationQuestions.forEach((item) => {
+            if(item._operation.type == '1'){//最低价
+              //最低价评分环节： 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->详细评审(技术)+1 ----> 评审汇总+1
+              var totalSteps = 6;
+              var steps = 0;
+              for(var i=0;i<item.sanswer.length;i++){
+                steps += item.sanswer[i].score;
+              }
+              score += item.score*steps/totalSteps;
+            }else if(item._operation.type == '2'){//综合评标
+              var totalSteps = 8;
+              var steps = 0;
+              for(var i=0;i<item.sanswer.length;i++){
+                steps += item.sanswer[i].score;
+              }
+              score += item.score*steps/totalSteps;
+            }else if(item._operation.type == '3'){//双信封
+              score += 0;
+            }
+          })
           if(isMust === true){
             this.submitApi(score,answers);
           } else {

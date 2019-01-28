@@ -55,7 +55,7 @@
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <!-- <el-button size="small" @click="changeView('/operation/zjps/hldj/reviewSummary')"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button> -->
-                      <el-button style="border:none" size="small" @click="changeView('/operation/zjps/hldj/submitSummary')"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
+                      <el-button style="border:none" size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
                       <el-button style="border:none" size="small" @click="sort"><i class="el-icon-sort "></i>&nbsp;&nbsp;排序</el-button>
                   </div>
               </el-col>
@@ -130,6 +130,10 @@
 
     },
     methods: {
+      goToNextStage(){
+        this.$commonFun.exam_operation_answer_calc();
+        this.changeView('/operation/zjps/hldj/submitSummary');
+      },
       changeView(name){      //路由跳转传参函数
           // console.log(name)
           //this.$router.push({path:`${name}`});

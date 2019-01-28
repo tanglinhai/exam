@@ -9,7 +9,7 @@
             </el-col>
             <el-col :span="18">
                 <div class="grid-content bg-purple-dark">
-                    <h2>项目名称：tlh招标项目-专家评标2</h2>
+                    <h2>项目名称：雄安施工项目总承包（施工类）001</h2>
                     <div class="num">项目编号：0635-1909N987</div>
                 </div>
             </el-col>
@@ -85,7 +85,7 @@
                         </div>
                     </el-col>
                 </el-row>
-                <h4>推举评委会主人第1轮</h4>
+                <h4>推举评委会主人第{{selectLoop}}轮</h4>
                 <el-table
                     :data="tableData3"
                     border
@@ -149,7 +149,7 @@
                 <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
-                            <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/bidLink')">下一步</el-button>
+                            <el-button type="primary" size="small" @click="endSelect()">下一步</el-button>
                         </div>
                     </el-col>
                 </el-row> -->
@@ -172,10 +172,11 @@ export default {
                 {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData3:[
-                {num:'1',name:'张三',id:'34214',endNum:'1',status:'进行中',min:'测试单位',phoneNum:'18700000001'},
-                {num:'2',name:'李四',id:'',endNum:'0',status:'进行中',min:'西北国际专家',phoneNum:'18700000002'},
-                {num:'3',name:'王五',id:'',endNum:'0',status:'一推举',min:'国际专家',phoneNum:'18700000003'},
+                {num:'1',name:'张三',id:'352226199505120036',endNum:'1',status:'进行中',min:'河南省综合专家库',phoneNum:'18700000001'},
+                {num:'2',name:'李四',id:'352226199505120037',endNum:'0',status:'进行中',min:'北京科技大学专家库',phoneNum:'18700000002'},
+                {num:'3',name:'王五',id:'352226199505120038',endNum:'0',status:'一推举',min:'国际专家库',phoneNum:'18700000003'},
             ],
+            selectLoop: 1,
             currentPage4: 1,
             value5:[]
         }
@@ -192,13 +193,18 @@ export default {
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
+        endSelect(){
+            //下一步加分
+            this.$commonFun.exam_operation_answer_calc();
+            this.changeView('/operation/zjps/hldj/bidLink')
+        },
 
-      downloadZB(){
-        window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
-      },
-      downloadTouBiao(){
-        window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
-      }
+        downloadZB(){
+            window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
+        },
+        downloadTouBiao(){
+            window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
+        }
 
     },
     mounted(){
@@ -208,6 +214,7 @@ export default {
                 center: true
             });
             this.tableData3[0].endNum = 2;
+            this.selectLoop = 2;
         },1000)
         setTimeout(() => {
             this.$message({
@@ -215,6 +222,7 @@ export default {
                 center: true
             });
             this.tableData3[0].endNum = 3;
+            this.selectLoop = 3;
         },3000)
         setTimeout(() => {
             this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
