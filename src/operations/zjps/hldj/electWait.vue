@@ -115,7 +115,7 @@
                         prop="min"
                         label="单位">
                     </el-table-column>
-                    <el-table-column
+                    <!-- <el-table-column
                         label="操作">
                         <template slot-scope="scope">
                             <div>
@@ -129,7 +129,7 @@
                                 </el-select>
                             </div>
                         </template>
-                    </el-table-column>
+                    </el-table-column> -->
                 </el-table>
                 <el-row>
                     <el-col :span="24">
@@ -146,13 +146,13 @@
                         </div>
                     </el-col>
                 </el-row>
-                <el-row style="line-height:40px;margin-bottom:5px;">
+                <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
                             <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/bidLink')">下一步</el-button>
                         </div>
                     </el-col>
-                </el-row>
+                </el-row> -->
             </el-main>
         </el-container>
     </div>
@@ -192,12 +192,34 @@ export default {
             //this.$router.push({path:`${name}`});
             window.location.href = name;
         },
+
       downloadZB(){
         window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
       },
       downloadTouBiao(){
         window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
       }
+
+    },
+    mounted(){
+        setTimeout(() => {
+            this.$message({
+                message: '李四推举张三为组长',
+                center: true
+            });
+            this.tableData3[0].endNum = 2;
+        },1000)
+        setTimeout(() => {
+            this.$message({
+                message: '王五推举张三为组长',
+                center: true
+            });
+            this.tableData3[0].endNum = 3;
+        },3000)
+        setTimeout(() => {
+            this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
+            window.location.href = '/operation/zjps/hldj/bidLink';
+        },5000)
     }
 }
 </script>
