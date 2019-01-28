@@ -71,15 +71,11 @@
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
-<<<<<<< HEAD
-                    <el-col :span="2" style="padding:0px;padding-top:15px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：1</div>
-                    </el-col>
-=======
+
                     <el-col :span="24" style="padding:0px;padding-top:15px;">
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">详细评审（技术）项：cpu品牌及型号</div>
                     </el-col>
->>>>>>> 29c818ba81f6f73797a5b1deb9b096994d994c66
+
                   </el-row>
                   <template>
                       <el-row class="qu">
