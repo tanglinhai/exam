@@ -413,7 +413,8 @@
             }
           }
         }
-        this.cover(this.allRadio,id,radio,false);
+        this.cover(this.allRadio,id,radio);
+        this.$loaclStore.set('isSubmit',false);
       },
       // 本地存储local封装
       cover(num,id,radio){
@@ -433,24 +434,15 @@
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
+          this.$loaclStore.set('isSubmit',false);
         }
       },
       changeView(){      //路由跳转传参函数
-        // console.log(name)
-        //this.$router.push({path:`${name}`});
-        let pros=this.$loaclStore.get('msg');
-        // console.log(pros)
-        if(pros == undefined){
-          window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
-        }else{
-          console.log(pros);
-          window.location.href = '/operation/zjps/hldj/finishQualificationsResult';
-        }
-        // window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
+        window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
       },
       allSubmit(){
+        this.$loaclStore.set('isSubmit',true);
         let mssg=this.$loaclStore.get('msg');
-        // console.log(mssg);
         if(mssg.length != this.tableData.length){
           this.$message({
             message: '请选择合格/不合格',
