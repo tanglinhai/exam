@@ -35,7 +35,13 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
-                    </el-table-column>
+                    <template slot-scope="scope">
+                      <a href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf">
+                        <span> {{scope.row.file}}</span>
+                        <i class="fa fa-file fa-fw"></i>
+                      </a>
+                    </template>
+                  </el-table-column>
                 </el-table>
                 <h4>投标文件查看：</h4>
                 <el-table
@@ -51,7 +57,14 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
-                    </el-table-column>
+
+                    <template slot-scope="scope">
+                      <a href="http://localhost:9000/static/docs/touBiaoFile.pdf">
+                        <span>{{scope.row.file}}</span>
+                        <i class="fa fa-file fa-fw"></i>
+                      </a>
+                    </template>
+                  </el-table-column>
                 </el-table>
             </el-aside>
             <el-main>
