@@ -47,7 +47,7 @@
                         <el-table-column
                             label="资格审查项进度">
                             <template slot-scope="scope">
-                                <el-progress :percentage="0"></el-progress>
+                                <el-progress :percentage="d"></el-progress>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -96,28 +96,33 @@
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '2',
+          name: '李四',
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '3',
+          name: '王五',
           address: '未完成'
         }],
         activeName:'sec',
         progres:'',
+        d:0
       }
-
     },
     mounted(){
-      
+      // console.log(this.$loaclStore.get('msg'));
+      // console.log(this.$loaclStore.get('datalength'));
+      let a;
+      let b;
+      a=this.$loaclStore.get('msg').length;//选中的数据length
+      b=this.$loaclStore.get('datalength');//数据的length
+      this.d= Math.floor(a/b*100);
     },
     methods: {
       onTabClick(tab, event){
-        console.log(tab.name)
+        console.log(tab.name);
         if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/startEvaluation';
         }
-        
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

@@ -50,7 +50,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="0"></el-progress>
+                        <el-progress :percentage="d" ref="aaa"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -335,7 +335,8 @@
         }],
         allRadio:[],
         idradionoprss:'',//table不合格的id
-        idqualified:"",//table合格的id
+        checkedNumRadio:"",
+        d:0
       }
     },
     computed: {
@@ -404,9 +405,8 @@
         }else if(radio=='合格'){
           store_radio.content = ''
         }
-        
-        this.cover(this.allRadio,id,radio,false);
-      },
+         this.cover(this.allRadio,id,radio,false);
+        },
       // 本地存储local封装
       cover(num,id,radio){
         var isExist = false;
@@ -422,15 +422,20 @@
             id:id,
             value:radio,
           });
-
-
-        console.log('====', num);
         let str={};
         num.forEach(item => {
           str[item.id]=item;
         });
         let ps=Object.values(str);
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
+        console.log(s);
+        // this.c=ps.length;
+        this.d=Math.floor(ps.length /( this.tableData11.length +this.tableData.length)*100);
+        this.$refs.aaa.$options.propsData.percentage=this.d;
         this.$loaclStore.set('msg',ps);
+        this.$loaclStore.set('datalength',s);
       },
 
       quanbu(){
@@ -444,11 +449,9 @@
         }
       },
        onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="2"){
+        if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult';
         }
-        
       },
 
       changeView(){      //路由跳转传参函数
@@ -480,6 +483,7 @@
             this.tableData11[i].content=childValue;
           }
         }
+        this.dialogVisible=false;
       }
     },
   }

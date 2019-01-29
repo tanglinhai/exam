@@ -30,7 +30,7 @@
         </el-tab-pane>
         <el-tab-pane name="2">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          
+
         </el-tab-pane>
         <el-tab-pane name="3">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -61,7 +61,7 @@
                         <el-table-column
                             label="资格审查项进度">
                             <template slot-scope="scope">
-                                <el-progress :percentage="0"></el-progress>
+                                <el-progress :percentage="d"></el-progress>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -107,15 +107,20 @@
         }],
         activeName:'sec',
         progres:'',
+        d:0
       }
 
     },
     mounted(){
-      
+      let a;
+      let b;
+      a=this.$loaclStore.get('msg_xxjs').length;//选中的数据length
+      b=this.$loaclStore.get('datalength_xxjs');//数据的length
+      this.d= Math.floor(a/b*100);
     },
     methods: {
       onTabClick(tab, event){
-        console.log(tab.name)
+        // console.log(tab.name)
         if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/myQualificationsResult';
         }
