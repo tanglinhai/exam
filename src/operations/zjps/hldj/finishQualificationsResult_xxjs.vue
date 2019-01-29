@@ -116,7 +116,7 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/submitSummary')"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/submitSummary')"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
