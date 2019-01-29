@@ -144,7 +144,7 @@
           </div>
         </el-tab-pane>
         <el-tab-pane name="3">
-          <span slot="label" class="paddmar" @click="tabView"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <!-- /operation/zjps/hldj/finishQualificationsResult_fhx -->
           
         </el-tab-pane>
