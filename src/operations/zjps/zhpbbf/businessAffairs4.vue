@@ -24,29 +24,24 @@
     </div>
 
     <div class="busa_b">
-      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="1">
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
         </el-tab-pane>
-        <el-tab-pane name="3">
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
         </el-tab-pane>
-        <el-tab-pane name="4">
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
         </el-tab-pane>
-        <el-tab-pane name="sec">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
-          
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
         </el-tab-pane>
-        <el-tab-pane name="5">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label"><i class="el-icon-edit"></i> 技术</span>
           <el-row style="line-height:40px;">
               <el-col :span="1">
                   <div class="grid-content bg-purple" style="font-size:14px;">进度：</div>
@@ -58,7 +53,7 @@
               </el-col>
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <span style="display:inline-block; margin-top:5px;">专家： 新增专家一号</span>
+                      <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
                       <!-- <el-button size="small" type="info">查看未完成项</el-button>
                       <el-button size="small" type="info">保存</el-button>
                       <el-button size="small" type="info">提交商务</el-button> -->
@@ -111,9 +106,8 @@
                 </el-col>
             </el-row>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"  class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -125,18 +119,19 @@
     name: 'updateBill',
     data () {
       return { 
-        activeName:'5',
+        activeName:'6',
+        tabDisabled: [],
         tableData:[
-          {num:'第一章、施工方案与技术措施(0.00分-5.00分)',name:'5',name1:'5',name2:'5'},
-          {num:'第二章、质量管理体系与措施(0.00分-5.00分)',name:'4',name1:'3',name2:'4'},
-          {num:'第三章、安全管理体系与措施(0.00分-5.00分)',name:'4',name1:'4',name2:'2'},
-          {num:'第四章、环境保护管理体系与措施(0.00分-5.00分)',name:'4',name1:'2',name2:'3'},
-          {num:'第五章、工程进度计划与措施(0.00分-5.00分)',name:'4.5',name1:'3',name2:'3'},
-          {num:'第六章、资源配备计划(0.00分-1.00分)',name:'1',name1:'1',name2:'1'},
-          {num:'第七章、施工设备(0.00分-2.00分)',name:'2',name1:'0',name2:'1.5'},
-          {num:'第八章、试验,检测仪器设备(0.00分-2.00分)',name:'2',name1:'1',name2:'1.5'},
-          {num:'技术小计(分)',name:'26.5',name1:'19.0',name2:'21.0'},
-          {num:'总分小计(分)',name:'42.5',name1:'33.0',name2:'38.5'}
+          {num:'第一章、施工方案与技术措施(0.00分-5.00分)',    name:'5',name1:'5',name2:'5'},
+          {num:'第二章、质量管理体系与措施(0.00分-5.00分)',    name:'4',name1:'3.3',name2:'9'},
+          {num:'第三章、安全管理体系与措施(0.00分-5.00分)',    name:'8',name1:'4.1',name2:'2'},
+          {num:'第四章、环境保护管理体系与措施(0.00分-5.00分)',name:'5.3',name1:'2.8',name2:'3'},
+          {num:'第五章、工程进度计划与措施(0.00分-5.00分)',    name:'4.5',name1:'3',name2:'4'},
+          {num:'第六章、资源配备计划(0.00分-1.00分)',         name:'3.7',name1:'4',name2:'5'},
+          {num:'第七章、施工设备(0.00分-2.00分)',             name:'5.9',name1:'8',name2:'6.5'},
+          {num:'第八章、试验,检测仪器设备(0.00分-2.00分)',     name:'2.0',name1:'1',name2:'1.5'},
+          {num:'技术小计(分)',                               name:'38.4',name1:'31.2',name2:'36'},
+          {num:'总分小计(分)',                               name:'38.4',name1:'31.2',name2:'36'}
         ],
         currentPage4: 1
       }
@@ -145,12 +140,8 @@
     mounted(){
     },
     methods: {   
-      onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="sec"){
-          window.location.href ='/operation/zjps/zhpbbf/businessAffairs2';
-        }
-        
+      onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '6', '2', this);
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

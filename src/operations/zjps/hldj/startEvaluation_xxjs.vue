@@ -62,7 +62,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="0"></el-progress>
+                        <el-progress :percentage="d" ref="aaa"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -336,7 +336,7 @@
         }],
         allRadio:[],
         idradionoprss:'',//table不合格的id
-        idqualified:"",//table合格的id
+        d:0
       }
 
     },
@@ -411,6 +411,23 @@
           store_radio.content = ''
           this.saveStorage();
         }
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
+        let fillCount = 0;
+        for(var i=0;i<this.tableData.length;i++){
+          if(this.tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        this.d=Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
+        this.$refs.aaa.$options.propsData.percentage=this.d;
+        this.$loaclStore.set('datalength',s);
       },
       // 本地存储local封装
       saveStorage(){
@@ -466,7 +483,9 @@
           }
         }
         this.saveStorage();
+        this.dialogVisible=false;
       }
+
     },
   }
 

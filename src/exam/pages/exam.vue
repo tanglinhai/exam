@@ -253,8 +253,8 @@
           }
           iframe.src = "/operation/zjps/"+
           (
-            item._operation.name == '专家评审-双信封评标办法' ? 'sxfpbbf' :
-            item._operation.name == '专家评审-综合评分办法' ? 'zhpbbf' : 'hldj'
+            item._operation.name == '模拟评标-双信封评标办法' ? 'sxfpbbf' :
+            item._operation.name == '模拟评标-综合评分办法' ? 'zhpbbf' : 'hldj'
           )
           +"/participateIn"
           iframe.setAttribute('isLoaded', true);
@@ -441,7 +441,8 @@
               }
               score += item.score*steps/totalSteps;
             }else if(item._operation.type == '2'){//综合评标
-              var totalSteps = 8;
+              //综合评标环节： 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->商务+1 ----> 技术+1 ----> 评审汇总+1
+              var totalSteps = 7;
               var steps = 0;
               for(var i=0;i<item.sanswer.length;i++){
                 steps += item.sanswer[i].score;

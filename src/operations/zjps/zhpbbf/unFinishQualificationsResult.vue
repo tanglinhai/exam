@@ -24,12 +24,11 @@
     </div>
 
     <div class="delet_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-        <el-tab-pane name="sec">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           <div>
             <el-row>
@@ -48,7 +47,7 @@
                         <el-table-column
                             label="资格审查项进度">
                             <template slot-scope="scope">
-                                <el-progress :percentage="100"></el-progress>
+                                <el-progress :percentage="scope.row.completePercent"></el-progress>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -57,28 +56,27 @@
                                 <span>{{scope.row.address}}</span>
                             </template>
                         </el-table-column>
-                      </el-table>                      
+                      </el-table>
                   </template>
                 </div>
               </el-col>
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          商务
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
+        </el-tab-pane>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -92,31 +90,58 @@
     },
     data () {
       return {
+        activeName:'2',
+        tabDisabled:[],
         tableData: [{
           date: '100.0%',
-          name: '1',
+          name: '张三',
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '2',
-          address: '已完成'
+          name: '李四',
+          address: '未完成'
         }, {
           date: '100.0%',
-          name: '3',
-          address: '已完成'
+          name: '王五',
+          address: '未完成'
         }],
-        activeName:'sec'
+        progres:'',
+        d:0
       }
-      
+    },
+    computed:{
+      completePercent(){
+        var tableData = this.$loaclStore.get('zhpbbf_资格审查项1');
+        var tableData11 = this.$loaclStore.get('zhpbbf_资格审查项2');
+        let len=tableData11.length+tableData.length;
+        let fillCount = 0;
+        for(var i=0;i<tableData.length;i++){
+          if(tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        return Math.floor(fillCount /len*100);
+      }
     },
     mounted(){
+      this.tableData[0].completePercent = this.completePercent;
     },
     methods: {
+      onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '2', '1', this);
+      },
+      changeView(name){      //路由跳转传参函数
+          // console.log(name)
+          //this.$router.push({path:`${name}`});
+          window.location.href = name;
+      },
     },
   }
-  
-
-  
 </script>
 
 <style lang="scss">
@@ -170,7 +195,7 @@
         margin-left:0px!important;
         margin-right:0px!important;
       }
-      .delet_bleft{ 
+      .delet_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -196,7 +221,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

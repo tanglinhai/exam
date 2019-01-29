@@ -34,7 +34,7 @@
             <el-row style="line-height:40px;">
               <el-col :span="12">
                 <div class="grid-content bg-purple">
-                    <span>评标委员会组长：3</span>
+                    <span>评标委员会组长：张三</span>
                 </div>
               </el-col>
               <el-col :span="12">
@@ -183,7 +183,7 @@
         this.$commonFun.onTabClick(tab, event, '2', '2', this);
       },
       goToNextStage(){
-        // this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/startEvaluation_fhx');
         this.$loaclStore.set('资格审查项汇总是否提交', true);
         this.$loaclStore.set('submitView', true);

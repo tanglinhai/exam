@@ -24,25 +24,21 @@
     </div>
 
     <div class="busa_b">
-      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="1">
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
         </el-tab-pane>
-        <el-tab-pane  name="2">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
         </el-tab-pane>
-        <el-tab-pane  name="3">
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
         </el-tab-pane>
-        <el-tab-pane  name="4">
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
         </el-tab-pane>
-        <el-tab-pane name="sec">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
           <el-row style="line-height:40px;">
               <el-col :span="1">
                   <div class="grid-content bg-purple" style="font-size:14px;">进度：</div>
@@ -55,9 +51,6 @@
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
-                      <el-button size="small" type="info" @click="unfinishedGrade">查看未完成项</el-button>
-                      <el-button size="small" type="info">保存</el-button>
-                      <el-button size="small" type="info" @click="changeView('/operation/zjps/zhpbbf/businessAffairs3')">提交商务</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -77,41 +70,14 @@
                         <el-table-column
                             prop="name"
                             label="重庆网控科技发展有限公司">
-                            <template slot-scope="scope">
-                                <div>
-                                    <div v-if="scope.$index == 0||scope.$index == 1">
-                                      <el-input style="width:150px;" value="8"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div>
-                                    <div v-else>{{scope.row.name}}</div>
-                                </div>
-                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="name1"
                             label="普瑞太阳能有限公司">
-                            <template slot-scope="scope">
-                                <div>
-                                    <div v-if="scope.$index == 0||scope.$index == 1">
-                                      <el-input style="width:150px;" value="7"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div>
-                                    <div v-else>{{scope.row.name1}}</div>
-                                </div>
-                            </template>
                         </el-table-column>
                         <el-table-column
                             prop="name2"
                             label="夏丰热工研究院有限公司">
-                            <template slot-scope="scope">
-                                <div>
-                                    <div v-if="scope.$index == 0||scope.$index == 1">
-                                      <el-input style="width:150px;" value="8.5"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
-                                    </div>
-                                    <div v-else>{{scope.row.name2}}</div>
-                                </div>
-                            </template>
                         </el-table-column>
                     </el-table-column>
             </el-table>
@@ -129,12 +95,11 @@
                 </el-col>
             </el-row>
         </el-tab-pane>
-        <el-tab-pane  name="5">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label"><i class="el-icon-edit"></i> 技术</span>
         </el-tab-pane>
-        <el-tab-pane  name="6">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -156,12 +121,13 @@
     },
     data () {
       return {
-        activeName:'sec',
+        activeName:'5',
+        tabDisabled: [],
         tableData:[
-          {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'1',name1:'2',name2:'3'},
-           {num:'第二章、其他要求(0.00分-10.00分)',name:'1',name1:'2',name2:'3'},
-          {num:'商务小计(分)',name:'16',name1:'14',name2:'17.50'},
-          {num:'总分小计(分)',name:'16',name1:'14',name2:'17.5'}
+          {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'8',name1:'7.5',name2:'9'},
+          {num:'第二章、其他要求(0.00分-10.00分)',            name:'6.8',name1:'8.5',name2:'8'},
+          {num:'商务小计(分)',name:'14.8',name1:'16',name2:'17'},
+          {num:'总分小计(分)',name:'14.8',name1:'16',name2:'17'}
         ],
         currentPage4: 1,
         dialogUnfinishedGrade:false,//未完成打分项弹框
@@ -172,17 +138,14 @@
     },
 
     methods: {  
+
       changeView(name){      //路由跳转传参函数
           // console.log(name)
           //this.$router.push({path:`${name}`});
           window.location.href = name;
       }, 
-      onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="5"){
-          window.location.href ='/operation/zjps/zhpbbf/businessAffairs4';
-        }
-        if(tab.name=="5"){}
+      onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '5', '2', this);
       },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 0||rowIndex === 1) {

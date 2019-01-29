@@ -27,6 +27,12 @@
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
+        </el-tab-pane>
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        </el-tab-pane>
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -93,9 +99,9 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <el-row>
-                    <el-col :span="24">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：公司投资金额是否达标？</div>
+                  <el-row :gutter="20">
+                    <el-col :span="24" style="padding:0px;padding-top:15px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>
                     </el-col>
                   </el-row>
                   <template>
@@ -107,7 +113,7 @@
                           </el-col>
                       </el-row>
                       <el-table
-                        :data="tableData11"
+                        :data="tableData"
                         border
                         :show-header="false"
                         style="width: 100%">
@@ -137,17 +143,11 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-        </el-tab-pane>
-        <el-tab-pane name="3" :disabled="tabDisabled[2]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
-        </el-tab-pane>
         <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
+          <span slot="label" class="paddmar"><i class="el-icun-edit"></i> 商务</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
@@ -167,7 +167,7 @@
     },
     data () {
       return {
-        activeName:'1',
+        activeName:'3',
         tabDisabled:[],
         tableData3: [{
           number:'1',
@@ -195,19 +195,6 @@
           city: '',
         }],
         tableData: [{
-          date: '重庆网控科技发展有限公司',
-          name: '投标人',
-          address: ''
-        }, {
-          date: '普瑞太阳能有限公司',
-          name: '投标人',
-          address: ''
-        }, {
-          date: '夏丰热工研究院有限公司',
-          name: '投标人',
-          address: ''
-        }],
-        tableData11: [{
           date: '重庆网控科技发展有限公司',
           name: '投标人',
           address: ''
@@ -261,8 +248,8 @@
       })
 
 
-      let zgsc1=this.$loaclStore.get('zhpbbf_资格审查项1');
-      let zgsc2=this.$loaclStore.get('zhpbbf_资格审查项2');
+      let zgsc1=this.$loaclStore.get('zhpbbf_符合性审查项1');
+      let zgsc2=this.$loaclStore.get('zhpbbf_符合性审查项2');
       zgsc1.forEach((val,index) => {
           this.tableData[index].address = val.radio;
       })
@@ -271,11 +258,11 @@
       })
     },
     methods: {
-      onTabClick1(tab, event){
-        this.$commonFun.onTabClick1(tab, event, '1', '2', this);
+       onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '3', '2', this);
       },
-      changeView(){
-        window.location.href = '/operation/zjps/zhpbbf/finishQualificationsResult';
+       viewChange(name){
+        this.$router.push({path:`${name}`});
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       //  console.log(row, column, rowIndex, columnIndex)
@@ -384,8 +371,8 @@
       }
     }
     .qu{
-        height: 40px;
-        line-height: 40px;
+        // height: 40px;
+        // line-height: 40px;
         border: 1px solid #ebeef5;
         border-bottom: none;
         font-size: 14px;

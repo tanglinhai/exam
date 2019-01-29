@@ -35,7 +35,17 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                    >
+                      <template slot-scope="scope">
+                        <div @click="downloadZB">
+                          <a href="javascript:void(0);" class="curStyot">
+                            <span>{{scope.row.file}}</span>
+                            <i class="fa fa-file fa-fw"></i>
+                          </a>
+                        </div>
+                      </template>
                     </el-table-column>
+
                 </el-table>
                 <h4>投标文件查看：</h4>
                 <el-table
@@ -51,6 +61,14 @@
                     <el-table-column
                         prop="file"
                         label="招标文件">
+                      <template slot-scope="scope">
+                        <div @click="downloadTouBiao">
+                          <a class="curStyot"  href="javascript:void(0);">
+                            <span> {{scope.row.file}}</span>
+                            <i class="fa fa-file fa-fw"></i>
+                          </a>
+                        </div>
+                      </template>
                     </el-table-column>
                 </el-table>
             </el-aside>
@@ -68,7 +86,7 @@
                     </el-col>
                     <el-col :span="3">
                         <div class="grid-content bg-purple-dark" style="text-align:center;border-bottom:2px solid #ccc">
-                            <el-button type="primary" size="small" @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"></i>&nbsp;&nbsp;查看推举情况</el-button>
+                            <el-button type="primary" size="small" @click="selectionDirector"><i class="iconfont icon-duxinyequerencanjia"  ></i>&nbsp;&nbsp;查看推举情况</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -97,8 +115,8 @@
                         label="操作">
                         <template slot-scope="scope">
                             <div>
-                                <el-button size="small">评标</el-button>
-                                <el-button size="small">推举组长</el-button>
+                                <el-button size="small" @click="changeView('/operation/zjps/zhpbbf/startEvaluation')">评标</el-button>
+                                <el-button size="small" @click="adjustedValuation"> 调整评标价</el-button>
                             </div>
                         </template>
                     </el-table-column>
@@ -121,6 +139,12 @@
             </el-main>
         </el-container>
       <el-dialog
+        title="投标人最新报价列表"
+        :visible.sync="dialogVisible"
+      >
+        <ChangePrice></ChangePrice>
+      </el-dialog>
+      <el-dialog
         title="推举主任情况"
         :visible.sync="dialogSelectionDirector"
         width="700px"
@@ -131,11 +155,15 @@
 </template>
 
 <script>
+  import ChangePrice from '../dialog/ChangePrice';
   import SelectionDirector from '../dialog/SelectionDirector';
-  export default {
-    components: {
-      SelectionDirector
-    },
+
+
+export default {
+  components: {
+    ChangePrice,
+    SelectionDirector
+  },
     data(){
         return {
             currentPage4:1,
@@ -143,13 +171,14 @@
                 {num:1,file:'招标文件(pdf)'}
             ],
             tableData1:[
-                {num:'0635-198N517/1',file:'阿里巴巴(1)'},
-                {num:'0635-198N517/1',file:'普瑞太阳能有限公司(测试)(2)'},
-                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司(测试)(3)'}
+                {num:'0635-198N517/1',file:'重庆网控科技发展有限公司'},
+                {num:'0635-198N517/1',file:'普瑞太阳能有限公司'},
+                {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData3:[
                 {num:'1',name:'第1包',id:'0635-198N517/1',status:'进行中'},
             ],
+          dialogVisible:false,
           dialogSelectionDirector:false
         }
     },
@@ -160,9 +189,24 @@
         handleCurrentChange(currPage){
 
         },
-      // selectionDirector(){
-      //   this.dialogSelectionDirector =true;
-      // },
+        changeView(name){      //路由跳转传参函数
+            // console.log(name)
+            //this.$router.push({path:`${name}`});
+            window.location.href = name;
+        },
+      adjustedValuation(){
+        this.dialogVisible = true;
+      },
+      selectionDirector(){
+        this.dialogSelectionDirector =true;
+      },
+      downloadZB(){
+        window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
+      },
+      downloadTouBiao(){
+        window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');
+      }
+
     }
 }
 </script>

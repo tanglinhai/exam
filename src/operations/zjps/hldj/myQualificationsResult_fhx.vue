@@ -147,13 +147,13 @@
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar" @click="toXxjs"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label" class="paddmar" @click="toXxjsAsk"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
-          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -268,35 +268,6 @@
       //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
-        }
-      },
-      tabView(){
-        if(this.$loaclStore.get('msg') == undefined){
-          this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
-          // alert(1111)
-          }else{
-          this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
-        }
-      },
-      toXxjs(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/myQualificationsResult_xxjs'
-        }else{
-          return;
-        }
-      },
-      toXxjsAsk(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/finishQualificationsResult_xxjs'
-        }else{
-          return;
-        }
-      },
-      pshz(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/reviewSummary'
-        }else{
-          return;
         }
       }
 

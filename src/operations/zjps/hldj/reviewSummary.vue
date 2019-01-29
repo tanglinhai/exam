@@ -51,7 +51,6 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <!-- <el-button size="small" @click="changeView('/operation/zjps/hldj/reviewSummary')"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button> -->
                       <el-button style="border:none" size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
                       <el-button style="border:none" size="small" @click="sort"><i class="el-icon-sort "></i>&nbsp;&nbsp;排序</el-button>
                   </div>
@@ -82,8 +81,8 @@
           <el-row class="myform">
             <div class="le">
               评标意见：<br/>
-              (2000字之内)  
-            </div> 
+              (2000字之内)
+            </div>
             <div class="ri">
               <textarea style="width: 1000px;height: 200px;">
                 评审意见:
@@ -133,13 +132,13 @@
         activeName:'7',
         tabDisabled:[],
         tableData:[
-          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'10000.0000',ip:'1'},
-          {num:'1',name:'益达天然产物有限公司（测试）',total:'30000.0000',ip:'2'},
-          {num:'2',name:'夏丰热工研究院有限公司（测试）',total:'20000.0000',ip:'3'}
+          {num:'3',name:'重庆网控科技发展有限公司 ',total:'10000.0000',ip:'1'},
+          {num:'1',name:'普瑞太阳能有限公司',total:'30000.0000',ip:'2'},
+          {num:'2',name:'夏丰热工研究院有限公司',total:'20000.0000',ip:'3'}
         ],
         dialogSort:false,//排序弹框
       }
-      
+
     },
     mounted(){
 
@@ -163,9 +162,9 @@
       },
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -228,7 +227,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -254,7 +253,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

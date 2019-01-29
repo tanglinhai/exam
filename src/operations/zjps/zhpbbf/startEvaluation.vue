@@ -1,6 +1,5 @@
-﻿<template>
+<template>
   <div class="aaa">
-
     <div class="aaa_a">
       <el-row :gutter="20">
         <el-col :span="10">
@@ -25,9 +24,9 @@
     </div>
 
     <div class="aaa_b">
-      <el-tabs type="border-card">
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
+      <el-tabs type="border-card" v-model="activeName"  @tab-click="onTabClick1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -51,39 +50,36 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="0"></el-progress>
+                        <el-progress :percentage="completePercent"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
                         <el-button @click="quanbu" size="mini" type="info">全部合格</el-button>
-                        <el-button size="mini" type="info">全部提交</el-button>
+                        <el-button size="mini" type="info" @click="allSubmit">全部提交</el-button>
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
-                    <el-col :span="2" style="padding:0px;">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：1</div>
+                    <el-col :span="24" style="padding:0px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
-
                   </el-row>
                   <template>
+                      <el-row class="qu">
+                          <el-col :span="24">
+                              <div class="grid-content bg-purple" style="padding-left:5px;">
+                                  审查标准：专业等级三级以上？
+                              </div>
+                          </el-col>
+                      </el-row>
                       <el-table
                         :data="tableData"
                         border
-                        :span-method="arraySpanMethod2"
                         style="width: 100%">
-                        <el-table-column
-                          prop="people"
-                          width="100"
-                          label="人">
-                          <template slot-scope="scope">
-                            <span style="margin-left: 10px">{{scope.row.people}}</span>
-                          </template>
-                        </el-table-column>
                         <el-table-column
                           prop="name"
                           label="名称">
                           <template slot-scope="scope">
-                            <span style="margin-left: 10px"><i class="el-icon-search fs14 mr3"></i>{{scope.row.name}}</span>
+                            <span style="margin-left: 10px">投标人：<i class="el-icon-search fs14 mr3"></i>{{scope.row.name}}</span>
                           </template>
                         </el-table-column>
                         <el-table-column
@@ -91,9 +87,9 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id,scope.$index,'tableData')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
-                                <el-radio :label="scope.row.ra2">不合格</el-radio>
+                                <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
                             </span>
                           </template>
@@ -101,8 +97,57 @@
                         <el-table-column
                           prop="kong"
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.content}}
+                            </span>
+                          </template>
+                        </el-table-column>
+                      </el-table>
+                  </template>
+
+                  <el-row :gutter="20">
+                    <el-col :span="24" style="padding:0px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：公司投资金额是否达标？</div>
+                    </el-col>
+                  </el-row>
+                  <template>
+                      <el-row class="qu">
+                          <el-col :span="24">
+                              <div class="grid-content bg-purple" style="padding-left:5px;">
+                                  审查标准：公司投资金额是否达到20000万以上？
+                              </div>
+                          </el-col>
+                      </el-row>
+                      <el-table
+                        :data="tableData11"
+                        border
+                        style="width: 100%">
+                        <el-table-column
+                          prop="name"
+                          label="名称">
+                          <template slot-scope="scope">
+                            <span style="margin-left: 10px">投标人：<i class="el-icon-search fs14 mr3"></i>{{scope.row.name}}</span>
+                          </template>
+                        </el-table-column>
+                        <el-table-column
+                          prop="pass2"
+                          label="是否合格">
+                          <template slot-scope="scope">
+                            <span style="margin-left: 10px">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index, 'tableData11')" ref="shet" v-model="scope.row.radio">
+                                <el-radio :label="scope.row.ra1">合格</el-radio>
+                                <el-radio :label="scope.row.ra2" >不合格</el-radio>
+                              </el-radio-group>
+                            </span>
+                          </template>
+                        </el-table-column>
+                        <el-table-column
+                          prop=""
+                          label="">
+                          <template slot-scope="scope">
+                            <span style="margin-left: 10px">
+                              {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -159,38 +204,49 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          商务
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
+        </el-tab-pane>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      title="不合格录入"
+      :visible.sync="dialogVisible"
+      width="700px"
+    >
+      <FailureEntry @childByValue="childByValue"></FailureEntry>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import FailureEntry from '../dialog/FailureEntry';
   export default {
     name: 'updateBill',
     props:{
     },
+    components: {
+      FailureEntry
+    },
     data () {
       return {
+        activeName:'1',
+        tabDisabled:[],
+        dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
           date: '投标文件签字盖章',
@@ -217,48 +273,105 @@
           city: '',
         }],
         tableData: [{
-          people: '审查标准：1111',
-          name: '',
-          pass: '',
-          kong:'',
-          ra1:1,
-          ra2:2,
-          radio: '',
-          id:1111
-        },{
+          index:0,
           people: '招标人1：',
-          name: '[1] 重庆网控科技发展有限公司',
+          name: '[1]重庆网控科技发展有限公司',
           pass: '1',
-          kong:'',
-          ra1:1,
-          ra2:2,
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
-          id:2222
+          id:1,
         }, {
+          index:1,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass: '2',
-          kong:'',
-          ra1:1,
-          ra2:2,
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
           radio: '',
-          id:3333
-        }, {
-          people: '招标人3：',
-          name: '[3] 夏丰热工研究院有限公司',
-          pass: '1',
-          kong:'',
-          ra1:1,
-          ra2:2,
-          radio:'',
-          id:4444
+          id:2,
+        },{
+          index:2,
+          people: '招标人2：',
+          name: '[2] 夏丰热工研究院有限公司',
+          pass: '2',
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:3,
         }],
-
+        tableData11: [{
+          index:3,
+          people: '招标人1：',
+          name: '[1]重庆网控科技发展有限公司',
+          pass2: '1',
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:4,
+        }, {
+          index:4,
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司',
+          pass2: '2',
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:5,
+        },{
+          index:5,
+          people: '招标人2：',
+          name: '[2] 夏丰热工研究院有限公司',
+          pass2: '2',
+          content:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:6,
+        }],
+        allRadio:[],
+        idradionoprss:'',//table不合格的id
+        checkedNumRadio:"",
+        d:0
       }
-
+    },
+    computed: {
+      completePercent(){
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
+        let fillCount = 0;
+        for(var i=0;i<this.tableData.length;i++){
+          if(this.tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        return Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
+      }
     },
     mounted(){
-    var setting = {
+
+      //获取之前的选择的值
+      var tableData = this.$loaclStore.get('zhpbbf_资格审查项1');
+      var tableData11 = this.$loaclStore.get('zhpbbf_资格审查项2');
+      if(tableData){
+        this.tableData = tableData;
+      }
+      if(tableData11){
+        this.tableData11 = tableData11;
+      }
+
+      var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
 			},
@@ -271,17 +384,8 @@
 
 		var zNodes =[
 			{ id:1, pId:0, name:"资格审查项", open:true},
-			{ id:11, pId:1, name:"1", open:false},
-			{ id:111, pId:11, name:"叶子节点 1-1-1"},
-			{ id:112, pId:11, name:"叶子节点 1-1-2"},
-			{ id:113, pId:11, name:"叶子节点 1-1-3"},
-			{ id:114, pId:11, name:"叶子节点 1-1-4"},
-			{ id:12, pId:1, name:"11", open:false},
-			{ id:121, pId:12, name:"叶子节点 1-2-1"},
-			{ id:122, pId:12, name:"叶子节点 1-2-2"},
-			{ id:123, pId:12, name:"叶子节点 1-2-3"},
-			{ id:124, pId:12, name:"叶子节点 1-2-4"},
-
+			{ id:11, pId:1, name:"专业资质是否达标", open:false},
+			{ id:12, pId:1, name:"公司投资金额是否达标", open:false},
 		];
 
 		function dblClickExpand(treeId, treeNode) {
@@ -293,7 +397,7 @@
 		});
       setTimeout(function(){
         $("#treeDemo_1_a").addClass("curSelectedNode");
-      },200)
+      },200);
       $("#treeDemo").on('click','#treeDemo_1_a',function(){
         $(".a1").show();
         $(".a2").hide();
@@ -305,38 +409,97 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
       },
 
-      arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
-        if (rowIndex === 0) {
-          return [1, 4];
+      failuredRadio(radio,id,index, tableKey){
+       var store_radio = null;
+       for(var i = 0;i<this[tableKey].length;i++){
+          if(this[tableKey][i].id==id){
+            store_radio = this[tableKey][i];
+            break;
+          }
+        }
+        if(radio=='不合格'){
+          this.dialogVisible=true;
+          this.idradionoprss = id;
+        }else if(radio=='合格'){
+          store_radio.content = ''
+          this.saveStorage();
         }
       },
-
-      hahaha(radio,id){
-        console.log(radio,id)
+      // 本地存储local封装
+      saveStorage(){
+        this.$loaclStore.set('zhpbbf_资格审查项1',this.tableData);
+        this.$loaclStore.set('zhpbbf_资格审查项2',this.tableData11);
       },
-
+      isAllFilled(){
+        var tableData = this.$loaclStore.get('zhpbbf_资格审查项1');
+        var tableData11 = this.$loaclStore.get('zhpbbf_资格审查项2');
+        var isAllF = true;
+        for(var i=0;i<tableData.length;i++){
+          if(!tableData[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(!tableData11[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        return isAllF;
+      },
       quanbu(){
-
         for(var i = 0;i<this.tableData.length;i++){
-          this.tableData[i].radio=1;
+          this.tableData[i].radio='合格';
         }
-        console.log(this.tableData.radio)
-        // this.tableData.radio2=1;
-        // this.tableData.radio3=1;
-        // this.tableData.radio4=1;
+        for(var i = 0;i<this.tableData11.length;i++){
+          this.tableData11[i].radio='合格';
+        }
+        this.saveStorage();
+      },
+       onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '1', '1', this);
+      },
+      changeView(){      //路由跳转传参函数
+        window.location.href = '/operation/zjps/zhpbbf/unFinishQualificationsResult';
+      },
+      allSubmit(){
+        this.$loaclStore.set('zhpbbf_资格审查isSubmit',true);
+        let mssg=this.$loaclStore.get('zhpbbf_资格审查项1');
+        let mssg11=this.$loaclStore.get('zhpbbf_资格审查项2');
+        if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
+          this.$message({
+            message: '请选择合格/不合格',
+            center: true
+          });
+        }else{
+          this.$router.push({
+            path: '/operation/zjps/zhpbbf/myQualificationsResult'
+          })
+        }
+      },
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        for(var i = 0;i<this.tableData.length;i++){
+          if(this.tableData[i].id==this.idradionoprss){
+            this.tableData[i].content=childValue;
+          }
+        }
+        for(var i = 0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].id==this.idradionoprss){
+            this.tableData11[i].content=childValue;
+          }
+        }
+        this.saveStorage();
+        this.dialogVisible=false;
       }
-
     },
   }
-
-
 
 </script>
 
@@ -431,6 +594,13 @@
           display:none;
         }
       }
+    }
+    .qu{
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #ebeef5;
+        border-bottom: none;
+        font-size: 14px;
     }
   }
 </style>

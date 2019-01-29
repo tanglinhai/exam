@@ -47,7 +47,7 @@
                         <el-table-column
                             label="资格审查项进度">
                             <template slot-scope="scope">
-                                <el-progress :percentage="0"></el-progress>
+                                <el-progress :percentage="scope.row.completePercent"></el-progress>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -98,19 +98,38 @@
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '2',
+          name: '李四',
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '3',
+          name: '王五',
           address: '未完成'
         }],
         progres:'',
+        d:0
       }
-
+    },
+    computed:{
+      completePercent(){
+        var tableData = this.$loaclStore.get('资格审查项1');
+        var tableData11 = this.$loaclStore.get('资格审查项2');
+        let len=tableData11.length+tableData.length;
+        let fillCount = 0;
+        for(var i=0;i<tableData.length;i++){
+          if(tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        return Math.floor(fillCount /len*100);
+      }
     },
     mounted(){
-      
+      this.tableData[0].completePercent = this.completePercent;
     },
     methods: {
       onTabClick(tab, event){
@@ -123,9 +142,6 @@
       },
     },
   }
-
-
-
 </script>
 
 <style lang="scss">

@@ -30,6 +30,12 @@
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        </el-tab-pane>
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
+        </el-tab-pane>
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <div>
             <el-row style="line-height:40px;">
               <el-col :span="12">
@@ -40,17 +46,16 @@
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
                     <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
-                    <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人资格审查项表</el-button>
-                    <el-button size="small" type="info" @click="checkUnlockRecord">查看资格审查项解锁记录</el-button>
-                    <el-button size="small" type="info" @click="qualificationUnlockApplication">资格审查项解锁</el-button>
+                    <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人符合性审查项表</el-button>
+                    <el-button size="small" type="info" @click="checkUnlockRecord">查看符合性审查项解锁记录</el-button>
+                    <el-button size="small" type="info" @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
                 </div>
               </el-col>
             </el-row>
             <el-table
                 :data="tableData"
                 border
-                style="width:100%"
-                >
+                style="width:100%">
                 <el-table-column
                     prop="num"
                     label="序号"
@@ -79,7 +84,7 @@
             <el-row class="with">
               <el-col :span="24">
                 <div class="grid-content bg-purple">
-                  <div class="letter">注：1、对于实质性响应项，凡资格审查项中有任何一条未通过评审要求，即界定为无效投标人。</div>
+                  <div class="letter">注：1、对于实质性响应项，凡符合性审查项中有任何一条未通过评审要求，即界定为无效投标人。</div>
                   <div class="letter pad">2、对于非实质响应项，当启用废标设置并且未通过评审要求的项数大于最大偏离项，即界定为无效投标人。</div>
                   <div class="pad">3、评标委员会各成员在表格相应位置中记录各投标人是否符合要求，符合要求打“√”，不符合要求打“×”。结论为“合格”或“不合格”。 </div>
                 </div>
@@ -99,12 +104,6 @@
               </el-col>
             </el-row>
           </div>
-        </el-tab-pane>
-        <el-tab-pane name="3" :disabled="tabDisabled[2]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
-        </el-tab-pane>
-        <el-tab-pane name="4" :disabled="tabDisabled[3]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
@@ -132,7 +131,7 @@
       <QualificationUnlock ></QualificationUnlock>
     </el-dialog>
     <el-dialog
-      title="解锁申请记录"
+      title="查看资格审查项解锁记录"
       :visible.sync=" dialogViewUnlockRecord"
       width="700px"
     >
@@ -154,7 +153,7 @@
 
     data () {
       return {
-        activeName:'2',
+        activeName:'4',
         tabDisabled:[],
         tableData:[
           {num:'1',factor:'投标报价',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
@@ -167,25 +166,25 @@
         ],
         dialogVisible:false,//查看个人资格审查项表弹框
         title:'个人初审类活动表',
-        dialogFormVisible:false,//资格审查项汇总解锁申请
-        dialogVisibleTitle:'资格审查项汇总解锁申请',
+        dialogFormVisible:false,//资格审查项汇总解锁申
+        dialogVisibleTitle:'符合性审查项汇总解锁申请',
         dialogViewUnlockRecord:false,
         isSubmit:false
       }
     },
     created:function(){
-      this.isSubmit = this.$loaclStore.get('zhpbbf_资格审查项汇总是否提交');
+      this.isSubmit = this.$loaclStore.get('zhpbbf_符合性审查项汇总是否提交');
     },
     mounted(){
     },
     methods: {
        onTabClick1(tab, event){
-        this.$commonFun.onTabClick1(tab, event, '2', '2', this);
+        this.$commonFun.onTabClick1(tab, event, '4', '2', this);
       },
       goToNextStage(){
         this.$commonFun.exam_operation_answer_calc();
-        this.changeView('/operation/zjps/zhpbbf/startEvaluation_fhx');
-        this.$loaclStore.set('zhpbbf_资格审查项汇总是否提交', true);
+        this.changeView('/operation/zjps/zhpbbf/businessAffairs');
+        this.$loaclStore.set('zhpbbf_符合性审查项汇总是否提交', true);
       },
       changeView(url){
         window.location.href = url;
