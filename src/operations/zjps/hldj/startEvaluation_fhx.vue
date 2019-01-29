@@ -57,7 +57,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="0"></el-progress>
+                        <el-progress :percentage="d"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -94,7 +94,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -141,7 +141,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio2(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -228,7 +228,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry @childByValue="childByValue"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -270,39 +270,85 @@
           city: '',
         }],
         tableData: [{
+          index:0,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass: '1',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222
+          id:1,
         }, {
+          index:1,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass: '2',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333
+          id:2,
         },{
+          index:2,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass: '2',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555
+          id:3,
+        }],
+        tableData11: [{
+          index:0,
+          people: '招标人1：',
+          name: '[1]重庆网控科技发展有限公司',
+          pass2: '1',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:4,
+        }, {
+          index:1,
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司',
+          pass2: '2',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:5,
+        },{
+          index:2,
+          people: '招标人2：',
+          name: '[2] 夏丰热工研究院有限公司',
+          pass2: '2',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:6,
         }],
         activeName:'sec',
         allRadio:[],
+        idradionoprss:'',//table不合格的id
+        idqualified:"",//table合格的id
+        idradionoprss2:"",//table11不合格的id
+        idqualified2:"",//table11合格的id
+        checkedNumRadio:"",
+        a:'',//tableData11的length
+        b:'',//tableData的length
+        c:"",//选中rodio的length
+        d:0
       }
 
     },
     mounted(){
+      let a=this.tableData11.length;
+      let b=this.tableData.length;
+      this.a=this.checkedNumRadio/a+b;
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -348,27 +394,70 @@
         }
       },
 
-      hahaha(radio,id){
-        // console.log(radio,id)
+      failuredRadio(radio,id,index){
+        // console.log(radio,id,index);
         if(radio=='不合格'){
-          this.dialogVisible=true
+          this.idradionoprss=id;
+          this.dialogVisible=true;
+        }else if(radio=='合格'){
+          this.idqualified=id;
+          for(var i = 0;i<this.tableData.length;i++){
+            if(this.tableData[i].id==this.idqualified){
+              this.tableData[i].content='';
+            }
+          }
+        }
+        this.cover(this.allRadio,id,radio,false);
+        this.$loaclStore.set('isSubmit',false);
+      },
+      failuredRadio2(radio,id,index){
+        // console.log(radio,id,index);
+        if(radio=='不合格'){
+          this.idradionoprss2=id;
+          this.dialogVisible=true;
+        }else if(radio=='合格'){
+          this.idqualified2=id;
+          for(var i = 0;i<this.tableData11.length;i++){
+            if(this.tableData11[i].id==this.idqualified2){
+              this.tableData11[i].msg='';
+            }
+          }
         }
         this.cover(this.allRadio,id,radio);
         this.$loaclStore.set('isSubmit',false);
       },
+      // hahaha(radio,id){
+      //   // console.log(radio,id)
+      //   if(radio=='不合格'){
+      //     this.dialogVisible=true
+      //   }
+      //   this.cover(this.allRadio,id,radio);
+      //   this.$loaclStore.set('isSubmit',false);
+      // },
 
       // 本地存储local封装
+      // 本地存储local封装
       cover(num,id,radio){
+        // console.log(num, id, radio);
         num.push({
           id:id,
           value:radio,
         });
         let str={};
+        // console.log(num);
         num.forEach(item => {
           str[item.id]=item;
-        })
+        });
         let ps=Object.values(str);
+        this.a=this.tableData11.length;
+        this.b=this.tableData.length;
+        var s=this.a+this.b;
+        console.log(s);
+        this.c=ps.length;
+        this.d=Math.floor(this.c /( this.a + this.b)*100);
+        this.$refs.aaa.$options.propsData.percentage=this.d;
         this.$loaclStore.set('msg',ps);
+        this.$loaclStore.set('datalength',s);
       },
 
       quanbu(){
@@ -396,6 +485,19 @@
           this.$router.push({
             path: '/operation/zjps/hldj/myQualificationsResult_fhx'
           })
+        }
+      },
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        for(var i = 0;i<this.tableData.length;i++){
+          if(this.tableData[i].id==this.idradionoprss){
+            this.tableData[i].content=childValue;
+          }
+        }
+        for(var i = 0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].id==this.idradionoprss2){
+            this.tableData11[i].msg=childValue;
+          }
         }
       }
     },

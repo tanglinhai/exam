@@ -63,7 +63,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="0"></el-progress>
+                        <el-progress :percentage="d"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -299,10 +299,18 @@
         }],
         activeName:'sec',
         allRadio:[],
+        d:0
       }
 
     },
     mounted(){
+      // console.log(this.$loaclStore.get('msg'));
+      // console.log(this.$loaclStore.get('datalength'));
+      let a;
+      let b;
+      a=this.$loaclStore.get('msg').length;//选中的数据length
+      b=this.$loaclStore.get('datalength');//数据的length
+      this.d=a/b*100;
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand

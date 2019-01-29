@@ -50,7 +50,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="0"></el-progress>
+                        <el-progress :percentage="d" ref="aaa"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -338,9 +338,17 @@
         idqualified:"",//table合格的id
         idradionoprss2:"",//table11不合格的id
         idqualified2:"",//table11合格的id
+        checkedNumRadio:"",
+        a:'',//tableData11的length
+        b:'',//tableData的length
+        c:"",//选中rodio的length
+        d:0
       }
     },
     mounted(){
+      let a=this.tableData11.length;
+      let b=this.tableData.length;
+      this.a=this.checkedNumRadio/a+b;
       var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -399,6 +407,7 @@
           }
         }
         this.cover(this.allRadio,id,radio,false);
+        this.$loaclStore.set('isSubmit',false);
       },
       failuredRadio2(radio,id,index){
         // console.log(radio,id,index);
@@ -426,13 +435,18 @@
         let str={};
         // console.log(num);
         num.forEach(item => {
-          console.log(item);
           str[item.id]=item;
         });
-        console.log(str);
         let ps=Object.values(str);
-        // console.log(ps);
+        this.a=this.tableData11.length;
+        this.b=this.tableData.length;
+        var s=this.a+this.b;
+        console.log(s);
+        this.c=ps.length;
+        this.d=Math.floor(this.c /( this.a + this.b)*100);
+        this.$refs.aaa.$options.propsData.percentage=this.d;
         this.$loaclStore.set('msg',ps);
+        this.$loaclStore.set('datalength',s);
       },
 
       quanbu(){
