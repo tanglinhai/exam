@@ -24,27 +24,27 @@
     </div>
 
     <div class="busa_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+        <el-tab-pane name="1">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        <el-tab-pane name="2">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        <el-tab-pane name="3">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+        <el-tab-pane name="4">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+        <el-tab-pane name="5">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+        <el-tab-pane name="6">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -88,7 +88,24 @@
               (2000字之内)  
             </div> 
             <div class="ri">
-              <textarea style="width: 1000px;height: 200px;"></textarea>
+              <textarea style="width: 1000px;height: 200px;">
+                评审意见:
+                    本项目共有3家投标单位参加投标，分别是：“北京金商祺科技股份有限公司、北京锐信博通科技有限公司、北京迪科远望科技股份有限公司”。根据招标文件确定的评分原则，评标专家们上述3家分别进行了，符合性审查和综合打分。经过综合评分及排序，评标结果如下：
+
+                第一中标候选人：北京金商祺科技股份有限公司
+                          得分：93.5分
+                投标总价：人民币34.50万元
+
+                第二中标候选人：北京锐信博通科技有限公司
+                          得分：80.49分
+                      投标总价：人民币34.68万元
+
+                第三中标候选人：北京迪科远望科技股份有限公司
+                          得分：78.23分
+                      投标总价：人民币34.80万元
+
+                   评标委员会推荐北京金商祺科技股份有限公司为对外经贸大学广播站改造工程项目第一中标候选人。
+              </textarea>
             </div>
           </el-row>
         </el-tab-pane>
@@ -130,6 +147,27 @@
 
     },
     methods: {
+      onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="1"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
+        }
+        if(tab.name=="2"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
+        }
+        if(tab.name=="3"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult_fhx';
+        }
+        if(tab.name=="4"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
+        }
+        if(tab.name=="5"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult_xxjs';
+        }
+        if(tab.name=="6"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_xxjs';
+        }
+      },
       goToNextStage(){
         this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/submitSummary');
@@ -156,6 +194,7 @@
     overflow: hidden;
 
     .myform{
+      margin-top: 20px;
       .le{
         float: left;
         width: 120px;

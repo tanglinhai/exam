@@ -24,24 +24,24 @@
     </div>
 
     <div class="leader_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+        <el-tab-pane name="1">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        <el-tab-pane name="2">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        <el-tab-pane name="3">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+        <el-tab-pane name="4">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+        <el-tab-pane name="5">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
 
         <el-tab-pane name="sec">
@@ -55,8 +55,8 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="goToNextStage()">提交</el-button>
-                    <el-button size="small" type="info" @click="individualTrial">查看个人详细评审（技术）审查项表</el-button>
+                    <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
+                    <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人详细评审（技术）审查项表</el-button>
                     <el-button size="small" type="info">查看详细评审（技术）审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">详细评审（技术）审查项解锁</el-button>
                 </div>
@@ -115,8 +115,8 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/submitSummary')"><i class="el-icon-edit"></i> 评审汇总</span>
+        <el-tab-pane name="6">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -135,7 +135,7 @@
       <QualificationUnlock ></QualificationUnlock>
     </el-dialog>
     <el-dialog
-      title="查看资格审查项解锁记录"
+      title="查看详细评审（技术）项汇解锁记录"
       :visible.sync=" dialogViewUnlockRecord"
       width="700px"
     >
@@ -166,21 +166,47 @@
           {num:'4',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'5',factor:'项目经理要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'6',factor:'业绩要求：见招标公告或投标邀请书第3.2款；',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
-          {num:'结论',factor:'是否通过资格审查项检查',name:'合格',name1:'合格',name2:'合格'}
+          {num:'结论',factor:'是否通过详细评审（技术）项检查',name:'合格',name1:'合格',name2:'合格'}
         ],
         dialogVisible:false,//查看个人资格审查项表弹框
         title:'个人初审类活动表',
         dialogFormVisible:false,//资格审查项汇总解锁申请
         dialogVisibleTitle:'详细评审（技术）项汇总解锁申请',
-        dialogViewUnlockRecord:false
+        dialogViewUnlockRecord:false,
+        isSubmit:false
       }
+    },
+    created:function(){
+      this.isSubmit = this.$loaclStore.get('详细评审（技术）项汇总是否提交');
     },
     mounted(){
     },
     methods: {
+      onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="1"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
+        }
+        if(tab.name=="2"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
+        }
+        if(tab.name=="3"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult_fhx';
+        }
+        if(tab.name=="4"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
+        }
+        if(tab.name=="5"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult_xxjs';
+        }
+        if(tab.name=="6"){
+          window.location.href ='/operation/zjps/hldj/submitSummary';
+        }
+      },
       goToNextStage(){
         // this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/reviewSummary');
+        this.$loaclStore.set('详细评审（技术）项汇总是否提交', true);
       },
       changeView(url){
         window.location.href = url;
