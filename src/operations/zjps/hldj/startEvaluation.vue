@@ -280,7 +280,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222,
+          id:1,
         }, {
           index:1,
           people: '招标人2：',
@@ -290,7 +290,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333,
+          id:2,
         },{
           index:2,
           people: '招标人2：',
@@ -300,7 +300,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555,
+          id:3,
         }],
         tableData11: [{
           index:0,
@@ -311,7 +311,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222,
+          id:4,
         }, {
           index:1,
           people: '招标人2：',
@@ -321,7 +321,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333,
+          id:5,
         },{
           index:2,
           people: '招标人2：',
@@ -331,7 +331,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555,
+          id:6,
         }],
         allRadio:[],
         idradionoprss:'',//不合格的id
@@ -437,6 +437,11 @@
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
           this.$loaclStore.set('isSubmit',false);
         }
+        for(var i = 0;i<this.tableData11.length;i++){
+          this.tableData11[i].radio='合格';
+          this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
+          this.$loaclStore.set('isSubmit',false);
+        }
       },
       changeView(){      //路由跳转传参函数
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
@@ -444,7 +449,7 @@
       allSubmit(){
         this.$loaclStore.set('isSubmit',true);
         let mssg=this.$loaclStore.get('msg');
-        if(mssg.length != this.tableData.length){
+        if(mssg.length != (this.tableData.length+this.tableData11.length)){
           this.$message({
             message: '请选择合格/不合格',
             center: true
