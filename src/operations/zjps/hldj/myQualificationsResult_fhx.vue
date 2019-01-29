@@ -24,12 +24,12 @@
     </div>
 
     <div class="quexa_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+        <el-tab-pane name="1">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        <el-tab-pane name="2">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane  name="sec">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -144,7 +144,8 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar" @click="tabView"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <!-- /operation/zjps/hldj/finishQualificationsResult_fhx -->
           
         </el-tab-pane>
         <el-tab-pane disabled>
@@ -256,6 +257,18 @@
       // console.log(this.tableData);
     },
     methods: {
+       onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="1"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
+        }
+        if(tab.name=="2"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
+        }
+        if(tab.name=="3"){
+          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
+        }
+      },
        viewChange(name){
         this.$router.push({path:`${name}`});
       },
@@ -265,7 +278,14 @@
           return [1, 5];
         }
       },
-
+      tabView(){
+        if(this.$loaclStore.get('msg') == undefined){
+          this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
+          // alert(1111)
+          }else{
+          this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
+        }
+      }
 
     },
   }
