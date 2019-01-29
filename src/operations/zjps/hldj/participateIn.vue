@@ -188,6 +188,9 @@ export default {
            dialogApplyAvoid:false,//申请回避弹框
         }
     },
+    mounted(){
+        
+    },
     methods:{
         handleSizeChange(pageSize){
 

@@ -174,7 +174,6 @@
       this.nowTime = new Date();
       this.id = this.$route.params.id;
       this.id2 = this.$route.params.id2;   //传递第二个值用于判断是不是练习入口进入
-      console.log(this.id2,this.id)
       // this.startTime = new Date();
       this.init();
       window.addEventListener('scroll', this.handleScroll);
@@ -265,6 +264,10 @@
        * 初始化
        */
       init(){
+        //清楚操作题之前存储的键值对storage
+        this.$loaclStore.clear();
+
+
         if(this.id&&this.id2==11){    //如果练习点击进入此项不显示
           this.lianxi=false;
         }
@@ -392,17 +395,13 @@
           QA = !item.sanswer == '';
         })
         this.operationQuestions.some((item) => {
-          operation__ = this.$loaclStore.get('isSubmitPaper_'+item.id) == '';
-
-
-          console.log('=====================', this.$loaclStore.get('isSubmitPaper_'+item.id));
+          operation__ = !this.$loaclStore.get('isSubmitPaper_'+item.id) == '';
         })
         if(single&&mutil&&judge&&QA&&operation__){
           isAllAnswer = true;
         } else {
           isAllAnswer = false;
         }
-        console.log(isAllAnswer,isMust);
         if(isAllAnswer === false && isMust !== true){
           this.$message.warning('考试时间未到，请完成所有题目!');
         } else {
