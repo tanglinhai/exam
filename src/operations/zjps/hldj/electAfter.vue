@@ -151,7 +151,7 @@ export default {
                 {num:'0635-198N517/1',file:'夏丰热工研究院有限公司'}
             ],
             tableData3:[
-                {num:'1',name:'张三',id:'352226199505120036',endNum:'1',status:'进行中',min:'河南省综合专家库',phoneNum:'18700000001'},
+                {num:'1',name:'张三',id:'352226199505120036',endNum:'0',status:'进行中',min:'河南省综合专家库',phoneNum:'18700000001'},
                 {num:'2',name:'李四',id:'352226199505120037',endNum:'0',status:'进行中',min:'北京科技大学专家库',phoneNum:'18700000002'},
                 {num:'3',name:'王五',id:'352226199505120038',endNum:'0',status:'一推举',min:'国际专家库',phoneNum:'18700000003'},
             ],

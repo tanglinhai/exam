@@ -40,6 +40,7 @@
         </el-tab-pane>
         <el-tab-pane name="5">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"  name="sec"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>

@@ -34,6 +34,7 @@
         </el-tab-pane>
         <el-tab-pane name="3">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
+
         </el-tab-pane>
         <el-tab-pane  name="sec">
           <span slot="label"  class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>

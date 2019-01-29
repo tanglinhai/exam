@@ -221,6 +221,7 @@
             type: 'success',
             message: '结束操作成功!'
           });
+          this.$loaclStore.set('isSubmitPaper_'+item.id, true)
         }).catch(() => {
           this.$message({
             type: 'info',
@@ -391,7 +392,10 @@
           QA = !item.sanswer == '';
         })
         this.operationQuestions.some((item) => {
-          operation__ = item.sanswer !== '';
+          operation__ = this.$loaclStore.get('isSubmitPaper_'+item.id) == '';
+
+
+          console.log('=====================', this.$loaclStore.get('isSubmitPaper_'+item.id));
         })
         if(single&&mutil&&judge&&QA&&operation__){
           isAllAnswer = true;
