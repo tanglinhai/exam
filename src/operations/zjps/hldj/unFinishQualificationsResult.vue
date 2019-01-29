@@ -115,15 +115,15 @@
       let b;
       a=this.$loaclStore.get('msg').length;//选中的数据length
       b=this.$loaclStore.get('datalength');//数据的length
-      this.d=a/b*100;
+      this.d= Math.floor(a/b*100);
     },
     methods: {
       onTabClick(tab, event){
-        console.log(tab.name)
+        console.log(tab.name);
         if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/startEvaluation';
         }
-        
+
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

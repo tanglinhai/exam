@@ -338,11 +338,7 @@
         idradionoprss:'',//table不合格的id
         idqualified:"",//table合格的id
         checkedNumRadio:"",
-        a:'',//tableData11的length
-        b:'',//tableData的length
-        c:"",//选中rodio的length
         d:0
-
       }
     },
     computed: {
@@ -436,12 +432,12 @@
           str[item.id]=item;
         });
         let ps=Object.values(str);
-        this.a=this.tableData11.length;
-        this.b=this.tableData.length;
-        let s=this.a+this.b;
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
         console.log(s);
-        this.c=ps.length;
-        this.d=Math.floor(this.c /( this.a + this.b)*100);
+        // this.c=ps.length;
+        this.d=Math.floor(ps.length /( this.tableData11.length +this.tableData.length)*100);
         this.$refs.aaa.$options.propsData.percentage=this.d;
         this.$loaclStore.set('msg',ps);
         this.$loaclStore.set('datalength',s);

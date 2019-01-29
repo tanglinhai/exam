@@ -154,7 +154,7 @@
                           label="">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              {{scope.row.msg}}
+                                  {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -307,7 +307,7 @@
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass2: '1',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
@@ -317,7 +317,7 @@
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
@@ -327,7 +327,7 @@
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
@@ -345,7 +345,6 @@
         c:"",//选中rodio的length
         d:0
       }
-
     },
     mounted(){
       let a=this.tableData11.length;
