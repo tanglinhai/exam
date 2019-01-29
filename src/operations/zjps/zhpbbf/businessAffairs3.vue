@@ -161,11 +161,7 @@
     background:white;
     border-radius:5px;
     overflow: hidden;
-    .paddmar{
-      display:block;
-      width:100%;
-      height:100%;
-    }
+    
     .busa_a{
       background:#c8d3d8;
       // height:42px;

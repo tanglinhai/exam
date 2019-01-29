@@ -26,7 +26,7 @@
     <div class="aaa_b">
       <el-tabs type="border-card">
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -205,23 +205,23 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar" @click="changeView"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -280,7 +280,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222,
+          id:1,
         }, {
           index:1,
           people: '招标人2：',
@@ -290,7 +290,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333,
+          id:2,
         },{
           index:2,
           people: '招标人2：',
@@ -300,7 +300,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555,
+          id:3,
         }],
         tableData11: [{
           index:0,
@@ -311,7 +311,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222,
+          id:4,
         }, {
           index:1,
           people: '招标人2：',
@@ -321,7 +321,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333,
+          id:5,
         },{
           index:2,
           people: '招标人2：',
@@ -331,7 +331,7 @@
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555,
+          id:6,
         }],
         allRadio:[],
         idradionoprss:'',//table不合格的id
@@ -441,6 +441,11 @@
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
           this.$loaclStore.set('isSubmit',false);
         }
+        for(var i = 0;i<this.tableData11.length;i++){
+          this.tableData11[i].radio='合格';
+          this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
+          this.$loaclStore.set('isSubmit',false);
+        }
       },
       changeView(){      //路由跳转传参函数
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
@@ -448,7 +453,7 @@
       allSubmit(){
         this.$loaclStore.set('isSubmit',true);
         let mssg=this.$loaclStore.get('msg');
-        if(mssg.length != this.tableData.length){
+        if(mssg.length != (this.tableData.length+this.tableData11.length)){
           this.$message({
             message: '请选择合格/不合格',
             center: true

@@ -132,12 +132,12 @@
                         </el-table-column>
                       </el-table>                      
                   </template>
-                  <el-row style="line-height:40px;margin-bottom:5px;">
+                  <!-- <el-row style="line-height:40px;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
                             <el-button type="primary" size="small" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')">下一步</el-button>
                         </div>
-                    </el-col>
+                    </el-col> -->
                 </el-row>
                 </div>
               </el-col>
