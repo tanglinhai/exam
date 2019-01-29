@@ -131,9 +131,6 @@
       },
     },
   }
-
-
-
 </script>
 
 <style lang="scss">

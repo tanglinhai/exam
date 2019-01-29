@@ -50,14 +50,14 @@
             <el-row style="line-height:40px;">
               <el-col :span="12">
                 <div class="grid-content bg-purple">
-                    <span>评标委员会组长：3</span>
+                    <span>评标委员会组长：张三</span>
                 </div>
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
                     <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
                     <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人详细评审（技术）审查项表</el-button>
-                    <el-button size="small" type="info">查看详细评审（技术）审查项解锁记录</el-button>
+                    <el-button size="small" type="info" @click="checkUnlockRecord">查看详细评审（技术）审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">详细评审（技术）审查项解锁</el-button>
                 </div>
               </el-col>
@@ -136,7 +136,7 @@
     </el-dialog>
     <el-dialog
       title="查看详细评审（技术）项汇解锁记录"
-      :visible.sync=" dialogViewUnlockRecord"
+      :visible.sync="dialogViewUnlockRecord"
       width="700px"
     >
       <ViewUnlockRecord ></ViewUnlockRecord>

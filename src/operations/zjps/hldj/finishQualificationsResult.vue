@@ -34,7 +34,7 @@
             <el-row style="line-height:40px;">
               <el-col :span="12">
                 <div class="grid-content bg-purple">
-                    <span>评标委员会组长：3</span>
+                    <span>评标委员会组长：张三</span>
                 </div>
               </el-col>
               <el-col :span="12">

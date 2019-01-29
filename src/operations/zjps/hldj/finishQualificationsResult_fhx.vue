@@ -44,14 +44,14 @@
             <el-row style="line-height:40px;">
               <el-col :span="12">
                 <div class="grid-content bg-purple">
-                    <span>评标委员会组长：3</span>
+                    <span>评标委员会组长：张三</span>
                 </div>
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
                     <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
                     <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人符合性审查项表</el-button>
-                    <el-button size="small" type="info">查看符合性审查项解锁记录</el-button>
+                    <el-button size="small" type="info" @click="checkUnlockRecord">查看符合性审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
                 </div>
               </el-col>
@@ -77,11 +77,11 @@
                     </el-table-column>
                     <el-table-column
                         prop="name1"
-                        label="普瑞太阳能有限公司（测试）（2）">
+                        label="普瑞太阳能有限公司">
                     </el-table-column>
                     <el-table-column
                         prop="name2"
-                        label="夏丰热工研究院有限公司（测试）（3）">
+                        label="夏丰热工研究院有限公司">
                     </el-table-column>
                 </el-table-column>
             </el-table>

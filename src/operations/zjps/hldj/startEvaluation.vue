@@ -234,7 +234,7 @@
   </div>
 </template>
 <script>
-  import FailureEntry from '../dialog/FailureEntry'
+  import FailureEntry from '../dialog/FailureEntry';
   export default {
     name: 'updateBill',
     props:{
@@ -453,7 +453,6 @@
           window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult';
         }
       },
-
       changeView(){      //路由跳转传参函数
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
       },
