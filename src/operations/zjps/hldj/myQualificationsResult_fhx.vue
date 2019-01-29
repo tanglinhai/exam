@@ -146,16 +146,15 @@
         <el-tab-pane name="3">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <!-- /operation/zjps/hldj/finishQualificationsResult_fhx -->
-          
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="toXxjs"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="toXxjsAsk"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -251,10 +250,10 @@
 
       let startMsg=this.$loaclStore.get('msg');
       startMsg.forEach((val,index) => {
-        console.log(val,index)
+        // console.log(val,index)
         this.tableData[index].address = startMsg[index].value;
       })
-      // console.log(this.tableData);
+      console.log(this.tableData + '------------');
     },
     methods: {
        onTabClick(tab, event){
@@ -284,14 +283,35 @@
           return [1, 5];
         }
       },
-      // tabView(){
-      //   if(this.$loaclStore.get('msg') == undefined){
-      //     this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
-      //     // alert(1111)
-      //     }else{
-      //     this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
-      //   }
-      // }
+      tabView(){
+        if(this.$loaclStore.get('msg') == undefined){
+          this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
+          // alert(1111)
+          }else{
+          this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
+        }
+      },
+      toXxjs(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/myQualificationsResult_xxjs'
+        }else{
+          return;
+        }
+      },
+      toXxjsAsk(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/finishQualificationsResult_xxjs'
+        }else{
+          return;
+        }
+      },
+      pshz(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/reviewSummary'
+        }else{
+          return;
+        }
+      }
 
     },
   }
