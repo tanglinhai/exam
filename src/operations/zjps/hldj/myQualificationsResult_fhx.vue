@@ -144,7 +144,8 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar" @click="tabView"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <!-- /operation/zjps/hldj/finishQualificationsResult_fhx -->
           
         </el-tab-pane>
         <el-tab-pane disabled>
@@ -256,7 +257,7 @@
       // console.log(this.tableData);
     },
     methods: {
-       viewChange(name){
+      viewChange(name){
         this.$router.push({path:`${name}`});
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
@@ -265,7 +266,14 @@
           return [1, 5];
         }
       },
-
+      tabView(){
+        if(this.$loaclStore.get('msg') == undefined){
+          this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
+          // alert(1111)
+          }else{
+          this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
+        }
+      }
 
     },
   }

@@ -1,6 +1,28 @@
 <template>
     <!-- 申请回避或者参加评标 -->
     <div class="information">
+        <div class="aaa_a">
+            <el-row :gutter="20">
+                <el-col :span="10">
+                <div class="grid-content bg-purple aaa_aleft">
+                    <span>标名称：<em>tih招标项目-专家评标2</em></span>
+                    <span>标号：<em>0635-1909n987</em></span>
+                    <span>包号：<em>0635-1909n987/1</em></span>
+                </div>
+                </el-col>
+                <el-col :span="14">
+                <div class="grid-content bg-purple aaa_aright">
+                    <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+                    <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+                </div>
+                </el-col>
+            </el-row>
+        </div>
         <el-container>
             <el-aside width="500px">
                 <h4>项目资料</h4>
@@ -159,6 +181,33 @@ export default {
     .el-main{
         padding: 0 15px;
         overflow: hidden;
+    }
+    .aaa_a{
+      background:#c8d3d8;
+      //height:42px;
+      .el-row{
+        margin-left:0px!important;
+        margin-right:0px!important;
+        .aaa_aleft{
+          line-height:42px;
+          span{
+            color:#777777;
+            font-size:14px;
+            font-weight: bold;
+            margin-right:8px;
+            em{
+              color:#ff0000;
+              font-weight: bold;
+            }
+          }
+        }
+        .aaa_aright{
+          float: right;
+          button{
+            margin-top:5px;
+          }
+        }
+      }
     }
 }
 </style>

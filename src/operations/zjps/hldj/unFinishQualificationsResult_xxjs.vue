@@ -39,7 +39,7 @@
           <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane >
-          <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/myQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar" @click="viewChange('/operation/zjps/hldj/startEvaluation_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"  name="sec"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
