@@ -153,8 +153,8 @@
         <el-tab-pane name="5">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -283,7 +283,13 @@
           return [1, 5];
         }
       },
-
+      pshz(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/reviewSummary'
+        }else{
+          return;
+        }
+      }
 
     },
   }

@@ -144,23 +144,23 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane name="1">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="toTab"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="toTabAsk"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="toXxjs"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="toXxjsAsk"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+        <el-tab-pane>
+          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -275,12 +275,12 @@
         else
           this.tableData11[index - 3].address = startMsg[index].value;
       })
-      // console.log(this.tableData);
+      console.log(this.tableData);
     },
     methods: {
       onTabClick(tab, event){
         console.log(tab.name)
-        if(tab.name=="2"){
+        if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
         }
         
@@ -294,7 +294,41 @@
           return [1, 5];
         }
       },
-
+      toTab(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/myQualificationsResult_fhx'
+        }else{
+          return;
+        }
+      },
+      toTabAsk(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/finishQualificationsResult_fhx'
+        }else{
+          return;
+        }
+      },
+      toXxjs(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/myQualificationsResult_xxjs'
+        }else{
+          return;
+        }
+      },
+      toXxjsAsk(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/finishQualificationsResult_xxjs'
+        }else{
+          return;
+        }
+      },
+      pshz(){
+        if(this.$loaclStore.get('submitView') == true){
+          window.location.href='/operation/zjps/hldj/reviewSummary'
+        }else{
+          return;
+        }
+      }
 
     },
   }
