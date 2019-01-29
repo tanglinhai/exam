@@ -94,7 +94,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -126,7 +126,7 @@
                           </el-col>
                       </el-row>
                       <el-table
-                        :data="tableData"
+                        :data="tableData11"
                         border
                         style="width: 100%">
                         <el-table-column
@@ -141,7 +141,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="hahaha(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData11')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -270,32 +270,66 @@
           city: '',
         }],
         tableData: [{
+          index:0,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass: '1',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:2222
+          id:1,
         }, {
+          index:1,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass: '2',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:3333
+          id:2,
         },{
+          index:2,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass: '2',
-          kong:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
-          id:55555
+          id:3,
+        }],
+        tableData11: [{
+          index:0,
+          people: '招标人1：',
+          name: '[1]重庆网控科技发展有限公司',
+          pass2: '1',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:4,
+        }, {
+          index:1,
+          people: '招标人2：',
+          name: '[2] 普瑞太阳能有限公司',
+          pass2: '2',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:5,
+        },{
+          index:2,
+          people: '招标人2：',
+          name: '[2] 夏丰热工研究院有限公司',
+          pass2: '2',
+          msg:'',
+          ra1:'合格',
+          ra2:'不合格',
+          radio: '',
+          id:6,
         }],
         activeName:'sec',
         allRadio:[],
@@ -348,13 +382,20 @@
         }
       },
 
-      hahaha(radio,id){
-        // console.log(radio,id)
+      failuredRadio(radio,id,index, tableKey){
+        // console.log(radio,id,index);
         if(radio=='不合格'){
-          this.dialogVisible=true
+          this.idradionoprss=id;
+          this.dialogVisible=true;
+        }else if(radio=='合格'){
+          this.idqualified=id;
+          for(var i = 0;i<this[tableKey].length;i++){
+            if(this[tableKey][i].id==this.idqualified){
+              this[tableKey][i].content='';
+            }
+          }
         }
-        this.cover(this.allRadio,id,radio);
-        this.$loaclStore.set('isSubmit',false);
+        this.cover(this.allRadio,id,radio,false);
       },
 
       // 本地存储local封装
@@ -377,6 +418,11 @@
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
           this.$loaclStore.set('isSubmit',false);
         }
+        for(var i = 0;i<this.tableData11.length;i++){
+          this.tableData11[i].radio='合格';
+          this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
+          this.$loaclStore.set('isSubmit',false);
+        }
       },
       viewChange(name){
         this.$router.push({path:`${name}`});
@@ -387,7 +433,7 @@
       allSubmit(){
         this.$loaclStore.set('isSubmit',true);
         let mssg=this.$loaclStore.get('msg');
-        if(mssg.length != this.tableData.length){
+        if(mssg.length != (this.tableData.length+this.tableData11.length)){
           this.$message({
             message: '请选择合格/不合格',
             center: true
