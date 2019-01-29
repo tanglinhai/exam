@@ -206,7 +206,6 @@
         </el-tab-pane>
         <el-tab-pane name="2">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane disabled>
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -304,7 +303,7 @@
           id:3,
         }],
         tableData11: [{
-          index:0,
+          index:3,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass2: '1',
@@ -314,7 +313,7 @@
           radio: '',
           id:4,
         }, {
-          index:1,
+          index:4,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass2: '2',
@@ -324,7 +323,7 @@
           radio: '',
           id:5,
         },{
-          index:2,
+          index:5,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
