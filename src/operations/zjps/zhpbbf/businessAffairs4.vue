@@ -24,28 +24,28 @@
     </div>
 
     <div class="busa_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+        <el-tab-pane name="1">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           资格审查项
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane name="2">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           资格审查项汇总
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane name="3">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           符合性审查项
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane name="4">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane name="sec">
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/zhpbbf/businessAffairs2')"><i class="el-icon-edit"></i> 商务</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
           
         </el-tab-pane>
-        <el-tab-pane name="jishu">
+        <el-tab-pane name="5">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
           <el-row style="line-height:40px;">
               <el-col :span="1">
@@ -125,7 +125,7 @@
     name: 'updateBill',
     data () {
       return { 
-        activeName:'jishu',
+        activeName:'5',
         tableData:[
           {num:'第一章、施工方案与技术措施(0.00分-5.00分)',name:'5',name1:'5',name2:'5'},
           {num:'第二章、质量管理体系与措施(0.00分-5.00分)',name:'4',name1:'3',name2:'4'},
@@ -145,6 +145,13 @@
     mounted(){
     },
     methods: {   
+      onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="sec"){
+          window.location.href ='/operation/zjps/zhpbbf/businessAffairs2';
+        }
+        
+      },
       changeView(name){      //路由跳转传参函数
           // console.log(name)
           //this.$router.push({path:`${name}`});
