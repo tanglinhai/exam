@@ -24,9 +24,9 @@
     </div>
 
     <div class="leader_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+        <el-tab-pane name="1">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
@@ -100,8 +100,8 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/startEvaluation_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        <el-tab-pane name="2">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane disabled>
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
@@ -181,8 +181,17 @@
     mounted(){
     },
     methods: {
+       onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="1"){
+          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
+        }
+        if(tab.name=="2"){
+          window.location.href ='/operation/zjps/hldj/startEvaluation_fhx';
+        }
+      },
       goToNextStage(){
-        this.$commonFun.exam_operation_answer_calc();
+        // this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/startEvaluation_fhx');
         this.$loaclStore.set('资格审查项汇总是否提交', true);
       },

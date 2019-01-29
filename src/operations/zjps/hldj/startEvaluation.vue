@@ -24,8 +24,8 @@
     </div>
 
     <div class="aaa_b">
-      <el-tabs type="border-card">
-        <el-tab-pane>
+      <el-tabs type="border-card" v-model="activeName"  @tab-click="onTabClick">
+        <el-tab-pane name="1">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           <div>
             <el-row :gutter="20">
@@ -204,8 +204,8 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+        <el-tab-pane name="2">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane disabled>
@@ -245,6 +245,7 @@
     },
     data () {
       return {
+        activeName:'1',
         dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
@@ -450,6 +451,14 @@
           this.$loaclStore.set('isSubmit',false);
         }
       },
+       onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="2"){
+          window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult';
+        }
+        
+      },
+
       changeView(){      //路由跳转传参函数
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
       },

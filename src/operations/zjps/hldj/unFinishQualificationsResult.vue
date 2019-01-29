@@ -24,9 +24,9 @@
     </div>
 
     <div class="delet_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/startEvaluation')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+        <el-tab-pane name="1">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
@@ -118,6 +118,13 @@
       this.d=a/b*100;
     },
     methods: {
+      onTabClick(tab, event){
+        console.log(tab.name)
+        if(tab.name=="1"){
+          window.location.href ='/operation/zjps/hldj/startEvaluation';
+        }
+        
+      },
       changeView(name){      //路由跳转传参函数
           // console.log(name)
           //this.$router.push({path:`${name}`});
