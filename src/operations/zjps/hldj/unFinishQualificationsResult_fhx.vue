@@ -33,10 +33,10 @@
           
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/startEvaluation_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane  name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label"  class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <div>
             <el-row>
               <el-col :span="24">

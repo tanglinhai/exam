@@ -57,7 +57,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="d"></el-progress>
+                        <el-progress :percentage="d"  ref="aaa" ></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -94,7 +94,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -104,8 +104,9 @@
                         <el-table-column
                           prop="kong"
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -126,7 +127,7 @@
                           </el-col>
                       </el-row>
                       <el-table
-                        :data="tableData"
+                        :data="tableData11"
                         border
                         style="width: 100%">
                         <el-table-column
@@ -141,7 +142,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio2(scope.row.radio,scope.row.id)" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData11')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -149,10 +150,11 @@
                           </template>
                         </el-table-column>
                         <el-table-column
-                          prop="kong"
+                          prop=""
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.msg}}
                             </span>
                           </template>
                         </el-table-column>
@@ -394,37 +396,23 @@
         }
       },
 
-      failuredRadio(radio,id,index){
+
+      failuredRadio(radio,id,index, tableKey){
+        console.log(radio,id,index, tableKey);
         // console.log(radio,id,index);
         if(radio=='不合格'){
           this.idradionoprss=id;
           this.dialogVisible=true;
         }else if(radio=='合格'){
           this.idqualified=id;
-          for(var i = 0;i<this.tableData.length;i++){
-            if(this.tableData[i].id==this.idqualified){
-              this.tableData[i].content='';
+          for(var i = 0;i<this[tableKey].length;i++){
+            if(this[tableKey][i].id==this.idqualified){
+              this[tableKey][i].content='';
+
             }
           }
         }
         this.cover(this.allRadio,id,radio,false);
-        this.$loaclStore.set('isSubmit',false);
-      },
-      failuredRadio2(radio,id,index){
-        // console.log(radio,id,index);
-        if(radio=='不合格'){
-          this.idradionoprss2=id;
-          this.dialogVisible=true;
-        }else if(radio=='合格'){
-          this.idqualified2=id;
-          for(var i = 0;i<this.tableData11.length;i++){
-            if(this.tableData11[i].id==this.idqualified2){
-              this.tableData11[i].msg='';
-            }
-          }
-        }
-        this.cover(this.allRadio,id,radio);
-        this.$loaclStore.set('isSubmit',false);
       },
       // hahaha(radio,id){
       //   // console.log(radio,id)
@@ -466,6 +454,11 @@
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
           this.$loaclStore.set('isSubmit',false);
         }
+        for(var i = 0;i<this.tableData11.length;i++){
+          this.tableData11[i].radio='合格';
+          this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
+          this.$loaclStore.set('isSubmit',false);
+        }
       },
       viewChange(name){
         this.$router.push({path:`${name}`});
@@ -476,7 +469,7 @@
       allSubmit(){
         this.$loaclStore.set('isSubmit',true);
         let mssg=this.$loaclStore.get('msg');
-        if(mssg.length != this.tableData.length){
+        if(mssg.length != (this.tableData.length+this.tableData11.length)){
           this.$message({
             message: '请选择合格/不合格',
             center: true

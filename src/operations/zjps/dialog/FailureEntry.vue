@@ -42,6 +42,7 @@
                     if (valid) {
                       this.$emit("childByValue",this.$data.ruleForm.desc);
                       this.$data.ruleForm.desc='';
+                      this.dialogVisible=false;
                     } else {
                         console.log('error submit!!');
                         return false;

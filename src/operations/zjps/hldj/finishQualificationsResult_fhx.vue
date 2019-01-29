@@ -48,8 +48,8 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="goToNextStage()">提交</el-button>
-                    <el-button size="small" type="info" @click="individualTrial">查看个人符合性审查项表</el-button>
+                    <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
+                    <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人符合性审查项表</el-button>
                     <el-button size="small" type="info">查看符合性审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
                 </div>
@@ -109,13 +109,13 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/startEvaluation_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -170,8 +170,12 @@
         title:'个人初审类活动表',
         dialogFormVisible:false,//资格审查项汇总解锁申
         dialogVisibleTitle:'符合性审查项汇总解锁申请',
-        dialogViewUnlockRecord:false
+        dialogViewUnlockRecord:false,
+        isSubmit:false
       }
+    },
+    created:function(){
+      this.isSubmit = this.$loaclStore.get('资格审查项汇总是否提交');
     },
     mounted(){
     },
@@ -179,6 +183,7 @@
       goToNextStage(){
         // this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/startEvaluation_xxjs');
+        this.$loaclStore.set('符合性审查项汇总是否提交', true);
       },
       changeView(url){
         window.location.href = url;
