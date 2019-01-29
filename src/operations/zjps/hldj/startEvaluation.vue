@@ -424,7 +424,6 @@
           });
 
 
-        console.log('====', num);
         let str={};
         num.forEach(item => {
           str[item.id]=item;
