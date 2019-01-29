@@ -94,7 +94,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index,'tableData')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -142,7 +142,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData11')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id,scope.$index,'tableData11')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -303,7 +303,7 @@
           id:3,
         }],
         tableData11: [{
-          index:0,
+          index:3,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass2: '1',
@@ -313,7 +313,7 @@
           radio: '',
           id:4,
         }, {
-          index:1,
+          index:4,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass2: '2',
@@ -323,7 +323,7 @@
           radio: '',
           id:5,
         },{
-          index:2,
+          index:5,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
@@ -336,20 +336,11 @@
         activeName:'sec',
         allRadio:[],
         idradionoprss:'',//table不合格的id
-        idqualified:"",//table合格的id
-        idradionoprss2:"",//table11不合格的id
-        idqualified2:"",//table11合格的id
         checkedNumRadio:"",
-        a:'',//tableData11的length
-        b:'',//tableData的length
-        c:"",//选中rodio的length
         d:0
       }
     },
     mounted(){
-      let a=this.tableData11.length;
-      let b=this.tableData.length;
-      this.a=this.checkedNumRadio/a+b;
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -377,7 +368,7 @@
 		});
       setTimeout(function(){
         $("#treeDemo_1_a").addClass("curSelectedNode");
-      },200)
+      },200);
       $("#treeDemo").on('click','#treeDemo_1_a',function(){
         $(".a1").show();
         $(".a2").hide();
@@ -407,68 +398,63 @@
         }
       },
 
-
       failuredRadio(radio,id,index, tableKey){
-        console.log(radio,id,index, tableKey);
-        // console.log(radio,id,index);
-        if(radio=='不合格'){
-          this.idradionoprss=id;
-          this.dialogVisible=true;
-        }else if(radio=='合格'){
-          this.idqualified=id;
-          for(var i = 0;i<this[tableKey].length;i++){
-            if(this[tableKey][i].id==this.idqualified){
-              this[tableKey][i].content='';
-
-            }
+        console.log(radio,id,index);
+        var store_radio = null;
+        for(var i = 0;i<this[tableKey].length;i++){
+          if(this[tableKey][i].id==id){
+            store_radio = this[tableKey][i];
+            break;
+            //this[tableKey][i].content='';
           }
+        }
+        if(radio=='不合格'){
+          this.dialogVisible=true;
+          this.idradionoprss = id;
+        }else if(radio=='合格'){
+          store_radio.content = ''
         }
         this.cover(this.allRadio,id,radio,false);
       },
-      // hahaha(radio,id){
-      //   // console.log(radio,id)
-      //   if(radio=='不合格'){
-      //     this.dialogVisible=true
-      //   }
-      //   this.cover(this.allRadio,id,radio);
-      //   this.$loaclStore.set('isSubmit',false);
-      // },
-
-      // 本地存储local封装
       // 本地存储local封装
       cover(num,id,radio){
-        // console.log(num, id, radio);
-        num.push({
-          id:id,
-          value:radio,
-        });
+        var isExist = false;
+        for(var i=0;i<num.length;i++){
+          if(num[i].id == id){
+            isExist = true;
+            num[i].value = radio;
+            break;
+          }
+        }
+        if(!isExist)
+          num.push({
+            id:id,
+            value:radio,
+          });
         let str={};
-        // console.log(num);
         num.forEach(item => {
           str[item.id]=item;
         });
         let ps=Object.values(str);
-        this.a=this.tableData11.length;
-        this.b=this.tableData.length;
-        let s=this.a+this.b;
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
         console.log(s);
-        this.c=ps.length;
-        this.d=Math.floor(this.c /( this.a + this.b)*100);
+        // this.c=ps.length;
+        this.d=Math.floor(ps.length /( this.tableData11.length +this.tableData.length)*100);
         this.$refs.aaa.$options.propsData.percentage=this.d;
-        this.$loaclStore.set('msg',ps);
-        this.$loaclStore.set('datalength',s);
+        this.$loaclStore.set('msg_fhx',ps);
+        this.$loaclStore.set('datalength_fhx',s);
       },
 
       quanbu(){
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
         for(var i = 0;i<this.tableData11.length;i++){
           this.tableData11[i].radio='合格';
           this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
       },
       viewChange(name){
@@ -499,10 +485,11 @@
           }
         }
         for(var i = 0;i<this.tableData11.length;i++){
-          if(this.tableData11[i].id==this.idradionoprss2){
-            this.tableData11[i].msg=childValue;
+          if(this.tableData11[i].id==this.idradionoprss){
+            this.tableData11[i].content=childValue;
           }
         }
+        this.dialogVisible=false;
       }
     },
   }

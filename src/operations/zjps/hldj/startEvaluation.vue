@@ -335,7 +335,6 @@
         }],
         allRadio:[],
         idradionoprss:'',//table不合格的id
-        idqualified:"",//table合格的id
         checkedNumRadio:"",
         d:0
       }
@@ -346,9 +345,6 @@
       }
     },
     mounted(){
-      let a=this.tableData11.length;
-      let b=this.tableData.length;
-      this.a=this.checkedNumRadio/a+b;
       var setting = {
 			view: {
 				dblClickExpand: dblClickExpand

@@ -123,7 +123,6 @@
         if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/startEvaluation';
         }
-
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

@@ -63,7 +63,7 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="d"></el-progress>
+                        <el-progress :percentage="d" ref="aaa"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -100,7 +100,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index,'tableData')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -110,8 +110,9 @@
                         <el-table-column
                           prop="kong"
                           label="">
-                          <template>
+                          <template  slot-scope="scope">
                             <span style="margin-left: 10px">
+                               {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -147,7 +148,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData11')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index,'tableData11')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -157,8 +158,9 @@
                         <el-table-column
                           prop="kong"
                           label="">
-                          <template>
+                          <template  slot-scope="scope">
                             <span style="margin-left: 10px">
+                               {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -228,7 +230,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry @childByValue="childByValue"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -301,50 +303,44 @@
           id:3,
         }],
         tableData11: [{
-          index:0,
+          index:3,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass2: '1',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:4,
         }, {
-          index:1,
+          index:4,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:5,
         },{
-          index:2,
+          index:5,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:6,
         }],
         activeName:'sec',
+        idradionoprss:'',//table不合格的id
         allRadio:[],
         d:0
       }
 
     },
     mounted(){
-      // console.log(this.$loaclStore.get('msg'));
-      // console.log(this.$loaclStore.get('datalength'));
-      let a;
-      let b;
-      a=this.$loaclStore.get('msg').length;//选中的数据length
-      b=this.$loaclStore.get('datalength');//数据的length
-      this.d=a/b*100;
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -391,45 +387,62 @@
       },
 
       failuredRadio(radio,id,index, tableKey){
-        // console.log(radio,id,index);
-        if(radio=='不合格'){
-          this.idradionoprss=id;
-          this.dialogVisible=true;
-        }else if(radio=='合格'){
-          this.idqualified=id;
-          for(var i = 0;i<this[tableKey].length;i++){
-            if(this[tableKey][i].id==this.idqualified){
-              this[tableKey][i].content='';
-            }
+        console.log(radio,id,index);
+        var store_radio = null;
+        for(var i = 0;i<this[tableKey].length;i++){
+          if(this[tableKey][i].id==id){
+            store_radio = this[tableKey][i];
+            break;
+            //this[tableKey][i].content='';
           }
+        }
+        if(radio=='不合格'){
+          this.dialogVisible=true;
+          this.idradionoprss = id;
+        }else if(radio=='合格'){
+          store_radio.content = ''
         }
         this.cover(this.allRadio,id,radio,false);
       },
-
       // 本地存储local封装
       cover(num,id,radio){
-        num.push({
-          id:id,
-          value:radio,
-        });
+        var isExist = false;
+        for(var i=0;i<num.length;i++){
+          if(num[i].id == id){
+            isExist = true;
+            num[i].value = radio;
+            break;
+          }
+        }
+        if(!isExist)
+          num.push({
+            id:id,
+            value:radio,
+          });
         let str={};
         num.forEach(item => {
           str[item.id]=item;
-        })
+        });
         let ps=Object.values(str);
-        this.$loaclStore.set('msg',ps);
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
+        console.log(s);
+        // this.c=ps.length;
+        this.d=Math.floor(ps.length /( this.tableData11.length +this.tableData.length)*100);
+        this.$refs.aaa.$options.propsData.percentage=this.d;
+        this.$loaclStore.set('msg_xxjs',ps);
+        this.$loaclStore.set('datalength_xxjs',s);
       },
 
       quanbu(){
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
         for(var i = 0;i<this.tableData11.length;i++){
           this.tableData11[i].radio='合格';
           this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
       },
       onTabClick(tab, event){
@@ -469,7 +482,25 @@
             path: '/operation/zjps/hldj/myQualificationsResult_xxjs'
           })
         }
+      },
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        console.log(childValue);
+        for(var i = 0;i<this.tableData.length;i++){
+          if(this.tableData[i].id==this.idradionoprss){
+
+            this.tableData[i].content=childValue;
+            console.log(this.tableData[i].content);
+          }
+        }
+        for(var i = 0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].id==this.idradionoprss){
+            this.tableData11[i].content=childValue;
+          }
+        }
+        this.dialogVisible=false;
       }
+
     },
   }
 
