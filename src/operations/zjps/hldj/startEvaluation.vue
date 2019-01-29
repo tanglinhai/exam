@@ -334,10 +334,10 @@
           id:55555,
         }],
         allRadio:[],
-        idradionoprss:'',//不合格的id
-        idqualified:"",//合格的id
-        idradionoprss2:"",
-        idqualified2:"",
+        idradionoprss:'',//table不合格的id
+        idqualified:"",//table合格的id
+        idradionoprss2:"",//table11不合格的id
+        idqualified2:"",//table11合格的id
       }
     },
     mounted(){
@@ -386,7 +386,7 @@
       },
 
       failuredRadio(radio,id,index){
-        console.log(radio,id,index);
+        // console.log(radio,id,index);
         if(radio=='不合格'){
           this.idradionoprss=id;
           this.dialogVisible=true;
@@ -401,7 +401,7 @@
         this.cover(this.allRadio,id,radio,false);
       },
       failuredRadio2(radio,id,index){
-        console.log(radio,id,index);
+        // console.log(radio,id,index);
         if(radio=='不合格'){
           this.idradionoprss2=id;
           this.dialogVisible=true;
@@ -418,16 +418,20 @@
       },
       // 本地存储local封装
       cover(num,id,radio){
+        // console.log(num, id, radio);
         num.push({
           id:id,
           value:radio,
         });
         let str={};
+        // console.log(num);
         num.forEach(item => {
+          console.log(item);
           str[item.id]=item;
         });
+        console.log(str);
         let ps=Object.values(str);
-        console.log(ps);
+        // console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 
