@@ -25,7 +25,7 @@
 
     <div class="quexa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="sec">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           <div>
             <el-row :gutter="20">
@@ -144,23 +144,23 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="1">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="toTab"><i class="el-icon-edit"></i> 符合性审查项</span>
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="toTabAsk"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="toXxjs"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="toXxjsAsk"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -174,7 +174,8 @@
     },
     data () {
       return {
-        activeName:'sec',
+        activeName:'1',
+        tabDisabled:[],
         tableData3: [{
           number:'1',
           date: '1',
@@ -267,23 +268,18 @@
       })
 
 
-      let startMsg=this.$loaclStore.get('msg');
-      console.log(startMsg);
-      startMsg.forEach((val,index) => {
-        if(index < 3)
-          this.tableData[index].address = startMsg[index].value;
-        else
-          this.tableData11[index - 3].address = startMsg[index].value;
+      let zgsc1=this.$loaclStore.get('资格审查项1');
+      let zgsc2=this.$loaclStore.get('资格审查项2');
+      zgsc1.forEach((val,index) => {
+          this.tableData[index].address = val.radio;
       })
-      console.log(this.tableData);
+      zgsc2.forEach((val,index) => {
+          this.tableData11[index].address = val.radio;
+      })
     },
     methods: {
       onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="1"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
-        }
-        
+        this.$commonFun.onTabClick(tab, event, '1', '2', this);
       },
       changeView(){
         window.location.href = '/operation/zjps/hldj/finishQualificationsResult';
@@ -292,41 +288,6 @@
       //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
-        }
-      },
-      toTab(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/myQualificationsResult_fhx'
-        }else{
-          return;
-        }
-      },
-      toTabAsk(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/finishQualificationsResult_fhx'
-        }else{
-          return;
-        }
-      },
-      toXxjs(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/myQualificationsResult_xxjs'
-        }else{
-          return;
-        }
-      },
-      toXxjsAsk(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/finishQualificationsResult_xxjs'
-        }else{
-          return;
-        }
-      },
-      pshz(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/reviewSummary'
-        }else{
-          return;
         }
       }
 

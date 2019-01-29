@@ -25,28 +25,25 @@
 
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-
-        <el-tab-pane name="2">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-
-        <el-tab-pane name="3">
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-
-        <el-tab-pane name="4">
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane name="5">
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane name="6">
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane name="sec">
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
           <el-row style="line-height:40px;border-bottom:2px solid #66b1ff;margin-bottom:5px;">
               <el-col :span="4">
@@ -100,7 +97,8 @@
     name: 'updateBill',
     data () {
       return {
-        activeName:'sec',
+        activeName:'7',
+        tabDisabled:[],
         tableData:[
           {num:'1',name:'重庆网控科技发展有限公司',total:'30000.0000',ip:'1'},
           {num:'3',name:'普瑞太阳能有限公司（测试）',total:'10000.0000',ip:'2'},
@@ -114,25 +112,7 @@
     },
     methods: {
        onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="1"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
-        }
-        if(tab.name=="2"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
-        }
-        if(tab.name=="3"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult_fhx';
-        }
-        if(tab.name=="4"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
-        }
-        if(tab.name=="5"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult_xxjs';
-        }
-        if(tab.name=="6"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_xxjs';
-        }
+        this.$commonFun.onTabClick(tab, event, '8', '2', this);
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

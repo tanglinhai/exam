@@ -25,7 +25,7 @@
 
     <div class="aaa_b">
       <el-tabs type="border-card" v-model="activeName"  @tab-click="onTabClick">
-        <el-tab-pane name="sec">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           <div>
             <el-row :gutter="20">
@@ -135,7 +135,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id,scope.$index, 'tableData11')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index, 'tableData11')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -204,22 +204,22 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="1">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
@@ -244,7 +244,8 @@
     },
     data () {
       return {
-        activeName:'sec',
+        activeName:'1',
+        tabDisabled:[],
         dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
@@ -344,6 +345,17 @@
       }
     },
     mounted(){
+
+      //获取之前的选择的值
+      var tableData = this.$loaclStore.get('资格审查项1');
+      var tableData11 = this.$loaclStore.get('资格审查项2');
+      if(tableData){
+        this.tableData = tableData;
+      }
+      if(tableData11){
+        this.tableData11 = tableData11;
+      }
+
       var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -382,20 +394,17 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
       },
 
       failuredRadio(radio,id,index, tableKey){
-       console.log(radio,id,index);
        var store_radio = null;
        for(var i = 0;i<this[tableKey].length;i++){
           if(this[tableKey][i].id==id){
             store_radio = this[tableKey][i];
             break;
-            //this[tableKey][i].content='';
           }
         }
         if(radio=='不合格'){
@@ -403,61 +412,53 @@
           this.idradionoprss = id;
         }else if(radio=='合格'){
           store_radio.content = ''
+          this.saveStorage();
         }
-        
-        this.cover(this.allRadio,id,radio,false);
       },
       // 本地存储local封装
-      cover(num,id,radio){
-        var isExist = false;
-        for(var i=0;i<num.length;i++){
-          if(num[i].id == id){
-            isExist = true;
-            num[i].value = radio;
+      saveStorage(){
+        this.$loaclStore.set('资格审查项1',this.tableData);
+        this.$loaclStore.set('资格审查项2',this.tableData11);
+      },
+      isAllFilled(){
+        var tableData = this.$loaclStore.get('资格审查项1');
+        var tableData11 = this.$loaclStore.get('资格审查项2');
+        var isAllF = true;
+        for(var i=0;i<tableData.length;i++){
+          if(!tableData[i].radio){
+            isAllF = false;
             break;
           }
         }
-        if(!isExist)
-          num.push({
-            id:id,
-            value:radio,
-          });
-
-
-        let str={};
-        num.forEach(item => {
-          str[item.id]=item;
-        });
-        let ps=Object.values(str);
-        this.$loaclStore.set('msg',ps);
+        for(var i=0;i<tableData11.length;i++){
+          if(!tableData11[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        return isAllF;
       },
-
       quanbu(){
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
-          this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
         }
         for(var i = 0;i<this.tableData11.length;i++){
           this.tableData11[i].radio='合格';
-          this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
         }
+        this.saveStorage();
       },
        onTabClick(tab, event){
-        console.log(tab.name)
-       
-        if(tab.name=="1"){
-          window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult';
-        }
-        
+        this.$commonFun.onTabClick(tab, event, '1', '1', this);
       },
 
       changeView(){      //路由跳转传参函数
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult';
       },
       allSubmit(){
-        this.$loaclStore.set('isSubmit',true);
-        let mssg=this.$loaclStore.get('msg');
-        if(mssg.length != (this.tableData.length+this.tableData11.length)){
+        this.$loaclStore.set('资格审查isSubmit',true);
+        let mssg=this.$loaclStore.get('资格审查项1');
+        let mssg11=this.$loaclStore.get('资格审查项2');
+        if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
           this.$message({
             message: '请选择合格/不合格',
             center: true
@@ -480,6 +481,7 @@
             this.tableData11[i].content=childValue;
           }
         }
+        this.saveStorage();
       }
     },
   }

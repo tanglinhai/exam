@@ -25,14 +25,14 @@
 
     <div class="aaa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           <!-- 资格审查项汇总 -->
         </el-tab-pane>
-        <el-tab-pane name="sec">
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           <div>
             <el-row :gutter="20">
@@ -94,7 +94,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index, 'tableData')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -102,10 +102,11 @@
                           </template>
                         </el-table-column>
                         <el-table-column
-                          prop="kong"
+                          prop=""
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -141,7 +142,7 @@
                           label="是否合格">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, 'tableData11')" ref="shet" v-model="scope.row.radio">
+                              <el-radio-group @change="failuredRadio(scope.row.radio,scope.row.id, scope.$index, 'tableData11')" ref="shet" v-model="scope.row.radio">
                                 <el-radio :label="scope.row.ra1">合格</el-radio>
                                 <el-radio :label="scope.row.ra2" >不合格</el-radio>
                               </el-radio-group>
@@ -149,10 +150,11 @@
                           </template>
                         </el-table-column>
                         <el-table-column
-                          prop="kong"
+                          prop=""
                           label="">
-                          <template>
+                          <template slot-scope="scope">
                             <span style="margin-left: 10px">
+                              {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -209,16 +211,16 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="3">
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
@@ -228,7 +230,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry @childByValue="childByValue"></FailureEntry>
     </el-dialog>
   </div>
 </template>
@@ -243,6 +245,8 @@
     },
     data () {
       return {
+        activeName:'3',
+        tabDisabled:[],
         dialogVisible:false,//不合格录入
         tableData3: [{
           number:'1',
@@ -301,42 +305,54 @@
           id:3,
         }],
         tableData11: [{
-          index:0,
+          index:3,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass2: '1',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:4,
         }, {
-          index:1,
+          index:4,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:5,
         },{
-          index:2,
+          index:5,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:6,
         }],
-        activeName:'sec',
         allRadio:[],
+        idradionoprss:'',//table不合格的id
+        idqualified:"",//table合格的id
       }
 
     },
     mounted(){
+      //获取之前的选择的值
+      var tableData = this.$loaclStore.get('符合性审查项1');
+      var tableData11 = this.$loaclStore.get('符合性审查项2');
+      if(tableData){
+        this.tableData = tableData;
+      }
+      if(tableData11){
+        this.tableData11 = tableData11;
+      }
+
+
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -376,16 +392,7 @@
     },
     methods: {
        onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="1"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
-        }
-        if(tab.name=="2"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
-        }
-        if(tab.name=="3"){
-          window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult_fhx';
-        }
+        this.$commonFun.onTabClick(tab, event, '3', '1', this);
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
       //  console.log(row, column, rowIndex, columnIndex)
@@ -395,46 +402,36 @@
       },
 
       failuredRadio(radio,id,index, tableKey){
-        // console.log(radio,id,index);
-        if(radio=='不合格'){
-          this.idradionoprss=id;
-          this.dialogVisible=true;
-        }else if(radio=='合格'){
-          this.idqualified=id;
-          for(var i = 0;i<this[tableKey].length;i++){
-            if(this[tableKey][i].id==this.idqualified){
-              this[tableKey][i].content='';
-            }
+       var store_radio = null;
+       console.log(tableKey);
+       for(var i = 0;i<this[tableKey].length;i++){
+          if(this[tableKey][i].id==id){
+            store_radio = this[tableKey][i];
+            break;
           }
         }
-        this.cover(this.allRadio,id,radio,false);
+        if(radio=='不合格'){
+          this.dialogVisible=true;
+          this.idradionoprss = id;
+        }else if(radio=='合格'){
+          store_radio.content = ''
+          this.saveStorage();
+        }
       },
-
       // 本地存储local封装
-      cover(num,id,radio){
-        num.push({
-          id:id,
-          value:radio,
-        });
-        let str={};
-        num.forEach(item => {
-          str[item.id]=item;
-        })
-        let ps=Object.values(str);
-        this.$loaclStore.set('msg',ps);
+      saveStorage(){
+        this.$loaclStore.set('符合性审查项1',this.tableData);
+        this.$loaclStore.set('符合性审查项2',this.tableData11);
       },
 
       quanbu(){
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
-          this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
         for(var i = 0;i<this.tableData11.length;i++){
           this.tableData11[i].radio='合格';
-          this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
+        this.saveStorage();
       },
       viewChange(name){
         this.$router.push({path:`${name}`});
@@ -443,9 +440,10 @@
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult_fhx';
       },
       allSubmit(){
-        this.$loaclStore.set('isSubmit',true);
-        let mssg=this.$loaclStore.get('msg');
-        if(mssg.length != (this.tableData.length+this.tableData11.length)){
+        this.$loaclStore.set('符合性审查isSubmit',true);
+        let mssg=this.$loaclStore.get('符合性审查项1');
+        let mssg11=this.$loaclStore.get('符合性审查项2');
+        if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
           this.$message({
             message: '请选择合格/不合格',
             center: true
@@ -455,6 +453,20 @@
             path: '/operation/zjps/hldj/myQualificationsResult_fhx'
           })
         }
+      },
+      childByValue: function (childValue) {
+        // childValue就是子组件传过来的值
+        for(var i = 0;i<this.tableData.length;i++){
+          if(this.tableData[i].id==this.idradionoprss){
+            this.tableData[i].content=childValue;
+          }
+        }
+        for(var i = 0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].id==this.idradionoprss){
+            this.tableData11[i].content=childValue;
+          }
+        }
+        this.saveStorage();
       }
     },
   }
