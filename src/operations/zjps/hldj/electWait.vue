@@ -209,25 +209,24 @@ export default {
     },
     mounted(){
         setTimeout(() => {
-            this.$message({
-                message: '李四推举张三为组长',
-                center: true
-            });
+            alert('此时专家李四推举张三为组长');
             this.tableData3[0].endNum = 2;
             this.selectLoop = 2;
-        },1000)
-        setTimeout(() => {
-            this.$message({
-                message: '王五推举张三为组长',
-                center: true
-            });
-            this.tableData3[0].endNum = 3;
-            this.selectLoop = 3;
-        },3000)
-        setTimeout(() => {
-            this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
-            window.location.href = '/operation/zjps/hldj/bidLink';
-        },5000)
+
+            setTimeout(() => {
+                alert('此时专家王五推举张三为组长');
+                this.tableData3[0].endNum = 3;
+                this.selectLoop = 3;
+
+                setTimeout(() => {
+                    alert('推举完毕，将进入下一环节 评标');
+                    this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
+                    window.location.href = '/operation/zjps/hldj/bidLink';
+                },2000)
+            },2000)
+        },2000)
+        
+        
     }
 }
 </script>
