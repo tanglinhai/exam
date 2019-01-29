@@ -451,7 +451,7 @@
         let ps=Object.values(str);
         this.a=this.tableData11.length;
         this.b=this.tableData.length;
-        var s=this.a+this.b;
+        let s=this.a+this.b;
         console.log(s);
         this.c=ps.length;
         this.d=Math.floor(this.c /( this.a + this.b)*100);

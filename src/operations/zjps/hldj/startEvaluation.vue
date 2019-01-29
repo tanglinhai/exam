@@ -404,6 +404,11 @@
         if(radio=='不合格'){
           this.idradionoprss=id;
           this.dialogVisible=true;
+          for(var i = 0;i<this[tableKey].length;i++){
+            if(this[tableKey][i].id==this.idqualified){
+              this[tableKey][i].content='';
+            }
+          }
         }else if(radio=='合格'){
           this.idqualified=id;
           for(var i = 0;i<this[tableKey].length;i++){
@@ -430,7 +435,7 @@
         let ps=Object.values(str);
         this.a=this.tableData11.length;
         this.b=this.tableData.length;
-        var s=this.a+this.b;
+        let s=this.a+this.b;
         console.log(s);
         this.c=ps.length;
         this.d=Math.floor(this.c /( this.a + this.b)*100);
@@ -452,11 +457,10 @@
         }
       },
        onTabClick(tab, event){
-        console.log(tab.name)
+        console.log(tab.name);
         if(tab.name=="2"){
           window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult';
         }
-        
       },
 
       changeView(){      //路由跳转传参函数
@@ -488,6 +492,7 @@
             this.tableData11[i].msg=childValue;
           }
         }
+        this.dialogVisible=false;
       }
     },
   }
