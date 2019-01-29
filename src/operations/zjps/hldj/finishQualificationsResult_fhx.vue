@@ -33,8 +33,8 @@
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
 
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+        <el-tab-pane name="3">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           <!-- /operation/zjps/hldj/myQualificationsResult_fhx -->
         </el-tab-pane>
 
