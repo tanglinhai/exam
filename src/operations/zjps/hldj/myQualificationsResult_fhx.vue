@@ -143,8 +143,8 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="tabView"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+        <el-tab-pane name="3">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <!-- /operation/zjps/hldj/finishQualificationsResult_fhx -->
           
         </el-tab-pane>
@@ -266,7 +266,13 @@
           window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
         }
         if(tab.name=="3"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
+          //window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
+          if(this.$loaclStore.get('msg') == undefined){
+            this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
+            // alert(1111)
+            }else{
+            this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
+          }
         }
       },
        viewChange(name){
@@ -278,14 +284,14 @@
           return [1, 5];
         }
       },
-      tabView(){
-        if(this.$loaclStore.get('msg') == undefined){
-          this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
-          // alert(1111)
-          }else{
-          this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
-        }
-      }
+      // tabView(){
+      //   if(this.$loaclStore.get('msg') == undefined){
+      //     this.viewChange('/operation/zjps/hldj/unFinishQualificationsResult_fhx');
+      //     // alert(1111)
+      //     }else{
+      //     this.viewChange('/operation/zjps/hldj/finishQualificationsResult_fhx');
+      //   }
+      // }
 
     },
   }
