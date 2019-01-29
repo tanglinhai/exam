@@ -107,7 +107,7 @@
                           </el-col>
                       </el-row>
                       <el-table
-                        :data="tableData"
+                        :data="tableData11"
                         border
                         :show-header="false"
                         style="width: 100%">
@@ -144,7 +144,7 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane name="1">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane>
@@ -212,6 +212,19 @@
           date: '夏丰热工研究院有限公司',
           name: '投标人',
           address: ''
+        }],
+        tableData11: [{
+          date: '重庆网控科技发展有限公司',
+          name: '投标人',
+          address: ''
+        }, {
+          date: '普瑞太阳能有限公司',
+          name: '投标人',
+          address: ''
+        }, {
+          date: '夏丰热工研究院有限公司',
+          name: '投标人',
+          address: ''
         }]
       }
 
@@ -255,16 +268,19 @@
 
 
       let startMsg=this.$loaclStore.get('msg');
+      console.log(startMsg);
       startMsg.forEach((val,index) => {
-        // console.log(val,index)
-        this.tableData[index].address = startMsg[index].value;
+        if(index < 3)
+          this.tableData[index].address = startMsg[index].value;
+        else
+          this.tableData11[index - 3].address = startMsg[index].value;
       })
       console.log(this.tableData);
     },
     methods: {
       onTabClick(tab, event){
         console.log(tab.name)
-        if(tab.name=="2"){
+        if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
         }
         

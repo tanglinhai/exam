@@ -147,7 +147,7 @@
                           label="">
                           <template slot-scope="scope">
                             <span style="margin-left: 10px">
-                              {{scope.row.msg}}
+                              {{scope.row.content}}
                             </span>
                           </template>
                         </el-table-column>
@@ -206,7 +206,6 @@
         </el-tab-pane>
         <el-tab-pane name="2">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane disabled>
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
@@ -304,31 +303,31 @@
           id:3,
         }],
         tableData11: [{
-          index:0,
+          index:3,
           people: '招标人1：',
           name: '[1]重庆网控科技发展有限公司',
           pass2: '1',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:4,
         }, {
-          index:1,
+          index:4,
           people: '招标人2：',
           name: '[2] 普瑞太阳能有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
           id:5,
         },{
-          index:2,
+          index:5,
           people: '招标人2：',
           name: '[2] 夏丰热工研究院有限公司',
           pass2: '2',
-          msg:'',
+          content:'',
           ra1:'合格',
           ra2:'不合格',
           radio: '',
@@ -337,8 +336,6 @@
         allRadio:[],
         idradionoprss:'',//table不合格的id
         idqualified:"",//table合格的id
-        idradionoprss2:"",//table11不合格的id
-        idqualified2:"",//table11合格的id
       }
     },
     computed: {
@@ -392,36 +389,47 @@
       },
 
       failuredRadio(radio,id,index, tableKey){
-        // console.log(radio,id,index);
-        if(radio=='不合格'){
-          this.idradionoprss=id;
-          this.dialogVisible=true;
-        }else if(radio=='合格'){
-          this.idqualified=id;
-          for(var i = 0;i<this[tableKey].length;i++){
-            if(this[tableKey][i].id==this.idqualified){
-              this[tableKey][i].content='';
-            }
+       console.log(radio,id,index);
+       var store_radio = null;
+       for(var i = 0;i<this[tableKey].length;i++){
+          if(this[tableKey][i].id==id){
+            store_radio = this[tableKey][i];
+            break;
+            //this[tableKey][i].content='';
           }
         }
+        if(radio=='不合格'){
+          this.dialogVisible=true;
+          this.idradionoprss = id;
+        }else if(radio=='合格'){
+          store_radio.content = ''
+        }
+        
         this.cover(this.allRadio,id,radio,false);
       },
       // 本地存储local封装
       cover(num,id,radio){
-        // console.log(num, id, radio);
-        num.push({
-          id:id,
-          value:radio,
-        });
+        var isExist = false;
+        for(var i=0;i<num.length;i++){
+          if(num[i].id == id){
+            isExist = true;
+            num[i].value = radio;
+            break;
+          }
+        }
+        if(!isExist)
+          num.push({
+            id:id,
+            value:radio,
+          });
+
+
+        console.log('====', num);
         let str={};
-        // console.log(num);
         num.forEach(item => {
-          console.log(item);
           str[item.id]=item;
         });
-        console.log(str);
         let ps=Object.values(str);
-        // console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 
@@ -429,12 +437,10 @@
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
           this.cover(this.allRadio,this.tableData[i].id,this.tableData[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
         for(var i = 0;i<this.tableData11.length;i++){
           this.tableData11[i].radio='合格';
           this.cover(this.allRadio,this.tableData11[i].id,this.tableData11[i].radio);
-          this.$loaclStore.set('isSubmit',false);
         }
       },
        onTabClick(tab, event){
@@ -470,8 +476,8 @@
           }
         }
         for(var i = 0;i<this.tableData11.length;i++){
-          if(this.tableData11[i].id==this.idradionoprss2){
-            this.tableData11[i].msg=childValue;
+          if(this.tableData11[i].id==this.idradionoprss){
+            this.tableData11[i].content=childValue;
           }
         }
       }
