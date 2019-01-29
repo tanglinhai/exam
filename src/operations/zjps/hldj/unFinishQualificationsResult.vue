@@ -26,7 +26,7 @@
     <div class="delet_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/startEvaluation')"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/hldj/startEvaluation')"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
           <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
@@ -64,19 +64,19 @@
           </div>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>

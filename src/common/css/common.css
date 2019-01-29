@@ -87,6 +87,12 @@ p{word-wrap:break-word}
 .input120 { width:120px;}
 .input150 { width:150px;}
 .input200 { width:200px;}
+.paddmar{
+  display:block;
+  width:100%;
+  height:100%;
+  
+}
 
 /*清除浮动*/
 .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}

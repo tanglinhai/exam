@@ -26,15 +26,15 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName">
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
           资格审查项
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
           资格审查项汇总
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           符合性审查项
         </el-tab-pane>
         <el-tab-pane>
@@ -42,7 +42,7 @@
           符合性审查项汇总
         </el-tab-pane>
         <el-tab-pane name="sec">
-          <span slot="label" @click="changeView('/operation/zjps/zhpbbf/businessAffairs2')"><i class="el-icon-edit"></i> 商务</span>
+          <span slot="label" class="paddmar" @click="changeView('/operation/zjps/zhpbbf/businessAffairs2')"><i class="el-icon-edit"></i> 商务</span>
           
         </el-tab-pane>
         <el-tab-pane name="jishu">
