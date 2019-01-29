@@ -144,7 +144,7 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane name="1">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
@@ -280,7 +280,7 @@
     methods: {
       onTabClick(tab, event){
         console.log(tab.name)
-        if(tab.name=="2"){
+        if(tab.name=="1"){
           window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
         }
         
