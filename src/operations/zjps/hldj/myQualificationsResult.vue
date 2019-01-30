@@ -145,7 +145,7 @@
           </div>
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit " ></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
