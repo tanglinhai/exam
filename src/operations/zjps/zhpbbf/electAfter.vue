@@ -74,7 +74,7 @@
                 <el-row style="line-height:40px;border-bottom:2px solid #ccc;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:right;">
-                            <el-button type="primary" size="small">返回</el-button>
+                            <el-button type="primary" plain size="small">返回</el-button>
                         </div>
                     </el-col>
                 </el-row>
@@ -112,7 +112,7 @@
                         label="操作">
                         <template slot-scope="scope">
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/zhpbbf/electWait')">推举</el-button>
+                                <el-button size="small" @click="changeView('/operation/zjps/zhpbbf/electWait')"><img style="display:inline-block; margin-top:-2px;" src="../../../common/img/icon16_comment.gif"/>推举</el-button>
                             </div>
                         </template>
                     </el-table-column>

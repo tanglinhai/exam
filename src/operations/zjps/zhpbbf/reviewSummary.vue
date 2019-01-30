@@ -51,10 +51,10 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small" type="primary"  @click="scoring">计算报价得分</el-button>
-                      <el-button size="small" type="info" @click="sort">排序</el-button>
-                      <el-button size="small" type="info" @click="biddingAdvice">评标意见</el-button>
-                      <el-button size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>提交</el-button>
+                      <el-button size="small" type="primary" plain  @click="scoring">计算报价得分</el-button>
+                      <el-button size="small" @click="sort"><i class="el-icon-sort "></i>排序</el-button>
+                      <el-button size="small" @click="biddingAdvice">评标意见</el-button>
+                      <el-button size="small" type="primary" plain @click="goToNextStage()"><i class="el-icon-printer"></i>提交</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -100,7 +100,7 @@
             </el-table>
             <el-row>
                 <el-col :span="24">
-                    <div class="grid-content bg-purple-dark" style="text-align:center;padding:7px 0;">
+                    <div class="grid-content bg-purple-dark aaa_aright" style="text-align:center;padding:7px 0;">
                         <el-button type="primary" size="small"  @click="reviewLockRequest">评分解锁</el-button>
                         <el-button type="primary" size="small" @click="checkUnlockRecord">查看评分解锁记录</el-button>
                         <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
