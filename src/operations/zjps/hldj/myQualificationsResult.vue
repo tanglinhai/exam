@@ -252,12 +252,10 @@
 			return treeNode.level > 0;
 		}
 
-		$(document).ready(function(){
-			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
-		});
+		  $.fn.zTree.init($("#treeDemo"), setting, zNodes);
       setTimeout(function(){
         $("#treeDemo_1_a").addClass("curSelectedNode");
-      },200)
+      },200);
       $("#treeDemo").on('click','#treeDemo_1_a',function(){
         $(".a1").show();
         $(".a2").hide();

@@ -12,9 +12,9 @@
         <el-col :span="21">
           <div class="grid-content bg-purple helpcenterRight">
             <ul>
-              <li><router-link class="person" :to="{name:'HelpCenterInpormation'}">1.专家评审-最低价法</router-link></li>
+              <li><router-link class="person" :to="{name:'HelpCenterInpormation'}">1.专家评审-合理低价评标办法</router-link></li>
               <li><router-link class="person" :to="{name:'HelpCenterInpormation'}">2.专家评审-综合评标办法</router-link></li>
-              <li><a href="javascript:void(0);">3.专家评审-双信封评标办法</a></li>
+              <li><a href="javascript:void(0);" style="color:grey">3.专家评审-双信封评标办法</a></li>
             </ul>
           </div>
         </el-col>

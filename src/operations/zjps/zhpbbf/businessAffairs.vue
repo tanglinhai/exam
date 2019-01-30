@@ -51,9 +51,9 @@
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
-                      <el-button size="small" plain type="primary" @click="unfinishedGrade">查看未完成项</el-button>
-                      <el-button size="small" plain type="primary" @click="saveData()">保存</el-button>
-                      <el-button size="small" plain type="primary" @click="submitData()">提交商务</el-button>
+                      <el-button size="small" plain @click="unfinishedGrade">查看未完成项</el-button>
+                      <el-button size="small" plain @click="saveData()">保存</el-button>
+                      <el-button size="small" type="primary" @click="submitData()">提交商务</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -157,7 +157,7 @@
           {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'8',name1:'7.5',name2:'9'},
           {num:'第二章、其他要求(0.00分-10.00分)',            name:'6.8',name1:'8.5',name2:'8'},
           {num:'商务小计(分)',name:'14.8',name1:'16',name2:'17'},
-          {num:'总分小计(分)',name:'14.8',name1:'16',name2:'17'}
+          {num:'总分小计(分)',name:'53.2',name1:'47.2',name2:'53'}
         ],
         currentPage4: 1,
         dialogUnfinishedGrade:false,//未完成打分项弹框
@@ -168,6 +168,10 @@
     },
 
     methods: {
+      // 本地存储local封装
+      saveStorage(){
+        
+      },
       saveData(){
 
       },

@@ -63,7 +63,7 @@
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
                         <el-button @click="quanbu" size="mini" plain type="primary">全部合格</el-button>
-                        <el-button size="mini" type="primary" plain @click="allSubmit">全部提交</el-button>
+                        <el-button size="mini" type="primary" @click="allSubmit">全部提交</el-button>
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
@@ -433,26 +433,9 @@
           this.dialogVisible=true;
           this.idradionoprss = id;
         }else if(radio=='合格'){
-          store_radio.content = '';
-          this.saveStorage();
+          store_radio.content = ''
         }
-        // let a=this.tableData11.length;
-        // let b=this.tableData.length;
-        // let s=a+b;
-        // let fillCount = 0;
-        // for(var i=0;i<this.tableData.length;i++){
-        //   if(this.tableData[i].radio){
-        //     fillCount++;
-        //   }
-        // }
-        // for(var i=0;i<this.tableData11.length;i++){
-        //   if(this.tableData11[i].radio){
-        //     fillCount++;
-        //   }
-        // }
-        // this.d=Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
-        // this.$refs.aaa.$options.propsData.percentage=this.d;
-        // this.$loaclStore.set('datalength',s);
+        this.saveStorage();
       },
       // 本地存储local封装
       saveStorage(){

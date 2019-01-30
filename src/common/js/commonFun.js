@@ -33,7 +33,7 @@ export default {
   },
 
   /**
-   * [onTabClick 最低价法tab页跳转逻辑] 
+   * [onTabClick 合理低价评标办法tab页跳转逻辑] 
    * @param  {[type]} tab       [description]
    * @param  {[type]} event     [description]
    * @param  {[type]} tabIndex  [description]
