@@ -20,7 +20,7 @@
             label="学生姓名"
             prop="name"
             show-overflow-tooltip>
-            <template scope="scope">
+            <template slot-scope="scope">
               {{scope.row.name}}
             </template>
           </el-table-column>
@@ -34,7 +34,7 @@
             align="center"
             label="考试时间"
           >
-            <template scope="scope">
+            <template slot-scope="scope">
               {{new Date(scope.row.date).toLocaleString()}}
             </template>
           </el-table-column>
@@ -49,7 +49,7 @@
             align="center"
             width="100"
           >
-            <template scope="scope">
+            <template slot-scope="scope">
               <el-button type="info" :disabled="scope.row.isSure" size="mini" @click="checkPaper(scope.row.name,scope.row.date,scope.row.score)">
                 批阅
               </el-button>

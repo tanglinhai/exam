@@ -26,7 +26,7 @@
               <el-table-column
                 prop="score"
                 label="模拟评标成绩">
-                <template scope="scope">
+                <template slot-scope="scope">
                   <el-tag type="warning" v-if="scope.row.score==='等待管理员评分'">{{scope.row.score}}</el-tag>
                   <span v-else>{{scope.row.score}}</span>
                 </template>
