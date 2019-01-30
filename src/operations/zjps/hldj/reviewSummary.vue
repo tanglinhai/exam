@@ -51,8 +51,8 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button style="border:none" size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
-                      <el-button style="border:none" size="small" @click="sort"><i class="el-icon-sort "></i>&nbsp;&nbsp;排序</el-button>
+                      <el-button type="primary" plain size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
+                      <el-button type="primary" plain size="small" @click="sort"><i class="el-icon-sort "></i>&nbsp;&nbsp;排序</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -87,15 +87,15 @@
               <textarea style="width: 1000px;height: 200px;">
 本项目共有3家投标单位参加投标，分别是：“重庆网控科技发展有限公司、普瑞太阳能有限公司、夏丰热工研究院有限公司”。
 
-根据招标文件确定的评分原则，评标专家们上述3家分别进行了，符合性审查和综合打分。
+根据招标文件确定的评分原则，评标专家们上述3家分别进行了，资格和符合性审查。
 
-经过综合评分及排序， 评标结果如下：
+经过最低价及排序， 评标结果如下：
 
-第一中标候选人：重庆网控科技发展有限公司     得分：93.5分     投标总价：人民币34.50万元
-第二中标候选人：普瑞太阳能有限公司           得分：80.49分    投标总价：人民币34.68万元
-第三中标候选人：夏丰热工研究院有限公司       得分：78.23分    投标总价：人民币34.80万元
+第一中标候选人：重庆网控科技发展有限公司     投标总价：人民币34.50万元
+第二中标候选人：普瑞太阳能有限公司           投标总价：人民币34.68万元
+第三中标候选人：夏丰热工研究院有限公司       投标总价：人民币34.80万元
 
-评标委员会推荐北京金商祺科技股份有限公司为对外经贸大学广播站改造工程项目第一中标候选人。
+评标委员会推荐重庆网控科技发展有限公司为对外经贸大学广播站改造工程项目第一中标候选人。
               </textarea>
             </div>
           </el-row>

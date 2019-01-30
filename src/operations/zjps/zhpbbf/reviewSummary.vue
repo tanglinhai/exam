@@ -51,10 +51,10 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small" type="primary"  @click="scoring">计算报价得分</el-button>
-                      <el-button size="small" type="info" @click="sort">排序</el-button>
-                      <el-button size="small" type="info" @click="biddingAdvice">评标意见</el-button>
-                      <el-button size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>提交</el-button>
+                      <el-button size="small" type="primary" plain  @click="scoring">计算报价得分</el-button>
+                      <el-button size="small" @click="sort"><i class="el-icon-sort "></i>排序</el-button>
+                      <el-button size="small" @click="biddingAdvice">评标意见</el-button>
+                      <el-button size="small" type="primary" plain @click="goToNextStage()"><i class="el-icon-printer"></i>提交</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -100,7 +100,7 @@
             </el-table>
             <el-row>
                 <el-col :span="24">
-                    <div class="grid-content bg-purple-dark" style="text-align:center;padding:7px 0;">
+                    <div class="grid-content bg-purple-dark aaa_aright" style="text-align:center;padding:7px 0;">
                         <el-button type="primary" size="small"  @click="reviewLockRequest">评分解锁</el-button>
                         <el-button type="primary" size="small" @click="checkUnlockRecord">查看评分解锁记录</el-button>
                         <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
@@ -195,9 +195,9 @@
          */
 
         tableData:[
-          {bidder:'重庆网控科技发展有限公司',num:'1',bida:'',bidb:'',bidc:'',nub:'',end:'',ip:''},
-          {bidder:'普瑞太阳能有限公司',     num:'2',bida:'',bidb:'',bidc:'',nub:'',end:'',ip:''},
-          {bidder:'夏丰热工研究院有限公司', num:'3',bida:'',bidb:'',bidc:'',nub:'',end:'',ip:''}
+          {bidder:'重庆网控科技发展有限公司',num:'1',bida:'53.2',bidb:'47.2',bidc:'53',nub:'40',end:'',ip:''},
+          {bidder:'普瑞太阳能有限公司',     num:'2',bida:'52.2',bidb:'48.2',bidc:'59',nub:'41',end:'',ip:''},
+          {bidder:'夏丰热工研究院有限公司', num:'3',bida:'54.2',bidb:'42.2',bidc:'51',nub:'42',end:'',ip:''}
         ],
         dialogFormVisible: false,//评分解锁申请弹框
         dialogVisible: false,//查看专家个人打分表 和 投标人分项得分表弹框
@@ -211,8 +211,17 @@
     mounted(){
     },
     methods: {
-      calcScore(data){
+      calcScore(data){//91.13 94.13 91.13 2 1 3
         this.dialogScoring = false;
+        this.tableData[0].nub = 40;
+        this.tableData[1].nub = 41;
+        this.tableData[2].nub = 42;
+        this.tableData[0].end = 91.13;
+        this.tableData[1].end = 94.13;
+        this.tableData[2].end = 91.13;
+        this.tableData[0].ip = 2;
+        this.tableData[1].ip = 1;
+        this.tableData[2].ip = 3;
       },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '7', '1', this);

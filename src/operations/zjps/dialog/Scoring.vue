@@ -43,28 +43,28 @@
             return {
                 msgBox: [
                     {
-                        toubiaoPrice: '10,000,00 ',
+                        toubiaoPrice: '31,000,00',
                         name: '夏丰热工研究院有限公司',
-                        evaluationBid: '10,000,00',
-                        standardPrice:'-1333.33',
-                        beitaValue:'200.00',
-                        scoringSystem:'50.00',
+                        evaluationBid: '31,000,00',
+                        standardPrice:'30,000,00',
+                        beitaValue:'-10.00',
+                        scoringSystem:'52.2',
                         score: ''
                     },{
-                    toubiaoPrice: '20,000,00 ',
+                    toubiaoPrice: '28,000,00 ',
                     name: '普瑞太阳能有限公司',
-                    evaluationBid: '20,000,00',
-                    standardPrice:'-1333.33',
-                    beitaValue:'200.00',
-                    scoringSystem:'25.00',
+                    evaluationBid: '28,000,00',
+                    standardPrice:'30,000,00',
+                    beitaValue:'-20.00',
+                    scoringSystem:'45.2',
                         score: ''
                 }, {
                     toubiaoPrice: '30,000,00',
                     name: '夏风热工研究有限公司',
                     evaluationBid: '30,000,00',
-                    standardPrice:'-1333.33',
-                    beitaValue:'200.00',
-                    scoringSystem:'16.66',
+                    standardPrice:'30,000,00',
+                    beitaValue:'-0.00',
+                    scoringSystem:'53',
                         score: ''
                 }],
             }

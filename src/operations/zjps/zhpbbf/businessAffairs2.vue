@@ -127,7 +127,7 @@
           {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'8',name1:'7.5',name2:'9'},
           {num:'第二章、其他要求(0.00分-10.00分)',            name:'6.8',name1:'8.5',name2:'8'},
           {num:'商务小计(分)',name:'14.8',name1:'16',name2:'17'},
-          {num:'总分小计(分)',name:'14.8',name1:'16',name2:'17'}
+          {num:'总分小计(分)',name:'53.2',name1:'47.2',name2:'53'}
         ],
         currentPage4: 1,
         dialogUnfinishedGrade:false,//未完成打分项弹框

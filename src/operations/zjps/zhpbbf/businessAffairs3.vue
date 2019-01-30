@@ -54,9 +54,9 @@
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
-                      <el-button size="small" type="info">查看未完成项</el-button>
-                      <el-button size="small" type="info" @click="saveData()">保存</el-button>
-                      <el-button size="small" type="info" @click="submitData()">提交商务</el-button>
+                      <el-button size="small" plain>查看未完成项</el-button>
+                      <el-button size="small" plain @click="saveData()">保存</el-button>
+                      <el-button size="small" type="primary" @click="submitData()">提交商务</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -152,7 +152,7 @@
           {num:'第七章、施工设备(0.00分-2.00分)',             name:'5.9',name1:'8',name2:'6.5'},
           {num:'第八章、试验,检测仪器设备(0.00分-2.00分)',     name:'2.0',name1:'1',name2:'1.5'},
           {num:'技术小计(分)',                               name:'38.4',name1:'31.2',name2:'36'},
-          {num:'总分小计(分)',                               name:'38.4',name1:'31.2',name2:'36'}
+          {num:'总分小计(分)',name:'53.2',name1:'47.2',name2:'53'}
         ],
         currentPage4: 1
       }
