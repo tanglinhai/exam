@@ -51,8 +51,8 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button style="border:none" size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
-                      <el-button style="border:none" size="small" @click="sort"><i class="el-icon-sort "></i>&nbsp;&nbsp;排序</el-button>
+                      <el-button type="primary" plain size="small" @click="goToNextStage()"><i class="el-icon-printer"></i>&nbsp;&nbsp;提交</el-button>
+                      <el-button type="primary" plain size="small" @click="sort"><i class="el-icon-sort "></i>&nbsp;&nbsp;排序</el-button>
                   </div>
               </el-col>
           </el-row>
