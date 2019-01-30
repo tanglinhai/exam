@@ -10,7 +10,7 @@
           </div>
         </el-col>
         <el-col :span="14">
-          <div class="grid-content bg-purple quexa_aright">
+          <div class="grid-content bg-purple quexa_aright aaa_aright">
             <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
             <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
@@ -268,7 +268,7 @@
 		});
       setTimeout(function(){
         $("#treeDemo_1_a").addClass("curSelectedNode");
-      },200)
+      },200);
       $("#treeDemo").on('click','#treeDemo_1_a',function(){
         $(".a1").show();
         $(".a2").hide();

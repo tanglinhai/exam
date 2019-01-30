@@ -49,10 +49,10 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
-                    <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人符合性审查项表</el-button>
-                    <el-button size="small" type="info" @click="checkUnlockRecord">查看符合性审查项解锁记录</el-button>
-                    <el-button size="small" type="info" @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
+                    <el-button size="small" plain type="primary" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
+                    <el-button size="small" plain @click="individualTrial" v-if="!isSubmit">查看个人符合性审查项表</el-button>
+                    <el-button size="small" plain @click="checkUnlockRecord">查看符合性审查项解锁记录</el-button>
+                    <el-button size="small" plain @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
                 </div>
               </el-col>
             </el-row>

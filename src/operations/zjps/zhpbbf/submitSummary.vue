@@ -51,7 +51,7 @@
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small" type="info" @click="sort">排序</el-button>
+                      <el-button size="small" plain type="primary" @click="sort"><i class="el-icon-sort "></i>排序</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -97,7 +97,7 @@
             </el-table>
             <el-row>
                 <el-col :span="24">
-                    <div class="grid-content bg-purple-dark" style="text-align:center;padding:7px 0;">
+                    <div class="grid-content bg-purple-dark aaa_aright" style="text-align:center;padding:7px 0;">
                         <el-button type="primary" size="small" @click="checkUnlockRecord">查看评分解锁记录</el-button>
                         <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
                         <el-button type="primary" size="small" @click="bindScore">投标人分项得分表</el-button>

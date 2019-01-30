@@ -104,7 +104,7 @@
                       <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>
                     </el-col>
                   </el-row>
-                  <template>
+                  <template  >
                       <el-row class="qu">
                           <el-col :span="24">
                               <div class="grid-content bg-purple" style="padding-left:5px;">

@@ -10,7 +10,7 @@
           </div>
         </el-col>
         <el-col :span="14">
-          <div class="grid-content bg-purple leader_aright">
+          <div class="grid-content bg-purple leader_aright aaa_aright">
             <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
             <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
@@ -39,10 +39,10 @@
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
-                    <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
-                    <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人资格审查项表</el-button>
-                    <el-button size="small" type="info" @click="checkUnlockRecord">查看资格审查项解锁记录</el-button>
-                    <el-button size="small" type="info" @click="qualificationUnlockApplication">资格审查项解锁</el-button>
+                    <el-button size="small" type="primary" plain @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
+                    <el-button size="small" plain @click="individualTrial" v-if="!isSubmit">查看个人资格审查项表</el-button>
+                    <el-button size="small" plain @click="checkUnlockRecord">查看资格审查项解锁记录</el-button>
+                    <el-button size="small" plain @click="qualificationUnlockApplication">资格审查项解锁</el-button>
                 </div>
               </el-col>
             </el-row>

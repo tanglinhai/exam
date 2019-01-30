@@ -143,7 +143,13 @@ p{word-wrap:break-word}
   display:none;
 }
 
-
+.aaa_aright .el-button--primary,
+.delet_aright .el-button--primary,
+.leader_aright .el-button--primary,
+.quexa_aright .el-button--primary,
+.busa_aright .el-button--primary{
+  background:#1c84c6;
+}
 
 
 

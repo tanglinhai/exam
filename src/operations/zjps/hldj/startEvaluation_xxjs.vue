@@ -62,12 +62,13 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="d" ref="aaa"></el-progress>
+                        <!--<el-progress :percentage="d" ref="aaa"></el-progress>-->
+                        <el-progress :percentage="completePercent"></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
-                        <el-button @click="quanbu" size="mini" type="info">全部合格</el-button>
-                        <el-button size="mini" type="info" @click="allSubmit">全部提交</el-button>
+                        <el-button @click="quanbu" plain size="mini" type="primary">全部合格</el-button>
+                        <el-button size="mini" type="primary" @click="allSubmit">全部提交</el-button>
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
@@ -195,17 +196,17 @@
                           <el-table-column
                             prop="province"
                             align="center"
-                            label="阿里巴巴(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="city"
                             align="center"
-                            label="普瑞太阳能有限公司(测试)(2)">
+                            label="普瑞太阳能有限公司">
                           </el-table-column>
                           <el-table-column
                             prop="name"
                             align="center"
-                            label="夏丰热工研究院有限公司(测试)(3)">
+                            label="夏丰热工研究院有限公司">
                           </el-table-column>
                       </el-table-column>
                     </el-table>
@@ -340,6 +341,25 @@
       }
 
     },
+    computed: {
+      completePercent(){
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
+        let fillCount = 0;
+        for(var i=0;i<this.tableData.length;i++){
+          if(this.tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        return Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
+      }
+    },
     mounted(){
       //获取之前的选择的值
       var tableData = this.$loaclStore.get('详细评审（技术）1');
@@ -395,10 +415,9 @@
           return [1, 5];
         }
       },
-
-     failuredRadio(radio,id,index, tableKey){
-       var store_radio = null;
-       for(var i = 0;i<this[tableKey].length;i++){
+      failuredRadio(radio,id,index, tableKey){
+        var store_radio = null;
+        for(var i = 0;i<this[tableKey].length;i++){
           if(this[tableKey][i].id==id){
             store_radio = this[tableKey][i];
             break;
@@ -409,32 +428,65 @@
           this.idradionoprss = id;
         }else if(radio=='合格'){
           store_radio.content = ''
-          this.saveStorage();
         }
-        let a=this.tableData11.length;
-        let b=this.tableData.length;
-        let s=a+b;
-        let fillCount = 0;
-        for(var i=0;i<this.tableData.length;i++){
-          if(this.tableData[i].radio){
-            fillCount++;
-          }
-        }
-        for(var i=0;i<this.tableData11.length;i++){
-          if(this.tableData11[i].radio){
-            fillCount++;
-          }
-        }
-        this.d=Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
-        this.$refs.aaa.$options.propsData.percentage=this.d;
-        this.$loaclStore.set('datalength',s);
+        this.saveStorage();
       },
+     // failuredRadio(radio,id,index, tableKey){
+     //   var store_radio = null;
+     //   for(var i = 0;i<this[tableKey].length;i++){
+     //      if(this[tableKey][i].id==id){
+     //        store_radio = this[tableKey][i];
+     //        break;
+     //      }
+     //    }
+     //    if(radio=='不合格'){
+     //      this.dialogVisible=true;
+     //      this.idradionoprss = id;
+     //    }else if(radio=='合格'){
+     //      store_radio.content = '';
+     //      this.saveStorage();
+     //    }
+     //    let a=this.tableData11.length;
+     //    let b=this.tableData.length;
+     //    let s=a+b;
+     //    let fillCount = 0;
+     //    for(var i=0;i<this.tableData.length;i++){
+     //      if(this.tableData[i].radio){
+     //        fillCount++;
+     //      }
+     //    }
+     //    for(var i=0;i<this.tableData11.length;i++){
+     //      if(this.tableData11[i].radio){
+     //        fillCount++;
+     //      }
+     //    }
+     //    this.d=Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
+     //    this.$refs.aaa.$options.propsData.percentage=this.d;
+     //    this.$loaclStore.set('datalength',s);
+     //  },
       // 本地存储local封装
       saveStorage(){
         this.$loaclStore.set('详细评审（技术）1',this.tableData);
         this.$loaclStore.set('详细评审（技术）2',this.tableData11);
       },
-
+      isAllFilled(){
+        var tableData = this.$loaclStore.get('资格审查项1');
+        var tableData11 = this.$loaclStore.get('资格审查项2');
+        var isAllF = true;
+        for(var i=0;i<tableData.length;i++){
+          if(!tableData[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(!tableData11[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        return isAllF;
+      },
 
       quanbu(){
         for(var i = 0;i<this.tableData.length;i++){

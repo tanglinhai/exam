@@ -54,8 +54,8 @@
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
-                        <el-button @click="quanbu" size="mini" type="info">全部合格</el-button>
-                        <el-button size="mini" type="info" @click="allSubmit">全部提交</el-button>
+                        <el-button @click="quanbu" size="mini" plain type="primary">全部合格</el-button>
+                        <el-button size="mini" type="primary" @click="allSubmit">全部提交</el-button>
                     </el-row>
                   </el-row>
                   <el-row :gutter="20">
@@ -426,7 +426,7 @@
           this.dialogVisible=true;
           this.idradionoprss = id;
         }else if(radio=='合格'){
-          store_radio.content = ''
+          store_radio.content = '';
           this.saveStorage();
         }
       },

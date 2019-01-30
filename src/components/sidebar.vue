@@ -2,14 +2,14 @@
     <div class="sidebar">
       <el-row>
         <el-col class="text-center marginT10">
-          <img width="150" v-lazy="logoSrc" alt="logo">
+          <img width="150" v-lazy="logoSrc" alt="logo" height="27" >
         </el-col>
         <el-col>
-          <el-menu 
-            :default-active="activeIndex" 
-            class="el-menu-vertical" 
-            @open="handleOpen" 
-            @close="handleClose" 
+          <el-menu
+            :default-active="activeIndex"
+            class="el-menu-vertical"
+            @open="handleOpen"
+            @close="handleClose"
             background-color="#545c64"
             text-color="#fff"
             active-text-color="#ffd04b"
@@ -33,7 +33,7 @@
     data() {
       return {
         activeIndex:'/endhome/index',
-        logoSrc:require('../common/img/sm-logo.png')
+        logoSrc:require('../common/img/nav_logo1.png')
       }
     },
     methods: {
