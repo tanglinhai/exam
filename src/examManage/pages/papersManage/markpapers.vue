@@ -21,7 +21,7 @@
             label="试卷名称"
             prop="name"
             show-overflow-tooltip>
-            <template scope="scope">
+            <template slot-scope="scope">
               {{scope.row.name}}
             </template>
           </el-table-column>
@@ -43,7 +43,7 @@
             align="center"s
             label="考试时间"
           >
-            <template scope="scope">
+            <template slot-scope="scope">
               {{scope.row.startTime?new Date(scope.row.startTime).toLocaleString():'还未开考'}}
             </template>
           </el-table-column>
@@ -52,7 +52,7 @@
             width="100"
             align="center"
           >
-            <template scope="scope">
+            <template slot-scope="scope">
               <p v-if="scope.row.startTime">{{scope.row.examnum}}</p>
             </template>
           </el-table-column>
@@ -61,7 +61,7 @@
             align="center"
             width="100"
           >
-            <template scope="scope">
+            <template slot-scope="scope">
               <el-button type="info" size="mini" :disabled="!scope.row.examnum>0" @click="seeDetail(scope.row._id,scope.row.name)">
                 阅卷
               </el-button>

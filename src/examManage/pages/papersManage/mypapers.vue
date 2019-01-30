@@ -29,7 +29,7 @@
               label="试卷名称"
               prop="name"
               show-overflow-tooltip>
-              <template scope="scope">
+              <template slot-scope="scope">
                 {{scope.row.name}}
               </template>
             </el-table-column>
@@ -51,7 +51,7 @@
               align="center"
               label="考试时间"
             >
-            <template scope="scope">
+            <template slot-scope="scope">
               {{scope.row.startTime?new Date(scope.row.startTime).toLocaleString():'还未开考'}}
             </template>
             </el-table-column>
@@ -59,7 +59,7 @@
               label="操作"
               align="center"
             >
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-button type="primary" size="mini" v-if="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) > 1" @click="publish(scope.row._id)">再次发布</el-button>
                 <el-button type="primary" size="mini" v-else :disabled="scope.row.startTime?true:false" @click="publish(scope.row._id)">{{scope.row.startTime?'已发布':'发布'}}</el-button>
                 <el-button type="danger" size="mini" icon="el-icon-delete" @click="deletePaper(scope.row)">删除</el-button>

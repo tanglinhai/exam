@@ -54,9 +54,9 @@
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
                       <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
-                      <el-button size="small" type="info">查看未完成项</el-button>
-                      <el-button size="small" type="info" @click="saveData()">保存</el-button>
-                      <el-button size="small" type="info" @click="submitData()">提交商务</el-button>
+                      <el-button size="small" plain type="primary">查看未完成项</el-button>
+                      <el-button size="small" plain type="primary" @click="saveData()">保存</el-button>
+                      <el-button size="small" plain type="primary" @click="submitData()">提交商务</el-button>
                   </div>
               </el-col>
           </el-row>

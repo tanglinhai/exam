@@ -20,7 +20,7 @@
             label="学生姓名"
             prop="name"
             show-overflow-tooltip>
-            <template scope="scope">
+            <template slot-scope="scope">
               {{scope.row.name}}
             </template>
           </el-table-column>
@@ -33,7 +33,7 @@
             align="center"
             label="考试时间"
           >
-            <template scope="scope">
+            <template slot-scope="scope">
               {{new Date(scope.row.date).toLocaleString()}}
             </template>
           </el-table-column>

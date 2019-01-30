@@ -22,7 +22,7 @@
               label="模拟过程名称"
               prop="name"
               show-overflow-tooltip>
-              <template scope="scope">
+              <template slot-scope="scope">
                 {{scope.row.name}}
               </template>
             </el-table-column>
@@ -44,7 +44,7 @@
               align="center"
               label="模拟评标时间"
             >
-            <template scope="scope">
+            <template slot-scope="scope">
               {{scope.row.startTime?new Date(scope.row.startTime).toLocaleString():'还未开始模拟过程'}}
             </template>
             </el-table-column>
@@ -52,7 +52,7 @@
               label="操作"
               align="center"
             >
-              <template scope="scope">
+              <template slot-scope="scope">
                 <el-button type="primary" size="mini" @click="publish(scope.row._id)">练习</el-button>
               </template>
             </el-table-column>

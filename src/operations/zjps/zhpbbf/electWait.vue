@@ -81,7 +81,7 @@
                 <el-row style="line-height:40px;border-bottom:2px solid #ccc;margin-bottom:5px;">
                     <el-col :span="24">
                         <div class="grid-content bg-purple-dark" style="text-align:right;">
-                            <el-button type="primary" size="small">返回</el-button>
+                            <el-button type="primary" plain size="small">返回</el-button>
                         </div>
                     </el-col>
                 </el-row>
