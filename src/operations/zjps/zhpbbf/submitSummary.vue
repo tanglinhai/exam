@@ -24,108 +24,211 @@
     </div>
 
     <div class="busa_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
-          商务
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
         </el-tab-pane>
-        <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          <el-row style="line-height:40px;border-bottom:2px solid #66b1ff;margin-bottom:5px;">
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
+        </el-tab-pane>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+          <el-row style="line-height:40px;">
               <el-col :span="4">
-                  <div class="grid-content bg-purple" style="font-size:16px;color:#66b1ff">评审汇总</div>
+                  <div class="grid-content bg-purple" style="font-size:14px;">评标委员会组长：张三</div>
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button>
+                      <el-button size="small" type="info" @click="sort">排序</el-button>
                   </div>
               </el-col>
           </el-row>
           <el-table
-            :data="tableData"
-            border
-            style="width:100%"
-            :span-method="arraySpanMethod">
+                :data="tableData"
+                border
+                style="width:100%">
+                <el-table-column
+                    prop="bidder"
+                    label="投标人">
+                </el-table-column>
                 <el-table-column
                     prop="num"
-                    width="120px"
                     label="投标序号">
-                    <template slot-scope="scope">
-                        <div v-if="scope.$index == 1">
-                            <h5>评标意见：</h5>
-                            <h5>(2000字以内)</h5>
-                        </div>
-                        <div v-else>{{scope.row.num}}</div>
-                    </template>
                 </el-table-column>
                 <el-table-column
-                    label="投标人">
-                    <template slot-scope="scope"> 
-                        <div v-if="scope.$index == 1">
-                            <el-input type="textarea"></el-input>
-                        </div>
-                        <div v-else>{{scope.row.name}}</div>
-                    </template>
+                        label="评标委员会">
+                        <el-table-column
+                            prop="bida"
+                            label="张三">
+                        </el-table-column>
+                        <el-table-column
+                            prop="bidb"
+                            label="李四">
+                        </el-table-column>
+                        <el-table-column
+                            prop="bidc"
+                            label="王五">
+                        </el-table-column>
                 </el-table-column>
                 <el-table-column
-                    prop="total"
-                    label="评标价(人名币)">
+                    prop="nub"
+                    label="报价分">
+                </el-table-column>
+                <el-table-column
+                    prop="end"
+                    label="最终得分">
                 </el-table-column>
                 <el-table-column
                     prop="ip"
-                    label="排名">
+                    label="名次">
                 </el-table-column>
-          </el-table>
+            </el-table>
+            <el-row>
+                <el-col :span="24">
+                    <div class="grid-content bg-purple-dark" style="text-align:center;padding:7px 0;">
+                        <el-button type="primary" size="small" @click="checkUnlockRecord">查看评分解锁记录</el-button>
+                        <el-button type="primary" size="small" @click="checkProScore">查看专家个人打分表</el-button>
+                        <el-button type="primary" size="small" @click="bindScore">投标人分项得分表</el-button>
+                    </div>
+                </el-col>
+            </el-row>
         </el-tab-pane>
       </el-tabs>
     </div>
 
+    <el-dialog
+      title="评分解锁申请"
+      :visible.sync="dialogFormVisible"
+      width="700px"
+    >
+      <ReviewLockRequest></ReviewLockRequest>
+    </el-dialog>
+    <el-dialog
+      title="查看专家个人打分表"
+      :visible.sync="dialogVisible"
+      width="1000px"
+    >
+      <CheckProScore></CheckProScore>
+    </el-dialog>
+    <el-dialog
+      title="投标人分项得分表"
+      :visible.sync="dialogBindScore"
+      width="1000px"
+    >
+      <CheckProScore></CheckProScore>
+    </el-dialog>
+    <el-dialog
+      title="报价分计算"
+      :visible.sync="dialogScoring"
+      width="900px"
+    >
+      <Scoring></Scoring>
+    </el-dialog>
+    <el-dialog
+      title="投标人排序调整"
+      :visible.sync="dialogSort"
+      width="700px"
+      class="sortDialog"
+    >
+      <Sort></Sort>
+    </el-dialog>
+    <el-dialog
+      title="评标意见"
+      :visible.sync="dialogBiddingAdvice"
+      width="700px"
+      class="failureEntryDialog"
+    >
+      <BiddingAdvice></BiddingAdvice>
+    </el-dialog>
+    <el-dialog
+      title="解锁申请记录"
+      :visible.sync=" dialogViewUnlockRecord"
+      width="700px"
+    >
+      <ViewUnlockRecord ></ViewUnlockRecord>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import ReviewLockRequest from '../dialog/ReviewLockRequest';
+  import CheckProScore from '../dialog/CheckProScore';
+  import Scoring from '../dialog/Scoring';
+  import Sort from '../dialog/Sort';
+  import BiddingAdvice from '../dialog/BiddingAdvice';
+  import ViewUnlockRecord from '../dialog/ViewUnlockRecord';
   export default {
-    name: 'updateBill',
+    components: {
+      ReviewLockRequest,
+      CheckProScore,
+      Scoring,
+      Sort,
+      BiddingAdvice,
+      ViewUnlockRecord
+    },
     data () {
-      return { 
-        activeName:'sec',
+      return {
+        activeName:'7',
+        tabDisabled: [],
         tableData:[
-          {num:'3',name:'普瑞太阳能有限公司（测试）',total:'30000.0000',ip:'1'},
-          {num:''},
+          {bidder:'重庆网控科技发展有限公司',num:'1',name:'就世纪浩劫',bida:'10.00',bidb:'8.10',bidc:'22.00',nub:'40.00',end:'45.37',ip:'3'},
+          {bidder:'普瑞太阳能有限公司',num:'2',bida:'9.00',bidb:'7.20',bidc:'25.00',nub:'41.20',end:'47.73',ip:'1'},
+          {bidder:'夏丰热工研究院有限公司',num:'3',bida:'11.00',bidb:'13.30',bidc:'20.00',nub:'44.00',end:'46.10',ip:'2'}
         ],
+        dialogFormVisible: false,//评分解锁申请弹框
+        dialogVisible: false,//查看专家个人打分表 和 投标人分项得分表弹框
+        dialogScoring:false,//计算报价得分弹框
+        dialogSort:false,//排序弹框
+        dialogBiddingAdvice: false,//调转评标价弹框
+        dialogViewUnlockRecord:false,
+        dialogBindScore:false//投标人分项得分表
       }
-      
     },
     mounted(){
     },
     methods: {
-        arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-            if (rowIndex == 1) {
-                if (columnIndex === 1) {
-                    return [1, 3];
-                }
-            }
-        },     
+      onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '7', '2', this);
+      },
+      changeView(name){      //路由跳转传参函数
+          // console.log(name)
+          //this.$router.push({path:`${name}`});
+          window.location.href = name;
+      },
+      reviewLockRequest() {
+        this.dialogFormVisible = true;
+      },
+      checkProScore() {
+        this.dialogBindScore = true;
+      },
+      bindScore(){
+        this.dialogVisible = true;
+      },
+      scoring() {
+        this.dialogScoring = true;
+      },
+      sort() {
+        this.dialogSort = true;
+      },
+      biddingAdvice() {
+        this.dialogBiddingAdvice = true;
+      },
+      checkUnlockRecord(){
+        this.dialogViewUnlockRecord=true;
+      }
     },
   }
-  
-
-  
 </script>
 
 <style lang="scss">
@@ -173,7 +276,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -199,7 +302,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;
@@ -237,9 +340,11 @@
         padding-left: 28px;
         font-size: 14px;
       }
-      .iconfont{
-          font-size:14px;
-      }
+    }
+    .textSty{
+      line-height: 27px;
+      padding-left: 15px;
+      font-size: 14px;
     }
   }
 </style>

@@ -25,33 +25,33 @@
 
     <div class="leader_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
 
-        <el-tab-pane name="2">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
 
-        <el-tab-pane name="3">
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
           <!-- /operation/zjps/hldj/myQualificationsResult_fhx -->
         </el-tab-pane>
 
-        <el-tab-pane name="sec">
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
           <div>
             <el-row style="line-height:40px;">
               <el-col :span="12">
                 <div class="grid-content bg-purple">
-                    <span>评标委员会组长：3</span>
+                    <span>评标委员会组长：张三</span>
                 </div>
               </el-col>
               <el-col :span="12">
                 <div class="grid-content bg-purple btnBox" style="text-align:right;">
                     <el-button size="small" type="info" @click="goToNextStage()" v-if="!isSubmit">提交</el-button>
                     <el-button size="small" type="info" @click="individualTrial" v-if="!isSubmit">查看个人符合性审查项表</el-button>
-                    <el-button size="small" type="info">查看符合性审查项解锁记录</el-button>
+                    <el-button size="small" type="info" @click="checkUnlockRecord">查看符合性审查项解锁记录</el-button>
                     <el-button size="small" type="info" @click="qualificationUnlockApplication">符合性审查项解锁</el-button>
                 </div>
               </el-col>
@@ -77,11 +77,11 @@
                     </el-table-column>
                     <el-table-column
                         prop="name1"
-                        label="普瑞太阳能有限公司（测试）（2）">
+                        label="普瑞太阳能有限公司">
                     </el-table-column>
                     <el-table-column
                         prop="name2"
-                        label="夏丰热工研究院有限公司（测试）（3）">
+                        label="夏丰热工研究院有限公司">
                     </el-table-column>
                 </el-table-column>
             </el-table>
@@ -109,14 +109,14 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane name="4">
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-       <el-tab-pane>
-          <span slot="label" class="paddmar" @click="toXxjsAsk"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -157,7 +157,8 @@
 
     data () {
       return {
-        activeName:'sec',
+        activeName:'4',
+        tabDisabled:[],
         tableData:[
           {num:'1',factor:'投标报价',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
           {num:'2',factor:'投标人名称',name:'√(5√0×)',name1:'√(5√0×)',name2:'√(5√0×)'},
@@ -176,28 +177,16 @@
       }
     },
     created:function(){
-      this.isSubmit = this.$loaclStore.get('资格审查项汇总是否提交');
+      this.isSubmit = this.$loaclStore.get('符合性审查项汇总是否提交');
     },
     mounted(){
     },
     methods: {
        onTabClick(tab, event){
-        console.log(tab.name)
-        if(tab.name=="1"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
-        }
-        if(tab.name=="2"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
-        }
-        if(tab.name=="3"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult_fhx';
-        }
-        if(tab.name=="4"){
-          window.location.href ='/operation/zjps/hldj/startEvaluation_xxjs';
-        }
+        this.$commonFun.onTabClick(tab, event, '4', '2', this);
       },
       goToNextStage(){
-        // this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/startEvaluation_xxjs');
         this.$loaclStore.set('符合性审查项汇总是否提交', true);
         this.$loaclStore.set('submitView', true);
@@ -213,20 +202,6 @@
       },
       checkUnlockRecord(){
         this.dialogViewUnlockRecord=true;
-      },
-      toXxjsAsk(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/finishQualificationsResult_xxjs'
-        }else{
-          return;
-        }
-      },
-      pshz(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/reviewSummary'
-        }else{
-          return;
-        }
       }
     },
   }

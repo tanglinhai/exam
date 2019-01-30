@@ -25,24 +25,22 @@
 
     <div class="delet_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
-        <el-tab-pane name="1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-        <el-tab-pane name="2">
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-
         </el-tab-pane>
-        <el-tab-pane name="3">
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane name="4">
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-
-        <el-tab-pane name="5">
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
         </el-tab-pane>
-        <el-tab-pane name="sec">
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
           <span slot="label"  name="sec"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
           <div>
             <el-row>
@@ -61,7 +59,7 @@
                         <el-table-column
                             label="资格审查项进度">
                             <template slot-scope="scope">
-                                <el-progress :percentage="d"></el-progress>
+                                <el-progress :percentage="scope.row.completePercent"></el-progress>
                             </template>
                         </el-table-column>
                         <el-table-column
@@ -77,7 +75,7 @@
             </el-row>
           </div>
         </el-tab-pane>
-        <el-tab-pane disabled>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
@@ -92,50 +90,51 @@
     },
     data () {
       return {
+        activeName:'6',
+        tabDisabled:[],
         tableData: [{
           date: '100.0%',
           name: '张三',
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '2',
+          name: '李四',
           address: '未完成'
         }, {
           date: '100.0%',
-          name: '3',
+          name: '王五',
           address: '未完成'
         }],
-        activeName:'sec',
         progres:'',
         d:0
       }
 
     },
+    computed:{
+      completePercent(){
+        var tableData = this.$loaclStore.get('详细评审（技术）1');
+        var tableData11 = this.$loaclStore.get('详细评审（技术）2');
+        let len=tableData11.length+tableData.length;
+        let fillCount = 0;
+        for(var i=0;i<tableData.length;i++){
+          if(tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        return Math.floor(fillCount /len*100);
+      }
+    },
     mounted(){
-      let a;
-      let b;
-      a=this.$loaclStore.get('msg_xxjs').length;//选中的数据length
-      b=this.$loaclStore.get('datalength_xxjs');//数据的length
-      this.d= Math.floor(a/b*100);
+      this.tableData[0].completePercent = this.completePercent;
     },
     methods: {
       onTabClick(tab, event){
-        // console.log(tab.name)
-        if(tab.name=="1"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult';
-        }
-        if(tab.name=="2"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
-        }
-        if(tab.name=="3"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult_fhx';
-        }
-        if(tab.name=="4"){
-          window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
-        }
-        if(tab.name=="5"){
-          window.location.href ='/operation/zjps/hldj/myQualificationsResult_xxjs';
-        }
+        this.$commonFun.onTabClick(tab, event, '6', '1', this);
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

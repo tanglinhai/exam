@@ -24,7 +24,7 @@
     </div>
 
     <div class="quexa_b">
-      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
@@ -33,12 +33,6 @@
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
-        </el-tab-pane>
-        <el-tab-pane name="4" :disabled="tabDisabled[3]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-        </el-tab-pane>
-        <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -66,9 +60,9 @@
                       </div>
                     </el-col>
                   </el-row>
-                  <el-row :gutter="20">
+                  <el-row>
                     <el-col>
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：专业资质是否达标？</div>
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：专业资质是否达标？</div>
                     </el-col>
                   </el-row>
                   <template>
@@ -105,9 +99,9 @@
                         </el-table-column>
                       </el-table>
                   </template>
-                  <el-row>
-                    <el-col :span="24">
-                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;">资格审查项：公司投资金额是否达标？</div>
+                  <el-row :gutter="20">
+                    <el-col :span="24" style="padding:0px;padding-top:15px;">
+                      <div class="grid-content bg-purple" style="text-align:left; font-size:14px;padding-bottom:15px;">资格审查项：公司投资金额是否达标？</div>
                     </el-col>
                   </el-row>
                   <template>
@@ -149,11 +143,17 @@
             </el-row>
           </div>
         </el-tab-pane>
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+        </el-tab-pane>
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
+          <span slot="label" class="paddmar"><i class="el-icun-edit"></i> 商务</span>
+        </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
-          <span slot="label" class="paddmar" @click="pshz"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -167,7 +167,7 @@
     },
     data () {
       return {
-        activeName:'5',
+        activeName:'3',
         tabDisabled:[],
         tableData3: [{
           number:'1',
@@ -248,8 +248,8 @@
       })
 
 
-      let zgsc1=this.$loaclStore.get('详细评审（技术）1');
-      let zgsc2=this.$loaclStore.get('详细评审（技术）2');
+      let zgsc1=this.$loaclStore.get('zhpbbf_符合性审查项1');
+      let zgsc2=this.$loaclStore.get('zhpbbf_符合性审查项2');
       zgsc1.forEach((val,index) => {
           this.tableData[index].address = val.radio;
       })
@@ -258,8 +258,8 @@
       })
     },
     methods: {
-      onTabClick(tab, event){
-        this.$commonFun.onTabClick(tab, event, '5', '2', this);
+       onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '3', '2', this);
       },
        viewChange(name){
         this.$router.push({path:`${name}`});
@@ -268,13 +268,6 @@
       //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
-        }
-      },
-      pshz(){
-        if(this.$loaclStore.get('submitView') == true){
-          window.location.href='/operation/zjps/hldj/reviewSummary'
-        }else{
-          return;
         }
       }
 
@@ -378,8 +371,8 @@
       }
     }
     .qu{
-        height: 40px;
-        line-height: 40px;
+        // height: 40px;
+        // line-height: 40px;
         border: 1px solid #ebeef5;
         border-bottom: none;
         font-size: 14px;

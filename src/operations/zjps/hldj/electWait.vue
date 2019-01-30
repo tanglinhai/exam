@@ -146,13 +146,6 @@
                         </div>
                     </el-col>
                 </el-row>
-                <!-- <el-row style="line-height:40px;margin-bottom:5px;">
-                    <el-col :span="24">
-                        <div class="grid-content bg-purple-dark" style="text-align:center;color:blue">
-                            <el-button type="primary" size="small" @click="endSelect()">下一步</el-button>
-                        </div>
-                    </el-col>
-                </el-row> -->
             </el-main>
         </el-container>
     </div>
@@ -188,17 +181,6 @@ export default {
         handleCurrentChange(currPage){
 
         },
-        changeView(name){      //路由跳转传参函数
-            // console.log(name)
-            //this.$router.push({path:`${name}`});
-            window.location.href = name;
-        },
-        endSelect(){
-            //下一步加分
-            this.$commonFun.exam_operation_answer_calc();
-            this.changeView('/operation/zjps/hldj/bidLink')
-        },
-
         downloadZB(){
             window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
         },
@@ -220,6 +202,7 @@ export default {
 
                 setTimeout(() => {
                     alert('推举完毕，将进入下一环节 评标');
+                    this.$commonFun.exam_operation_answer_calc();
                     this.$loaclStore.set('zzdps',{'张三':'3','李四':'0','王五':'0'})
                     window.location.href = '/operation/zjps/hldj/bidLink';
                 },2000)

@@ -86,7 +86,7 @@
         data() {
             return {
                 msgBox: [{
-                    evaluationFactors: '1',
+                    evaluationFactors: '联合体投标人',
                     bidder: '北京蓝天环境保护有限公司',
                     finalQuotation: '1,000,000,00',
                      panduan1:"√",

@@ -24,7 +24,7 @@
     </div>
 
     <div class="delet_b">
-      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
           <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
@@ -70,10 +70,10 @@
           </div>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
           <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
@@ -111,8 +111,8 @@
     },
     computed:{
       completePercent(){
-        var tableData = this.$loaclStore.get('符合性审查项1');
-        var tableData11 = this.$loaclStore.get('符合性审查项2');
+        var tableData = this.$loaclStore.get('zhpbbf_符合性审查项1');
+        var tableData11 = this.$loaclStore.get('zhpbbf_符合性审查项2');
         let len=tableData11.length+tableData.length;
         let fillCount = 0;
         for(var i=0;i<tableData.length;i++){
@@ -132,8 +132,8 @@
       this.tableData[0].completePercent = this.completePercent;
     },
     methods: {
-      onTabClick(tab, event){
-        this.$commonFun.onTabClick(tab, event, '4', '1', this);
+      onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '4', '1', this);
       },
       changeView(name){      //路由跳转传参函数
           // console.log(name)

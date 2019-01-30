@@ -65,12 +65,7 @@
                         <el-table-column prop="changeMoney" header-align="left" label="调整金额（单位：元）"></el-table-column>
                         <el-table-column prop="operate" header-align="left" label="操作">
                             <template slot-scope="scope">
-                                <!--<el-button-->
-                                <!--size="mini"-->
-                                <!--@click.stop="changePrice(scope.$index, scope.row)"-->
-                                <!--&gt;-->
-                                <!--<i class="icon iconfont icon-zhifu mr5"></i>调转评标价-->
-                                <!--</el-button>-->
+                                <el-button size="mini" @click.stop="del(scope.$index, scope.row)" >删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -100,12 +95,7 @@
                         <el-table-column prop="changeMoney" header-align="left" label="调整金额（单位：元）"></el-table-column>
                         <el-table-column prop="operate" header-align="left" label="操作">
                             <template slot-scope="scope">
-                                <!--<el-button-->
-                                <!--size="mini"-->
-                                <!--@click.stop="changePrice(scope.$index, scope.row)"-->
-                                <!--&gt;-->
-                                <!--<i class="icon iconfont icon-zhifu mr5"></i>调转评标价-->
-                                <!--</el-button>-->
+                              <el-button size="mini" @click.stop="del2(scope.$index, scope.row)" >删除</el-button>
                             </template>
                         </el-table-column>
                     </el-table>
@@ -143,14 +133,28 @@
                     desc: ''
                 },
                 msgBox: [{
-                    changeReason: '数据不对',
+                    changeReason: '小微企业',
                     computationalBase: '1,000',
                     increaseDecrease: '11',
                     ratio: '10%',
                     changeMoney: '1,000',
-                }],
-                tableBox: [{
-                    changeReason: '数据不对',
+                },{
+                    changeReason: '付款方式',
+                      computationalBase: '1,000',
+                      increaseDecrease: '11',
+                      ratio: '10%',
+                      changeMoney: '1,000',
+                  }],
+                tableBox: [
+                  {
+                    changeReason: '小微企业',
+                    computationalBase: '1,000',
+                    increaseDecrease: '11',
+                    ratio: '10%',
+                    changeMoney: '1,000',
+                  },
+                  {
+                    changeReason: '付款方式',
                     computationalBase: '1,000',
                     increaseDecrease: '11',
                     ratio: '10%',
@@ -173,24 +177,24 @@
             },
             technicalAdjustment_add(){
 
-            }
+            },
+          del(){
+
+          },
+          del2(){
+
+          }
         }
     }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-    /*@import "@/assets/css/common/font.scss";*/
-    /*@import "@/assets/css/common/common.scss";*/
-    /*@import "@/assets/css/common/variables.scss";*/
-    /*@import "@/assets/css/common/mixin.scss";*/
-
     .changePassword {
         .insolvProWrap {
             .priceAdjustment {
 
             }
         }
-        //@include common-el-table;
     }
 </style>
 

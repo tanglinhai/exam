@@ -24,24 +24,20 @@
     </div>
 
     <div class="busa_b">
-      <el-tabs type="border-card" v-model="activeName">
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-circle-check"></i> 资格审查项</span>
-          资格审查项
+      <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
+        <el-tab-pane name="1" :disabled="tabDisabled[0]">
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 资格审查项汇总</span>
-          资格审查项汇总
+        <el-tab-pane name="2" :disabled="tabDisabled[1]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
-          符合性审查项
+        <el-tab-pane name="3" :disabled="tabDisabled[2]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
         </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
-          符合性审查项汇总
+        <el-tab-pane name="4" :disabled="tabDisabled[3]">
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
         </el-tab-pane>
-        <el-tab-pane name="sec">
+        <el-tab-pane name="5" :disabled="tabDisabled[4]">
           <span slot="label"><i class="el-icon-edit"></i> 商务</span>
           <el-row style="line-height:40px;">
               <el-col :span="1">
@@ -49,53 +45,66 @@
               </el-col>
               <el-col :span="8">
                   <div class="grid-content bg-purple" style="padding-top:12px;">
-                      <el-progress :percentage="67"></el-progress>
+                      <el-progress :percentage="100"></el-progress>
                   </div>
               </el-col>
               <el-col :span="15">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button size="small" type="info">查看未完成项</el-button>
-                      <el-button size="small" type="info">保存</el-button>
-                      <el-button size="small" type="info">提交商务</el-button>
+                      <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
+                      <el-button size="small" type="info" @click="unfinishedGrade">查看未完成项</el-button>
+                      <el-button size="small" type="info" @click="saveData()">保存</el-button>
+                      <el-button size="small" type="info" @click="submitData()">提交商务</el-button>
                   </div>
               </el-col>
           </el-row>
           <el-table
+                
                 :data="tableData"
+                :row-class-name="tableRowClassName"
                 border
-                style="width:100%">
+                style="width:100%"
+                >
                 <el-table-column
                     prop="num"
                     label="项目">
-                </el-table-column>               
+                </el-table-column>
                 <el-table-column
                         label="投标人">
                         <el-table-column
                             prop="name"
-                            label="阿里巴巴（1）">
+                            label="重庆网控科技发展有限公司">
                             <template slot-scope="scope">
-                                <div>   
-                                    <el-input v-if="scope.$index == 0"></el-input>
+                                <div>
+                                    <div v-if="scope.$index == 0||scope.$index == 1">
+                                      <el-input style="width:150px;" :value="scope.row.name"></el-input>
+                                      <i class="el-icon-edit-outline"></i>
+                                    </div>
                                     <div v-else>{{scope.row.name}}</div>
                                 </div>
                             </template>
                         </el-table-column>
                         <el-table-column
                             prop="name1"
-                            label="普瑞太阳能有限公司（测试）（2）">
+                            label="普瑞太阳能有限公司">
                             <template slot-scope="scope">
-                                <div>   
-                                    <el-input v-if="scope.$index == 0"></el-input>
+                                <div>
+                                    <div v-if="scope.$index == 0||scope.$index == 1">
+                                      <el-input style="width:150px;" :value="scope.row.name1"></el-input>
+                                      <i class="el-icon-edit-outline"></i>
+                                    </div>
                                     <div v-else>{{scope.row.name1}}</div>
                                 </div>
                             </template>
                         </el-table-column>
                         <el-table-column
                             prop="name2"
-                            label="夏丰热工研究院有限公司（测试）（3）">
+                            label="夏丰热工研究院有限公司">
                             <template slot-scope="scope">
-                                <div>   
-                                    <el-input v-if="scope.$index == 0"></el-input>
+                                <div>
+                                    <div v-if="scope.$index == 0||scope.$index == 1">
+                                      <el-input style="width:150px;" :value="scope.row.name2"></el-input>
+                                      <i class="el-icon-edit-outline"></i>
+                                    </div>
                                     <div v-else>{{scope.row.name2}}</div>
                                 </div>
                             </template>
@@ -104,10 +113,8 @@
             </el-table>
             <el-row>
                 <el-col :span="24">
-                    <div class="grid-content bg-purple-dark" style="text-align:right;border:1px solid #ebeef5;border-top:none;padding:7px 0;">
+                    <div class="grid-content bg-purple-dark" style="text-align:right;border:1px solid #ebeef5;border-top:none;padding:7px 0; overflow:hidden;">
                         <el-pagination
-                            @size-change="handleSizeChange"
-                            @current-change="handleCurrentChange"
                             :current-page="currentPage4"
                             :page-sizes="[10, 20, 50, 100]"
                             :page-size="10"
@@ -118,38 +125,80 @@
                 </el-col>
             </el-row>
         </el-tab-pane>
-        <el-tab-pane>
+        <el-tab-pane name="6" :disabled="tabDisabled[5]">
+          <span slot="label"><i class="el-icon-edit"></i> 技术</span>
+        </el-tab-pane>
+        <el-tab-pane name="7" :disabled="tabDisabled[6]">
           <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
-          评审汇总
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      title="未完成打分项"
+      :visible.sync="dialogUnfinishedGrade"
+      width="700px"
+    >
+      <UnfinishedGrade ></UnfinishedGrade>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import UnfinishedGrade  from '../dialog/UnfinishedGrade';
   export default {
     name: 'updateBill',
+    components: {
+      UnfinishedGrade,
+    },
     data () {
-      return { 
-        activeName:'sec',
+      return {
+        activeName:'5',
+        tabDisabled: [],
         tableData:[
-          {num:'第一章、2(0.00分-50.00分)',name:'1',name1:'2',name2:'3'},
-          {num:'商务小计(分)',name:'就世纪浩劫',name1:'氨基酸的痕迹',name2:'撒打算发'},
-          {num:'总分小计(分)',name:'合格',name1:'合格',name2:'合格'}
+          {num:'第一章、项目经理任职资格与业绩(0.00分-10.00分)',name:'8',name1:'7.5',name2:'9'},
+          {num:'第二章、其他要求(0.00分-10.00分)',            name:'6.8',name1:'8.5',name2:'8'},
+          {num:'商务小计(分)',name:'14.8',name1:'16',name2:'17'},
+          {num:'总分小计(分)',name:'14.8',name1:'16',name2:'17'}
         ],
-        currentPage4: 1
+        currentPage4: 1,
+        dialogUnfinishedGrade:false,//未完成打分项弹框
       }
-      
+
     },
     mounted(){
     },
-    methods: {     
-    },
-  }
-  
 
-  
+    methods: {
+      saveData(){
+
+      },
+      submitData(){
+        this.$commonFun.exam_operation_answer_calc();
+        this.changeView('/operation/zjps/zhpbbf/businessAffairs2');
+        this.$loaclStore.set('zhpbbf_商务isSubmit', true);
+      },
+      changeView(name){      //路由跳转传参函数
+          // console.log(name)
+          //this.$router.push({path:`${name}`});
+          window.location.href = name;
+      }, 
+      onTabClick1(tab, event){
+        this.$commonFun.onTabClick1(tab, event, '5', '1', this);
+      },
+      tableRowClassName({row, rowIndex}) {
+        if (rowIndex === 0||rowIndex === 1) {
+          return 'success-row';
+        }
+        return '';
+      },
+      unfinishedGrade(){
+        this.dialogUnfinishedGrade=true;
+      }
+    },
+
+  }
+
+
+
 </script>
 
 <style lang="scss">
@@ -197,7 +246,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -223,7 +272,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;
@@ -266,6 +315,9 @@
       line-height: 27px;
       padding-left: 15px;
       font-size: 14px;
+    }
+    .el-table .success-row {
+      background: #f0f9eb;
     }
   }
 </style>
