@@ -426,7 +426,7 @@
           this.dialogVisible=true;
           this.idradionoprss = id;
         }else if(radio=='合格'){
-          store_radio.content = ''
+          store_radio.content = '';
           this.saveStorage();
         }
       },

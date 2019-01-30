@@ -2,7 +2,7 @@
   <div class="exam">
     <h3 class="text-center marginT10">{{paperData.name}}</h3>
     <div class="text-center marginT10">模拟评标时长：{{paperData.time}}分钟  总分：{{paperData.totalPoints}}分</div>
-    <hr>  
+    <hr>
     <div class="submit-box" ref="submitBox" v-show="lianxi">
       <el-button @click="submit" type="primary" class="submit-btn">提交模拟评标</el-button>
       <div class="timeout">
@@ -89,15 +89,15 @@
                 width="100%"
                 center
               >
-                <iframe 
+                <iframe
                   :ref="'iframe_operation_'+item._operation.name"
                   width="100%"
                   height="auto"
                   frameborder="0"
                   scrolling="no"
                 ></iframe>
-                <div class="submit-box" slot="footer" style="top: 50px;">
-                  <el-button @click="endOperation(item)" type="danger" size="small">结束操作</el-button>
+                <div class="submit-box" slot="footer" style="bottom: 63px;">
+                  <el-button @click="endOperation(item)" type="danger" size="small">结束评标</el-button>
                 </div>
               </el-dialog>
             </div>
@@ -211,7 +211,7 @@
        * 结束操作
        */
       endOperation(item){
-        
+
         this.$confirm('结束不可再继续操作, 您是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -229,7 +229,7 @@
           this.$message({
             type: 'info',
             message: '已取消操作'
-          });          
+          });
         });
       },
       /**
@@ -472,8 +472,8 @@
                 message: '已取消操作'
               });
             })
-          } 
-        } 
+          }
+        }
       },
       /**@argument score answers
        * 提交试卷api请求
@@ -504,13 +504,13 @@
       padding: 20px 20px;
       .question{
         margin-bottom: 20px;
-        
+
         .operation{
           .question-title{
-            
+
           }
         }
-        
+
         .option{
           display: block;
           margin:5px 0 0 15px;
@@ -569,7 +569,7 @@
     }
     .submit-box{
       position: fixed;
-      right: 30px;
+      right: 55px;
       padding: 30px;
       transition: 1s;
       text-align: center;

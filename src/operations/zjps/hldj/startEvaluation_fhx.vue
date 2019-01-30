@@ -57,7 +57,8 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <el-progress :percentage="d"  ref="aaa" ></el-progress>
+                        <!--<el-progress :percentage="d"  ref="aaa" ></el-progress>-->
+                        <el-progress :percentage="completePercent" ></el-progress>
                       </div>
                     </el-col>
                     <el-row :span="10" style="padding:0px; float:right;">
@@ -341,6 +342,25 @@
         d:0
       }
     },
+    computed: {
+      completePercent(){
+        let a=this.tableData11.length;
+        let b=this.tableData.length;
+        let s=a+b;
+        let fillCount = 0;
+        for(var i=0;i<this.tableData.length;i++){
+          if(this.tableData[i].radio){
+            fillCount++;
+          }
+        }
+        for(var i=0;i<this.tableData11.length;i++){
+          if(this.tableData11[i].radio){
+            fillCount++;
+          }
+        }
+        return Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
+      }
+    },
     mounted(){
       //获取之前的选择的值
       var tableData = this.$loaclStore.get('符合性审查项1');
@@ -403,7 +423,6 @@
 
       failuredRadio(radio,id,index, tableKey){
        var store_radio = null;
-       console.log(tableKey);
        for(var i = 0;i<this[tableKey].length;i++){
           if(this[tableKey][i].id==id){
             store_radio = this[tableKey][i];
@@ -414,33 +433,50 @@
           this.dialogVisible=true;
           this.idradionoprss = id;
         }else if(radio=='合格'){
-          store_radio.content = ''
+          store_radio.content = '';
           this.saveStorage();
         }
-        let a=this.tableData11.length;
-        let b=this.tableData.length;
-        let s=a+b;
-        let fillCount = 0;
-        for(var i=0;i<this.tableData.length;i++){
-          if(this.tableData[i].radio){
-            fillCount++;
-          }
-        }
-        for(var i=0;i<this.tableData11.length;i++){
-          if(this.tableData11[i].radio){
-            fillCount++;
-          }
-        }
-        this.d=Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
-        this.$refs.aaa.$options.propsData.percentage=this.d;
-        this.$loaclStore.set('datalength',s);
+        // let a=this.tableData11.length;
+        // let b=this.tableData.length;
+        // let s=a+b;
+        // let fillCount = 0;
+        // for(var i=0;i<this.tableData.length;i++){
+        //   if(this.tableData[i].radio){
+        //     fillCount++;
+        //   }
+        // }
+        // for(var i=0;i<this.tableData11.length;i++){
+        //   if(this.tableData11[i].radio){
+        //     fillCount++;
+        //   }
+        // }
+        // this.d=Math.floor(fillCount /( this.tableData11.length +this.tableData.length)*100);
+        // this.$refs.aaa.$options.propsData.percentage=this.d;
+        // this.$loaclStore.set('datalength',s);
       },
       // 本地存储local封装
       saveStorage(){
         this.$loaclStore.set('符合性审查项1',this.tableData);
         this.$loaclStore.set('符合性审查项2',this.tableData11);
       },
-
+      isAllFilled(){
+        var tableData = this.$loaclStore.get('资格审查项1');
+        var tableData11 = this.$loaclStore.get('资格审查项2');
+        var isAllF = true;
+        for(var i=0;i<tableData.length;i++){
+          if(!tableData[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(!tableData11[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        return isAllF;
+      },
       quanbu(){
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio='合格';
