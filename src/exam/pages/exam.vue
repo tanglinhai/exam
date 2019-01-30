@@ -163,7 +163,11 @@
     },
     watch: {
       time(curVal, oldVal) {
-        if(curVal == "小时分钟秒"){
+
+        console.log(curVal, oldVal);
+
+
+        if(curVal == "0小时0分钟0秒"){
           this.$message.error('考试时间到，强制提交!');
           let isMust = true;
           this.submit(isMust);
@@ -452,6 +456,8 @@
               score += 0;
             }
           })
+
+
           if(isMust === true){
             this.submitApi(score,answers);
           } else {
