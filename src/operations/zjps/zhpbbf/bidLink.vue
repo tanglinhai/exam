@@ -81,7 +81,7 @@
                     </el-col>
                     <el-col :span="19">
                         <div class="grid-content bg-purple-dark" style="text-align:right;border-bottom:2px solid #ccc">
-                            评标专家：<font style="color:red;">3</font>
+                            评标专家：<font style="color:red;">张三</font>
                         </div>
                     </el-col>
                     <el-col :span="3">

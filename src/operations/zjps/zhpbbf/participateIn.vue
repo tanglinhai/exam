@@ -36,11 +36,8 @@
                         prop="file"
                         label="招标文件">
                       <template slot-scope="scope">
-                        <div @click="downloadZB">
-                          <a href="javascript:void(0);" class="curStyot">
+                        <div>
                             <span>{{scope.row.file}}</span>
-                            <i class="fa fa-file fa-fw"></i>
-                          </a>
                         </div>
 
                       </template>
@@ -61,11 +58,8 @@
                         prop="file"
                         label="投标文件">
                       <template slot-scope="scope">
-                        <div @click="downloadTouBiao">
-                            <a class="curStyot"  href="javascript:void(0);">
+                        <div>
                               <span> {{scope.row.file}}</span>
-                              <i class="fa fa-file fa-fw"></i>
-                            </a>
                         </div>
                       </template>
                     </el-table-column>

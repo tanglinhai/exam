@@ -163,10 +163,6 @@
     },
     watch: {
       time(curVal, oldVal) {
-
-        console.log(curVal, oldVal);
-
-
         if(curVal == "0小时0分钟0秒"){
           this.$message.error('考试时间到，强制提交!');
           let isMust = true;

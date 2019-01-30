@@ -138,7 +138,7 @@
       :visible.sync="dialogScoring"
       width="900px"
     >
-      <Scoring></Scoring>
+      <Scoring @calcScore="calcScore"></Scoring>
     </el-dialog>
     <el-dialog
       title="投标人排序调整"
@@ -185,10 +185,19 @@
       return {
         activeName:'7',
         tabDisabled: [],
-        tableData:[
+
+        /**
+         * tableData:[
           {bidder:'重庆网控科技发展有限公司',num:'1',name:'就世纪浩劫',bida:'10.00',bidb:'8.10',bidc:'22.00',nub:'40.00',end:'45.37',ip:'3'},
           {bidder:'普瑞太阳能有限公司',num:'2',bida:'9.00',bidb:'7.20',bidc:'25.00',nub:'41.20',end:'47.73',ip:'1'},
           {bidder:'夏丰热工研究院有限公司',num:'3',bida:'11.00',bidb:'13.30',bidc:'20.00',nub:'44.00',end:'46.10',ip:'2'}
+        ],
+         */
+
+        tableData:[
+          {bidder:'重庆网控科技发展有限公司',num:'1',bida:'',bidb:'',bidc:'',nub:'',end:'',ip:''},
+          {bidder:'普瑞太阳能有限公司',     num:'2',bida:'',bidb:'',bidc:'',nub:'',end:'',ip:''},
+          {bidder:'夏丰热工研究院有限公司', num:'3',bida:'',bidb:'',bidc:'',nub:'',end:'',ip:''}
         ],
         dialogFormVisible: false,//评分解锁申请弹框
         dialogVisible: false,//查看专家个人打分表 和 投标人分项得分表弹框
@@ -202,6 +211,9 @@
     mounted(){
     },
     methods: {
+      calcScore(data){
+        this.dialogScoring = false;
+      },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '7', '1', this);
       },

@@ -392,9 +392,7 @@
 			return treeNode.level > 0;
 		}
 
-		$(document).ready(function(){
 			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
-		});
       setTimeout(function(){
         $("#treeDemo_1_a").addClass("curSelectedNode");
       },200);
@@ -427,8 +425,8 @@
           this.idradionoprss = id;
         }else if(radio=='合格'){
           store_radio.content = ''
-          this.saveStorage();
         }
+        this.saveStorage();
       },
       // 本地存储local封装
       saveStorage(){

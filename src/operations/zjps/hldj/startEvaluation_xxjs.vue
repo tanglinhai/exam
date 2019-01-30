@@ -409,8 +409,8 @@
           this.idradionoprss = id;
         }else if(radio=='合格'){
           store_radio.content = ''
-          this.saveStorage();
         }
+        this.saveStorage();
         let a=this.tableData11.length;
         let b=this.tableData.length;
         let s=a+b;
