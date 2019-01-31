@@ -211,6 +211,52 @@ exports.getExamLogs = function (req, res){
       }
     })
 };
+
+
+// 获取考试记录
+exports.getExamLogsByUserId = function (req, res){
+  let userid = req.param('userid');
+    // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
+  let  pageSize = parseInt(req.param('pageSize'));
+  let  pageNumber = parseInt(req.param('pageNumber'));
+  let  skip = (pageNumber-1)*pageSize; // 跳过几条
+  Student.findOne({"userId":userid},{"exams":{$slice:[skip,pageSize]}}).populate({path:'exams._paper'})
+    .exec((err,doc) => {
+      if (err) {
+        res.json({
+          status:'1',
+          msg: err.message
+        })
+      } else {
+        if (doc) {
+          var result = [];
+          if(doc.exams)
+          for(var i=0;i<doc.exams.length;i++){
+            var exam = doc.exams[i];
+            result.push({
+              assessment_code:doc.userId,
+              starttime: exam.startTime,
+              endtime: exam.date,
+              content: exam._paper.name,
+              through: exam.score == exam._paper.totalPoints ? 1 : 0
+            });
+          }
+          res.json({
+            status: '0',
+            msg:'success',
+            result:result
+          })
+        } else {
+          res.json({
+            status: '2',
+            msg:'没有该试卷'
+          })
+        }
+      }
+    })
+};
+
+
 // 获取考试信息
 exports.getExams = function (req,res) {
   let userName =req.session.userName;

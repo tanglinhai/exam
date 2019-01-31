@@ -4,7 +4,7 @@
             <div class="input-text-wrapper">
                 <div class="login-logo marginB10"><img width="300" v-lazy="logoSrc" alt="logo"></div>
                 <el-input v-model="userName" placeholder="请输入账号" @keyup.enter="submit"></el-input>
-                <el-input v-model="passWord" placeholder="请输入密码" type="password" @keyup.enter="submit" class="marginT10"></el-input>
+                <el-input v-model="passWord" placeholder="请输入密码" @keyup.enter="submit" class="marginT10"></el-input>
             </div>
             <div class="input-text-wrapper marginT30 text-center">
                 <el-button type="warning" @click="submit" class="loginBtn">登录</el-button>
@@ -75,6 +75,33 @@ export default {
             lineColor: "rgba(255,159,64,1)",
             canvasOpacity: 0.3
         });
+        var _this = this;
+
+        var userName = this.$route.query.username;
+        var userId = this.$route.query.userid;
+        var grade = this.$route.query.grade;
+        var class_ = this.$route.query.class_;
+        if(userName && userId){
+          this.userName = userName;
+          this.passWord = userId;
+          this.$axios.post('/api/studentregister',{
+            userInfo:{
+              userName: userName,
+              passWord: userId,
+              userId: userId,
+              grade: grade || '--',
+              class: class_ || '--'
+            }
+          }).then(response => {
+            _this.submit();
+          }).catch(err => {
+            this.$message({
+              showClose: true,
+              message: '注册失败，请稍后再试！',
+              type: 'warning'
+            });
+          })
+        }
     }
 }
 </script>
