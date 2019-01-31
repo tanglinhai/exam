@@ -64,12 +64,12 @@ app.use(function (req,res,next) {
   ];
   var isPass = false;
   for(var i=0;i<passUrls.length;i++){
+      console.log(req.url,passUrls[i],req.url.indexOf(passUrls[i]));
     if(req.url.indexOf(passUrls[i]) == 0){
       isPass = true;
       break;
     }
   }
-
   if(!isPass && !_userName){
     res.json({
       status: '4000',
