@@ -249,7 +249,7 @@ exports.getExamLogsByUserId = function (req, res){
         } else {
           res.json({
             status: '2',
-            msg:'没有该试卷'
+            msg:'没有该考生或者该考生还没有成绩'
           })
         }
       }
