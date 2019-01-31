@@ -133,6 +133,52 @@
                       </el-table>
                   </template>
                 </div>
+                <div class="grid-content bg-purple aaa_bright a2">
+                  <div class="a_bright_title">
+                    <span>分包号：0635-1909N987/1[第一包]</span>
+                    <span>评标委员会：0635-1909N987/1评委会</span>
+                  </div>
+                  <!--表格-->
+                  <template>
+                    <el-table
+                      :data="tableData3"
+                      :span-method="arraySpanMethod"
+                      style="width: 100%">
+                      <el-table-column
+                        prop="number"
+                        align="center"
+                        label="序号"
+                        width="100">
+                      </el-table-column>
+                      <el-table-column
+                        prop="date"
+                        align="center"
+                        label="评审因素">
+                      </el-table-column>
+                      <el-table-column
+                      label="投标人"
+                      align="center"
+                      >
+                          <el-table-column
+                            prop="province"
+                            align="center"
+                            label="重庆网控科技发展有限公司">
+                          </el-table-column>
+                          <el-table-column
+                            prop="city"
+                            align="center"
+                            label="普瑞太阳能有限公司">
+                          </el-table-column>
+                          <el-table-column
+                            prop="name"
+                            align="center"
+                            label="夏丰热工研究院有限公司">
+                          </el-table-column>
+                      </el-table-column>
+                    </el-table>
+                  </template>
+                  <!--表格-->
+                </div>
               </el-col>
             </el-row>
           </div>
