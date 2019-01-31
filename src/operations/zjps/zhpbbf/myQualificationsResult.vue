@@ -133,7 +133,7 @@
                       </el-table>
                   </template>
                 </div>
-                <div class="grid-content bg-purple aaa_bright a2">
+                <div class="grid-content bg-purple quexa_bright a2">
                   <div class="a_bright_title">
                     <span>分包号：0635-1909N987/1[第一包]</span>
                     <span>评标委员会：0635-1909N987/1评委会</span>
