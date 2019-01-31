@@ -1,7 +1,7 @@
 <template>
     <div class="sidebar">
       <el-row>
-        <el-col class="text-center marginT10">
+        <el-col class="text-center " style="margin-top: 7px;margin-bottom: 4px">
           <img width="150" v-lazy="logoSrc" alt="logo" height="27" >
         </el-col>
         <el-col>

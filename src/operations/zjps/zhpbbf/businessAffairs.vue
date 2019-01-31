@@ -58,7 +58,6 @@
               </el-col>
           </el-row>
           <el-table
-                
                 :data="tableData"
                 :row-class-name="tableRowClassName"
                 border
@@ -170,7 +169,7 @@
     methods: {
       // 本地存储local封装
       saveStorage(){
-        
+
       },
       saveData(){
 
@@ -184,7 +183,7 @@
           // console.log(name)
           //this.$router.push({path:`${name}`});
           window.location.href = name;
-      }, 
+      },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '5', '1', this);
       },

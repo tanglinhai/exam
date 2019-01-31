@@ -39,7 +39,6 @@
           </el-col>
         </el-row>
       </el-col>
-
     </el-row>
     <h2 v-else class="text-center marginT50">没有可以参加的模拟评标，请等待管理员发布模拟评标过程！</h2>
   </div>
@@ -67,7 +66,6 @@
       mounted(){
         this.init();
         this.getExamLogs();
-
             this.$alert('本地系统是专家评标流程模拟过程，提供给专家熟悉中招联合的评标流程使用，其中数据都为模拟数据，不要对数据的精确性做深究。', '系统提示', {
           confirmButtonText: '确定'
         });
@@ -149,10 +147,10 @@
           }else {
             this.$router.push({name:'ForntExam',params:{id:paper._id}});
           }
-          
+
         }
       }
-      
+
     }
 </script>
 
