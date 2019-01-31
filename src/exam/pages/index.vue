@@ -35,6 +35,13 @@ export default {
   mounted(){
     this.isRead = this.$mySessionStorage.get('read');
     this.readGo();
+
+
+
+    this.$alert('本地系统是专家评标流程模拟过程，提供给专家熟悉中招联合的评标流程使用，其中数据都为模拟数据，不要对数据的精确性做深究。', '系统提示', {
+          confirmButtonText: '确定'
+        });
+
   },
   methods:{
     next(){

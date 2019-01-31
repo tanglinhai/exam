@@ -26,10 +26,10 @@
     <div class="aaa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
-          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 资格审查项汇总</span>
           <!-- 资格审查项汇总 -->
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
@@ -475,11 +475,31 @@
       changeView(){      //路由跳转传参函数
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult_fhx';
       },
+      isAllFilled(){
+        var tableData = this.$loaclStore.get('符合性审查项1');
+        var tableData11 = this.$loaclStore.get('符合性审查项2');
+        var isAllF = true;
+        console.log(tableData,'-----------')
+        for(var i=0;i<tableData.length;i++){
+          if(!tableData[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        for(var i=0;i<tableData11.length;i++){
+          if(!tableData11[i].radio){
+            isAllF = false;
+            break;
+          }
+        }
+        
+        return isAllF;
+      },
       allSubmit(){
         this.$loaclStore.set('符合性审查isSubmit',true);
         let mssg=this.$loaclStore.get('符合性审查项1');
         let mssg11=this.$loaclStore.get('符合性审查项2');
-        if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
+        if(!this.isAllFilled()){
           this.$message({
             message: '请选择合格/不合格',
             center: true

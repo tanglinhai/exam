@@ -26,7 +26,7 @@
     <div class="aaa_b">
       <el-tabs type="border-card" v-model="activeName"  @tab-click="onTabClick">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
-          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -470,7 +470,7 @@
         this.$loaclStore.set('资格审查isSubmit',true);
         let mssg=this.$loaclStore.get('资格审查项1');
         let mssg11=this.$loaclStore.get('资格审查项2');
-        if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
+        if(!this.isAllFilled()){
           this.$message({
             message: '请选择合格/不合格',
             center: true
