@@ -192,7 +192,7 @@
         this.$commonFun.onTabClick(tab, event, '4', '2', this);
       },
       goToNextStage(){
-        // this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/startEvaluation_xxjs');
         this.$loaclStore.set('符合性审查项汇总是否提交', true);
         this.$loaclStore.set('submitView', true);

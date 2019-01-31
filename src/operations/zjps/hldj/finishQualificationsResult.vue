@@ -195,7 +195,7 @@
         this.$commonFun.onTabClick(tab, event, '2', '2', this);
       },
       goToNextStage(){
-        // this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/startEvaluation_fhx');
         this.$loaclStore.set('资格审查项汇总是否提交', true);
         this.$loaclStore.set('submitView', true);

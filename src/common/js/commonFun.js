@@ -1,5 +1,5 @@
 
-
+var i=0;
 export default {
   //获取sessionStorage
   storage:{
@@ -28,8 +28,8 @@ export default {
     },
   },
   
-  exam_operation_answer_calc: function(){
-    window.parent.vm.$children[0].$children[0].$children[1].operationAnswer(window.itemIndex, window.location.href);
+  exam_operation_answer_calc: function(popwinOperationType){
+    window.parent.vm.$children[0].$children[0].$children[1].operationAnswer(window.itemIndex, window.location.href+(popwinOperationType?popwinOperationType:''));
   },
 
   /**

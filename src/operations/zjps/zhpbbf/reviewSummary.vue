@@ -222,6 +222,7 @@
         this.tableData[0].ip = 2;
         this.tableData[1].ip = 1;
         this.tableData[2].ip = 3;
+        this.$commonFun.exam_operation_answer_calc('calcBidderPrice');
       },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '7', '1', this);
