@@ -15,8 +15,8 @@
             <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets"  @click="bindResultSign">资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -406,6 +406,9 @@
       })
     },
     methods: {
+      bindResultSign(){
+        window.location.href =' ../../../signatureReviewResult ';
+      },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
         if (rowIndex === 3) {
           return [1, 5];

@@ -73,6 +73,8 @@ export default new Router({
 
 
     // 操作题路由
+
+    { path: '/signatureReviewResult', name: 'SignatureReviewResult', component: () => import('../signatureReviewResult/signatureReviewResult.vue'), meta: {breadName:'评标结果签字'}},
     { path: '/operation', name: 'Operation', component: () => import('../operations/index.vue'), meta: {breadName:'操作题'},
       children: [
         // 合理低价办法
@@ -131,8 +133,8 @@ export default new Router({
 
 
 
-        
-        
+
+
         // 双信封评标办法
         { path: 'zjps/sxfpbbf/participateIn', name: 'zjps/sxfpbbf/participateIn', component: () => import('../operations/zjps/sxfpbbf/participateIn.vue'), meta: {breadName:'参与评审'},}, // 参与评审
 
@@ -141,6 +143,7 @@ export default new Router({
       ]
     },
 
-    { path: '/*', name: '404', component: NoFind }
+    { path: '/*', name: '404', component: NoFind },
+
   ]
 })

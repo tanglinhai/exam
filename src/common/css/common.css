@@ -35,6 +35,7 @@ p{word-wrap:break-word}
 .paddingL10 { padding-left: 10px; }
 .paddingL15 { padding-left: 15px; }
 .paddingL20 { padding-left: 20px; }
+.paddingL40 { padding-left: 40px; }
 
 .paddingR0 { padding-right: 0; }
 .paddingR5  { padding-right: 5px; }
@@ -231,4 +232,7 @@ p{word-wrap:break-word}
 }
 .el-breadcrumb{
   margin-top: 18px;
+}
+.curPoint{
+  cursor: pointer;
 }
