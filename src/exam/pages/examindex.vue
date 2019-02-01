@@ -16,9 +16,6 @@
             <el-card :body-style="{ padding: '0px',cursor:'pointer'}" v-if="(nowTime - new Date(item.startTime))/(1000*60) < item.time">
               <div style="padding: 14px;">
                 <p>{{item.name}}</p>
-                <p class="time">模拟评标过程时间: {{ new Date(item.startTime).toLocaleString()}}</p>
-                <p>练习时长: {{item.time}} 分钟</p>
-                <p>总分: {{item.totalPoints}} 分</p>
                 <!--<p>{{(nowTime - new Date(item.startTime))/(1000*60)}}</p>-->
                 <!-- <p v-if="(nowTime - new Date(item.startTime))/(1000*60) > 60" class="over">考试时间已过</p> -->
                 <el-button type="text" @click="goToExam(item)" class="pull-right" :disabled="item._questions.length == 0">参加模拟评标</el-button>
@@ -113,7 +110,6 @@
          * @param id
          */
         goToExam(paper){
-          console.log(paper)
           this.judgeTime(paper);
         },
         /**

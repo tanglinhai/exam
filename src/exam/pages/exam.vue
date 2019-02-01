@@ -174,7 +174,7 @@
       this.nowTime = new Date();
       this.id = this.$route.params.id;
       this.id2 = this.$route.params.id2;   //传递第二个值用于判断是不是练习入口进入
-      // this.startTime = new Date();
+      this.startTime = new Date();
       this.init();
       window.addEventListener('scroll', this.handleScroll);
     },
@@ -286,7 +286,7 @@
               for(let key in this.paperData) {
                   this.paperData[key] = res.result[key];
               }
-              this.startTime = res.result.startTime;
+              //this.startTime = res.result.startTime;
               this.examTime = this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
               if(this.examTime <= 0&&!this.id2){
                 this.$message.error('考试时间已过!');
@@ -481,7 +481,8 @@
           id: this.id,
           score: score,
           answers: answers,
-          startTime: this.startTime
+          startTime: this.startTime,
+          pbyj: this.$loaclStore.get('zhpbbf_评审意见') ? this.$loaclStore.get('zhpbbf_评审意见') : this.$loaclStore.get('评审意见')
         }).then(response => {
           let res = response.data;
           if(res.status == '0') {

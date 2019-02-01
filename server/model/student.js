@@ -12,6 +12,7 @@ var StudentSchema = new Schema({
       isSure: Boolean,
       score:Number,
       startTime: Date,
+      desc: String, // 评标意见
       answers: [{
         _question: {type: Schema.Types.ObjectId, ref: 'Question'},
         answer: String

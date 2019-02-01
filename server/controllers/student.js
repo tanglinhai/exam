@@ -234,10 +234,10 @@ exports.getExamLogsByUserId = function (req, res){
           for(var i=0;i<doc.exams.length;i++){
             var exam = doc.exams[i];
             result.push({
-              assessment_code:doc.userId,
-              starttime: exam.startTime,
-              endtime: exam.date,
-              content: exam._paper.name,
+              assessment_code:exam._id,
+              starttime: exam.startTime.toLocaleString(),
+              endtime: exam.date.toLocaleString(),
+              content: exam.desc,
               through: exam.score == exam._paper.totalPoints ? 1 : 0
             });
           }
@@ -358,6 +358,7 @@ exports.submitExam = function (req, res) {
   let score = req.body.score;
   let startTime = req.body.startTime;
   let answers = req.body.answers;
+  let pbyj = req.body.pbyj;
   Student.findOne({"userName":userName},(err,doc)=>{
     if(err) {
         res.json({
@@ -379,8 +380,10 @@ exports.submitExam = function (req, res) {
             isSure: !answers.length > 0,
             score:score,
             answers: answers,
-            startTime: startTime
+            startTime: startTime,
+            desc: pbyj
           })
+          console.log(new Date().toLocaleString(), startTime.toLocaleString());
           Student.updateOne({_id:doc._id}, doc, function(err){
             if(err){
               console.log(err);

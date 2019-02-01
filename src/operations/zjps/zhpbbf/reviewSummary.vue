@@ -154,7 +154,7 @@
       width="700px"
       class="failureEntryDialog"
     >
-      <BiddingAdvice></BiddingAdvice>
+      <BiddingAdvice @savePbyj="savePbyj"></BiddingAdvice>
     </el-dialog>
     <el-dialog
       title="解锁申请记录"
@@ -223,6 +223,10 @@
         this.tableData[1].ip = 1;
         this.tableData[2].ip = 3;
         this.$commonFun.exam_operation_answer_calc('calcBidderPrice');
+      },
+      savePbyj(content){
+        this.dialogBiddingAdvice = false;
+        this.$loaclStore.set('zhpbbf_评审意见', content);
       },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '7', '1', this);
