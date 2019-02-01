@@ -183,7 +183,7 @@
         this.$commonFun.onTabClick(tab, event, '6', '2', this);
       },
       goToNextStage(){
-        // this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/reviewSummary');
         this.$loaclStore.set('详细评审（技术）项汇总是否提交', true);
       },

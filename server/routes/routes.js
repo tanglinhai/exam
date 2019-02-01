@@ -63,5 +63,7 @@ module.exports = function(app) {
   app.get('/api/getExamInfo',Student.getExamInfo);
   // 提交考试信息
   app.post('/api/submitExam',Student.submitExam);
+  // 根据userId获取考试成绩
+  app.get('/api/getExamLogsByUserId',Student.getExamLogsByUserId);
 
 }

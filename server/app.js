@@ -53,10 +53,23 @@ app.use(sessionParser({
 
 app.use(function (req,res,next) {
   var _userName = req.session.userName;
-  if(req.url != '/api/login' && req.url != '/api/studentlogin' &&
-    req.url != '/api/studentlogin' && req.url != '/api/studentlogout' &&
-    req.url != '/api/register' && req.url != '/api/studentregister' &&
-    !_userName){
+  var passUrls = [
+    '/api/login',
+    '/api/studentlogin',
+    '/api/studentlogin',
+    '/api/studentlogout',
+    '/api/register',
+    '/api/studentregister',
+    '/api/getExamLogsByUserId'
+  ];
+  var isPass = false;
+  for(var i=0;i<passUrls.length;i++){
+    if(req.url.indexOf(passUrls[i]) == 0){
+      isPass = true;
+      break;
+    }
+  }
+  if(!isPass && !_userName){
     res.json({
       status: '4000',
       msg:'未登陆'
