@@ -11,8 +11,8 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple busa_aright">
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
@@ -26,32 +26,32 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
-          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane name="4" :disabled="tabDisabled[3]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 评审汇总</span>
           <el-row style="line-height:40px;border-bottom:2px solid #66b1ff;margin-bottom:5px;">
               <el-col :span="4">
                   <div class="grid-content bg-purple" style="font-size:16px;color:#66b1ff">评审汇总</div>
               </el-col>
               <el-col :span="20">
                   <div class="grid-content bg-purple" style="text-align:right;">
-                      <el-button type="primary" plain size="small" @click="changeView('/operation/zjps/hldj/reviewSummary')"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button>
+                      <el-button type="primary" plain size="small" @click="cancelSubmit()"><i class="iconfont icon-fanhuishouye1"></i>&nbsp;&nbsp;退回</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -111,6 +111,13 @@
 
     },
     methods: {
+      cancelSubmit(){
+        this.$loaclStore.set('评审汇总是否提交', '');
+        var psyj = this.$loaclStore.get('评审意见');
+        this.$loaclStore.set('评审意见', '');
+        this.$loaclStore.set('评审意见_copy', psyj);
+        this.changeView('/operation/zjps/hldj/reviewSummary')
+      },
        onTabClick(tab, event){
         this.$commonFun.onTabClick(tab, event, '8', '2', this);
       },

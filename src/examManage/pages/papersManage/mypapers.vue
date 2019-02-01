@@ -64,7 +64,7 @@
                 <el-button type="primary" size="mini" v-else :disabled="scope.row.startTime?true:false" @click="publish(scope.row._id)">{{scope.row.startTime?'已发布':'发布'}}</el-button>
                 <el-button type="danger" size="mini" icon="el-icon-delete" @click="deletePaper(scope.row)">删除</el-button>
                 <router-link :to="{path:'edit',query:{'id':scope.row._id}}">
-                  <el-button type="info" size="mini" icon="el-icon-edit" :disabled="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) < 1">编辑</el-button>
+                  <el-button type="info" size="mini" icon="el-icon-circle-check" :disabled="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) < 1">编辑</el-button>
                 </router-link>
               </template>
             </el-table-column>
