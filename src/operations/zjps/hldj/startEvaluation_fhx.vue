@@ -57,7 +57,6 @@
                     </el-col>
                     <el-col :span="6">
                       <div class="grid-content bg-purple" style="text-align:left;">
-                        <!--<el-progress :percentage="d"  ref="aaa" ></el-progress>-->
                         <el-progress :percentage="completePercent" ></el-progress>
                       </div>
                     </el-col>
@@ -492,7 +491,7 @@
             break;
           }
         }
-        
+
         return isAllF;
       },
       allSubmit(){

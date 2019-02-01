@@ -59,7 +59,8 @@ export default {
   }
   /*底部导航*/
   .nav-top{
-    height:38px;
+    /*height:38px;*/
+    height: 49px;
     width: 100%;
     line-height: 38px;
     text-align: left;
@@ -72,6 +73,7 @@ export default {
     .nav-top-user{
       float: right;
       margin-right: 18px;
+      margin-top: 5px;
     }
     /*面包屑导航*/
     .breadcrumb-wrapper{
