@@ -283,7 +283,6 @@
 
     },
     mounted(){
-      console.log(localStorage.getItem('aa'));
     var setting = {
 			view: {
 				dblClickExpand: dblClickExpand
@@ -331,14 +330,12 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
       },
 
       hahaha(radio,id){
-        // console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
         }
@@ -356,7 +353,6 @@
           str[item.id]=item;
         });
         let ps=Object.values(str);
-        console.log(ps);
         this.$loaclStore.set('msg',ps);
       },
 
@@ -368,13 +364,10 @@
         }
       },
       changeView(name){      //路由跳转传参函数
-        // console.log(name)
-        //this.$router.push({path:`${name}`});
         window.location.href = name;
       },
       allSubmit(){
         var mssg=this.$loaclStore.get('msg');
-        // console.log(mssg);
         if(mssg.length != this.tableData.length){
           this.$message({
             message: '请选择合格/不合格',

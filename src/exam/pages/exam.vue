@@ -439,7 +439,6 @@
               for(var i=0;i<item.sanswer.length;i++){
                 steps += item.sanswer[i].score;
               }
-              console.log(totalSteps,'----------合理低价-----------', steps);
               score += item.score*steps/totalSteps;
             }else if(item._operation.type == '2'){//综合评标
               //综合评标环节： 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->商务+1 ----> 技术+1 ----> 获取系统报价+1 ----> 评审汇总+1
@@ -448,7 +447,6 @@
               for(var i=0;i<item.sanswer.length;i++){
                 steps += item.sanswer[i].score;
               }
-              console.log(totalSteps,'----------综合评标-----------', steps);
               score += item.score*steps/totalSteps;
             }else if(item._operation.type == '3'){//双信封
               score += 0;

@@ -217,7 +217,6 @@ export default {
 	},
 	created() {
 	  this.paperId = this.$route.query.id;
-	  // console.log(this.paperId);
 	},
 	mounted() {
 		this.init()
@@ -240,7 +239,6 @@ export default {
       this.$axios.get('/api/getOperations', {
           id: this.paperId
         }).then((res) => {
-        console.log(res);
         this.operations = res.data;
       });
 
@@ -256,7 +254,6 @@ export default {
               this.$message.warning('正在考试，不能修改!');
             }
             this.form = res.result;
-            console.log(this.form);
             this.form.totalPoints+='';
             this.form.time+='';
             this.form._questions.forEach(item => {
@@ -320,13 +317,10 @@ export default {
 //          this.dialogVisible=false;
 //          this.form._questions.forEach(item => {
 //            if(item._id == this.dialogForm._id) {
-////                console.log(item);
 //              item = this.$deepCopy(this.dialogForm);
-//              console.log(item);
 //            }
 //          })
           this.dialogVisible=false;
-//          console.log(this.form._questions);
         } else {
           this.$message.error('请输入正确的内容！');
         }
@@ -374,7 +368,6 @@ export default {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
         }).then(() => {
-          console.log(paperForm);
 
           this.$axios.post('/api/savePaper',{
             paperForm: paperForm
@@ -445,7 +438,6 @@ export default {
      * @param item
      */
     editQuestion(item){
-      // console.log(item);
       this.isEdit=true;
       this.dialogForm=item;
       this.dialogVisible=true;

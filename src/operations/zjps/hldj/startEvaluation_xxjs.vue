@@ -409,7 +409,6 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
@@ -521,7 +520,6 @@
         }
       },
       childByValue: function (childValue) {
-        console.log(childValue);
         // childValue就是子组件传过来的值
         for(var i = 0;i<this.tableData.length;i++){
           if(this.tableData[i].id==this.idradionoprss){

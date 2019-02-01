@@ -149,10 +149,10 @@ export default {
       this.selections = val;
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      
     },
     /**
      * 删除试卷

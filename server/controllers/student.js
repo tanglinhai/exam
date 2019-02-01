@@ -76,10 +76,7 @@ exports.signup = function(req, res) {
     userName: req.body.userName,
     passWord: mdHash(req.body.userPwd)
   }
-  // console.log(param.passWord);
-  // console.log(param);
   Student.findOne(param, (err,doc)=>{
-    // console.log(err) When the findOne query doesn't find at least one matching document,
     //the second parameter of the callback (in this case user) is set to null.
     //It's not an error, so err is also null.
     if (err) {
@@ -91,7 +88,6 @@ exports.signup = function(req, res) {
       if (doc) {
         req.session.userName = doc.userName
         req.session.passWord = doc.passWord
-        // console.log(req.session)
         res.json({
           status: '0',
           msg:'success',
@@ -126,7 +122,6 @@ exports.signout = function (req, res) {
 exports.getInfo = function (req, res) {
   let userName = req.param('userName'),
       userId   = req.param('userId');
-  // console.log(userName);
   Student.findOne({'userName':userName,'userId':userId},(err, doc) => {
     if (err) {
       res.json({
@@ -383,7 +378,6 @@ exports.submitExam = function (req, res) {
             startTime: startTime,
             desc: pbyj
           })
-          console.log(new Date().toLocaleString(), startTime.toLocaleString());
           Student.updateOne({_id:doc._id}, doc, function(err){
             if(err){
               console.log(err);

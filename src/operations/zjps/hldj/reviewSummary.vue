@@ -143,14 +143,11 @@
       },
       goToNextStage(){
         this.$loaclStore.set('评审汇总是否提交', true);
-        console.log(this.psyj);
         this.$loaclStore.set('评审意见', this.psyj);
         this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/submitSummary');
       },
       changeView(name){      //路由跳转传参函数
-          // console.log(name)
-          //this.$router.push({path:`${name}`});
           window.location.href = name;
       },
       sort() {

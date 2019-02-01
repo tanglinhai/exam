@@ -94,12 +94,10 @@
           this.init();
         },
         handleSizeChange(val) {
-          // console.log(`每页 ${val} 条`);
           this.pageSize = val;
           this.init();
         },
         handleCurrentChange(val) {
-          console.log(`当前页: ${val}`);
           this.pageNumber = val;
           this.init();
         },
@@ -126,11 +124,9 @@
           })
         },
         judgeTime(paper){
-          // console.log(paper)
           this.isExam = false;
           if(this.examLogs.length > 0){
             /*this.examLogs.forEach(item => {
-              // console.log(item);
               if(item._paper&&item._paper._id == paper._id && item.startTime == paper.startTime){
                 this.isExam = true;
                 this.$message.error('已经参加过本次考试，不能重复参加!');

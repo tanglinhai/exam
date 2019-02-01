@@ -414,7 +414,6 @@
         this.$commonFun.onTabClick(tab, event, '3', '1', this);
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-      //  console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
@@ -478,7 +477,6 @@
         var tableData = this.$loaclStore.get('符合性审查项1');
         var tableData11 = this.$loaclStore.get('符合性审查项2');
         var isAllF = true;
-        console.log(tableData,'-----------')
         for(var i=0;i<tableData.length;i++){
           if(!tableData[i].radio){
             isAllF = false;

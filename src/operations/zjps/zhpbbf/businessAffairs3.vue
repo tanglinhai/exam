@@ -173,8 +173,6 @@
         this.$loaclStore.set('zhpbbf_技术isSubmit', true);
       },
       changeView(name){      //路由跳转传参函数
-          // console.log(name)
-          //this.$router.push({path:`${name}`});
           window.location.href = name;
       },   
       tableRowClassName({row, rowIndex}) {

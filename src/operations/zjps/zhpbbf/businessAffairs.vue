@@ -180,8 +180,6 @@
         this.$loaclStore.set('zhpbbf_商务isSubmit', true);
       },
       changeView(name){      //路由跳转传参函数
-          // console.log(name)
-          //this.$router.push({path:`${name}`});
           window.location.href = name;
       },
       onTabClick1(tab, event){

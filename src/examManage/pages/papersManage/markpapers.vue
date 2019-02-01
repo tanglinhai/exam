@@ -132,10 +132,10 @@
         this.selections = val;
       },
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+        
       },
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+        
       },
       seeDetail(id,name){
         this.$router.push({path:'/endhome/checkpaper',query:{'id':id,'name':name}})

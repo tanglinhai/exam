@@ -38,16 +38,13 @@
     },
     methods: {
       handleOpen(key, keyPath) {
-        // console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
-        // console.log(key, keyPath);
       },
       //初始化列表active状态
       initActiveIndex(){
         // var str =this.$router.currentRoute.path;
         this.activeIndex=this.$router.currentRoute.path;
-        // console.log(str)
         /*  if(str=='userrouter'){
             this.activeIndex=this.$router.currentRoute.path;
          } */

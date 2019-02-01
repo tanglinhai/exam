@@ -82,7 +82,6 @@
           if(res.status == '0') {
             this.news = res.result._papers;
             res.result._papers.forEach(item => {
-              console.log((this.nowTime - new Date(item.startTime))/(1000*60))
               if(item.startTime&&(this.nowTime - new Date(item.startTime))/(1000*60) < item.time) {
                 this.exams.push(item);
               }

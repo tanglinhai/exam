@@ -318,25 +318,21 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
       },
 
       arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 0) {
           return [1, 4];
         }
       },
 
       hahaha(radio,id){
-        console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
         }
-        console.log(radio,id);
         this.allRadio.push({
           id:id,
           value:radio,
@@ -349,15 +345,9 @@
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio=1;
         }
-        // console.log(this.tableData.radio)
-        // this.tableData.radio2=1;
-        // this.tableData.radio3=1;
-        // this.tableData.radio4=1;
       },
 
       changeView(name){      //路由跳转传参函数
-        // console.log(name)
-        //this.$router.push({path:`${name}`});
         window.location.href = name;
       },
       allSubmit(){
@@ -367,9 +357,6 @@
             center: true
           });
         }else{
-          /*this.$router.push({
-            path: '/operation/zjps/hldj/electTeamLeader'
-          })*/
           window.location.href = '/operation/zjps/hldj/myQualificationsResult_fhx';
         }
       }

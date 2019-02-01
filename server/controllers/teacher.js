@@ -126,9 +126,8 @@ exports.signup = function(req, res) {
     userName: req.body.userName,
     passWord: mdHash(req.body.userPwd)
   }
-  // console.log(param);
   Teacher.findOne(param, (err,doc)=>{
-    // console.log(err) When the findOne query doesn't find at least one matching document,
+    // When the findOne query doesn't find at least one matching document,
     //the second parameter of the callback (in this case user) is set to null.
     //It's not an error, so err is also null.
     if (err) {
@@ -140,7 +139,6 @@ exports.signup = function(req, res) {
       if (doc) {
         req.session.userName = doc.userName;
         req.session.passWord = doc.passWord;
-        // console.log(req.session);
         res.json({
           status: '0',
           msg:'success',
@@ -250,7 +248,6 @@ exports.getAllExams = function (req,res) {
 };
 // 获取试卷(分页、模糊查询)
 exports.getPapers = function (req, res) { 
-  // console.log(req.session.userName);
   let name = req.param('name'),
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
     pageSize = parseInt(req.param('pageSize')),
@@ -270,9 +267,6 @@ exports.getPapers = function (req, res) {
         })
       } else {
         if (doc) {
-          console.log('--------------------start--------------------');
-          console.log(doc);
-          console.log('--------------------end--------------------');
           res.json({
             status: '0',
             msg:'success',
@@ -293,9 +287,6 @@ exports.getPapers = function (req, res) {
 exports.savePaper = function (req, res) {
   let paperForm = req.body.paperForm;
   let userName = req.session.userName;
-
-  // console.log(paperForm);
-  // console.log(userName);
   if(paperForm == {}){
     res.json({
       status:'5',
@@ -345,7 +336,6 @@ exports.savePaper = function (req, res) {
                 }
               })
 
-              console.log('---000000000---------------:', paperForm._questions);
               Question.create(paperForm._questions,function (err2,doc2) {
                 if (err2) {
                   res.json({
@@ -354,7 +344,6 @@ exports.savePaper = function (req, res) {
                   })
                 } else {
                   if (doc2) {
-                    console.log('doc2 ques:'+doc2);
                     doc2.forEach(item => {
                       doc1._questions.push(item._id);
                     })
@@ -401,7 +390,6 @@ exports.savePaper = function (req, res) {
 exports.publishPaper = function(req, res) {
   let id = req.body.id;
   let userName = req.session.userName;
-  // console.log(param);
   Teacher.findOne({"userName":userName}, (err,doc)=>{
     if (err) {
       res.json({
@@ -592,8 +580,6 @@ exports.updatePaper = function (req,res) {
       addQuestion.push(item);
     }
   })
-  console.log('====================updatePaper====================');
-  // console.log(updateQuestion,addQuestion);
   Teacher.findOne({'userName':userName},(err,doc)=>{
     if (err) {
       res.json({
@@ -620,9 +606,7 @@ exports.updatePaper = function (req,res) {
                   }else {
                     if(doc2){
                       if(index == (updateQuestion.length-1)){
-                        console.log('doc1'+doc1._id)
                         if (addQuestion.length>0){
-                          // console.log('addQuestion'+addQuestion);
                           addQuestion.forEach(item => {
                             item._papers = [];
                             item._papers.push(doc1._id);
@@ -639,7 +623,6 @@ exports.updatePaper = function (req,res) {
                               })
                             } else {
                               if(doc3) {
-                                // console.log(doc3);
                                 doc3.forEach(item => {
                                   doc1._questions.push(item._id);
                                 })
@@ -699,7 +682,6 @@ exports.updatePaper = function (req,res) {
 
 // 获取有人考试的试卷
 exports.getExams = function (req, res) {
-  // console.log(req.session.userName);
   let name = req.param('name'),
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
     pageSize = parseInt(req.param('pageSize')),
