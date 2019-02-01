@@ -11,8 +11,8 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple busa_aright">
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
@@ -26,22 +26,22 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick1">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
-          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane name="4" :disabled="tabDisabled[3]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label"><i class="el-icon-edit"></i> 商务</span>
+          <span slot="label"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 商务</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label"><i class="el-icon-edit"></i> 技术</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 技术</span>
           <el-row style="line-height:40px;">
               <el-col :span="1">
                   <div class="grid-content bg-purple" style="font-size:14px;">进度：</div>
@@ -79,7 +79,7 @@
                                 <div>
                                     <div v-if="scope.$index < 8">
                                       <el-input style="width:150px;" :value="scope.row.name"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
+                                      <i class="el-icon-circle-check-outline"></i>
                                     </div>
                                     <div v-else>{{scope.row.name}}</div>
                                 </div>
@@ -92,7 +92,7 @@
                                 <div>
                                     <div v-if="scope.$index < 8">
                                       <el-input style="width:150px;" :value="scope.row.name1"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
+                                      <i class="el-icon-circle-check-outline"></i>
                                     </div>
                                     <div v-else>{{scope.row.name1}}</div>
                                 </div>
@@ -105,7 +105,7 @@
                                 <div>
                                     <div v-if="scope.$index < 8">
                                       <el-input style="width:150px;" :value="scope.row.name2"></el-input>
-                                      <i class="el-icon-edit-outline"></i>
+                                      <i class="el-icon-circle-check-outline"></i>
                                     </div>
                                     <div v-else>{{scope.row.name2}}</div>
                                 </div>
@@ -128,7 +128,7 @@
             </el-row>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -173,8 +173,6 @@
         this.$loaclStore.set('zhpbbf_技术isSubmit', true);
       },
       changeView(name){      //路由跳转传参函数
-          // console.log(name)
-          //this.$router.push({path:`${name}`});
           window.location.href = name;
       },   
       tableRowClassName({row, rowIndex}) {

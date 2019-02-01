@@ -40,7 +40,7 @@
         },
         methods: {
             save() {
-                console.log('submit!');
+                this.$emit('savePbyj', this.form.desc);
             },
             reback() {
 

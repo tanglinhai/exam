@@ -195,9 +195,6 @@ export default {
         participateIn(){
             this.$commonFun.exam_operation_answer_calc();
             window.location.href = '/operation/zjps/hldj/electTeamLeader';
-            /*this.$router.push({
-                path: '/operation/zjps/hldj/electTeamLeader'
-            })*/
         },
       applyAvoid(){
         this.dialogApplyAvoid=true

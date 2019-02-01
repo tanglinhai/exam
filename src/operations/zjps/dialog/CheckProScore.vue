@@ -113,11 +113,9 @@
                 this.dialogVisible = true;
             },
             getSummaries(param) {
-                console.log(param);
                 const { columns, data } = param;
                 const sums = [];
                 columns.forEach((column, index) => {
-                    console.log(column, index);
                     if (index === 0) {
                         sums[index] = '3';
                         return;

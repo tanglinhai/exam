@@ -76,10 +76,7 @@ exports.signup = function(req, res) {
     userName: req.body.userName,
     passWord: mdHash(req.body.userPwd)
   }
-  // console.log(param.passWord);
-  // console.log(param);
   Student.findOne(param, (err,doc)=>{
-    // console.log(err) When the findOne query doesn't find at least one matching document,
     //the second parameter of the callback (in this case user) is set to null.
     //It's not an error, so err is also null.
     if (err) {
@@ -91,7 +88,6 @@ exports.signup = function(req, res) {
       if (doc) {
         req.session.userName = doc.userName
         req.session.passWord = doc.passWord
-        // console.log(req.session)
         res.json({
           status: '0',
           msg:'success',
@@ -126,7 +122,6 @@ exports.signout = function (req, res) {
 exports.getInfo = function (req, res) {
   let userName = req.param('userName'),
       userId   = req.param('userId');
-  // console.log(userName);
   Student.findOne({'userName':userName,'userId':userId},(err, doc) => {
     if (err) {
       res.json({
@@ -234,10 +229,10 @@ exports.getExamLogsByUserId = function (req, res){
           for(var i=0;i<doc.exams.length;i++){
             var exam = doc.exams[i];
             result.push({
-              assessment_code:doc.userId,
-              starttime: exam.startTime,
-              endtime: exam.date,
-              content: exam._paper.name,
+              assessment_code:exam._id,
+              starttime: exam.startTime.toLocaleString(),
+              endtime: exam.date.toLocaleString(),
+              content: exam.desc,
               through: exam.score == exam._paper.totalPoints ? 1 : 0
             });
           }
@@ -358,6 +353,7 @@ exports.submitExam = function (req, res) {
   let score = req.body.score;
   let startTime = req.body.startTime;
   let answers = req.body.answers;
+  let pbyj = req.body.pbyj;
   Student.findOne({"userName":userName},(err,doc)=>{
     if(err) {
         res.json({
@@ -379,7 +375,8 @@ exports.submitExam = function (req, res) {
             isSure: !answers.length > 0,
             score:score,
             answers: answers,
-            startTime: startTime
+            startTime: startTime,
+            desc: pbyj
           })
           Student.updateOne({_id:doc._id}, doc, function(err){
             if(err){

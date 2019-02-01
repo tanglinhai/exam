@@ -11,8 +11,8 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple quexa_aright">
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
@@ -30,11 +30,11 @@
         </el-tab-pane>
 
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项汇总</span>
         </el-tab-pane>
 
         <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 符合性审查项</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -153,16 +153,16 @@
           </div>
         </el-tab-pane>
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_fhx')"><i class="el-icon-circle-check"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -269,7 +269,6 @@
         window.location.href = url;
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }

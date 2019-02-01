@@ -12,8 +12,8 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple aaa_aright">
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
@@ -31,18 +31,18 @@
         </el-tab-pane>
 
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult')"><i class="el-icon-circle-check"></i> 资格审查项汇总</span>
         </el-tab-pane>
 
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/myQualificationsResult_fhx')"><i class="el-icon-circle-check"></i> 符合性审查项</span>
         </el-tab-pane>
 
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/finishQualificationsResult_fhx')"><i class="el-icon-circle-check"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="sec">
-          <span slot="label"><i class="el-icon-edit"></i> 详细评审（技术）</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 详细评审（技术）</span>
           <div>
             <el-row :gutter="20">
               <el-col :span="4">
@@ -176,11 +176,11 @@
         </el-tab-pane>
 
         <el-tab-pane>
-          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_xxjs')"><i class="el-icon-edit"></i> 详细评审（技术）汇总</span>
+          <span slot="label" @click="changeView('/operation/zjps/hldj/unFinishQualificationsResult_xxjs')"><i class="el-icon-circle-check"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
 
         <el-tab-pane disabled>
-          <span slot="label"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label"><i class="el-icon-circle-check"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -320,25 +320,21 @@
     },
     methods: {
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 3) {
           return [1, 5];
         }
       },
 
       arraySpanMethod2({ row, column, rowIndex, columnIndex }) {
-       console.log(row, column, rowIndex, columnIndex)
         if (rowIndex === 0) {
           return [1, 4];
         }
       },
 
       hahaha(radio,id){
-        console.log(radio,id)
         if(radio=='不合格'){
           this.dialogVisible=true
         }
-        console.log(radio,id);
         this.allRadio.push({
           id:id,
           value:radio,
@@ -351,15 +347,9 @@
         for(var i = 0;i<this.tableData.length;i++){
           this.tableData[i].radio=1;
         }
-        // console.log(this.tableData.radio)
-        // this.tableData.radio2=1;
-        // this.tableData.radio3=1;
-        // this.tableData.radio4=1;
       },
 
       changeView(name){      //路由跳转传参函数
-        // console.log(name)
-        //this.$router.push({path:`${name}`});
         window.location.href = name;
       },
       allSubmit(){
@@ -369,9 +359,6 @@
             center: true
           });
         }else{
-          /*this.$router.push({
-            path: '/operation/zjps/hldj/electTeamLeader'
-          })*/
           window.location.href = '/operation/zjps/hldj/myQualificationsResult_xxjs';
         }
       }

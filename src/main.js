@@ -42,7 +42,6 @@ Vue.prototype.$commonFun = commonFun;
 //全局封装一个获取用户信息方法
 var getUserData=function () {
   var sessionData = commonFun.storage.get('currentUser', 'json')||{};
-  //console.log(sessionData)
   return {
     userName: sessionData.userName,
     userId: sessionData.userId,

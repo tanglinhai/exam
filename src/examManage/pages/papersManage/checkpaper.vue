@@ -136,7 +136,6 @@ export default {
       }).then(response => {
         let res = response.data;
         if(res.status == '0') {
-          // console.log(res.result);
           if(res.result.length <=0) {
             this.$router.go(-1);
             this.$message.info('没有问答题，不需要阅卷！');
@@ -151,10 +150,10 @@ export default {
       })
     },
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+      
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      
     },
     /**
      * 批阅
@@ -188,7 +187,6 @@ export default {
      * 提交
      */
     submit(){
-      // console.log(this.questions);
       let score = 0;
       this.questions.forEach(item => {
         if(!item.score) {
@@ -202,7 +200,6 @@ export default {
         this.$message.error('请输入正确的分数!')
         return;
       }
-      // console.log(score);
       this.$axios.get('/api/submitScore',{
         params:{
           userName: this.userName,
@@ -226,7 +223,6 @@ export default {
      */
     checkType(value,score){
       let reg = /^[0-9]+$/ig;
-      // console.log(reg.test(value));
       if(!reg.test(value)){
         this.isNumber = true;
       } else {

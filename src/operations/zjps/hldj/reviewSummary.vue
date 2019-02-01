@@ -11,8 +11,8 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple busa_aright">
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
@@ -26,25 +26,25 @@
     <div class="busa_b">
       <el-tabs type="border-card" v-model="activeName" @tab-click="onTabClick">
         <el-tab-pane name="1" :disabled="tabDisabled[0]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 资格审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 资格审查项</span>
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane name="4" :disabled="tabDisabled[3]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 详细评审（技术）</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 详细评审（技术）</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit" style="color:#85ce61;"></i> 详细评审（技术）汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check" style="color:#85ce61;"></i> 详细评审（技术）汇总</span>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 评审汇总</span>
           <el-row style="line-height:40px;border-bottom:2px solid #66b1ff;margin-bottom:5px;">
               <el-col :span="4">
                   <div class="grid-content bg-purple" style="font-size:16px;color:#66b1ff">评审汇总</div>
@@ -84,19 +84,7 @@
               (2000字之内)
             </div>
             <div class="ri">
-              <textarea style="width: 1000px;height: 200px;">
-本项目共有3家投标单位参加投标，分别是：“重庆网控科技发展有限公司、普瑞太阳能有限公司、夏丰热工研究院有限公司”。
-
-根据招标文件确定的评分原则，评标专家们上述3家分别进行了，资格和符合性审查。
-
-经过最低价及排序， 评标结果如下：
-
-第一中标候选人：重庆网控科技发展有限公司     投标总价：人民币34.50万元
-第二中标候选人：普瑞太阳能有限公司           投标总价：人民币34.68万元
-第三中标候选人：夏丰热工研究院有限公司       投标总价：人民币34.80万元
-
-评标委员会推荐重庆网控科技发展有限公司为对外经贸大学广播站改造工程项目第一中标候选人。
-              </textarea>
+              <textarea style="width: 1000px;height: 200px;" v-model="psyj"></textarea>
             </div>
           </el-row>
         </el-tab-pane>
@@ -132,24 +120,41 @@
           {num:'2',name:'夏丰热工研究院有限公司',total:'20000.0000',ip:'3'}
         ],
         dialogSort:false,//排序弹框
+        psyj: `本项目共有3家投标单位参加投标，分别是：“重庆网控科技发展有限公司、普瑞太阳能有限公司、夏丰热工研究院有限公司”。
+
+根据招标文件确定的评分原则，评标专家们上述3家分别进行了，资格和符合性审查。
+
+经过最低价及排序， 评标结果如下：
+
+第一中标候选人：重庆网控科技发展有限公司     投标总价：人民币34.50万元
+第二中标候选人：普瑞太阳能有限公司           投标总价：人民币34.68万元
+第三中标候选人：夏丰热工研究院有限公司       投标总价：人民币34.80万元
+
+评标委员会推荐重庆网控科技发展有限公司为对外经贸大学广播站改造工程项目第一中标候选人。`
       }
 
     },
     mounted(){
-      
+        var psyj = this.$loaclStore.get('评审意见_copy');
+        if(psyj){
+          this.psyj = psyj;
+        }
     },
     methods: {
+      savePbyj(content){
+        this.dialogBiddingAdvice = false;
+        this.$loaclStore.set('评审意见', content);
+      },
       onTabClick(tab, event){
         this.$commonFun.onTabClick(tab, event, '7', '1', this);
       },
       goToNextStage(){
         this.$loaclStore.set('评审汇总是否提交', true);
+        this.$loaclStore.set('评审意见', this.psyj);
         this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/submitSummary');
       },
       changeView(name){      //路由跳转传参函数
-          // console.log(name)
-          //this.$router.push({path:`${name}`});
           window.location.href = name;
       },
       sort() {

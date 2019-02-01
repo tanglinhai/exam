@@ -102,7 +102,6 @@
           }).then(response => {
             let res = response.data;
             if(res.status == '0') {
-              // console.log(res.result);
               this.studentScore = res.result;
               this.studentScore.forEach(item => {
                 item.examName = this.examName;
@@ -112,10 +111,10 @@
           })
         },
         handleSizeChange(val) {
-          console.log(`每页 ${val} 条`);
+          
         },
         handleCurrentChange(val) {
-          console.log(`当前页: ${val}`);
+          
         },
       }
     }

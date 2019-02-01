@@ -11,8 +11,8 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple aaa_aright">
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-edit-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
@@ -205,22 +205,22 @@
           </div>
         </el-tab-pane>
         <el-tab-pane name="2" :disabled="tabDisabled[1]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 资格审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 资格审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="3" :disabled="tabDisabled[2]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 符合性审查项</span>
         </el-tab-pane>
         <el-tab-pane name="4" :disabled="tabDisabled[3]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 符合性审查项汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 符合性审查项汇总</span>
         </el-tab-pane>
         <el-tab-pane name="5" :disabled="tabDisabled[4]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 商务</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 商务</span>
         </el-tab-pane>
         <el-tab-pane name="6" :disabled="tabDisabled[5]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 技术</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 技术</span>
         </el-tab-pane>
         <el-tab-pane name="7" :disabled="tabDisabled[6]">
-          <span slot="label" class="paddmar"><i class="el-icon-edit"></i> 评审汇总</span>
+          <span slot="label" class="paddmar"><i class="el-icon-circle-check"></i> 评审汇总</span>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -472,7 +472,7 @@
         this.$loaclStore.set('zhpbbf_资格审查isSubmit',true);
         let mssg=this.$loaclStore.get('zhpbbf_资格审查项1');
         let mssg11=this.$loaclStore.get('zhpbbf_资格审查项2');
-        if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
+        if(!this.isAllFilled()){
           this.$message({
             message: '请选择合格/不合格',
             center: true

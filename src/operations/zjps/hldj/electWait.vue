@@ -115,21 +115,6 @@
                         prop="min"
                         label="单位">
                     </el-table-column>
-                    <!-- <el-table-column
-                        label="操作">
-                        <template slot-scope="scope">
-                            <div>
-                                <el-select v-model="scope.row.value5" multiple placeholder="请选择">
-                                    <el-option
-                                        v-for="item in tableData3"
-                                        :key="item.name"
-                                        :label="item.name"
-                                        :value="item.name">
-                                    </el-option>
-                                </el-select>
-                            </div>
-                        </template>
-                    </el-table-column> -->
                 </el-table>
                 <el-row>
                     <el-col :span="24">

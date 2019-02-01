@@ -39,7 +39,6 @@
           if (valid) {
             
           } else {
-            console.log('error submit!!');
             return false;
           }
         });

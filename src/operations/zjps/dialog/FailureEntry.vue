@@ -43,7 +43,6 @@
                       this.$emit("childByValue",this.$data.ruleForm.desc);
                       this.$data.ruleForm.desc='';
                     } else {
-                        console.log('error submit!!');
                         return false;
                     }
                 });

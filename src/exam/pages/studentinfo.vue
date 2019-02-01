@@ -153,7 +153,6 @@
             this.ruleForm.grade+='';
             this.ruleForm.userId+='';
             this.ruleForm.passWord = '';
-//            console.log(this.ruleForm);
           }
         })
       },
@@ -182,7 +181,7 @@
             })
 
           } else {
-            console.log('error submit!!');
+            
             return false;
           }
         });
@@ -207,7 +206,7 @@
        * @param val
        */
       handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
+        
         this.pageSize = val;
         this.getExamLogs();
       },
@@ -216,7 +215,7 @@
        * @param val
        */
       handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
+        
         this.pageNumber = val;
         this.getExamLogs();
       },
@@ -235,7 +234,6 @@
           let res = response.data;
           let exams = res.result.exams || [];
           this.total = res.count;
-          console.log(exams);
           if(exams&&exams.length>0){
             exams.forEach(item => {
               if(item._paper) {
