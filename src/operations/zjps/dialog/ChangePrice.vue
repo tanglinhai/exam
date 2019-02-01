@@ -1,27 +1,27 @@
 <template>
     <div class="ChangePrice">
-            <el-table
-                    ref="multipleTable"
-                    :data="msgBox"
-                    size="small"
-                    tooltip-effect="dark"
-                    border
-                    class="changePriceTable"
-                    el-table__header-wrapper>
-                <el-table-column prop="name" header-align="left" label="投标人名称"></el-table-column>
-                <el-table-column prop="firstPrice" header-align="left" label="首轮报价"></el-table-column>
-                <el-table-column prop="finalQuotation" header-align="left" label="最终报价"></el-table-column>
-                <el-table-column prop="operate" header-align="left" label="操作">
-                    <template slot-scope="scope">
-                        <el-button
-                                size="mini"
-                                @click.stop="changePrice(scope.$index, scope.row)"
-                        >
-                            <i class="icon iconfont icon-zhifu mr5"></i>调转评标价
-                        </el-button>
-                    </template>
-                </el-table-column>
-            </el-table>
+        <el-table
+                ref="multipleTable"
+                :data="msgBox"
+                size="small"
+                tooltip-effect="dark"
+                border
+                class="changePriceTable"
+                el-table__header-wrapper>
+            <el-table-column prop="name" header-align="left" label="投标人名称"></el-table-column>
+            <el-table-column prop="firstPrice" header-align="left" label="首轮报价"></el-table-column>
+            <el-table-column prop="finalQuotation" header-align="left" label="最终报价"></el-table-column>
+            <el-table-column prop="operate" header-align="left" label="操作">
+                <template slot-scope="scope">
+                    <el-button
+                            size="mini"
+                            @click.stop="changePriceBtn(scope.$index, scope.row)"
+                    >
+                        <i class="icon iconfont icon-zhifu mr5"></i>调转评标价
+                    </el-button>
+                </template>
+            </el-table-column>
+        </el-table>
       <el-dialog title="评标调整：北京蓝天环境保护有限公司" :visible.sync="dialogFormVisible" append-to-body
                  class="priceAdjustment" width="952px">
         <PriceAdjustment></PriceAdjustment>
@@ -29,7 +29,7 @@
     </div>
 </template>
 <script>
-  import PriceAdjustment from './/PriceAdjustment'
+  import PriceAdjustment from './PriceAdjustment'
     export default {
         name: 'changePrice',
       components: {
@@ -37,18 +37,17 @@
       },
         data() {
             return {
-                 dialogFormVisible: false,//标价价调整弹框
+                dialogFormVisible: false,//标价价调整弹框
                 dialogVisible: false,//调转评标价弹框
                 msgBox: [{
                     firstPrice: '1,000,000,00 人民币',
                     name: '重庆网控科技发展有限公司',
                     finalQuotation: '1,000,000,00'
-                },
-
+                   },
                   {  firstPrice: '1,000,000,00 人民币',
-                  name: '普瑞太阳能有限公司',
-                  finalQuotation: '1,000,000,00'
-                 },
+                    name: '普瑞太阳能有限公司',
+                    finalQuotation: '1,000,000,00'
+                   },
                   { firstPrice: '1,000,000,00 人民币',
                     name: '夏丰热工研究院有限公司',
                     finalQuotation: '1,000,000,00'
@@ -62,10 +61,10 @@
 
         },
         methods: {
-            individualTrial() {
-                this.dialogVisible = true;
+          individualTrial() {
+              this.dialogVisible = true;
             },
-          changePrice(){
+          changePriceBtn(){
             this.dialogFormVisible=true;//标价价调整弹框
           }
         }

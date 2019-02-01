@@ -2,7 +2,7 @@
     <div class="sidebar">
       <el-row>
         <el-col class="text-center " style="margin-top: 7px;margin-bottom: 4px">
-          <img width="150" v-lazy="logoSrc" alt="logo" height="27" >
+          <img width="150" v-lazy="logoSrc" alt="logo" >
         </el-col>
         <el-col>
           <el-menu
@@ -33,7 +33,7 @@
     data() {
       return {
         activeIndex:'/endhome/index',
-        logoSrc:require('../common/img/nav_logo1.png')
+        logoSrc:require('../common/img/LOGO112.png')
       }
     },
     methods: {
@@ -67,5 +67,6 @@
 </script>
 
 <style scoped="scoped">
+
 
 </style>

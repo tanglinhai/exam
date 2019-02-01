@@ -32,5 +32,7 @@
 </script>
 
 <style rel="stylesheet/scss" scoped="scoped" lang="scss">
-
+.el-breadcrumb{
+  margin-top: 18px;
+}
 </style>
