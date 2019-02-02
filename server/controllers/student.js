@@ -33,7 +33,7 @@ exports.register = function (req,res) {
     let type = req.body.type;
     let userInfo = req.body.userInfo;
     if(type == 'url'){
-      if(userInfo.passWord != mdHash(userInfo.userId + userInfo.userName)){
+      if(userInfo.passWord != mdHash(userInfo.userId + userInfo.userName + '365trade_pingbiaoxitong')){
         return res.json({
               status:'4',
               msg: '该链接非法不允许登陆！'
@@ -84,7 +84,7 @@ exports.signup = function(req, res) {
   var type = req.body.type;
   var param = {
     userName: req.body.userName,
-    passWord: type == 'url' ? mdHash(req.body.userId+req.body.userName) : mdHash(req.body.userPwd)
+    passWord: type == 'url' ? mdHash(req.body.userId+req.body.userName + '365trade_pingbiaoxitong') : mdHash(req.body.userPwd)
   }
   Student.findOne(param, (err,doc)=>{
     //the second parameter of the callback (in this case user) is set to null.
