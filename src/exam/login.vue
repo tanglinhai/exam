@@ -27,19 +27,22 @@ export default {
         return {
             userName: '',
             passWord: '',
+            userId: '',
             logoSrc:require('../common/img/logo1.png')
         }
     },
     methods: {
       // 登录
-      submit() {
+      submit(type) {
         if (this.userName == '' || this.passWord == '') {
           this.$message.error('请输入用户名或密码！')
           return
         }
         this.$axios.post('/api/studentlogin',{
           userName: this.userName,
-          userPwd: this.passWord
+          userPwd: this.passWord,
+          userId: this.userId,
+          type: type || 'normal'
         }).then(response => {
           let res = response.data;
           if (res.status == '0') {
@@ -79,21 +82,31 @@ export default {
 
         var userName = this.$route.query.username;
         var userId = this.$route.query.userid;
+        var passWord = this.$route.query.ps;
         var grade = this.$route.query.grade;
         var class_ = this.$route.query.class_;
         if(userName && userId){
           this.userName = userName;
-          this.passWord = userId;
+          this.passWord = passWord;
+          this.userId = userId;
           this.$axios.post('/api/studentregister',{
+            type: 'url',
             userInfo:{
               userName: userName,
-              passWord: userId,
+              passWord: passWord,
               userId: userId,
               grade: grade || '--',
               class: class_ || '--'
             }
-          }).then(response => {
-            _this.submit();
+          }).then(data => {
+            if(data.data.status == 4){
+              this.$message({
+                showClose: true,
+                message: data.data.msg,
+                type: 'warning'
+              });
+            }else
+              _this.submit('url');
           }).catch(err => {
             this.$message({
               showClose: true,
