@@ -7,7 +7,7 @@
         </div>
         <div class=" width90">
           <el-row class="marginT15">
-            <el-col :span="16" > <i class="fa fa-camera-retro"></i>&nbsp;&nbsp;<span>新增专家一号</span></el-col>
+            <el-col :span="16" > <i class="fa fa-user-circle" style="font-size:16px"></i>&nbsp;&nbsp;<span>新增专家一号</span></el-col>
             <el-col :span="8"><el-button type="primary" size="small">查看所有文档</el-button></el-col>
           </el-row>
           <div class="he479">
@@ -79,7 +79,7 @@
             </div>
           </div>
         </div>
-        <el-row class="text-center marginT60">
+        <el-row class="text-center marginT30">
           <el-button type="warning" size="medium" round @click="batchsign_btn">批量签字</el-button>
         </el-row>
       </el-col>

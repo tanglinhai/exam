@@ -204,6 +204,12 @@ p{word-wrap:break-word}
 .fs15{
   font-size: 15px;
 }
+.fs18{
+  font-size: 18px;
+}
+.fs16{
+  font-size: 16px;
+}
 .fwb{
   font-weight: bold;
 }
@@ -235,4 +241,10 @@ p{word-wrap:break-word}
 }
 .curPoint{
   cursor: pointer;
+}
+.col852{
+  background-color: #852b99;
+}
+.colfff{
+  color: #ffffff;
 }
