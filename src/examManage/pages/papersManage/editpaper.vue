@@ -94,7 +94,7 @@
           <div v-if="dialogForm.type=='operation'">
             <el-form-item label="操作题库：" prop="_operation">
               <el-radio-group v-model="dialogForm._operation" size="medium" @change="setOperationTitle(dialogForm._operation)">
-                <el-radio :label="o._id" v-for="(o,index) in operations" :key="index">{{o.name}}</el-radio>
+                <el-radio :label="o._id" v-for="(o,index) in operations" :key="index" :disabled="o.type==3">{{o.name}}</el-radio>
               </el-radio-group>
             </el-form-item>
           </div>
