@@ -37,6 +37,9 @@
             align="center"
             label="考试时长"
           >
+            <template slot-scope="scope">
+              {{scope.row.no_time_limit?'无限制':scope.row.time}}
+            </template>
           </el-table-column>
           <el-table-column
             width="190"

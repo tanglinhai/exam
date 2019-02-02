@@ -13,7 +13,7 @@
         </el-row>
         <el-row>
           <el-col :span="7" v-for="item in exams" :key="item.id" class="box-item marginB20">
-            <el-card :body-style="{ padding: '0px',cursor:'pointer'}" v-if="(nowTime - new Date(item.startTime))/(1000*60) < item.time">
+            <el-card :body-style="{ padding: '0px',cursor:'pointer'}" v-if="(item.no_time_limit)||((nowTime - new Date(item.startTime))/(1000*60) < item.time)">
               <div style="padding: 14px;">
                 <p>{{item.name}}</p>
                 <!--<p>{{(nowTime - new Date(item.startTime))/(1000*60)}}</p>-->
@@ -62,7 +62,7 @@
       },
       mounted(){
         this.init();
-        this.getExamLogs();
+        //this.getExamLogs();
         this.$alert('本地系统是专家评标流程模拟过程，提供给专家熟悉中招联合的评标流程使用，其中数据都为模拟数据，不要对数据的精确性做深究。', '系统提示', {
           confirmButtonText: '确定'
         });

@@ -22,6 +22,8 @@ module.exports = function(app) {
   app.post('/api/savePaper', Teacher.savePaper);
   // 发布试卷
   app.post('/api/publishPaper', Teacher.publishPaper);
+  // 发布试卷
+  app.post('/api/cancelPublishPaper', Teacher.cancelPublishPaper);
   // 删除试卷
   app.post('/api/deletePaper', Teacher.deletePaper);
   // 查找试卷
@@ -65,5 +67,11 @@ module.exports = function(app) {
   app.post('/api/submitExam',Student.submitExam);
   // 根据userId获取考试成绩
   app.get('/api/getExamLogsByUserId',Student.getExamLogsByUserId);
+  // 获取所有考卷
+  app.get('/api/getAllPagers',Student.getAllPagers);
+
+
+
+
 
 }

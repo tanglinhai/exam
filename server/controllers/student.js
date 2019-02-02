@@ -183,6 +183,25 @@ exports.updateStudent = function (req, res) {
     }
   })
 };
+
+
+// 获取所有试卷的考试
+exports.getAllPagers = async function (req,res) {
+  let  pageSize = parseInt(req.param('pageSize')) || 20;
+  let  pageNumber = parseInt(req.param('pageNumber')) || 1;
+  let  skip = (pageNumber-1)*pageSize; // 跳过几条
+  const query1 = Paper.find();
+  const query2 = Paper.find();
+  const total = await query1.count().exec();
+  const data = await query2.skip(skip).limit(pageSize).exec();
+  res.json({
+    status: '0',
+    result: data,
+    total: total,
+    msg: 'success'
+  })
+};
+
 // 获取考试记录
 exports.getExamLogs = function (req, res){
   let userName =req.session.userName;
@@ -291,7 +310,7 @@ exports.getExams = function (req,res) {
               let result = [];
               // 查找还在考试时间内的考试
               doc1.forEach(item => {
-                if((nowTime - new Date(item.startTime))/(1000*60) < item.time){
+                if(item.no_time_limit || ((nowTime - new Date(item.startTime))/(1000*60) < item.time)){
                   result.push(item);
                 }
               })

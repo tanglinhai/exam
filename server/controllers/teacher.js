@@ -305,6 +305,7 @@ exports.savePaper = function (req, res) {
           name:paperForm.name,
           totalPoints:paperForm.totalPoints,
           time:paperForm.time,
+          no_time_limit:paperForm.no_time_limit,
           _teacher: doc._id,
           _questions: [],
           examnum:0
@@ -399,6 +400,48 @@ exports.publishPaper = function(req, res) {
     } else {
       if (doc) {
         Paper.update({'_id':id},{$set:{"startTime": new Date}},function (err1,doc1) {
+          if (err1) {
+            res.json({
+              status:'1',
+              msg: err1.message
+            })
+          } else {
+            if (doc1) {
+              res.json({
+                status:'0',
+                msg: 'success',
+                data: doc1
+              })
+            } else {
+              res.json({
+                status:'1',
+                msg: '没找到试卷！'
+              })
+            }
+          }
+        })
+      } else {
+        res.json({
+          status: '2',
+          msg:'没有该用户'
+        })
+      }
+    }
+  })
+};
+// 取消发布试卷
+exports.cancelPublishPaper = function(req, res) {
+  let id = req.body.id;
+  let userName = req.session.userName;
+  Teacher.findOne({"userName":userName}, (err,doc)=>{
+    if (err) {
+      res.json({
+        status:'1',
+        msg: err.message
+      })
+    } else {
+      if (doc) {
+        Paper.update({'_id':id},{$set:{"startTime": null}},function (err1,doc1) {
           if (err1) {
             res.json({
               status:'1',
@@ -569,7 +612,8 @@ exports.updatePaper = function (req,res) {
   let paperParams = {
     name: params.name,
     totalPoints: params.totalPoints,
-    time: params.time
+    time: params.time,
+    no_time_limit: params.no_time_limit
   }
   let updateQuestion = [];
   let addQuestion = [];

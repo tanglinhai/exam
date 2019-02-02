@@ -16,7 +16,7 @@
                         <span class="title">{{item.name}}</span>
                       </el-tooltip>
                       <span class="data marginL10">{{ item.startTime?new Date(item.startTime).toLocaleString():'还未开考'}}</span>
-                      <span class="time">{{item.time}} 分钟</span>
+                      <span class="time">{{item.no_time_limit?'无时间限制':item.time+'分钟'}}</span>
                     </router-link>
                   </li>
                 </ul>
@@ -38,7 +38,7 @@
                       <span>考试时间:{{new Date(item.startTime).toLocaleString()}}</span>
                     </div>
                     <div class="pull-left">
-                      <span>考试时长: <span class="examduration">{{item.time}}分钟</span> </span>
+                      <span>考试时长: <span class="examduration">{{item.no_time_limit?'无时间限制':(item.time+'分钟')}}</span> </span>
                     </div>
                   </li>
                 </ul>
@@ -82,7 +82,7 @@
           if(res.status == '0') {
             this.news = res.result._papers;
             res.result._papers.forEach(item => {
-              if(item.startTime&&(this.nowTime - new Date(item.startTime))/(1000*60) < item.time) {
+              if(item.startTime&&((this.nowTime - new Date(item.startTime))/(1000*60) < item.time)||item.no_time_limit) {
                 this.exams.push(item);
               }
             })

@@ -1,11 +1,11 @@
 <template>
   <div class="exam">
     <h3 class="text-center marginT10">{{paperData.name}}</h3>
-    <div class="text-center marginT10">模拟评标时长：{{paperData.time}}分钟  总分：{{paperData.totalPoints}}分</div>
+    <div class="text-center marginT10">模拟评标时长：{{paperData.no_time_limit?'无时间限制':paperData.time+'分钟'}}  总分：{{paperData.totalPoints}}分</div>
     <hr>
     <div class="submit-box" ref="submitBox" v-show="lianxi">
       <el-button @click="submit" type="primary" class="submit-btn">提交模拟评标</el-button>
-      <div class="timeout">
+      <div class="timeout" v-if="!paperData.no_time_limit">
         <p>距离模拟评标结束</p>
         <p>{{time}}</p>
       </div>
@@ -80,7 +80,7 @@
           <li class="marginB10" v-for="(item,index) in operationQuestions" :key="item.id">
             <p class="question-title">
               {{index+1}} 、{{item.name}}
-              <el-button size="mini" @click="operation_answer(item,index)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
+              <el-button size="mini" @click="openOperationDialog(item,index)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
             </p>
             <div class="question-content">
               <el-dialog
@@ -96,7 +96,7 @@
                   frameborder="0"
                   scrolling="no"
                 ></iframe>
-                <div class="submit-box" slot="footer" style="bottom: 63px;">
+                <div class="submit-box" style="bottom: 63px;">
                   <el-button @click="endOperation(item)" type="danger" size="small">结束评标</el-button>
                 </div>
               </el-dialog>
@@ -132,7 +132,8 @@
         paperData:{
           name:'',
           time:'',
-          totalPoints:''
+          totalPoints:'',
+          no_time_limit: false
         },
         startTime:'',
         nowTime: '',
@@ -182,6 +183,12 @@
       window.removeEventListener('scroll', this.handleScroll);
     },
     methods:{
+      openOperationDialog(item,index){
+        if(!item.isEnd){
+          item.show = true
+          this.operation_answer(item,index)
+        }
+      },
       /**
        * 操作题统计分数
        */
@@ -233,10 +240,7 @@
        */
       operation_answer(item,index){
         var _this = this;
-
-        if(!item.isEnd)
-        item.show = true;
-        setTimeout(function () {  //设置滚动条位置
+        this.$nextTick(() => {
           const iframe = _this.$refs['iframe_operation_'+item._operation.name][0];
           if(iframe.getAttribute('isLoaded') || item.isEnd){
             return;
@@ -258,7 +262,7 @@
           )
           +"/participateIn"
           iframe.setAttribute('isLoaded', true);
-        }, 1000);
+        });
       },
       /**
        * 初始化
@@ -266,8 +270,6 @@
       init(){
         //清楚操作题之前存储的键值对storage
         this.$loaclStore.clear();
-
-
         if(this.id&&this.id2==11){    //如果练习点击进入此项不显示
           this.lianxi=false;
         }
@@ -282,18 +284,22 @@
             }
           }).then(response => {
             let res = response.data;
+
             if(res.status == '0') {
               for(let key in this.paperData) {
                   this.paperData[key] = res.result[key];
               }
-              //this.startTime = res.result.startTime;
-              this.examTime = this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
-              if(this.examTime <= 0&&!this.id2){
-                this.$message.error('考试时间已过!');
-                this.$router.go(-1);
+
+              this.examTime = this.paperData.no_time_limit? true:this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
+
+              if(this.examTime!==true){
+                if(this.examTime <= 0&&!this.id2){
+                  this.$message.error('考试时间已过!');
+                  this.$router.go(-1);
+                }
+                this.getCode();
               }
-              this.getCode();
-              // this.timeOut();
+              
               res.result._questions.forEach(item => {
                 if(item.type=='single'){
                   item.sanswer = '';
@@ -309,11 +315,11 @@
                   this.judgeQuestions.push(item);
                 } else if(item.type == 'operation'){
                   item.sanswer = '';
+                  item.show = false;
                   this.operationQuestions.push(item);
                 }
               })
             }
-
             /*this.$nextTick(() => {
               //重置iframe的高度
               var iframes = document.getElementsByTagName('iframe');
