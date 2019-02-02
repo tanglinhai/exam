@@ -48,7 +48,6 @@
         rules:{
           userId: [
             { required: true, message: '请输入工号', trigger: 'blur' },
-            { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           userName: [
             { required: true, message: '请输入姓名', trigger: 'blur' },
@@ -56,11 +55,9 @@
           ],
           grade: [
             { required: true, message: '请输入级别', trigger: 'blur' },
-            { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           class: [
             { required: true, message: '请输入专业', trigger: 'blur' },
-            { pattern: /^[0-9]+$/, message: '只能输入数字' }
           ],
           passWord: [
             { required: true, message: '请输入账号密码', trigger: 'blur' },

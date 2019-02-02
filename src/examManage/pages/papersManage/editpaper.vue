@@ -22,7 +22,8 @@
 							<el-input v-model="form.totalPoints" placeholder="请输入试卷总分"></el-input>
 						</el-form-item>
             <el-form-item label="考试时长" prop="time">
-              <el-input v-model="form.time" placeholder="请输入考试时长"></el-input>
+              <el-input v-model="form.time" placeholder="请输入考试时长" ></el-input>
+              <el-checkbox v-model="form.no_time_limit">没有时间限制</el-checkbox>
             </el-form-item>
 					</el-form>
 				</el-col>
@@ -93,7 +94,7 @@
           <div v-if="dialogForm.type=='operation'">
             <el-form-item label="操作题库：" prop="_operation">
               <el-radio-group v-model="dialogForm._operation" size="medium" @change="setOperationTitle(dialogForm._operation)">
-                <el-radio :label="o._id" v-for="(o,index) in operations" :key="index">{{o.name}}</el-radio>
+                <el-radio :label="o._id" v-for="(o,index) in operations" :key="index" :disabled="o.type==3">{{o.name}}</el-radio>
               </el-radio-group>
             </el-form-item>
           </div>
@@ -132,6 +133,7 @@ export default {
 		return {
 			paperId: '', // 试卷id
 			form:{ // 试卷信息
+        no_time_limit: false,
 				name: '',
         time:'',
         totalPoints: '',
@@ -150,7 +152,20 @@ export default {
           { pattern: /^[0-9]+$/, message: '只能输入数字' }
 				],
         time: [
-          { required: true, message: '请输入考试时长', trigger: 'blur' },
+          { message: '请输入考试时长', trigger: 'blur' , 
+            validator: (rule, value, callback)=>{
+              if(this.form.no_time_limit){
+                return callback();
+              }else{
+                if(this.form.time.length > 0){
+                  return callback();
+                }else {
+                  return callback(new Error('请输入考试时长'));
+                }
+              }
+              console.log(this.form)
+            }
+          },
           { pattern: /^[0-9]+$/, message: '只能输入数字' }
         ]
 			},

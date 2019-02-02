@@ -13,7 +13,7 @@
           <div class="grid-content bg-purple quexa_aright">
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets"><a href="/static/docs/zhaoBiaoFile.pdf" target="_blank" style="color:#fff;">查看招标文件</a></el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign">资格审查签字</el-button>
