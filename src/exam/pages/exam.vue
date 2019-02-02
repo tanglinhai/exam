@@ -80,7 +80,7 @@
           <li class="marginB10" v-for="(item,index) in operationQuestions" :key="item.id">
             <p class="question-title">
               {{index+1}} 、{{item.name}}
-              <el-button size="mini" @click="operation_answer(item,index)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
+              <el-button size="mini" @click="openOperationDialog(item,index)">{{item.isEnd?'操作结束':'加载操作程序，并开始操作'}}</el-button>
             </p>
             <div class="question-content">
               <el-dialog
@@ -96,7 +96,7 @@
                   frameborder="0"
                   scrolling="no"
                 ></iframe>
-                <div class="submit-box" slot="footer" style="bottom: 63px;">
+                <div class="submit-box" style="bottom: 63px;">
                   <el-button @click="endOperation(item)" type="danger" size="small">结束评标</el-button>
                 </div>
               </el-dialog>
@@ -183,6 +183,12 @@
       window.removeEventListener('scroll', this.handleScroll);
     },
     methods:{
+      openOperationDialog(item,index){
+        if(!item.isEnd){
+          item.show = true
+          this.operation_answer(item,index)
+        }
+      },
       /**
        * 操作题统计分数
        */
@@ -234,10 +240,7 @@
        */
       operation_answer(item,index){
         var _this = this;
-
-        if(!item.isEnd)
-        item.show = true;
-        setTimeout(function () {  //设置滚动条位置
+        this.$nextTick(() => {
           const iframe = _this.$refs['iframe_operation_'+item._operation.name][0];
           if(iframe.getAttribute('isLoaded') || item.isEnd){
             return;
@@ -259,7 +262,7 @@
           )
           +"/participateIn"
           iframe.setAttribute('isLoaded', true);
-        }, 1000);
+        });
       },
       /**
        * 初始化
@@ -286,6 +289,7 @@
               for(let key in this.paperData) {
                   this.paperData[key] = res.result[key];
               }
+
               this.examTime = this.paperData.no_time_limit? true:this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
 
               if(this.examTime!==true){
@@ -311,11 +315,11 @@
                   this.judgeQuestions.push(item);
                 } else if(item.type == 'operation'){
                   item.sanswer = '';
+                  item.show = false;
                   this.operationQuestions.push(item);
                 }
               })
             }
-
             /*this.$nextTick(() => {
               //重置iframe的高度
               var iframes = document.getElementsByTagName('iframe');
