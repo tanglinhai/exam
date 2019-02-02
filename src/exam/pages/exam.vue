@@ -1,11 +1,11 @@
 <template>
   <div class="exam">
     <h3 class="text-center marginT10">{{paperData.name}}</h3>
-    <div class="text-center marginT10">模拟评标时长：{{paperData.time}}分钟  总分：{{paperData.totalPoints}}分</div>
+    <div class="text-center marginT10">模拟评标时长：{{paperData.no_time_limit?'无时间限制':paperData.time+'分钟'}}  总分：{{paperData.totalPoints}}分</div>
     <hr>
     <div class="submit-box" ref="submitBox" v-show="lianxi">
       <el-button @click="submit" type="primary" class="submit-btn">提交模拟评标</el-button>
-      <div class="timeout">
+      <div class="timeout" v-if="!paperData.no_time_limit">
         <p>距离模拟评标结束</p>
         <p>{{time}}</p>
       </div>
@@ -132,7 +132,8 @@
         paperData:{
           name:'',
           time:'',
-          totalPoints:''
+          totalPoints:'',
+          no_time_limit: false
         },
         startTime:'',
         nowTime: '',
@@ -266,8 +267,6 @@
       init(){
         //清楚操作题之前存储的键值对storage
         this.$loaclStore.clear();
-
-
         if(this.id&&this.id2==11){    //如果练习点击进入此项不显示
           this.lianxi=false;
         }
@@ -282,18 +281,21 @@
             }
           }).then(response => {
             let res = response.data;
+
             if(res.status == '0') {
               for(let key in this.paperData) {
                   this.paperData[key] = res.result[key];
               }
-              //this.startTime = res.result.startTime;
-              this.examTime = this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
-              if(this.examTime <= 0&&!this.id2){
-                this.$message.error('考试时间已过!');
-                this.$router.go(-1);
+              this.examTime = this.paperData.no_time_limit? true:this.paperData.time*60 - ((this.nowTime - new Date(this.startTime))/1000);
+
+              if(this.examTime!==true){
+                if(this.examTime <= 0&&!this.id2){
+                  this.$message.error('考试时间已过!');
+                  this.$router.go(-1);
+                }
+                this.getCode();
               }
-              this.getCode();
-              // this.timeOut();
+              
               res.result._questions.forEach(item => {
                 if(item.type=='single'){
                   item.sanswer = '';

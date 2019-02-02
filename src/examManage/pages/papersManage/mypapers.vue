@@ -45,6 +45,9 @@
               align="center"
               label="考试时长"
              >
+              <template slot-scope="scope">
+                {{scope.row.no_time_limit?'无限制':scope.row.time}}
+              </template>
             </el-table-column>
             <el-table-column
               width="190"
@@ -60,7 +63,8 @@
               align="center"
             >
               <template slot-scope="scope">
-                <el-button type="primary" size="mini" v-if="scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) > 1" @click="publish(scope.row._id)">再次发布</el-button>
+                <el-button type="primary" size="mini" v-if="scope.row.no_time_limit&&scope.row.startTime" @click="cancelPublish(scope.row._id)">取消发布</el-button>
+                <el-button type="primary" size="mini" v-else-if="(scope.row.startTime&&(nowTime - new Date(scope.row.startTime))/(1000*60) > scope.row.time)||(scope.row.no_time_limit&&!scope.row.startTime)" @click="publish(scope.row._id)">再次发布</el-button>
                 <el-button type="primary" size="mini" v-else :disabled="scope.row.startTime?true:false" @click="publish(scope.row._id)">{{scope.row.startTime?'已发布':'发布'}}</el-button>
                 <el-button type="danger" size="mini" icon="el-icon-delete" @click="deletePaper(scope.row)">删除</el-button>
                 <router-link :to="{path:'edit',query:{'id':scope.row._id}}">
@@ -211,6 +215,34 @@ export default {
         this.$message({
           type: 'info',
           message: '已取消发布!'
+        });
+      })
+
+    },
+    /**
+     * 取消发布试卷
+     * @param id 试卷id
+     */
+    cancelPublish(id){
+      this.$confirm('确定要取消发布该试卷吗？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+      }).then(() => {
+        this.$axios.post('/api/cancelPublishPaper',{
+          id: id
+        }).then(response => {
+          let res = response.data;
+          if (res.status == '0') {
+            this.$message.success('取消发布成功！');
+            this.getMypapers();
+          }
+        }).catch(err => {
+          this.$message.error("获取试卷数据失败!")
+        })
+      }).catch(()=>{
+        this.$message({
+          type: 'info',
+          message: '已取消操作!'
         });
       })
 

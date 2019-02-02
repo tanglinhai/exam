@@ -113,7 +113,7 @@ export default {
      * @return {[type]} [description]
      */
     getMypapers(){
-      this.$axios.get('/api/mypapers',{
+      this.$axios.get('/api/getAllPagers',{
         params:{
           name: this.name,
           pageSize: this.pageSize,
@@ -122,8 +122,8 @@ export default {
       }).then(response => {
         let res = response.data;
         if(res.status == 0) {
-          this.mypapers = res.result._papers;
-          this.pageTotal = res.count;
+          this.mypapers = res.result;
+          this.pageTotal = res.total;
         }
       }).catch(err => {
         this.$message.error("获取试卷数据失败!")

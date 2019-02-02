@@ -22,7 +22,7 @@
 							<el-input v-model="form.totalPoints" placeholder="请输入试卷总分"></el-input>
 						</el-form-item>
             <el-form-item label="考试时长" prop="time">
-              <el-input v-model="form.time" placeholder="请输入考试时长" ></el-input>
+              <el-input v-model="form.time" placeholder="请输入考试时长" :disabled="form.no_time_limit"></el-input>
               <el-checkbox v-model="form.no_time_limit">没有时间限制</el-checkbox>
             </el-form-item>
 					</el-form>
@@ -152,7 +152,7 @@ export default {
           { pattern: /^[0-9]+$/, message: '只能输入数字' }
 				],
         time: [
-          { message: '请输入考试时长', trigger: 'blur' , 
+          { message: '请输入考试时长!', trigger: 'blur' , 
             validator: (rule, value, callback)=>{
               if(this.form.no_time_limit){
                 return callback();
@@ -160,7 +160,7 @@ export default {
                 if(this.form.time.length > 0){
                   return callback();
                 }else {
-                  return callback(new Error('请输入考试时长'));
+                  return callback(new Error('111111111'));
                 }
               }
               console.log(this.form)
@@ -270,7 +270,7 @@ export default {
             }
             this.form = res.result;
             this.form.totalPoints+='';
-            this.form.time+='';
+            this.form.time = this.form.time ? this.form.time+'' : '';
             this.form._questions.forEach(item => {
               item.score+='';
               var arr = [];
@@ -365,7 +365,7 @@ export default {
      * 保存试卷
      */
     savePaper(){
-      if(this.form.name=='' || this.form.totalPoints == '' || this.form.time == '') {
+      if(this.form.name=='' || this.form.totalPoints == '' || (!this.form.no_time_limit && this.form.time == '')) {
           this.$message.error('请正确输入试卷信息!')
           return;
       }
