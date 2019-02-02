@@ -86,7 +86,7 @@
             remark:"1111",
             bidderSignature:""
           },  {
-              bidderName: '重庆网控科技发展有限公司',
+              bidderName: '普瑞太阳能有限公司',
               bidderTotalPrice: '9,000,000.00',
               qualityCriterion: '1',
               bidBond:"30",
@@ -95,7 +95,7 @@
               remark:"1111",
               bidderSignature:""
             }, {
-              bidderName: '重庆网控科技发展有限公司',
+              bidderName: '夏丰热工研究院有限公司',
               bidderTotalPrice: '9,000,000.00',
               qualityCriterion: '1',
               bidBond:"30",

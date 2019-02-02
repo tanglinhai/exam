@@ -1,8 +1,8 @@
-const Student = require('../model/student');
+﻿const Student = require('../model/student');
 const Paper   = require('../model/papers');
 const Operation = require('../model/operation');
 const crypto = require('crypto');
-
+var iconv = require('iconv-lite');
 let mdHash = function(data){
   const hash = crypto.createHash('md5');
   return hash.update(data).digest('hex');
@@ -280,6 +280,16 @@ exports.getExamLogsByUserId = function (req, res){
     })
 };
 
+function toUnicodeFun(data) {
+  if(!data) return '';
+  if (data == '' || typeof data == 'undefined') return '请输入汉字';
+  var str = '';
+  for (var i = 0; i < data.length; i++) {
+    str += '\\u' + data.charCodeAt(i).toString(16);
+  }
+  return str;
+}
+
 
 // 获取考试信息
 exports.getExams = function (req,res) {
@@ -289,7 +299,7 @@ exports.getExams = function (req,res) {
   let  pageSize = parseInt(req.param('pageSize'));
   let  pageNumber = parseInt(req.param('pageNumber'));
   let skip = (pageNumber-1)*pageSize; // 跳过几条
-  let reg = new RegExp(name,'i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
+  let reg = new RegExp('.*'+name.replace(/(\.|\*|\+|\?|\[|\]|\^|\-|\$|\\|\||\(|\)|\&|\#|\<|\>)/g, '\\$1')+'.*','i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
   Student.findOne({"userName":userName},(err,doc)=>{
     if(err) {
       res.json({
