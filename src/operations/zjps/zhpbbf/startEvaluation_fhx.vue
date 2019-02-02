@@ -15,8 +15,8 @@
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="qualificationSign" >资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -232,19 +232,29 @@
     >
       <FailureEntry @childByValue="childByValue"></FailureEntry>
     </el-dialog>
+    <el-dialog
+      title="签字"
+      :visible.sync="dialogVisibleSignatureReviewResult"
+      width="1700px"
+    >
+      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+    </el-dialog>
   </div>
 </template>
 <script>
-  import FailureEntry from '../dialog/FailureEntry'
+  import FailureEntry from '../dialog/FailureEntry';
+  import SignatureReviewResult from '../dialog/SignatureReviewResult';
   export default {
     name: 'updateBill',
     props:{
     },
     components: {
-      FailureEntry
+      FailureEntry,
+      SignatureReviewResult
     },
     data () {
       return {
+        dialogVisibleSignatureReviewResult:false,
         activeName:'3',
         tabDisabled:[],
         dialogVisible:false,//不合格录入
@@ -409,6 +419,12 @@
       })
     },
     methods: {
+      qualificationSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
+      bindResultSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
        onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '3', '1', this);
       },

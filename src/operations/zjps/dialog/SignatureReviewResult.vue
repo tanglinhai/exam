@@ -85,35 +85,35 @@
       </el-col>
       <el-col  class="right pull-right">
         <div class="right_top">
-        <el-col :span="9">
-          <ul >
-            <li class="words">招标项目名称:</li>
-            <li  class="boldWords">雄安施工项目总承包（施工类）001</li>
-          </ul>
-        </el-col >
-        <el-col  :span='5'>
-          <ul>
-            <li class="words">招标项目编号:</li>
-            <li class="boldWords">0635-1809G281</li>
-          </ul>
-        </el-col>
-        <el-col  :span='5'>
-          <ul>
-            <li class="words">包编号:</li>
-            <li class="boldWords">0635-1809G281/1</li>
-          </ul>
-        </el-col>
-        <el-col  :span='5'>
-          <ul>
-            <li class="words">包名称:</li>
-            <li class="boldWords">第1包</li>
-          </ul>
-        </el-col>
+          <el-col :span="9">
+            <ul >
+              <li class="words">招标项目名称:</li>
+              <li  class="boldWords">雄安施工项目总承包（施工类）001</li>
+            </ul>
+          </el-col >
+          <el-col  :span='5'>
+            <ul>
+              <li class="words">招标项目编号:</li>
+              <li class="boldWords">0635-1809G281</li>
+            </ul>
+          </el-col>
+          <el-col  :span='5'>
+            <ul>
+              <li class="words">包编号:</li>
+              <li class="boldWords">0635-1809G281/1</li>
+            </ul>
+          </el-col>
+          <el-col  :span='5'>
+            <ul>
+              <li class="words">包名称:</li>
+              <li class="boldWords">第1包</li>
+            </ul>
+          </el-col>
         </div>
         <div class="right_main">
           <img  v-lazy="morenSrc" ref="morenSrc" class="morenSrc">
         </div>
-     </el-col>
+      </el-col>
     </el-row>
     <el-dialog
       title=""
@@ -127,42 +127,41 @@
 </template>
 
 <script>
-  import BatchSignature from '../operations/zjps/dialog/BatchSignature';
-    export default {
-      name: "signature-review-result",
-      components: {
-        BatchSignature
-      },
-      data(){
-        return {
-          logoSrc:require('../common/img/logo11.png'),
-          morenSrc:require('../common/img/moren.gif'),
-          grzzsc:require('../common/img/grzzsc.svg'),//资格审查个人报表table1
-          fhxscgr:require('../common/img/fhxscgr.svg'),//符合性审查个人报表table1
-          zjgrxxps:require('../common/img/zjgrxxps.svg'),//详细评审表table1
-
-          zgschz2:require('../common/img/zgschz2.svg'),//资格审查汇总报表table2
-          fhxschz2:require('../common/img/fhxschz2.svg'),//符合性审查汇总报表table2
-          tbrfxdf2:require('../common/img/tbrfxdf2.svg'),//投标人分项得分表表table2
-          jgpy2:require('../common/img/jgpy2.svg'),//价格评议表table2
-          psjghz2:require('../common/img/psjghz2.svg'),//评分汇总表table2
-          psbg2:require('../common/img/psbg2.svg'),//评审报告table2
-          pswyhpsyj2:require('../common/img/pswyhpsyj2.svg'),//评审报告table2
-          tableData1: [{
-            docName: '资格审查个人报表',
-            creationTime: '2019-01-11 18:25:04',
-            status: '待签'
-          }, {
-              docName: '符合性审查个人报表',
-              creationTime: '2019-01-11 18:25:04',
-              status: '待签'
-          }, {
-              docName: '详细评审表',
-              creationTime: '2019-01-11 18:25:04',
-              status: '待签'
-          }],
-          tableData2: [
-            {
+  import BatchSignature from './BatchSignature';
+  export default {
+    name: "signature-review-result",
+    components: {
+      BatchSignature
+    },
+    data(){
+      return {
+        logoSrc:require('../../../common/img/logo11.png'),
+        morenSrc:require('../../../common/img/moren.gif'),
+        grzzsc:require('../../../common/img/zgxscgrbb_table1.png'),//资格审查个人报表table1
+        fhxscgr:require('../../../common/img/fhxscgrbb_table1.png'),//符合性审查个人报表table1
+        zjgrxxps:require('../../../common/img/zjgrxxps_table1.png'),//详细评审表table1
+        zgschz2:require('../../../common/img/zgschz_table2.png'),//资格审查汇总报表table2
+        fhxschz2:require('../../../common/img/fhxschz_table2.png'),//符合性审查汇总报表table2
+        tbrfxdf2:require('../../../common/img/tbrfxdf_table2.png'),//投标人分项得分表表table2
+        jgpy2:require('../../../common/img/jgpy_table2.png'),//价格评议表table2
+        psjghz2:require('../../../common/img/psjghz_table2.png'),//评分汇总表table2
+        psbg2:require('../../../common/img/psbg_table2.png'),//评审报告table2
+        pswyhpsyj2:require('../../../common/img/pswyhpsyj_table2.png'),//评审报告table2
+        tableData1: [{
+          docName: '资格审查个人报表',
+          creationTime: '2019-01-11 18:25:04',
+          status: '待签'
+        }, {
+          docName: '符合性审查个人报表',
+          creationTime: '2019-01-11 18:25:04',
+          status: '待签'
+        }, {
+          docName: '详细评审表',
+          creationTime: '2019-01-11 18:25:04',
+          status: '待签'
+        }],
+        tableData2: [
+          {
             docName: '资格审查汇总报表',
             creationTime: '2019-01-11 18:25:04',
             status: '待签'
@@ -201,64 +200,72 @@
             creationTime: '2019-01-11 18:25:04',
             status: '待签'
           }
-          ],
-          dialogSign:false
-        }
+        ],
+        dialogSign:false
+      }
+    },
+    methods:{
+      batchsign_btn(){
+        this.dialogSign=true;
       },
-      methods:{
-        batchsign_btn(){
-            this.dialogSign=true;
-        },
-        changeImg(obj){
+      changeImg(obj){
+        if(obj.docName=='资格审查个人报表'){
+          this.$refs.morenSrc.src=this.grzzsc;
+          $(".grzzsc").css('width','0');
+          $(".morenSrc").css('left','16%');
+        }else if(obj.docName=='符合性审查个人报表'){
+          this.$refs.morenSrc.src=this.fhxscgr;
+          $(".fhxscgr").css('width','0');
+          $(".morenSrc").css('left','20%');
+        }else if(obj.docName=='详细评审表'){
+          this.$refs.morenSrc.src=this.zjgrxxps;
+          $(".zjgrxxps").css('width','0');
+          $(".right_main img").css('top','20px');
+          $(".morenSrc").css('left','25%');
+        }
 
-         if(obj.docName=='资格审查个人报表'){
-           this.$refs.morenSrc.src=this.grzzsc;
-           $(".grzzsc").css('width','0');
-         }else if(obj.docName=='符合性审查个人报表'){
-           this.$refs.morenSrc.src=this.fhxscgr;
-           $(".fhxscgr").css('width','0');
-         }else if(obj.docName=='详细评审表'){
-           this.$refs.morenSrc.src=this.zjgrxxps;
-           $(".zjgrxxps").css('width','0');
-         }
-          $(".morenSrc").css('left','13%');
-        },
-        changeImg2(obj){
-          console.log(obj);
-          if(obj.docName=='资格审查汇总报表'){
-            this.$refs.morenSrc.src=this.zgschz2;
-            $(".zgschz2").css('width','0');
-            $(".morenSrc").css('left','13%');
-          }else if(obj.docName=='符合性审查汇总报表'){
-            this.$refs.morenSrc.src=this.fhxschz2;
-            $(".fhxschz2").css('width','0');
-            $(".morenSrc").css('left','13%');
-          }else if(obj.docName=='投标人分项得分表'){
-            this.$refs.morenSrc.src=this.tbrfxdf2;
-            $(".tbrfxdf2").css('width','0');
-            $(".morenSrc").css('left','13%');
-          }else if(obj.docName=='价格评议表'){
-            this.$refs.morenSrc.src=this.jgpy2;
-            $(".jgpy2").css('width','0');
-            $(".morenSrc").css('left','13%');
-          }else if(obj.docName=='评分汇总表'){
-            this.$refs.morenSrc.src=this.psjghz2;
-            $(".psjghz2").css('width','0');
-            $(".morenSrc").css('left','13%');
-          }else if(obj.docName=='评审报告'){
-            this.$refs.morenSrc.src=this.psbg2;
-            $(".psbg2").css('width','0');
-            $(".right_main img").css('top','0');
-            $(".morenSrc").css('left','20%');
-          }else if(obj.docName=='评审委员会签字表'||obj.docName=='评审专家声明书'||obj.docName=='评审专家意见表'){
-            this.$refs.morenSrc.src=this.pswyhpsyj2;
-            $(".pswyhpsyj2").css('width','0');
-            $(".right_main img").css('top','0');
-            $(".morenSrc").css('left','20%');
-          }
+      },
+      changeImg2(obj){
+        console.log(obj);
+        if(obj.docName=='资格审查汇总报表'){
+          this.$refs.morenSrc.src=this.zgschz2;
+          $(".zgschz2").css('width','0');
+          $(".morenSrc").css('left','20%');
+          $(".right_main img").css('top','20px');
+        }else if(obj.docName=='符合性审查汇总报表'){
+          this.$refs.morenSrc.src=this.fhxschz2;
+          $(".fhxschz2").css('width','0');
+          $(".morenSrc").css('left','20%');
+          $(".right_main img").css('top','20px');
+        }else if(obj.docName=='投标人分项得分表'){
+          this.$refs.morenSrc.src=this.tbrfxdf2;
+          $(".right_main img").css('top','15px');
+          $(".tbrfxdf2").css('width','0');
+          $(".morenSrc").css('left','10%');
+        }else if(obj.docName=='价格评议表'){
+          this.$refs.morenSrc.src=this.jgpy2;
+          $(".jgpy2").css('width','0');
+          $(".morenSrc").css('left','20%');
+          $(".right_main img").css('top','15px');
+        }else if(obj.docName=='评分汇总表'){
+          this.$refs.morenSrc.src=this.psjghz2;
+          $(".psjghz2").css('width','0');
+          $(".morenSrc").css('left','20%');
+          $(".right_main img").css('top','50px');
+        }else if(obj.docName=='评审报告'){
+          this.$refs.morenSrc.src=this.psbg2;
+          $(".psbg2").css('width','0');
+          $(".right_main img").css('top','15px');
+          $(".morenSrc").css('left','30%');
+        }else if(obj.docName=='评审委员会签字表'||obj.docName=='评审专家声明书'||obj.docName=='评审专家意见表'){
+          this.$refs.morenSrc.src=this.pswyhpsyj2;
+          $(".pswyhpsyj2").css('width','0');
+          $(".morenSrc").css('left','20%');
+          $(".right_main img").css('top','35px');
         }
       }
     }
+  }
 
 
 
@@ -300,8 +307,8 @@
       .right{
         width: 76%;
         .right_top{
-            height: 86px;
-           box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+          height: 86px;
+          box-shadow: 0 1px 5px rgba(0,0,0,0.1);
           -khtml-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
           -webkit-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
           -moz-box-shadow: 0 1px 5px rgba(0,0,0,0.1);
@@ -312,7 +319,7 @@
             line-height: 20px;
             font-size: 16px;
             color: #333;
-           }
+          }
           .words{
             line-height: 43.5px;
             font-size: 14px;

@@ -15,8 +15,8 @@
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign">资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -69,13 +69,13 @@
                 <el-table-column
                     prop="num"
                     label="项目">
-                </el-table-column>               
+                </el-table-column>
                 <el-table-column
                         label="投标人">
                         <el-table-column
                             prop="name"
                             label="夏丰热工研究院有限公司（测试）（1）">
-                            
+
                         </el-table-column>
                         <el-table-column
                             prop="name1"
@@ -87,7 +87,7 @@
                             prop="name2"
                             label="北京蓝天环境保护有限公司（测试）（3）">
                             <!-- <template slot-scope="scope">
-                                
+
                             </template> -->
                         </el-table-column>
                     </el-table-column>
@@ -111,16 +111,28 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      title="签字"
+      :visible.sync="dialogVisibleSignatureReviewResult"
+      width="1700px"
+    >
+      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import SignatureReviewResult from '../dialog/SignatureReviewResult';
   export default {
     name: 'updateBill',
+    components: {
+      SignatureReviewResult
+    },
+
     data () {
-      return { 
+      return {
         activeName:'6',
         tabDisabled: [],
+        dialogVisibleSignatureReviewResult:false,
         tableData:[
           {num:'第一章、施工方案与技术措施(0.00分-5.00分)',    name:'5',name1:'5',name2:'5'},
           {num:'第二章、质量管理体系与措施(0.00分-5.00分)',    name:'4',name1:'3.3',name2:'9'},
@@ -135,7 +147,7 @@
         ],
         currentPage4: 1
       }
-      
+
     },
     mounted(){
       let pshz=this.$loaclStore.get('zhpbbf_评审汇总是否提交');
@@ -143,24 +155,30 @@
         if(pshz)$('.pshz').css('color','#85ce61');
       })
     },
-    methods: {   
+    methods: {
+      qualificationSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
+      bindResultSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '6', '2', this);
       },
       changeView(name){      //路由跳转传参函数
           window.location.href = name;
-      },   
+      },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 0||rowIndex === 1||rowIndex === 2||rowIndex === 3||rowIndex === 4||rowIndex === 5||rowIndex === 6||rowIndex === 7) {
           return 'success-row';
         }
         return '';
-      } 
+      }
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -208,7 +226,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -234,7 +252,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

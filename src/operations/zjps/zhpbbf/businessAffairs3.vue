@@ -15,8 +15,8 @@
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign" >评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="qualificationSign" >资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -69,7 +69,7 @@
                 <el-table-column
                     prop="num"
                     label="项目">
-                </el-table-column>               
+                </el-table-column>
                 <el-table-column
                         label="投标人">
                         <el-table-column
@@ -132,14 +132,25 @@
         </el-tab-pane>
       </el-tabs>
     </div>
-
+    <el-dialog
+      title="签字"
+      :visible.sync="dialogVisibleSignatureReviewResult"
+      width="1700px"
+    >
+      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import SignatureReviewResult from '../dialog/SignatureReviewResult';
   export default {
     name: 'updateBill',
+    components: {
+      SignatureReviewResult
+    },
     data () {
-      return { 
+      return {
+        dialogVisibleSignatureReviewResult:false,
         activeName:'6',
         tabDisabled: [],
         tableData:[
@@ -156,16 +167,22 @@
         ],
         currentPage4: 1
       }
-      
+
     },
     mounted(){
     },
-    methods: {   
+    methods: {
+      qualificationSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
+      bindResultSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '6', '1', this);
       },
       saveData(){
-        
+
       },
       submitData(){
         this.$commonFun.exam_operation_answer_calc();
@@ -174,18 +191,18 @@
       },
       changeView(name){      //路由跳转传参函数
           window.location.href = name;
-      },   
+      },
       tableRowClassName({row, rowIndex}) {
         if (rowIndex === 0||rowIndex === 1||rowIndex === 2||rowIndex === 3||rowIndex === 4||rowIndex === 5||rowIndex === 6||rowIndex === 7) {
           return 'success-row';
         }
         return '';
-      } 
+      }
     },
   }
-  
 
-  
+
+
 </script>
 
 <style lang="scss">
@@ -233,7 +250,7 @@
         background: #ffefa4;
         color:#ff0000;
       }
-      .busa_bleft{ 
+      .busa_bleft{
         background:#ebeff3;
         overflow: hidden;
         padding-left:20px;
@@ -259,7 +276,7 @@
           }
         }
       }
-     
+
     }
     .qu{
         height: 40px;

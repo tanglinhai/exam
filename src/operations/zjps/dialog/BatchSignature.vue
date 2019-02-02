@@ -14,7 +14,6 @@
         return {
           downloadSrc:require('../../../common/img/download.png'),
 
-
         }
       },
       methods:{

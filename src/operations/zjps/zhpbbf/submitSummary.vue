@@ -15,8 +15,8 @@
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign" >评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign" >资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -159,6 +159,13 @@
     >
       <ViewUnlockRecord ></ViewUnlockRecord>
     </el-dialog>
+    <el-dialog
+      title="签字"
+      :visible.sync="dialogVisibleSignatureReviewResult"
+      width="1700px"
+    >
+      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -168,6 +175,7 @@
   import Sort from '../dialog/Sort';
   import BiddingAdvice from '../dialog/BiddingAdvice';
   import ViewUnlockRecord from '../dialog/ViewUnlockRecord';
+  import SignatureReviewResult from '../dialog/SignatureReviewResult';
   export default {
     components: {
       ReviewLockRequest,
@@ -175,12 +183,14 @@
       Scoring,
       Sort,
       BiddingAdvice,
-      ViewUnlockRecord
+      ViewUnlockRecord,
+      SignatureReviewResult
     },
     data () {
       return {
         activeName:'7',
         tabDisabled: [],
+        dialogVisibleSignatureReviewResult:false,
         tableData:[
           {bidder:'重庆网控科技发展有限公司',num:'1',name:'就世纪浩劫',bida:'10.00',bidb:'8.10',bidc:'22.00',nub:'40.00',end:'45.37',ip:'3'},
           {bidder:'普瑞太阳能有限公司',num:'2',bida:'9.00',bidb:'7.20',bidc:'25.00',nub:'41.20',end:'47.73',ip:'1'},
@@ -198,6 +208,12 @@
     mounted(){
     },
     methods: {
+      qualificationSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
+      bindResultSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
       onTabClick1(tab, event){
         this.$commonFun.onTabClick1(tab, event, '7', '2', this);
       },

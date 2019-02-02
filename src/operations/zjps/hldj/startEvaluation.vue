@@ -16,7 +16,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets"  @click="bindResultSign">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign">资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -231,16 +231,26 @@
     >
       <FailureEntry @childByValue="childByValue"></FailureEntry>
     </el-dialog>
+
+    <el-dialog
+      title="签字"
+      :visible.sync="dialogVisibleSignatureReviewResult"
+      width="1700px"
+    >
+      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import SignatureReviewResult from '../dialog/SignatureReviewResult';
   import FailureEntry from '../dialog/FailureEntry';
   export default {
     name: 'updateBill',
     props:{
     },
     components: {
-      FailureEntry
+      FailureEntry,
+    SignatureReviewResult
     },
     data () {
       return {
@@ -337,7 +347,8 @@
         allRadio:[],
         idradionoprss:'',//table不合格的id
         checkedNumRadio:"",
-        d:0
+        d:0,
+        dialogVisibleSignatureReviewResult:false
       }
     },
     computed: {
@@ -406,8 +417,11 @@
       })
     },
     methods: {
+      qualificationSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
       bindResultSign(){
-        window.location.href =' ../../../signatureReviewResult ';
+       this.dialogVisibleSignatureReviewResult=true;
       },
       arraySpanMethod({ row, column, rowIndex, columnIndex }) {
         if (rowIndex === 3) {

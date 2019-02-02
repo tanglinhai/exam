@@ -15,8 +15,8 @@
             <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看招标文件</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">评标结果签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">资格审查签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign" >评标结果签字</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign" >资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
           </div>
         </el-col>
@@ -98,20 +98,28 @@
       >
         <Sort></Sort>
       </el-dialog>
-
     </div>
-
+    <el-dialog
+      title="签字"
+      :visible.sync="dialogVisibleSignatureReviewResult"
+      width="1700px"
+    >
+      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+    </el-dialog>
   </div>
 </template>
 <script>
   import Sort from '../dialog/Sort';
+  import SignatureReviewResult from '../dialog/SignatureReviewResult';
   export default {
     name: 'updateBill',
     components: {
-      Sort
+      Sort,
+      SignatureReviewResult
     },
     data () {
-      return { 
+      return {
+        dialogVisibleSignatureReviewResult:false,
         activeName:'7',
         tabDisabled:[],
         tableData:[
@@ -141,6 +149,12 @@
         }
     },
     methods: {
+      qualificationSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
+      bindResultSign(){
+        this.dialogVisibleSignatureReviewResult=true;
+      },
       savePbyj(content){
         this.dialogBiddingAdvice = false;
         this.$loaclStore.set('评审意见', content);

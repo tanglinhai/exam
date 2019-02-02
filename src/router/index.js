@@ -74,7 +74,6 @@ export default new Router({
 
     // 操作题路由
 
-    { path: '/signatureReviewResult', name: 'SignatureReviewResult', component: () => import('../signatureReviewResult/signatureReviewResult.vue'), meta: {breadName:'评标结果签字'}},
     { path: '/operation', name: 'Operation', component: () => import('../operations/index.vue'), meta: {breadName:'操作题'},
       children: [
         // 合理低价办法
