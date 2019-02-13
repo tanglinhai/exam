@@ -11,10 +11,11 @@
         </el-col>
         <el-col :span="14">
           <div class="grid-content bg-purple leader_aright aaa_aright">
-            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">废标</el-button>
-            <el-button type="primary" size="small" icon="el-icon-circle-check-outline">标中质询</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline" @click="checkAllScoreReaultBtn">查看全部打分结果</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline" @click="abandonedTenderBtn">废标</el-button>
+            <el-button type="primary" size="small" icon="el-icon-circle-check-outline" @click="inquiryBtn">标中质询</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets"><a href="/static/docs/zhaoBiaoFile.pdf" target="_blank" style="color:#fff;">查看招标文件</a></el-button>
-            <el-button type="primary" size="small" icon="el-icon-tickets">查看开标一览表</el-button>
+            <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="qualificationSign">资格审查签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
@@ -145,6 +146,34 @@
     >
       <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
     </el-dialog>
+    <el-dialog
+      title="查看全部打分结果"
+      :visible.sync="dialogCheckAllScoreReault"
+      width="1700px"
+    >
+      <CheckAllScoreReault ></CheckAllScoreReault>
+    </el-dialog>
+    <el-dialog
+      title="废标"
+      :visible.sync="dialogAbandonedTender"
+      width="700px"
+    >
+      <AbandonedTender ></AbandonedTender>
+    </el-dialog>
+    <el-dialog
+      title="标中质询信息列表"
+      :visible.sync="dialogStandardChallengeInformation"
+      width="900px"
+    >
+      <StandardChallengeInformation ></StandardChallengeInformation>
+    </el-dialog>
+    <el-dialog
+      title="开标一览表"
+      :visible.sync="dialogCheckBidOpeningList"
+      width="900px"
+    >
+      <CheckBidOpeningList ></CheckBidOpeningList>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -152,13 +181,21 @@
   import QualificationUnlock from '../dialog/QualificationUnlockApplication';
   import ViewUnlockRecord from '../dialog/ViewUnlockRecord';
   import SignatureReviewResult from '../dialog/SignatureReviewResult';
+  import CheckAllScoreReault from '../dialog/CheckAllScoreReault';
+  import AbandonedTender from '../dialog/AbandonedTender';
+  import StandardChallengeInformation from '../dialog/StandardChallengeInformation';
+  import CheckBidOpeningList from '../dialog/CheckBidOpeningList';
   export default {
     name: 'updateBill',
     components: {
       IndividualTrial,
       QualificationUnlock,
       ViewUnlockRecord,
-      SignatureReviewResult
+      SignatureReviewResult,
+      CheckAllScoreReault,
+      AbandonedTender,
+      StandardChallengeInformation,
+      CheckBidOpeningList,
     },
 
     data () {
@@ -180,7 +217,11 @@
         dialogVisibleTitle:'资格审查项汇总解锁申请',
         dialogViewUnlockRecord:false,
         isSubmit:false,
-        dialogVisibleSignatureReviewResult:false
+        dialogVisibleSignatureReviewResult:false,
+        dialogCheckAllScoreReault:false,//查看全部打分结果
+        dialogAbandonedTender:false,
+        dialogStandardChallengeInformation:false,//标中质询信息表
+        dialogCheckBidOpeningList:false,//查看开标一览表
       }
     },
     created:function(){
@@ -202,6 +243,18 @@
       })
     },
     methods: {
+      checkBidOpeningListBtn(){
+        this.dialogCheckBidOpeningList=true;
+      },
+      abandonedTenderBtn(){
+        this.dialogAbandonedTender=true;
+      },
+      inquiryBtn(){
+        this.dialogStandardChallengeInformation=true;
+      },
+      checkAllScoreReaultBtn(){
+        this.dialogCheckAllScoreReault=true;
+      },
       qualificationSign(){
         this.dialogVisibleSignatureReviewResult=true;
       },
