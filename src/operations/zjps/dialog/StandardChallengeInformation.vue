@@ -61,24 +61,22 @@
               <el-checkbox label="夏丰热工研究院有限公司" name="type"></el-checkbox>
             </el-checkbox-group>
           </el-form-item>
-
           <el-form-item label="质询内容：" prop="desc">
-            <el-input type="textarea" v-model="ruleForm.desc"></el-input>
+            <el-input type="textarea"  autosize  v-model="ruleForm.desc" ></el-input>
           </el-form-item>
           <el-form-item label="要求回复时间：" >
             <el-col :span="11">
               <el-form-item prop="date1">
-                <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
+                <el-date-picker type="date" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;" size="small"></el-date-picker>
               </el-form-item>
             </el-col>
-            <el-col class="line" :span="2">-</el-col>
+            <el-col class="line text-center" :span="2">-</el-col>
             <el-col :span="11">
               <el-form-item prop="date2">
-                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
+                <el-time-picker type="fixed-time" placeholder="选择时间" v-model="ruleForm.date2" style="width: 100%;" size="small"></el-time-picker>
               </el-form-item>
             </el-col>
           </el-form-item>
-
         </el-form>
       </div>
     </div>
@@ -145,7 +143,6 @@
             this.$refs[formName].resetFields();
           }
         }
-
     }
 </script>
 
