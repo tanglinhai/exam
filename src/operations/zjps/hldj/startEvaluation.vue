@@ -230,7 +230,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry @childByValue="childByValue"></FailureEntry>
+      <FailureEntry @childByValue="childByValue(a)"></FailureEntry>
     </el-dialog>
 
     <el-dialog
@@ -238,7 +238,7 @@
       :visible.sync="dialogVisibleSignatureReviewResult"
       width="1700px"
     >
-      <SignatureReviewResult @childByValue="childByValue"></SignatureReviewResult>
+      <SignatureReviewResult @childByValue="childByValue(a)"></SignatureReviewResult>
     </el-dialog>
     <el-dialog
       title="查看全部打分结果"
