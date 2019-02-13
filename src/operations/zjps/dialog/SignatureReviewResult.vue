@@ -80,7 +80,7 @@
           </div>
         </div>
         <el-row class="text-center marginT30">
-          <el-button type="warning" size="medium" round @click="batchsign_btn">批量签字</el-button>
+          <el-button type="warning" size="medium" round   @click="innerVisible = true">批量签字</el-button>
         </el-row>
       </el-col>
       <el-col  class="right pull-right">
@@ -116,25 +116,31 @@
       </el-col>
     </el-row>
     <el-dialog
-      title=""
-      :visible.sync="dialogSign"
-      width="410px"
-      class="Sign"
+    width="410px"
+    title="二维码"
+    :visible.sync="innerVisible"
+    append-to-body
+    class="Sign"
     >
-      <BatchSignature></BatchSignature>
-    </el-dialog>
+      <div class="batch-signature">
+        <p class="coreds marginB10 text-center" >请扫描二维码提交签名</p>
+        <img v-lazy="downloadSrc" alt="扫描二维码" class="paddingL50">
+        <p class="coreds marginT10 marginB15 text-center">如果签名已完成，该页面会自动刷新</p>
+      </div>
+  </el-dialog>
   </div>
 </template>
 
 <script>
-  import BatchSignature from './BatchSignature';
   export default {
     name: "signature-review-result",
     components: {
-      BatchSignature
+
     },
     data(){
       return {
+        downloadSrc:require('../../../common/img/download.png'),
+        innerVisible: false,
         logoSrc:require('../../../common/img/logo11.png'),
         morenSrc:require('../../../common/img/moren.gif'),
         grzzsc:require('../../../common/img/zgxscgrbb_table1.png'),//资格审查个人报表table1
