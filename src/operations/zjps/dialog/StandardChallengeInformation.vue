@@ -164,7 +164,7 @@
                   this.tableData.push({
                     'bidder':this.ruleForm.type[i],
                     'inquiryConten':this.ruleForm.desc,
-                    'questionTime':this.ruleForm.date1,
+                    'requestReplyTime':this.ruleForm.date1,
                   });
                   this.$loaclStore.set('hldj_标中质询',this.tableData);   //存储表格推进去的值
                 }
@@ -180,7 +180,11 @@
               }
             });
           },
-          
+          cancel(formName){   //取消按钮
+             $('.form_div').hide();//新增表单隐藏
+            this.$refs[formName].resetFields();
+            
+          },
           resetForm(formName) {
             this.$refs[formName].resetFields();
           }
