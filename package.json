@@ -8,10 +8,10 @@
     "server": "node server/bin/www",
     "dev": "node build/dev-server.js",
     "start": "concurrently \"npm run dev\" \"npm run server\"",
-    "pro": "set FOREVER_ROOT=E:/tanglinhai/repo1/foreverExam&& forever start forever.json",
-    "prolist": "set FOREVER_ROOT=E:/tanglinhai/repo1/foreverExam&& forever list",
-    "prostopall": "set FOREVER_ROOT=E:/tanglinhai/repo1/foreverExam&& forever stopall",
-    "prorestartall": "set FOREVER_ROOT=E:/tanglinhai/repo1/foreverExam&& forever restartall",
+    "pro": "npm run prostopall && set FOREVER_ROOT=../foreverExam&& forever start forever.json",
+    "prolist": "set FOREVER_ROOT=../foreverExam&& forever list",
+    "prostopall": "set FOREVER_ROOT=../foreverExam&& forever stopall",
+    "prorestartall": "set FOREVER_ROOT=../foreverExam&& forever restartall",
     "build": "node build/build.js"
   },
   "dependencies": {
@@ -33,7 +33,7 @@
     "vue": "^2.5.22",
     "vue-lazyload": "^1.2.6",
     "vue-router": "^3.0.2",
-    "forever": "https://github.com/foreverjs/forever.git",
+    "forever": "https://github.com/tanglinhai/forever.git",
     "vue-template-compiler": "^2.5.22",
     "vuex": "^3.1.0"
   },

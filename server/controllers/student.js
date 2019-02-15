@@ -83,6 +83,9 @@ exports.register = function (req,res) {
   };
 // 登录
 exports.signup = function(req, res) {
+
+
+  utils.logger.info('=============1111=========大师傅大师傅=========================================:'+mdHash(req.body.userId+req.body.userName + '365trade_pingbiaoxitong'));
   var type = req.body.type;
   var param = {
     userName: req.body.userName,
