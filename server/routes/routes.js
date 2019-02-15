@@ -41,7 +41,7 @@ module.exports = function(app) {
   // 批阅试卷
   app.get('/api/getCheckPapers', Teacher.getCheckPapers);
   // 打分提交
-  app.get('/api/submitScore', Teacher.submitScore);
+  app.post('/api/submitScore', Teacher.submitScore);
   // 获取操作题的题目数据
   app.get('/api/getOperations', Teacher.getOperations);
 

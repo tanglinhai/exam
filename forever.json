@@ -1,0 +1,26 @@
+[
+  {
+    // App1
+    "uid": "exam_server",
+    "append": true,
+    "watch": true,
+    "script": "./server/bin/www",
+    "sourceDir": "E:\\tanglinhai\\repo1\\exam",
+    "workingDir": "E:\\tanglinhai\\repo1\\exam",
+    "logFile": "E:\\tanglinhai\\repo1\\foreverExam\\examLogs\\server_forever.log",
+    "outFile": "E:\\tanglinhai\\repo1\\foreverExam\\examLogs\\server_out.log",
+    "errFile": "E:\\tanglinhai\\repo1\\foreverExam\\examLogs\\server_error.log"
+  },
+  {
+    // App2
+    "uid": "exam",
+    "append": true,
+    "watch": true,
+    "script": "./build/dev-server.js",
+    "sourceDir": "E:\\tanglinhai\\repo1\\exam",
+    "workingDir": "E:\\tanglinhai\\repo1\\exam",
+    "logFile": "E:\\tanglinhai\\repo1\\foreverExam\\examLogs\\forever.log",
+    "outFile": "E:\\tanglinhai\\repo1\\foreverExam\\examLogs\\out.log",
+    "errFile": "E:\\tanglinhai\\repo1\\foreverExam\\examLogs\\error.log"
+  }
+]
