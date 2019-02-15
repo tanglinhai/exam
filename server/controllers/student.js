@@ -1,6 +1,7 @@
 ﻿const Student = require('../model/student');
 const Paper   = require('../model/papers');
 const Operation = require('../model/operation');
+const utils = require('../utils/utils');
 const crypto = require('crypto');
 var iconv = require('iconv-lite');
 let mdHash = function(data){
@@ -33,6 +34,7 @@ exports.register = function (req,res) {
     let type = req.body.type;
     let userInfo = req.body.userInfo;
     if(type == 'url'){
+      //utils.logger.info('===============================================================:'+mdHash(userInfo.userId + userInfo.userName + '365trade_pingbiaoxitong'));
       if(userInfo.passWord != mdHash(userInfo.userId + userInfo.userName + '365trade_pingbiaoxitong')){
         return res.json({
               status:'4',
@@ -130,8 +132,8 @@ exports.signout = function (req, res) {
 
 // 获取个人信息
 exports.getInfo = function (req, res) {
-  let userName = req.param('userName'),
-      userId   = req.param('userId');
+  let userName = req.query.userName,
+      userId   = req.query.userId;
   Student.findOne({'userName':userName,'userId':userId},(err, doc) => {
     if (err) {
       res.json({
@@ -187,8 +189,8 @@ exports.updateStudent = function (req, res) {
 
 // 获取所有试卷的考试
 exports.getAllPagers = async function (req,res) {
-  let  pageSize = parseInt(req.param('pageSize')) || 20;
-  let  pageNumber = parseInt(req.param('pageNumber')) || 1;
+  let  pageSize = parseInt(req.query.pageSize) || 20;
+  let  pageNumber = parseInt(req.query.pageNumber) || 1;
   let  skip = (pageNumber-1)*pageSize; // 跳过几条
   const query1 = Paper.find();
   const query2 = Paper.find();
@@ -205,10 +207,10 @@ exports.getAllPagers = async function (req,res) {
 // 获取考试记录
 exports.getExamLogs = function (req, res){
   let userName =req.session.userName;
-  let name = req.param('name');
+  let name = req.query.name;
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-  let  pageSize = parseInt(req.param('pageSize'));
-  let  pageNumber = parseInt(req.param('pageNumber'));
+  let  pageSize = parseInt(req.query.pageSize);
+  let  pageNumber = parseInt(req.query.pageNumber);
   let  skip = (pageNumber-1)*pageSize; // 跳过几条
   let  reg = new RegExp(name,'i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
   Student.findOne({"userName":userName},{"exams":{$slice:[skip,pageSize]}}).populate({path:'exams._paper',match:{name: reg}})
@@ -239,10 +241,10 @@ exports.getExamLogs = function (req, res){
 
 // 获取考试记录
 exports.getExamLogsByUserId = function (req, res){
-  let userid = req.param('userid');
+  let userid = req.query.userid;
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-  let  pageSize = parseInt(req.param('pageSize'));
-  let  pageNumber = parseInt(req.param('pageNumber'));
+  let  pageSize = parseInt(req.query.pageSize);
+  let  pageNumber = parseInt(req.query.pageNumber);
   let  skip = (pageNumber-1)*pageSize; // 跳过几条
   Student.findOne({"userId":userid},{"exams":{$slice:[skip,pageSize]}}).populate({path:'exams._paper'})
     .exec((err,doc) => {
@@ -294,10 +296,10 @@ function toUnicodeFun(data) {
 // 获取考试信息
 exports.getExams = function (req,res) {
   let userName =req.session.userName;
-  let name = req.param('name');
+  let name = req.query.name;
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-  let  pageSize = parseInt(req.param('pageSize'));
-  let  pageNumber = parseInt(req.param('pageNumber'));
+  let  pageSize = parseInt(req.query.pageSize);
+  let  pageNumber = parseInt(req.query.pageNumber);
   let skip = (pageNumber-1)*pageSize; // 跳过几条
   let reg = new RegExp('.*'+name.replace(/(\.|\*|\+|\?|\[|\]|\^|\-|\$|\\|\||\(|\)|\&|\#|\<|\>)/g, '\\$1')+'.*','i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
   Student.findOne({"userName":userName},(err,doc)=>{
@@ -350,7 +352,7 @@ exports.getExams = function (req,res) {
 // 获取试卷内容
 exports.getExamInfo = function (req,res) {
   let userName = req.session.userName;
-  let id = req.param('id');
+  let id = req.query.id;
   Student.findOne({"userName":userName},(err,doc)=>{
     if(err) {
       res.json({

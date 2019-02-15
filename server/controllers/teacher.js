@@ -248,10 +248,10 @@ exports.getAllExams = function (req,res) {
 };
 // 获取试卷(分页、模糊查询)
 exports.getPapers = function (req, res) { 
-  let name = req.param('name'),
+  let name = req.query.name,
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-    pageSize = parseInt(req.param('pageSize')),
-    pageNumber = parseInt(req.param('pageNumber')),
+    pageSize = parseInt(req.query.pageSize),
+    pageNumber = parseInt(req.query.pageNumber),
     userName = req.session.userName;
   let skip = (pageNumber-1)*pageSize; // 跳过几条
   let reg = new RegExp(name,'i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
@@ -726,10 +726,10 @@ exports.updatePaper = function (req,res) {
 
 // 获取有人考试的试卷
 exports.getExams = function (req, res) {
-  let name = req.param('name'),
+  let name = req.query.name,
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-    pageSize = parseInt(req.param('pageSize')),
-    pageNumber = parseInt(req.param('pageNumber')),
+    pageSize = parseInt(req.query.pageSize),
+    pageNumber = parseInt(req.query.pageNumber),
     userName = req.session.userName;
   let skip = (pageNumber-1)*pageSize; // 跳过几条
   let reg = new RegExp(name,'i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
@@ -763,11 +763,11 @@ exports.getExams = function (req, res) {
 
 // 获取考试成绩
 exports.getScores = function (req, res) {
-  let id = req.param('id'), 
-    name = req.param('name'),
+  let id = req.query.id, 
+    name = req.query.name,
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-    pageSize = parseInt(req.param('pageSize')),
-    pageNumber = parseInt(req.param('pageNumber')),
+    pageSize = parseInt(req.query.pageSize),
+    pageNumber = parseInt(req.query.pageNumber),
     userName = req.session.userName;
   let skip = (pageNumber-1)*pageSize; // 跳过几条
   let reg = new RegExp(name,'i'); // 在nodejs中，必须要使用RegExp，来构建正则表达式对象。
@@ -830,8 +830,8 @@ exports.getScores = function (req, res) {
 
 // 获取需要阅卷的试卷
 exports.getCheckPapers = function (req, res) {
-  let name = req.param('userName'),
-    date = req.param('date'),
+  let name = req.query.userName,
+    date = req.query.date,
     userName = req.session.userName;
   Teacher.findOne({'userName':userName},(err,doc) => {
     if(err) {
@@ -874,9 +874,9 @@ exports.getCheckPapers = function (req, res) {
 
 // 打分提交
 exports.submitScore = function (req, res) {
-  let name = req.param('userName'),
-    date = req.param('date'),
-    score = req.param('score') - 0,
+  let name = req.body.userName,
+    date = req.body.date,
+    score = req.body.score - 0,
     userName = req.session.userName;
   Teacher.findOne({'userName':userName},(err,doc) => {
     if(err) {

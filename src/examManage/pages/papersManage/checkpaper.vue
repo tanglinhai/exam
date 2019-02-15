@@ -200,12 +200,10 @@ export default {
         this.$message.error('请输入正确的分数!')
         return;
       }
-      this.$axios.get('/api/submitScore',{
-        params:{
+      this.$axios.post('/api/submitScore',{
           userName: this.userName,
           date: this.date,
           score: score + this.curryScore
-        }
       }).then(response => {
         let res = response.data;
         if(res.status == '0') {
