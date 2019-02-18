@@ -12,6 +12,10 @@
     "prolist": "set FOREVER_ROOT=../foreverExam&& forever list",
     "prostopall": "set FOREVER_ROOT=../foreverExam&& forever stopall",
     "prorestartall": "set FOREVER_ROOT=../foreverExam&& forever restartall",
+    "linux_pro": "npm run prostopall && FOREVER_ROOT='../foreverExam' && forever start forever.json",
+    "linux_prolist": "FOREVER_ROOT='../foreverExam' && forever list",
+    "linux_prostopall": "FOREVER_ROOT='../foreverExam' && forever stopall",
+    "linux_prorestartall": "FOREVER_ROOT='../foreverExam' && forever restartall",
     "build": "node build/build.js"
   },
   "dependencies": {
