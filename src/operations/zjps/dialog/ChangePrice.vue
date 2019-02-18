@@ -23,7 +23,7 @@
             </el-table-column>
         </el-table>
       <el-dialog title="评标调整：北京蓝天环境保护有限公司" :visible.sync="dialogFormVisible" append-to-body
-                 class="priceAdjustment" width="952px">
+                 class="priceAdjustment" width="1000px">
         <PriceAdjustment></PriceAdjustment>
       </el-dialog>
     </div>
@@ -73,11 +73,17 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
     .ChangePrice {
-        .insolvProWrap {
-            .changePriceTable {
-            }
+       .changePriceTable {
+
         }
+      .priceAdjustment{
+
+      }
     }
 </style>
+
+
+
+
 
 

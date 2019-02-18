@@ -293,6 +293,7 @@
     },
     data () {
       return {
+        a:"",
         dialogCheckBidOpeningList:false,//查看开标一览表
         dialogStandardChallengeInformation:false,//标中质询信息表
         dialogAbandonedTender:false,
