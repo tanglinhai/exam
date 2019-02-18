@@ -259,7 +259,7 @@
       :visible.sync="dialogStandardChallengeInformation"
       width="900px"
     >
-      <StandardChallengeInformation ></StandardChallengeInformation>
+      <StandardChallengeInformation :sta="tableDatas"></StandardChallengeInformation>
     </el-dialog>
     <el-dialog
       title="开标一览表"
@@ -293,6 +293,7 @@
     },
     data () {
       return {
+        tableDatas:[],
         dialogCheckBidOpeningList:false,//查看开标一览表
         dialogStandardChallengeInformation:false,//标中质询信息表
         dialogAbandonedTender:false,
@@ -465,6 +466,8 @@
       },
       inquiryBtn(){
         this.dialogStandardChallengeInformation=true;
+        // this.tableDatas = this.$loaclStore.get('hldj_标中质询');
+        // console.log(this.$loaclStore.get('hldj_标中质询'),333333)
       },
       checkAllScoreReaultBtn(){
         this.dialogCheckAllScoreReault=true;
