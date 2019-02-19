@@ -5,7 +5,7 @@ const Student = require('../model/student');
 const Operation = require('../model/operation');
 const crypto = require('crypto');
 
-const operations = [{name:'模拟评标-合理低价法',type:'1'},{name:'模拟评标-综合评分办法',type:'2'},{name:'模拟评标-双信封评标办法',type:'3'}];
+const operations = [{name:'模拟评标-合理低价法',type:'1'},{name:'模拟评标-综合评分办法',type:'2'},{name:'模拟评标-双信封合理低价评标办法',type:'3'},{name:'模拟评标-双信封综合评标办法',type:'4'}];
 
 Operation.find(function(err, docs){
   if(!docs || docs.length == 0)

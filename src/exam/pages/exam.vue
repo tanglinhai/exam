@@ -255,10 +255,13 @@
                   iframe.contentWindow.itemIndex = index;
               }, 0);
           }
+          iframe.name=item._operation.name;
           iframe.src = "/operation/zjps/"+
           (
-            item._operation.name == '模拟评标-双信封评标办法' ? 'sxfpbbf' :
-            item._operation.name == '模拟评标-综合评分办法' ? 'zhpbbf' : 'hldj'
+            //item._operation.name == '模拟评标-双信封评标办法' ? 'sxfpbbf' :
+            // item._operation.name == '模拟评标-综合评分办法' ? 'zhpbbf' : 'hldj' 
+            // item._operation.name == '模拟评标-双信封合理低价评标办法' ? 'sxfhldj' : 'sxfzhpbbf'
+            item._operation.name=='模拟评标-综合评分办法'?'zhpbbf':item._operation.name=='模拟评标-双信封合理低价评标办法'?'sxfhldj':item._operation.name=='模拟评标-双信封综合评标办法'?'sxfzhpbbf':'hldj'
           )
           +"/participateIn"
           iframe.setAttribute('isLoaded', true);
