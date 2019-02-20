@@ -18,7 +18,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign">资格审查签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left" @click="backBtn">返回</el-button>
           </div>
         </el-col>
       </el-row>
@@ -163,8 +163,8 @@
     },
     computed:{
       completePercent(){
-        var tableData = this.$loaclStore.get('zhpbbf_资格审查项1');
-        var tableData11 = this.$loaclStore.get('zhpbbf_资格审查项2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_资格审查项1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_资格审查项2');
         let len=tableData11.length+tableData.length;
         let fillCount = 0;
         for(var i=0;i<tableData.length;i++){
@@ -184,6 +184,9 @@
       this.tableData[0].completePercent = this.completePercent;
     },
     methods: {
+      backBtn(){   //顶部的返回按钮事件
+        this.$commonFun.backBtn2();
+      },
       checkBidOpeningListBtn(){
         this.dialogCheckBidOpeningList=true;
       },

@@ -39,6 +39,13 @@ export default {
     window.location.href ='/operation/zjps/hldj/bidLink';
   },
   /**
+   * backBtn2方法是综合评标的返回按钮的路由事件 返回到/operation/zjps/zhpbbf/bidLink页面
+   */
+  backBtn2:function(_this){
+    //console.log($(window.frameElement).attr("name"),111111111111111111111)
+    window.location.href ='/operation/zjps/zhpbbf/bidLink';
+  },
+  /**
    *  StoredValue方法是如果是判断是双信封进入得话再次判断是第一信封按钮点击得还是第二信封按钮点击得
    * iframName=3代表是双信封点击进去得
    * sxfBtnSure=1代表是第一信封按钮点击进入
@@ -59,6 +66,20 @@ export default {
       }else if(iframName=="3"){
         //console.log(_this.$loaclStore.get('sxfBtnSure'),11111)
         if(!_this.$loaclStore.get('sxfBtnSure')){
+          return iframName
+        }else if(_this.$loaclStore.get('sxfBtnSure')==1){
+          //console.log(_this.$loaclStore.get('sxfBtnSure'),2222222)
+          return iframName+'1'
+          
+        }else if(_this.$loaclStore.get('sxfBtnSure')==2){
+          //console.log(_this.$loaclStore.get('sxfBtnSure'),3333333)
+          return iframName+'2'
+        }
+      }else if(iframName=="2"){
+        return iframName
+      }else if(iframName=="4"){
+         //console.log(_this.$loaclStore.get('sxfBtnSure'),11111)
+         if(!_this.$loaclStore.get('sxfBtnSure')){
           return iframName
         }else if(_this.$loaclStore.get('sxfBtnSure')==1){
           //console.log(_this.$loaclStore.get('sxfBtnSure'),2222222)
@@ -166,63 +187,63 @@ export default {
       return false;
     }
     if(tab.name=="1"){// 资格审查项
-      if(!_this.$loaclStore.get('zhpbbf_资格审查isSubmit')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查isSubmit')){
         window.location.href ='/operation/zjps/zhpbbf/startEvaluation';
       }else{
         window.location.href ='/operation/zjps/zhpbbf/myQualificationsResult';
       }
     }else if(tab.name=="2"){//资格审查项汇总
-      if(_this.$loaclStore.get('zhpbbf_资格审查isSubmit')){
+      if(_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查isSubmit')){
         window.location.href ='/operation/zjps/zhpbbf/finishQualificationsResult';
       }else{
         window.location.href ='/operation/zjps/zhpbbf/unFinishQualificationsResult';
       }
     }else if(tab.name=="3"){//符合性审查项
-      if(!_this.$loaclStore.get('zhpbbf_资格审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(!_this.$loaclStore.get('zhpbbf_符合性审查isSubmit')){
+        if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_符合性审查isSubmit')){
           window.location.href ='/operation/zjps/zhpbbf/startEvaluation_fhx';
         }else{
           window.location.href ='/operation/zjps/zhpbbf/myQualificationsResult_fhx';
         }
       }
     }else if(tab.name=="4"){//符合性审查项汇总
-      if(!_this.$loaclStore.get('zhpbbf_资格审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('zhpbbf_符合性审查isSubmit')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_符合性审查isSubmit')){
           window.location.href ='/operation/zjps/zhpbbf/finishQualificationsResult_fhx';
         }else{
           window.location.href ='/operation/zjps/zhpbbf/unFinishQualificationsResult_fhx';
         }
       }
     }else if(tab.name=="5"){//商务
-      if(!_this.$loaclStore.get('zhpbbf_资格审查项汇总是否提交') || !_this.$loaclStore.get('zhpbbf_符合性审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_符合性审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('zhpbbf_商务isSubmit')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_商务isSubmit')){
           window.location.href ='/operation/zjps/zhpbbf/businessAffairs2';
         }else{
           window.location.href ='/operation/zjps/zhpbbf/businessAffairs';
         }
       }
     }else if(tab.name=="6"){//技术
-      if(!_this.$loaclStore.get('zhpbbf_资格审查项汇总是否提交') || !_this.$loaclStore.get('zhpbbf_符合性审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_符合性审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('zhpbbf_技术isSubmit')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_技术isSubmit')){
           window.location.href ='/operation/zjps/zhpbbf/businessAffairs4';
         }else{
           window.location.href ='/operation/zjps/zhpbbf/businessAffairs3';
         }
       }
     }else if(tab.name=="7"){//评审汇总
-      if(!_this.$loaclStore.get('zhpbbf_资格审查项汇总是否提交') || !_this.$loaclStore.get('zhpbbf_符合性审查项汇总是否提交')
-       || !_this.$loaclStore.get('zhpbbf_商务isSubmit') || !_this.$loaclStore.get('zhpbbf_技术isSubmit')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_资格审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_符合性审查项汇总是否提交')
+       || !_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_商务isSubmit') || !_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_技术isSubmit')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('zhpbbf_评审汇总是否提交')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'zhpbbf_评审汇总是否提交')){
           window.location.href ='/operation/zjps/zhpbbf/submitSummary';
         }else{
           window.location.href ='/operation/zjps/zhpbbf/reviewSummary';

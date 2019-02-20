@@ -18,7 +18,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign" >评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="qualificationSign" >资格审查签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left" @click="backBtn">返回</el-button>
           </div>
         </el-col>
       </el-row>
@@ -213,6 +213,10 @@
     mounted(){
     },
     methods: {
+      backBtn(){   //顶部的返回按钮事件
+        this.$commonFun.backBtn2();
+      },
+
       checkBidOpeningListBtn(){
         this.dialogCheckBidOpeningList=true;
       },
@@ -240,7 +244,7 @@
       submitData(){
         this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/zhpbbf/businessAffairs4');
-        this.$loaclStore.set('zhpbbf_技术isSubmit', true);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_技术isSubmit', true);
       },
       changeView(name){      //路由跳转传参函数
           window.location.href = name;

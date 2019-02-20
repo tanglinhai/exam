@@ -160,7 +160,7 @@ export default new Router({
         { path: 'zjps/sxfhldj/finishQualificationsResult_xxjs', name: 'zjps/sxfhldj/finishQualificationsResult_xxjs.vue', component: () => import('../operations/zjps/hldj/finishQualificationsResult_xxjs.vue'), meta: {breadName:'完成时的评审汇总'},}, // 完成时的评审汇总
         //汇总
         { path: 'zjps/sxfhldj/reviewSummary', name: 'zjps/sxfhldj/reviewSummary.vue', component: () => import('../operations/zjps/hldj/reviewSummary.vue'), meta: {breadName:'评审汇总'},}, // 评审汇总
-        { path: 'zjps/sxfhldj/submitSummary', name: 'zjps/hlsxfhldjdj/submitSummary.vue', component: () => import('../operations/zjps/hldj/submitSummary.vue'), meta: {breadName:'提交评审汇总'},}, // 提交评审汇总
+        { path: 'zjps/sxfhldj/submitSummary', name: 'zjps/sxfhldj/submitSummary.vue', component: () => import('../operations/zjps/hldj/submitSummary.vue'), meta: {breadName:'提交评审汇总'},}, // 提交评审汇总
 
 
 

@@ -18,7 +18,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign">资格审查签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left" @click="backBtn">返回</el-button>
           </div>
         </el-col>
       </el-row>
@@ -191,12 +191,16 @@
 
     },
     mounted(){
-      let pshz=this.$loaclStore.get('zhpbbf_评审汇总是否提交');
+      let pshz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_评审汇总是否提交');
       $(document).ready(function(){
         if(pshz)$('.pshz').css('color','#85ce61');
       })
     },
     methods: {
+      backBtn(){   //顶部的返回按钮事件
+        this.$commonFun.backBtn2();
+      },
+
       checkBidOpeningListBtn(){
         this.dialogCheckBidOpeningList=true;
       },

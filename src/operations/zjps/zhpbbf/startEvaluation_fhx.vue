@@ -18,7 +18,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="qualificationSign" >资格审查签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left" @click="backBtn">返回</el-button>
           </div>
         </el-col>
       </el-row>
@@ -413,8 +413,8 @@
     },
     mounted(){
       //获取之前的选择的值
-      var tableData = this.$loaclStore.get('zhpbbf_符合性审查项1');
-      var tableData11 = this.$loaclStore.get('zhpbbf_符合性审查项2');
+      var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项1');
+      var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项2');
       if(tableData){
         this.tableData = tableData;
       }
@@ -460,6 +460,9 @@
       })
     },
     methods: {
+      backBtn(){   //顶部的返回按钮事件
+        this.$commonFun.backBtn2();
+      },
       checkBidOpeningListBtn(){
         this.dialogCheckBidOpeningList=true;
       },
@@ -508,12 +511,12 @@
       },
       // 本地存储local封装
       saveStorage(){
-        this.$loaclStore.set('zhpbbf_符合性审查项1',this.tableData);
-        this.$loaclStore.set('zhpbbf_符合性审查项2',this.tableData11);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项1',this.tableData);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项2',this.tableData11);
       },
       isAllFilled(){
-        var tableData = this.$loaclStore.get('zhpbbf_资格审查项1');
-        var tableData11 = this.$loaclStore.get('zhpbbf_资格审查项2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_资格审查项1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_资格审查项2');
         var isAllF = true;
         for(var i=0;i<tableData.length;i++){
           if(!tableData[i].radio){
@@ -545,8 +548,8 @@
         window.location.href = '/operation/zjps/zhpbbf/unFinishQualificationsResult_fhx';
       },
       isAllFilled(){
-        var tableData = this.$loaclStore.get('zhpbbf_符合性审查项1');
-        var tableData11 = this.$loaclStore.get('zhpbbf_符合性审查项2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项2');
         var isAllF = true;
         for(var i=0;i<tableData.length;i++){
           if(!tableData[i].radio){
@@ -564,9 +567,9 @@
         return isAllF;
       },
       allSubmit(){
-        this.$loaclStore.set('zhpbbf_符合性审查isSubmit',true);
-        let mssg=this.$loaclStore.get('zhpbbf_符合性审查项1');
-        let mssg11=this.$loaclStore.get('zhpbbf_符合性审查项2');
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查isSubmit',true);
+        let mssg=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项1');
+        let mssg11=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项2');
         if(!this.isAllFilled()){
           this.$message({
             message: '请选择合格/不合格',

@@ -115,7 +115,22 @@
                         label="操作">
                         <template slot-scope="scope">
                             <div>
-                                <el-button size="small" @click="changeView('/operation/zjps/zhpbbf/startEvaluation')">评标</el-button>
+                                <template v-if="hldjType">
+                                    <el-button size="small" @click="changeView('/operation/zjps/zhpbbf/startEvaluation')">评标</el-button>
+                                </template>
+                                <template v-else>
+                                    <template v-if="firstWpb">
+                                        <el-button size="small" @click="firstXinfeng">第一信封评标</el-button>
+                                    </template>
+                                    <template v-else-if="firstYpb">
+                                        <el-button size="small" @click="firstXinfengLook">第一信封查看</el-button>
+                                        <el-button size="small" @click="secondXinfeng">第二信封评标</el-button>
+                                    </template>
+                                    <template v-else-if="allYpb">
+                                        <el-button size="small" @click="firstXinfengLook">第一信封查看</el-button>
+                                        <el-button size="small" @click="secondXinfengLook">第二信封查看</el-button>
+                                    </template>
+                                </template>
                                 <el-button size="small" @click="adjustedValuation"> 调整评标价</el-button>
                             </div>
                         </template>
@@ -166,6 +181,11 @@ export default {
   },
     data(){
         return {
+            firstWpb:false,
+            firstYpb:false,
+            allYpb:false,
+            iframName:'',   //获取的ifram的name值判断是哪种方式进入模拟考试
+            hldjType:true,  //默认合理低价按钮展示
             currentPage4:1,
             tableData:[
                 {num:1,file:'招标文件(pdf)'}
@@ -182,7 +202,44 @@ export default {
           dialogSelectionDirector:false
         }
     },
+    mounted(){
+        console.log($(window.frameElement).attr("name"),1234567)
+        this.iframName=$(window.frameElement).attr("name");  //获取iframe得name值判断是合理低价考试还是双信封合理低价考试
+        console.log(this.iframName,8910111213)
+        if(this.iframName=="2"){
+            this.hldjType=true;
+        }else if(this.iframName=="4"){
+            console.log(this.iframName,2222222222222222)
+            this.hldjType=false;
+            this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb');
+            if(!this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb')){  //双信封都未评标
+                this.firstWpb=true;
+            }else if(this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb')=="411"){//两个信封都已经评标
+                console.log(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb',9999999999)
+                this.firstYpb=true;  //第一信封已经评标
+            }else if(this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb')=="421"){
+                this.allYpb=true;  //两个信封都已经评标
+            }
+        }
+        
+    },
     methods:{
+        firstXinfeng(){   //第一信封按钮
+            this.$loaclStore.set('sxfBtnSure',1);
+            window.location.href ='/operation/zjps/zhpbbf/startEvaluation';
+        },
+        secondXinfeng(){   //第二信封按钮
+            this.$loaclStore.set('sxfBtnSure',2);
+            window.location.href ='/operation/zjps/zhpbbf/startEvaluation';
+        },
+        firstXinfengLook(){  //第一信封查看
+            this.$loaclStore.set('sxfBtnSure',1);
+            window.location.href ='/operation/zjps/zhpbbf/myQualificationsResult';
+        },
+        secondXinfengLook(){  //第二信封查看
+            this.$loaclStore.set('sxfBtnSure',2);
+            window.location.href ='/operation/zjps/zhpbbf/myQualificationsResult';
+        },
         handleSizeChange(pageSize){
 
         },
@@ -213,6 +270,12 @@ export default {
 .modifyPrice{
     background: #fff;
     padding: 15px 0;
+    .el-button--small{
+        padding:9px 5px;
+    }
+    .el-button+.el-button{
+        margin-left:3px;
+    }
     .nav{
         background: #F8F8F8;
         padding:0 15px;

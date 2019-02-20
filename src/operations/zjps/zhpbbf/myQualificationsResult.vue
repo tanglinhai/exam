@@ -18,7 +18,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign">评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign" >资格审查签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left" @click="backBtn">返回</el-button>
           </div>
         </el-col>
       </el-row>
@@ -343,12 +343,12 @@
 			return treeNode.level > 0;
 		}
 
-    let zgschz=this.$loaclStore.get("zhpbbf_资格审查项汇总是否提交");
-    let fhxscx=this.$loaclStore.get("zhpbbf_符合性审查isSubmit");
-    let fhxhz=this.$loaclStore.get('zhpbbf_符合性审查项汇总是否提交');
-    let sw=this.$loaclStore.get('zhpbbf_商务isSubmit');
-    let js=this.$loaclStore.get('zhpbbf_技术isSubmit');
-    let pshz=this.$loaclStore.get('zhpbbf_评审汇总是否提交');
+    let zgschz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+"zhpbbf_资格审查项汇总是否提交");
+    let fhxscx=this.$loaclStore.get(this.$commonFun.StoredValue(this)+"zhpbbf_符合性审查isSubmit");
+    let fhxhz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_符合性审查项汇总是否提交');
+    let sw=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_商务isSubmit');
+    let js=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_技术isSubmit');
+    let pshz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_评审汇总是否提交');
 		$(document).ready(function(){
       $.fn.zTree.init($("#treeDemo"), setting, zNodes);
       if(zgschz)$('.zgschz').css('color','#85ce61');
@@ -371,8 +371,8 @@
       })
 
 
-      let zgsc1=this.$loaclStore.get('zhpbbf_资格审查项1');
-      let zgsc2=this.$loaclStore.get('zhpbbf_资格审查项2');
+      let zgsc1=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_资格审查项1');
+      let zgsc2=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'zhpbbf_资格审查项2');
       zgsc1.forEach((val,index) => {
           this.tableData[index].address = val.radio;
       })
@@ -381,6 +381,10 @@
       })
     },
     methods: {
+      backBtn(){   //顶部的返回按钮事件
+        this.$commonFun.backBtn2();
+      },
+      
       checkBidOpeningListBtn(){
         this.dialogCheckBidOpeningList=true;
       },
