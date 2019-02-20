@@ -71,7 +71,7 @@
                 <el-date-picker value-format="yyyy-MM-dd HH:mm:ss" type="datetime" placeholder="选择日期" v-model="ruleForm.date1" style="width: 100%;" size="small"></el-date-picker>
               </el-form-item>
             </el-col>
-           
+
           </el-form-item>
         </el-form>
       </div>
@@ -102,7 +102,7 @@
         return {
           count:'5',   //倒计时5秒
           tableData: [
-            
+
           ],
           ruleForm: {
             date1: '',
@@ -158,7 +158,7 @@
             this.$refs[formName].validate((valid) => {
               if (valid) {
                 //alert('submit!');
-                console.log(this.ruleForm)
+                console.log(this.ruleForm);
                 for(let i = 0;i<this.ruleForm.type.length;i++){
                   //console.log(this.ruleForm.type[i])
                   this.tableData.push({
@@ -173,7 +173,7 @@
                 $('.form_div').hide();//新增表单隐藏
                 $(".tishiWrap").show();//倒计时内容开始展示
                 this.goGrdoupRecor();//倒计时开始
-                
+
               } else {
                 console.log('error submit!!');
                 return false;
@@ -183,7 +183,7 @@
           cancel(formName){   //取消按钮
              $('.form_div').hide();//新增表单隐藏
             this.$refs[formName].resetFields();
-            
+
           },
           resetForm(formName) {
             this.$refs[formName].resetFields();
