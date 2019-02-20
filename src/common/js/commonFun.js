@@ -33,6 +33,13 @@ export default {
   },
 
   /**
+   * backBtn方法是合理低价的返回按钮的路由事件 返回到/operation/zjps/hldj/bidLink页面
+   */
+  backBtn:function(){
+    window.location.href ='/operation/zjps/hldj/bidLink';
+  },
+
+  /**
    * [onTabClick 合理低价评标办法tab页跳转逻辑] 
    * @param  {[type]} tab       [description]
    * @param  {[type]} event     [description]
