@@ -163,8 +163,8 @@
     },
     computed:{
       completePercent(){
-        var tableData = this.$loaclStore.get('资格审查项1');
-        var tableData11 = this.$loaclStore.get('资格审查项2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'资格审查项1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'资格审查项2');
         let len=tableData11.length+tableData.length;
         let fillCount = 0;
         for(var i=0;i<tableData.length;i++){

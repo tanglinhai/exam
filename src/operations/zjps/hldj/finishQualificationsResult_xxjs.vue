@@ -224,10 +224,10 @@
       }
     },
     created:function(){
-      this.isSubmit = this.$loaclStore.get('详细评审（技术）项汇总是否提交');
+      this.isSubmit = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）项汇总是否提交');
     },
     mounted(){
-      let pshz=this.$loaclStore.get('评审汇总是否提交');
+      let pshz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'评审汇总是否提交');
       $(document).ready(function(){
         if(pshz)$('.pshz').css('color','#85ce61');
       });
@@ -261,7 +261,7 @@
       goToNextStage(){
         this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/reviewSummary');
-        this.$loaclStore.set('详细评审（技术）项汇总是否提交', true);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'详细评审（技术）项汇总是否提交', true);
       },
       changeView(url){
         window.location.href = url;

@@ -185,10 +185,10 @@
         this.dialogVisibleSignatureReviewResult=true;
       },
       cancelSubmit(){
-        this.$loaclStore.set('评审汇总是否提交', '');
-        var psyj = this.$loaclStore.get('评审意见');
-        this.$loaclStore.set('评审意见', '');
-        this.$loaclStore.set('评审意见_copy', psyj);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审汇总是否提交', '');
+        var psyj = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'评审意见');
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审意见', '');
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审意见_copy', psyj);
         this.changeView('/operation/zjps/hldj/reviewSummary')
       },
        onTabClick(tab, event){

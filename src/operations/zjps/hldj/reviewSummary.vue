@@ -18,7 +18,7 @@
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="checkBidOpeningListBtn">查看开标一览表</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets" @click="bindResultSign" >评标结果签字</el-button>
             <el-button type="primary" size="small" icon="el-icon-tickets"  @click="qualificationSign" >资格审查签字</el-button>
-            <el-button type="primary" size="small" icon="el-icon-d-arrow-left">返回</el-button>
+            <el-button type="primary" size="small" icon="el-icon-d-arrow-left" @click="backBtn">返回</el-button>
           </div>
         </el-col>
       </el-row>
@@ -184,12 +184,16 @@
 
     },
     mounted(){
-        var psyj = this.$loaclStore.get('评审意见_copy');
+        var psyj = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'评审意见_copy');
         if(psyj){
           this.psyj = psyj;
         }
     },
     methods: {
+      backBtn(){   //顶部的返回按钮事件
+        this.$commonFun.backBtn();
+      },
+
       checkBidOpeningListBtn(){
         this.dialogCheckBidOpeningList=true;
       },
@@ -210,14 +214,21 @@
       },
       savePbyj(content){
         this.dialogBiddingAdvice = false;
-        this.$loaclStore.set('评审意见', content);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审意见', content);
       },
       onTabClick(tab, event){
         this.$commonFun.onTabClick(tab, event, '7', '1', this);
       },
       goToNextStage(){
-        this.$loaclStore.set('评审汇总是否提交', true);
-        this.$loaclStore.set('评审意见', this.psyj);
+        this.iframName=$(window.frameElement).attr("name");  //获取iframe得name值判断是合理低价考试还是双信封合理低价考试
+        //console.log(this.iframName,123456)
+        if(this.iframName=="1"){
+
+        }else{
+          this.$loaclStore.set(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb', this.$commonFun.StoredValue(this)+'1');
+        }
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审汇总是否提交', true);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审意见', this.psyj);
         this.$commonFun.exam_operation_answer_calc();
         this.changeView('/operation/zjps/hldj/submitSummary');
       },

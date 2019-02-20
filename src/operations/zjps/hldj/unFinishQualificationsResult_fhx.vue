@@ -163,8 +163,8 @@
     },
     computed:{
       completePercent(){
-        var tableData = this.$loaclStore.get('符合性审查项1');
-        var tableData11 = this.$loaclStore.get('符合性审查项2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'符合性审查项1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'符合性审查项2');
         console.log(tableData11);
         let len=tableData11.length+tableData.length;
         let fillCount = 0;

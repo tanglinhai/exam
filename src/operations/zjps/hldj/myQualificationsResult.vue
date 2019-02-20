@@ -350,12 +350,12 @@
 			return treeNode.level > 0;
 		}
 
-    let zgschz=this.$loaclStore.get("资格审查项汇总是否提交");
-    let fhxscx=this.$loaclStore.get("符合性审查isSubmit");
-    let fhxhz=this.$loaclStore.get('符合性审查项汇总是否提交');
-    let xxps=this.$loaclStore.get('详细评审（技术）isSubmit');
-    let xxhz=this.$loaclStore.get('详细评审（技术）项汇总是否提交');
-    let pshz=this.$loaclStore.get('评审汇总是否提交');
+    let zgschz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+"资格审查项汇总是否提交");
+    let fhxscx=this.$loaclStore.get(this.$commonFun.StoredValue(this)+"符合性审查isSubmit");
+    let fhxhz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'符合性审查项汇总是否提交');
+    let xxps=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）isSubmit');
+    let xxhz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）项汇总是否提交');
+    let pshz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'评审汇总是否提交');
 		$(document).ready(function(){
       $.fn.zTree.init($("#treeDemo"), setting, zNodes);
       if(zgschz)$('.zgschz').css('color','#85ce61');
@@ -378,8 +378,8 @@
       })
 
 
-      let zgsc1=this.$loaclStore.get('资格审查项1');
-      let zgsc2=this.$loaclStore.get('资格审查项2');
+      let zgsc1=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'资格审查项1');
+      let zgsc2=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'资格审查项2');
       zgsc1.forEach((val,index) => {
           this.tableData[index].address = val.radio;
       })

@@ -165,8 +165,8 @@
     },
     computed:{
       completePercent(){
-        var tableData = this.$loaclStore.get('详细评审（技术）1');
-        var tableData11 = this.$loaclStore.get('详细评审（技术）2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）2');
         let len=tableData11.length+tableData.length;
         let fillCount = 0;
         for(var i=0;i<tableData.length;i++){
