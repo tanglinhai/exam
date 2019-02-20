@@ -182,7 +182,7 @@
       :visible.sync="dialogVisible"
       width="700px"
     >
-      <FailureEntry></FailureEntry>
+      <FailureEntry ></FailureEntry>
     </el-dialog>
   </div>
 </template>

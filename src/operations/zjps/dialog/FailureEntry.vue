@@ -38,10 +38,12 @@
         },
         methods: {
           sendToP(formName) {
-                this.$refs[formName].validate((valid) => {
+            console.log(formName);
+            this.$refs[formName].validate((valid) => {
                     if (valid) {
                       this.$emit("childByValue",this.$data.ruleForm.desc);
-                      this.$data.ruleForm.desc='';
+                      console.log(this.$data.ruleForm.desc);
+                      // this.$data.ruleForm.desc='';
                     } else {
                         return false;
                     }

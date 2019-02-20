@@ -173,7 +173,6 @@
                 $('.form_div').hide();//新增表单隐藏
                 $(".tishiWrap").show();//倒计时内容开始展示
                 this.goGrdoupRecor();//倒计时开始
-
               } else {
                 console.log('error submit!!');
                 return false;

@@ -251,7 +251,6 @@
                        @click="handeleSave(model,technicalAdjustmentPrice,businessAdjustmentPrice,businessAdjustmentPrice+technicalAdjustmentPrice)"
                        size="small"
                        ref="submit">
-              <i class="iconfont icon-queren"></i>
               提交
             </el-button>
             <el-button size="small" @click="goback()">
@@ -350,7 +349,7 @@
         },
         formLabelWidth: '120px',
         count:'3',   //倒计时3秒
-        i:"",
+        i:"",//记录下标
       }
     },
     created() {
@@ -537,10 +536,8 @@
 <style lang="scss">
   .ChangePrice {
     .changePriceTable {
-
     }
   }
-
   .priceAdjustment {
     .form_warp{
       position: relative;
