@@ -39,7 +39,11 @@ export default {
     window.location.href ='/operation/zjps/hldj/bidLink';
   },
   /**
-   * 
+   *  StoredValue方法是如果是判断是双信封进入得话再次判断是第一信封按钮点击得还是第二信封按钮点击得
+   * iframName=3代表是双信封点击进去得
+   * sxfBtnSure=1代表是第一信封按钮点击进入
+   * sxfBtnSure=2代表是第二信封按钮点击进入
+   * 调用方法this.$commonFun.StoredValue(this);
    * @param {*} tab 
    * @param {*} event 
    * @param {*} tabIndex 
