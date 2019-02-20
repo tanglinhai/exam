@@ -38,7 +38,7 @@
         },
         methods: {
           sendToP(formName) {
-                this.$refs[formName].validate((valid) => {
+            this.$refs[formName].validate((valid) => {
                     if (valid) {
                       this.$emit("childByValue",this.$data.ruleForm.desc);
                       this.$data.ruleForm.desc='';
