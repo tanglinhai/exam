@@ -413,8 +413,8 @@
     },
     mounted(){
       //获取之前的选择的值
-      var tableData = this.$loaclStore.get('详细评审（技术）1');
-      var tableData11 = this.$loaclStore.get('详细评审（技术）2');
+      var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）1');
+      var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）2');
       if(tableData){
         this.tableData = tableData;
       }
@@ -538,12 +538,12 @@
      //  },
       // 本地存储local封装
       saveStorage(){
-        this.$loaclStore.set('详细评审（技术）1',this.tableData);
-        this.$loaclStore.set('详细评审（技术）2',this.tableData11);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'详细评审（技术）1',this.tableData);
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'详细评审（技术）2',this.tableData11);
       },
       isAllFilled(){
-        var tableData = this.$loaclStore.get('资格审查项1');
-        var tableData11 = this.$loaclStore.get('资格审查项2');
+        var tableData = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'资格审查项1');
+        var tableData11 = this.$loaclStore.get(this.$commonFun.StoredValue(this)+'资格审查项2');
         var isAllF = true;
         for(var i=0;i<tableData.length;i++){
           if(!tableData[i].radio){
@@ -579,9 +579,9 @@
         window.location.href = '/operation/zjps/hldj/unFinishQualificationsResult_xxjs';
       },
       allSubmit(){
-        this.$loaclStore.set('详细评审（技术）isSubmit',true);
-        let mssg=this.$loaclStore.get('详细评审（技术）1');
-        let mssg11=this.$loaclStore.get('详细评审（技术）2');
+        this.$loaclStore.set(this.$commonFun.StoredValue(this)+'详细评审（技术）isSubmit',true);
+        let mssg=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）1');
+        let mssg11=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）2');
         if(mssg.length != this.tableData.length || mssg11.length != this.tableData11.length){
           this.$message({
             message: '请选择合格/不合格',

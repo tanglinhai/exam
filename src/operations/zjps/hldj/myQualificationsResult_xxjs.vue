@@ -342,8 +342,8 @@
 		function dblClickExpand(treeId, treeNode) {
 			return treeNode.level > 0;
 		}
-    let xxhz=this.$loaclStore.get('详细评审（技术）项汇总是否提交');
-    let pshz=this.$loaclStore.get('评审汇总是否提交');
+    let xxhz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）项汇总是否提交');
+    let pshz=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'评审汇总是否提交');
 		$(document).ready(function(){
       $.fn.zTree.init($("#treeDemo"), setting, zNodes);
       if(xxhz)$('.xxhz').css('color','#85ce61');
@@ -362,8 +362,8 @@
       })
 
 
-      let zgsc1=this.$loaclStore.get('详细评审（技术）1');
-      let zgsc2=this.$loaclStore.get('详细评审（技术）2');
+      let zgsc1=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）1');
+      let zgsc2=this.$loaclStore.get(this.$commonFun.StoredValue(this)+'详细评审（技术）2');
       zgsc1.forEach((val,index) => {
           this.tableData[index].address = val.radio;
       })
@@ -406,7 +406,7 @@
         }
       },
       pshz(){
-        if(this.$loaclStore.get('submitView') == true){
+        if(this.$loaclStore.get(this.$commonFun.StoredValue(this)+'submitView') == true){
           window.location.href='/operation/zjps/hldj/reviewSummary'
         }else{
           return;

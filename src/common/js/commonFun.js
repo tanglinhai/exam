@@ -38,6 +38,35 @@ export default {
   backBtn:function(){
     window.location.href ='/operation/zjps/hldj/bidLink';
   },
+  /**
+   * 
+   * @param {*} tab 
+   * @param {*} event 
+   * @param {*} tabIndex 
+   * @param {*} pageIndex 
+   * @param {*} _this 
+   */
+  StoredValue:function(_this){
+    var iframName = $(window.frameElement).attr("name");  //获取iframe得name值判断是合理低价考试还是双信封合理低价考试
+      //_this.$loaclStore.get('sxfBtnSure');
+      //console.log(iframName,sxfBtnSure,12345678)
+      if(iframName=="1"){
+        return iframName
+      }else if(iframName=="3"){
+        //console.log(_this.$loaclStore.get('sxfBtnSure'),11111)
+        if(!_this.$loaclStore.get('sxfBtnSure')){
+          return iframName
+        }else if(_this.$loaclStore.get('sxfBtnSure')==1){
+          //console.log(_this.$loaclStore.get('sxfBtnSure'),2222222)
+          return iframName+'1'
+          
+        }else if(_this.$loaclStore.get('sxfBtnSure')==2){
+          //console.log(_this.$loaclStore.get('sxfBtnSure'),3333333)
+          return iframName+'2'
+        }
+      }
+  },
+  
 
   /**
    * [onTabClick 合理低价评标办法tab页跳转逻辑] 
@@ -54,62 +83,62 @@ export default {
       return false;
     }
     if(tab.name=="1"){// 资格审查项
-      if(!_this.$loaclStore.get('资格审查isSubmit')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'资格审查isSubmit')){
         window.location.href ='/operation/zjps/hldj/startEvaluation';
       }else{
         window.location.href ='/operation/zjps/hldj/myQualificationsResult';
       }
     }else if(tab.name=="2"){//资格审查项汇总
-      if(_this.$loaclStore.get('资格审查isSubmit')){
+      if(_this.$loaclStore.get(this.StoredValue(_this)+'资格审查isSubmit')){
         window.location.href ='/operation/zjps/hldj/finishQualificationsResult';
       }else{
         window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult';
       }
     }else if(tab.name=="3"){//符合性审查项
-      if(!_this.$loaclStore.get('资格审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'资格审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(!_this.$loaclStore.get('符合性审查isSubmit')){
+        if(!_this.$loaclStore.get(this.StoredValue(_this)+'符合性审查isSubmit')){
           window.location.href ='/operation/zjps/hldj/startEvaluation_fhx';
         }else{
           window.location.href ='/operation/zjps/hldj/myQualificationsResult_fhx';
         }
       }
     }else if(tab.name=="4"){//符合性审查项汇总
-      if(!_this.$loaclStore.get('资格审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'资格审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('符合性审查isSubmit')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'符合性审查isSubmit')){
           window.location.href ='/operation/zjps/hldj/finishQualificationsResult_fhx';
         }else{
           window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult_fhx';
         }
       }
     }else if(tab.name=="5"){//详细评审（技术）
-      if(!_this.$loaclStore.get('资格审查项汇总是否提交') || !_this.$loaclStore.get('符合性审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'资格审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'符合性审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(!_this.$loaclStore.get('详细评审（技术）isSubmit')){
+        if(!_this.$loaclStore.get(this.StoredValue(_this)+'详细评审（技术）isSubmit')){
           window.location.href ='/operation/zjps/hldj/startEvaluation_xxjs';
         }else{
           window.location.href ='/operation/zjps/hldj/myQualificationsResult_xxjs';
         }
       }
     }else if(tab.name=="6"){//详细评审（技术）汇总
-      if(!_this.$loaclStore.get('资格审查项汇总是否提交') || !_this.$loaclStore.get('符合性审查项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'资格审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'符合性审查项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('详细评审（技术）isSubmit')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'详细评审（技术）isSubmit')){
           window.location.href ='/operation/zjps/hldj/finishQualificationsResult_xxjs';
         }else{
           window.location.href ='/operation/zjps/hldj/unFinishQualificationsResult_xxjs';
         }
       }
     }else if(tab.name=="7"){//评审汇总
-      if(!_this.$loaclStore.get('资格审查项汇总是否提交') || !_this.$loaclStore.get('符合性审查项汇总是否提交') || !_this.$loaclStore.get('详细评审（技术）项汇总是否提交')){
+      if(!_this.$loaclStore.get(this.StoredValue(_this)+'资格审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'符合性审查项汇总是否提交') || !_this.$loaclStore.get(this.StoredValue(_this)+'详细评审（技术）项汇总是否提交')){
         tab.disabled = true;
       }else{
-        if(_this.$loaclStore.get('评审汇总是否提交')){
+        if(_this.$loaclStore.get(this.StoredValue(_this)+'评审汇总是否提交')){
           window.location.href ='/operation/zjps/hldj/submitSummary';
         }else{
           window.location.href ='/operation/zjps/hldj/reviewSummary';
