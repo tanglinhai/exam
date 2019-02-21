@@ -126,7 +126,7 @@
                                     <template v-if="pingBiaoBtn">
                                         <el-button v-if="secondXinfengPingbiao" size="small" @click="secondXinfeng">第二信封评标</el-button>
                                         <el-button v-else size="small" @click="secondXinfengLook">第二信封查看</el-button>
-                                        
+
                                     </template>
                                 </template>
                                 <el-button size="small" @click="adjustedValuation"> 调整评标价</el-button>
@@ -232,7 +232,7 @@ export default {
                 }
             }
         }
-        
+
     },
     methods:{
         firstXinfeng(){   //第一信封按钮

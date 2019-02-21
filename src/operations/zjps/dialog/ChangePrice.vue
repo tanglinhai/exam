@@ -14,13 +14,18 @@
       <el-table-column prop="operate" header-align="left" label="操作">
         <template slot-scope="scope">
           <el-button
-            size="mini"
+            size="small"
             @click.stop="changePriceBtn(scope.$index, scope.row)"  >
             <i class="icon iconfont icon-zhifu mr5"></i>调转评标价
           </el-button>
         </template>
       </el-table-column>
     </el-table>
+    <el-row>
+      <el-col class="text-center marginT20" >
+        <el-button @click="reback"  size="mini" type="primary" style="padding: 9px 15px">返回</el-button>
+      </el-col>
+    </el-row>
     <el-dialog :title="titleName" :visible.sync="dialogFormVisible" append-to-body
                width="2300"  ref="dialogFormVisible">
       <!--<PriceAdjustment ></PriceAdjustment>-->
@@ -410,6 +415,12 @@
 
     },
     methods: {
+      reback(){
+
+      },
+      goback(){
+        this.dialogFormVisible=false;
+      },
       formatCurrency(val, digits = 2) {  //货币过滤器val:参数：默认为要过滤的值；digits以多少为过滤
         if (val !== '' && val !== null && val !== undefined) {
           val = val.toString().replace(/\$|\,/g, '');
