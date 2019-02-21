@@ -11,10 +11,19 @@
         ref="singleTable"
         :data="tableData"
         size="small"
+        @current-change="handleCurrentChange"
+        @row-click = "showRow"
         tooltip-effect="dark"
         border
         el-table__header-wrapper
         style="width: 100%">
+        <!---->
+        <el-table-column label="选择" width="70" center>
+            <template scope="scope">
+                <el-radio class="radio" v-model="radio"  :label="scope.$index"  @change.native="getCurrentRow(scope.$index)" >&nbsp;</el-radio>
+            </template>
+        </el-table-column>
+        <!---->
         <el-table-column
           type="index"
           width="50">
@@ -101,8 +110,9 @@
       data() {
         return {
           count:'5',   //倒计时5秒
+          radio:'1',  //弹框推进去得单选框
           tableData: [
-
+            //{"bidder":111}
           ],
           ruleForm: {
             date1: '',
@@ -128,6 +138,24 @@
         }
       },
       methods: {
+
+        /**表格添加单选框以及获取值 */
+        //row-click    当某一行被点击时会触发该事件 row, event, column
+        showRow(row){
+        //赋值给radio
+            this.radio = this.tableData.indexOf(row);
+        },
+        /* urrent-change    当表格的当前行发生变化的时候会触发该事件，如果要高亮当前行，请打开表格的 highlight-current-row 属性    currentRow, oldCurrentRow */
+        handleCurrentChange(val,index) {
+          this.currentRow = val;
+          this.$emit('data',val.pkg);
+        },
+        getCurrentRow(val){
+            console.log(val)
+        },
+        /**表格添加单选框以及获取值 */
+
+        
         sureBtns(){   //提交之后得确定按钮
           $(".tishiWrap").hide();//倒计时内容隐藏
         },
