@@ -41,7 +41,7 @@ export default {
   /**
    * backBtn2方法是综合评标的返回按钮的路由事件 返回到/operation/zjps/zhpbbf/bidLink页面
    */
-  backBtn2:function(_this){
+  backBtn2:function(){
     //console.log($(window.frameElement).attr("name"),111111111111111111111)
     window.location.href ='/operation/zjps/zhpbbf/bidLink';
   },
