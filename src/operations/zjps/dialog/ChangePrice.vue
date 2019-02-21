@@ -21,7 +21,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="评标调整：北京蓝天环境保护有限公司" :visible.sync="dialogFormVisible" append-to-body
+    <el-dialog :title="titleName" :visible.sync="dialogFormVisible" append-to-body
                width="2300"  ref="dialogFormVisible">
       <!--<PriceAdjustment ></PriceAdjustment>-->
       <div class="priceAdjustment">
@@ -290,6 +290,7 @@
     },
     data() {
       return {
+        titleName:"",
         successDialogVisible:false,// 保存成功的提示弹框
         dialogFormVisible: false,//标价价调整弹框
         dialogVisible: false,//调转评标价弹框
@@ -435,10 +436,12 @@
         this.dialogVisible = true;
       },
       changePriceBtn(index, obj) {
+        // console.log(index, obj);
         this.dialogFormVisible = true;//标价价调整弹框
         this.a=obj.finalQuotation;
         // obj.finalQuotation = this.$loaclStore.get('hldj_调整评标价isSubmit');
         this.i=index;
+        this.titleName=this.msgBox[this.i].name;
       },
       /*-------------------------------------技术性评标价格调整-------------------------------*/
       addBtn() {  //新增
