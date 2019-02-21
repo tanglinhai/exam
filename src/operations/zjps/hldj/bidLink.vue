@@ -130,7 +130,7 @@
                                         <el-button size="small" @click="firstXinfengLook">第一信封查看</el-button>
                                         <el-button size="small" @click="secondXinfengLook">第二信封查看</el-button>
                                     </template>
-                                    
+
                                 </template>
                                 <el-button size="small" @click="adjustedValuation"> 调整评标价</el-button>
                             </div>
@@ -220,7 +220,7 @@ export default {
                 this.allYpb=true;  //两个信封都已经评标
             }
         }
-        
+
     },
     methods:{
         firstXinfeng(){   //第一信封按钮
