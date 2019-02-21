@@ -187,7 +187,7 @@ export default {
 
                 setTimeout(() => {
                     alert('推举完毕，将进入下一环节 评标');
-                    this.$commonFun.exam_operation_answer_calc();
+                    this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this));
                     this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_zzdps',{'张三':'3','李四':'0','王五':'0'})
                     window.location.href = '/operation/zjps/zhpbbf/bidLink';
                 },2000)

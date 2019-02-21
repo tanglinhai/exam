@@ -193,7 +193,7 @@ export default {
 
         },
         participateIn(){
-            this.$commonFun.exam_operation_answer_calc();
+            this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this));
             window.location.href = '/operation/zjps/zhpbbf/electTeamLeader';
         },
       applyAvoid(){

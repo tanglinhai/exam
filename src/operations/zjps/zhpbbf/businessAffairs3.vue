@@ -57,7 +57,7 @@
                       <span style="display:inline-block; margin-top:5px;">专家： 张三</span>
                       <el-button size="small" plain>查看未完成项</el-button>
                       <el-button size="small" plain @click="saveData()">保存</el-button>
-                      <el-button size="small" type="primary" @click="submitData()">提交商务</el-button>
+                      <el-button size="small" type="primary" @click="submitData()">提交技术</el-button>
                   </div>
               </el-col>
           </el-row>
@@ -242,7 +242,7 @@
 
       },
       submitData(){
-        this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this));
         this.changeView('/operation/zjps/zhpbbf/businessAffairs4');
         this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_技术isSubmit', true);
       },

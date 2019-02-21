@@ -192,13 +192,13 @@
       /**
        * 操作题统计分数
        */
-      operationAnswer(itemIndex, url){
+      operationAnswer(cxt, storeType, itemIndex, url){
         var _item = this.operationQuestions[itemIndex];
         _item.sanswer = _item.sanswer || [];
         let isExist = false;
 
         for(var i=0;i<_item.sanswer.length;i++){
-          if(_item.sanswer[i].url == url){
+          if(_item.sanswer[i].url == url && _item.sanswer[i].type == storeType){
             isExist = true;
             break;
           }
@@ -206,6 +206,7 @@
         if(!isExist){
           _item.sanswer.push({
             url: url,
+            type: storeType,
             score: 1
           });
         }
@@ -441,25 +442,40 @@
             })
           }
           this.operationQuestions.forEach((item) => {
+            var totalSteps;
+            var steps;
             if(item._operation.type == '1'){//最低价
               //最低价评分环节： 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->详细评审(技术)+1 ----> 评审汇总+1
-              var totalSteps = 6;
-              var steps = 0;
+              totalSteps = 6;
+              steps = 0;
               for(var i=0;i<item.sanswer.length;i++){
                 steps += item.sanswer[i].score;
               }
-              score += item.score*steps/totalSteps;
             }else if(item._operation.type == '2'){//综合评标
               //综合评标环节： 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->商务+1 ----> 技术+1 ----> 获取系统报价+1 ----> 评审汇总+1
-              var totalSteps = 8;
-              var steps = 0;
+              totalSteps = 8;
+              steps = 0;
               for(var i=0;i<item.sanswer.length;i++){
                 steps += item.sanswer[i].score;
               }
-              score += item.score*steps/totalSteps;
-            }else if(item._operation.type == '3'){//双信封
-              score += 0;
+            }else if(item._operation.type == '3'){//双信封最低价
+              //最低价评分环节  第一信封: 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->详细评审(技术)+1 ----> 评审汇总+1
+              //最低价评分环节  第二信封: 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->详细评审(技术)+1 ----> 评审汇总+1
+              totalSteps = 12;
+              steps = 0;
+              for(var i=0;i<item.sanswer.length;i++){
+                steps += item.sanswer[i].score;
+              }
+            }else if(item._operation.type == '4'){//双信封综合评标
+              //综合评标环节  第一信封: 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->商务+1 ----> 技术+1 ----> 获取系统报价+1 ----> 评审汇总+1
+              //综合评标环节  第二信封: 参加评审+1 ---->推举组长+1 ---->资格审查+1 ---->符合性审查+1 ---->商务+1 ----> 技术+1 ----> 获取系统报价+1 ----> 评审汇总+1
+              totalSteps = 16;
+              steps = 0;
+              for(var i=0;i<item.sanswer.length;i++){
+                steps += item.sanswer[i].score;
+              }
             }
+            score += item.score*steps/totalSteps;
           })
 
 

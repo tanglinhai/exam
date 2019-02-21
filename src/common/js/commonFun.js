@@ -28,8 +28,8 @@ export default {
     },
   },
   
-  exam_operation_answer_calc: function(popwinOperationType){
-    window.parent.vm.$children[0].$children[0].$children[1].operationAnswer(window.itemIndex, window.location.href+(popwinOperationType?popwinOperationType:''));
+  exam_operation_answer_calc: function(cxt, storeType, popwinOperationType){
+    window.parent.vm.$children[0].$children[0].$children[1].operationAnswer(cxt, storeType, window.itemIndex, window.location.href+(popwinOperationType?popwinOperationType:''));
   },
 
   /**

@@ -298,7 +298,7 @@
         this.tableData[0].ip = 2;
         this.tableData[1].ip = 1;
         this.tableData[2].ip = 3;
-        this.$commonFun.exam_operation_answer_calc('calcBidderPrice');
+        this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this), 'calcBidderPrice');
       },
       savePbyj(content){
         this.dialogBiddingAdvice = false;
@@ -316,7 +316,7 @@
           this.$loaclStore.set(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb', this.$commonFun.StoredValue(this)+'1');
         }
         this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_评审汇总是否提交', true);
-        this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this));
         this.changeView('/operation/zjps/zhpbbf/submitSummary');
       },
       changeView(name){      //路由跳转传参函数

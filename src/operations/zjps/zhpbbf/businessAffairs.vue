@@ -248,7 +248,7 @@
 
       },
       submitData(){
-        this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this));
         this.changeView('/operation/zjps/zhpbbf/businessAffairs2');
         this.$loaclStore.set(this.$commonFun.StoredValue(this)+'zhpbbf_商务isSubmit', true);
       },
