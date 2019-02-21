@@ -72,7 +72,6 @@
     .changePassword {
         .insolvProWrap {
         }
-
     }
 </style>
 
