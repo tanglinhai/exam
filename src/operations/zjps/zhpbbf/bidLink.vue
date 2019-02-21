@@ -119,16 +119,14 @@
                                     <el-button size="small" @click="changeView('/operation/zjps/zhpbbf/startEvaluation')">评标</el-button>
                                 </template>
                                 <template v-else>
-                                    <template v-if="firstWpb">
-                                        <el-button size="small" @click="firstXinfeng">第一信封评标</el-button>
+                                    <template>
+                                        <el-button v-if="firstXinfengPingbiao" size="small" @click="firstXinfeng">第一信封评标</el-button>
+                                        <el-button v-else size="small" @click="firstXinfengLook">第一信封查看</el-button>
                                     </template>
-                                    <template v-else-if="firstYpb">
-                                        <el-button size="small" @click="firstXinfengLook">第一信封查看</el-button>
-                                        <el-button size="small" @click="secondXinfeng">第二信封评标</el-button>
-                                    </template>
-                                    <template v-else-if="allYpb">
-                                        <el-button size="small" @click="firstXinfengLook">第一信封查看</el-button>
-                                        <el-button size="small" @click="secondXinfengLook">第二信封查看</el-button>
+                                    <template v-if="pingBiaoBtn">
+                                        <el-button v-if="secondXinfengPingbiao" size="small" @click="secondXinfeng">第二信封评标</el-button>
+                                        <el-button v-else size="small" @click="secondXinfengLook">第二信封查看</el-button>
+                                        
                                     </template>
                                 </template>
                                 <el-button size="small" @click="adjustedValuation"> 调整评标价</el-button>
@@ -181,9 +179,9 @@ export default {
   },
     data(){
         return {
-            firstWpb:false,
-            firstYpb:false,
-            allYpb:false,
+            pingBiaoBtn:false, //第二个整排按钮不展示
+            secondXinfengPingbiao:false,  //第二信封评标按钮不展示
+            firstXinfengPingbiao:false,  //第一信封评标按钮不展示
             iframName:'',   //获取的ifram的name值判断是哪种方式进入模拟考试
             hldjType:true,  //默认合理低价按钮展示
             currentPage4:1,
@@ -203,22 +201,37 @@ export default {
         }
     },
     mounted(){
-        console.log($(window.frameElement).attr("name"),1234567)
+        //console.log($(window.frameElement).attr("name"),1234567)
         this.iframName=$(window.frameElement).attr("name");  //获取iframe得name值判断是合理低价考试还是双信封合理低价考试
-        console.log(this.iframName,8910111213)
+        //console.log(this.iframName,8910111213)
         if(this.iframName=="2"){
             this.hldjType=true;
         }else if(this.iframName=="4"){
-            console.log(this.iframName,2222222222222222)
             this.hldjType=false;
-            this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb');
-            if(!this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb')){  //双信封都未评标
-                this.firstWpb=true;
-            }else if(this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb')=="411"){//两个信封都已经评标
-                console.log(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb',9999999999)
-                this.firstYpb=true;  //第一信封已经评标
-            }else if(this.$loaclStore.get(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb')=="421"){
-                this.allYpb=true;  //两个信封都已经评标
+            //console.log(this.$commonFun.StoredValue(this),77777777777777777)
+            if(!this.$loaclStore.get('41sxfHldjFirstwpb')){  //双信封都未评标
+                this.firstXinfengPingbiao=true;   //第一信封评标按钮展示
+                this.pingBiaoBtn=false;
+            }else if(this.$loaclStore.get('41sxfHldjFirstwpb')=="411"){//第一个信封都已经评标
+                //console.log(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb',666666666666)
+                this.firstXinfengPingbiao=false;   //第一信封已经评标,第一信封查看按钮展示
+            }
+
+            if(this.$loaclStore.get('41sxfHldjFirstwpb')=="411"){//第一个信封都已经评标
+                this.pingBiaoBtn=true;
+                this.secondXinfengPingbiao=true;
+                //console.log(this.$loaclStore.get('42sxfHldjFirstwpb')=="421",555555555)
+               if(!this.$loaclStore.get('42sxfHldjFirstwpb')=="421"){
+                    //console.log(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb',9999999999)
+                    this.firstXinfengPingbiao=false;   //第一信封已经评标,第一信封查看按钮展示
+                    this.pingBiaoBtn=true;
+                    this.secondXinfengPingbiao=true;
+                }else if(this.$loaclStore.get('42sxfHldjFirstwpb')=="421"){
+                    //console.log(this.$commonFun.StoredValue(this)+'sxfHldjFirstwpb',888888888888)
+                    this.pingBiaoBtn=true;
+                    this.secondXinfengPingbiao=false;   //两个信封都已经评标
+                    this.firstXinfengPingbiao=false;   //第一信封已经评标,第一信封查看按钮展示
+                }
             }
         }
         
