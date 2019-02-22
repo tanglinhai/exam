@@ -229,7 +229,7 @@
         }
         this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审汇总是否提交', true);
         this.$loaclStore.set(this.$commonFun.StoredValue(this)+'评审意见', this.psyj);
-        this.$commonFun.exam_operation_answer_calc();
+        this.$commonFun.exam_operation_answer_calc(this, this.$commonFun.StoredValue(this));
         this.changeView('/operation/zjps/hldj/submitSummary');
       },
       changeView(name){      //路由跳转传参函数
