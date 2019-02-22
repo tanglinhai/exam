@@ -143,16 +143,16 @@
         innerVisible: false,
         logoSrc:require('../../../common/img/logo11.png'),
         morenSrc:require('../../../common/img/moren.gif'),
-        grzzsc:require('../../../common/img/zgxscgrbb_table1.png'),//资格审查个人报表table1
-        fhxscgr:require('../../../common/img/fhxscgrbb_table1.png'),//符合性审查个人报表table1
-        zjgrxxps:require('../../../common/img/zjgrxxps_table1.png'),//详细评审表table1
-        zgschz2:require('../../../common/img/zgschz_table2.png'),//资格审查汇总报表table2
-        fhxschz2:require('../../../common/img/fhxschz_table2.png'),//符合性审查汇总报表table2
-        tbrfxdf2:require('../../../common/img/tbrfxdf_table2.png'),//投标人分项得分表表table2
-        jgpy2:require('../../../common/img/jgpy_table2.png'),//价格评议表table2
-        psjghz2:require('../../../common/img/psjghz_table2.png'),//评分汇总表table2
-        psbg2:require('../../../common/img/psbg_table2.png'),//评审报告table2
-        pswyhpsyj2:require('../../../common/img/pswyhpsyj_table2.png'),//评审报告table2
+        grzzsc:require('../../../common/img/signature_img/zgxscgrbb_table1.png'),//资格审查个人报表table1
+        fhxscgr:require('../../../common/img/signature_img/fhxscgrbb_table1.png'),//符合性审查个人报表table1
+        zjgrxxps:require('../../../common/img/signature_img/zjgrxxps_table1.png'),//详细评审表table1
+        zgschz2:require('../../../common/img/signature_img/zgschz_table2.png'),//资格审查汇总报表table2
+        fhxschz2:require('../../../common/img/signature_img/fhxschz_table2.png'),//符合性审查汇总报表table2
+        tbrfxdf2:require('../../../common/img/signature_img/tbrfxdf_table2.png'),//投标人分项得分表表table2
+        jgpy2:require('../../../common/img/signature_img/jgpy_table2.png'),//价格评议表table2
+        psjghz2:require('../../../common/img/signature_img/psjghz_table2.png'),//评分汇总表table2
+        psbg2:require('../../../common/img/signature_img/psbg_table2.png'),//评审报告table2
+        pswyhpsyj2:require('../../../common/img/signature_img/pswyhpsyj_table2.png'),//评审报告table2
         tableData1: [{
           docName: '资格审查个人报表',
           creationTime: '2019-01-11 18:25:04',

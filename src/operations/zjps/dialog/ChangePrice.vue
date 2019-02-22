@@ -594,7 +594,6 @@
               }
             }
             .el-table_5_column_16 {
-
               .el-radio-group{
                 .el-radio + .el-radio {
                   margin-left: 11px!important;
