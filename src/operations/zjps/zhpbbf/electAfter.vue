@@ -170,7 +170,7 @@ export default {
             window.location.href = name;
         },
       downloadZB(){
-        window.open('http://localhost:9000/static/docs/zhaoBiaoFile.pdf');
+        window.open('/static/docs/zhaoBiaoFile.pdf');
       },
       downloadTouBiao(){
         window.open('http://localhost:9000/static/docs/touBiaoFile.pdf');

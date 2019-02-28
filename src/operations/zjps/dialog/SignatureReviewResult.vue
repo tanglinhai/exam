@@ -82,7 +82,7 @@
         <el-row class="text-center marginT30">
           <span class="tishi" v-if="refresh">请稍后,系统正在处理签名，完成后系统会自动刷新</span>
           <el-button v-if="qianminhuizhi" type="warning" size="medium" round @click="innerVisible = true">批量签字</el-button>
-          <a v-else id="more2" href="http://localhost:9000/static/docs/zhaoBiaoFile.pdf" download="" class="btn2">签名回执</a>
+          <a v-else id="more2" href="/static/docs/zhaoBiaoFile.pdf" download="" class="btn2">签名回执</a>
         </el-row>
       </el-col>
       <el-col  class="right pull-right">
