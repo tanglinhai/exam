@@ -3,11 +3,54 @@ const Paper   = require('../model/papers');
 const Operation = require('../model/operation');
 const utils = require('../utils/utils');
 const crypto = require('crypto');
+const moment = require('moment');
 var iconv = require('iconv-lite');
 let mdHash = function(data){
   const hash = crypto.createHash('md5');
   return hash.update(data).digest('hex');
 }
+
+
+
+var desParams = [{
+        alg: 'des-ecb',
+        autoPad: true,
+        key: '01234567',
+        plaintext: '1234567812345678',
+        iv: null
+    },{
+        alg: 'des-cbc',
+        autoPad: true,
+        key: '82036888',
+        plaintext: 'M1100000146',
+        iv: '82036888'
+    },{
+        alg: 'des-ede3',    //3des-ecb
+        autoPad: true,
+        key: '0123456789abcd0123456789',
+        plaintext: '1234567812345678',
+        iv: null
+    },{
+        alg: 'des-ede3-cbc',    //3des-cbc  
+        autoPad: true,
+        key: '0123456789abcd0123456789',
+        plaintext: '1234567812345678',
+        iv: '12345678'
+    }
+]
+
+
+function getDESDataKey(txt){
+  var param = desParams[1];
+  param.plaintext = txt;
+  return utils.encrypt(param);
+}
+function getDecrypt(txt){
+  var param = desParams[1];
+  param.plaintext = txt;
+  return utils.decrypt(param);
+}
+
 
 // var mongoose = require('mongoose');
 // var Schema = mongoose.Schema;
@@ -33,17 +76,31 @@ let mdHash = function(data){
 exports.register = function (req,res) {
     let type = req.body.type;
     let userInfo = req.body.userInfo;
+    let userIdCopy = userInfo.userId;
     if(type == 'url'){
-      //utils.logger.info('===============================================================:'+mdHash(userInfo.userId + userInfo.userName + '365trade_pingbiaoxitong'));
-      if(userInfo.passWord != mdHash(userInfo.userId + userInfo.userName + '365trade_pingbiaoxitong')){
-        return res.json({
-              status:'4',
-              msg: '该链接非法不允许登陆！'
-            })
+      if(!userInfo.userId){
+        res.json({
+          status: '400001',
+          msg:'你没有专家ID！'
+        })
+        return;
       }
+      try{
+        userInfo.userId = getDecrypt(userInfo.userId);
+      }catch(e){
+        res.json({
+          status: '400001',
+          msg:'你的专家ID是无效的！'
+        })
+        return;
+      }
+      userInfo.userName = '评标专家_'+new Date().getTime()+'_'+Math.floor(Math.random()*1000);
+      userInfo.passWord = mdHash(userInfo.userId + '365trade_pingbiaoxitong');
+      userInfo.grade = '--';
+      userInfo.class = '--';
     }else
       userInfo.passWord = mdHash(userInfo.passWord);
-    Student.findOne(userInfo,(err,doc) => {
+    Student.findOne({userId: userInfo.userId},(err,doc) => {
       if(err) {
           res.json({
             status:'1',
@@ -53,7 +110,9 @@ exports.register = function (req,res) {
           if(doc) {
             res.json({
               status:'2',
-              msg: '用户已存在'
+              msg: '用户已存在',
+              userName: doc.userName,
+              userId: userIdCopy
             })
             } else {
               userInfo.exams = [];
@@ -67,7 +126,9 @@ exports.register = function (req,res) {
                     if(doc1) {
                       res.json({
                         status: '0',
-                        msg: 'sucess'
+                        msg: 'sucess',
+                        userName: doc1.userName,
+                        userId: userIdCopy
                       })
                       } else {
                         res.json({
@@ -83,14 +144,37 @@ exports.register = function (req,res) {
   };
 // 登录
 exports.signup = function(req, res) {
-
-
-  utils.logger.info('=============1111=========大师傅大师傅=========================================:'+mdHash(req.body.userId+req.body.userName + '365trade_pingbiaoxitong'));
   var type = req.body.type;
-  var param = {
-    userName: req.body.userName,
-    passWord: type == 'url' ? mdHash(req.body.userId+req.body.userName + '365trade_pingbiaoxitong') : mdHash(req.body.userPwd)
+  var userId;
+  var param;
+  if(type == 'url'){
+    if(!req.body.userId){
+      res.json({
+        status: '400001',
+        msg:'没有传专家ID'
+      })
+      return;
+    }
+    try{
+      userId = getDecrypt(req.body.userId);
+    }catch(e){
+      res.json({
+        status: '400001',
+        msg:'没有传专家ID'
+      })
+      return;
+    }
+    param = {
+      userName: req.body.userName,
+      userId: userId
+    }
+  }else{
+    param = {
+      userName: req.body.userName,
+      passWord: mdHash(req.body.userPwd)
+    }
   }
+  
   Student.findOne(param, (err,doc)=>{
     //the second parameter of the callback (in this case user) is set to null.
     //It's not an error, so err is also null.
@@ -242,12 +326,95 @@ exports.getExamLogs = function (req, res){
 };
 
 
+
+exports.generateAccount = function (req, res){
+  if(!req.query.id){
+    res.json({
+      status: '400001',
+      msg:'没有传专家ID'
+    })
+    return;
+  }
+  let userid;
+
+  try{
+    userid = getDecrypt(req.query.id);
+  }catch(e){
+    res.json({
+      status: '400001',
+      msg:'没有传专家ID'
+    })
+    return;
+  }
+
+  let userInfo = {
+    userId: userid,
+    userName: '评标专家_'+new Date().getTime()+'_'+Math.floor(Math.random()*1000),
+    passWord: mdHash(userid + '365trade_pingbiaoxitong')
+  };
+  Student.findOne({userId: userid},(err,doc) => {
+    if(err) {
+        res.json({
+          status:'500000',
+          msg:err.message
+        })
+      } else {
+        if(doc) {
+          res.json({
+            status:'500003',
+            msg: '用户已存在'
+          })
+          } else {
+            userInfo.exams = [];
+            Student.create(userInfo,(err1,doc1) => {
+              if(err1) {
+                res.json({
+                  status:'500001',
+                  msg: err1.message
+                })
+                }else {
+                  if(doc1) {
+                    res.json({
+                      status: '200000',
+                      msg: 'sucess'
+                    })
+                    } else {
+                      res.json({
+                        status:'500002',
+                        msg:'注册失败'
+                      })
+                    }
+                }
+            })
+          }
+      }
+  })
+}
+
 // 获取考试记录
 exports.getExamLogsByUserId = function (req, res){
-  let userid = req.query.userid;
+  //console.log('======================:'+getDESDataKey('专家第0000000000001号'))
+  if(!req.query.id){
+    res.json({
+      status: '400001',
+      msg:'没有传专家ID'
+    })
+    return;
+  }
+  let userid;
+
+  try{
+    userid = getDecrypt(req.query.id);
+  }catch(e){
+    res.json({
+      status: '400001',
+      msg:'没有传专家ID'
+    })
+    return;
+  }
     // 通过req.param()取到的值都是字符串，而limit()需要一个数字作为参数
-  let  pageSize = parseInt(req.query.pageSize);
-  let  pageNumber = parseInt(req.query.pageNumber);
+  let  pageSize = parseInt(req.query.pageSize) || 1000000;
+  let  pageNumber = parseInt(req.query.pageNumber) || 1;
   let  skip = (pageNumber-1)*pageSize; // 跳过几条
   Student.findOne({"userId":userid},{"exams":{$slice:[skip,pageSize]}}).populate({path:'exams._paper'})
     .exec((err,doc) => {
@@ -267,7 +434,7 @@ exports.getExamLogsByUserId = function (req, res){
               starttime: exam.startTime.toLocaleString(),
               endtime: exam.date.toLocaleString(),
               content: exam.desc,
-              through: exam.score == exam._paper.totalPoints ? 1 : 0
+              through: exam._paper ? (exam.score == exam._paper.totalPoints ? 1 : 0) : (exam.score > 80 ? 1 : 0)
             });
           }
           res.json({
@@ -278,7 +445,7 @@ exports.getExamLogsByUserId = function (req, res){
         } else {
           res.json({
             status: '2',
-            msg:'没有该考生或者该考生还没有成绩'
+            msg:'没有该专家或者该专家还没有成绩'
           })
         }
       }

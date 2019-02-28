@@ -65,12 +65,13 @@ module.exports = function(app) {
   app.get('/api/getExamInfo',Student.getExamInfo);
   // 提交考试信息
   app.post('/api/submitExam',Student.submitExam);
-  // 根据userId获取考试成绩
-  app.get('/api/getExamLogsByUserId',Student.getExamLogsByUserId);
   // 获取所有考卷
   app.get('/api/getAllPagers',Student.getAllPagers);
 
-
+  //对外暴露接口
+  // 根据userId获取考试成绩
+  app.get('/api/external/jypt',Student.getExamLogsByUserId);
+  //app.get('/api/external/generateAccount',Student.generateAccount);
 
 
 

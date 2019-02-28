@@ -60,7 +60,8 @@ app.use(function (req,res,next) {
     '/api/studentlogout',
     '/api/register',
     '/api/studentregister',
-    '/api/getExamLogsByUserId'
+    '/api/external/jypt',
+    '/api/external/generateAccount'
   ];
   var isPass = false;
   for(var i=0;i<passUrls.length;i++){
