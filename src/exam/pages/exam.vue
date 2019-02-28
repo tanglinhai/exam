@@ -560,6 +560,9 @@
                 width: 100%;
                 height: 100%;
                 overflow-y: auto;
+                .el-dialog__body{
+                  min-width:1300px;
+                }
               }
             }
           }

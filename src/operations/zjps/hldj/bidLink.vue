@@ -74,12 +74,12 @@
             </el-aside>
             <el-main>
                 <el-row style="line-height:40px;margin-bottom:15px;">
-                    <el-col :span="2">
+                    <el-col :span="3">
                         <div class="grid-content bg-purple-dark" style="border-bottom:2px solid #409EFF;font-size:16px;font-weight:bold;">
                             项目分包
                         </div>
                     </el-col>
-                    <el-col :span="19">
+                    <el-col :span="18">
                         <div class="grid-content bg-purple-dark" style="text-align:right;border-bottom:2px solid #ccc">
                             评标专家：<font style="color:red;">张三</font>
                         </div>
