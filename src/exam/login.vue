@@ -80,33 +80,25 @@ export default {
         });
         var _this = this;
 
-        var userName = this.$route.query.username;
-        var userId = this.$route.query.userid;
-        var passWord = this.$route.query.ps;
-        var grade = this.$route.query.grade;
-        var class_ = this.$route.query.class_;
-        if(userName && userId){
-          this.userName = userName;
-          this.passWord = passWord;
+        var userId = this.$route.query.id;
+        if(userId){
           this.userId = userId;
           this.$axios.post('/api/studentregister',{
             type: 'url',
             userInfo:{
-              userName: userName,
-              passWord: passWord,
-              userId: userId,
-              grade: grade || '--',
-              class: class_ || '--'
+              userId: userId
             }
           }).then(data => {
-            if(data.data.status == 4){
+            if(data.data.status == 0 || data.data.status == 2){
+              _this.userName = data.data.userName;
+              _this.passWord = Math.random()*100000;
+              _this.submit('url');
+            }else
               this.$message({
                 showClose: true,
                 message: data.data.msg,
                 type: 'warning'
               });
-            }else
-              _this.submit('url');
           }).catch(err => {
             this.$message({
               showClose: true,

@@ -23,14 +23,14 @@ module.exports = {
   },
   dev: {
     env: require('./dev.env'),
-    port: 9000,
+    port: 10005,
     autoOpenBrowser: false,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
         // proxy all requests starting with /api to jsonplaceholder
         '/api': {
-            target: 'http://127.0.0.1:9001/api',
+            target: 'http://127.0.0.1:10006/api',
             changeOrigin: true,
             pathRewrite: {
                 '^/api': ''  // 若target中没有/api、这里又为空，则404；
